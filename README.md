@@ -1,10 +1,10 @@
 # shala_yoga
 
-A new Flutter project.
+ShalaOnline is the first online streaming platform that offers both English and Arabic yoga and meditation classes. All our classes are taught by hand-picked certified and experienced teachers.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Flutter Version: Flutter 2.2.3 • channel stable
 
 A few resources to get you started if this is your first Flutter project:
 
