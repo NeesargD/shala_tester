@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shala_yoga/ui/Intro/splashScreen.dart';
 import '../../ui/auth/splash/splash_screen.dart';
 import 'constants/navigation_route_constants.dart';
 
@@ -8,8 +9,10 @@ class NavigationUtils {
     switch (settings.name) {
       case routeSplash:
         return MaterialPageRoute(builder: (_) => SplashScreen());
+      case routeIntro:
+        return MaterialPageRoute(builder: (_)=>IntroScreen());
       default:
-        return _errorRoute(" Comming soon...");
+        return _errorRoute(" Coming soon...");
     }
   }
 

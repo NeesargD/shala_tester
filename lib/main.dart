@@ -31,33 +31,35 @@ class MyApp extends StatelessWidget {
       ),
     );
 
-    return MultiProvider(
-      providers: [],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Base Project',
-        builder: (context, child) {
-          return MediaQuery(
-            child: child!,
-            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-          );
-        },
-        theme: ThemeData(
-          primaryColor: primaryColor,
-          fontFamily: 'BeVietnam',
-        ),
-        onGenerateRoute: locator<NavigationUtils>().generateRoute,
-        initialRoute: routeSplash,
-        localizationsDelegates: [
-          const MyLocalizationsDelegate(),
-          DefaultMaterialLocalizations.delegate,
-          DefaultWidgetsLocalizations.delegate,
-        ],
-        supportedLocales: [
-          const Locale('en', ''),
-          // const Locale('es', ''),
-        ],
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Base Project',
+      // builder: (context, child) {
+      //   return MediaQuery(
+      //     child: child!,
+      //     data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+      //   );
+      // },
+      theme: ThemeData(
+        primaryColor: primaryColor,
+        fontFamily: 'BeVietnam',
       ),
+      onGenerateRoute: locator<NavigationUtils>().generateRoute,
+      initialRoute: routeSplash,
+      localizationsDelegates: [
+        const MyLocalizationsDelegate(),
+        DefaultMaterialLocalizations.delegate,
+        DefaultWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('en', ''),
+        // const Locale('es', ''),
+      ],
     );
   }
 }
+
+
+
+
+

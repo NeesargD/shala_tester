@@ -1,6 +1,7 @@
 import 'localization.dart';
 
 class LocalizationEN implements Localization {
+
   @override
   String get appName => "Base Project";
 

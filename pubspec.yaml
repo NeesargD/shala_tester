@@ -41,6 +41,7 @@ dependencies:
   cached_network_image: ^2.4.1   # For Image Caching
   image_picker: ^0.8.2           # To Pick Image From Camera and Gallery
   shimmer: ^1.1.2                # For Skeleton View
+  carousel_slider: ^4.0.0      #For Intro Slider
 
 dev_dependencies:
   flutter_test:
@@ -58,9 +59,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+     - assets/img1.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
