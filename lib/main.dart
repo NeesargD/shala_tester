@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
       //   );
       // },
       theme: ThemeData(
-        primaryColor: primaryColor,
+        primaryColor: ColorRes.primaryColor,
         fontFamily: 'Sfui',
       ),
       onGenerateRoute: locator<NavigationUtils>().generateRoute,

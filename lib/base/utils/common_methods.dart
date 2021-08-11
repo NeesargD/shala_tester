@@ -15,7 +15,7 @@ import 'localization/localization.dart';
 // Get Text Widget
 Widget getTextWidget(
         {required String title,
-        Color textColor = primaryTextColor,
+        Color textColor = ColorRes.primaryTextColor,
         double textFontSize = fontSize14,
         FontWeight? textFontWeight,
         TextAlign? textAlign,
@@ -49,7 +49,7 @@ Widget getBottomSheetAction(
           children: <Widget>[
             ClipOval(
               child: Container(
-                color: primaryColor,
+                color: ColorRes.primaryColor,
                 padding: EdgeInsets.all(10.0),
                 child: Icon(
                   icon,
@@ -143,7 +143,7 @@ Future<DateTime?> pickDate(
     builder: (context, child) {
       return Theme(
         data: ThemeData.light().copyWith(
-          colorScheme: ColorScheme.light().copyWith(primary: primaryColor),
+          colorScheme: ColorScheme.light().copyWith(primary: ColorRes.primaryColor),
         ),
         child: child!,
       );

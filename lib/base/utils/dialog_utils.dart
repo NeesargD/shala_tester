@@ -224,7 +224,7 @@ Future<bool?> displayToast(String message) {
       toastLength: Toast.LENGTH_LONG,
       gravity: ToastGravity.BOTTOM,
       timeInSecForIosWeb: 2,
-      backgroundColor: primaryColor,
+      backgroundColor: ColorRes.primaryColor,
       textColor: Colors.white,
       fontSize: fontSize14);
 }
@@ -236,6 +236,6 @@ SnackBar displaySnackBar({required String message}) {
       style: TextStyle(color: Colors.white, fontSize: fontSize14),
     ),
     duration: Duration(seconds: 2),
-    backgroundColor: primaryColor,
+    backgroundColor: ColorRes.primaryColor,
   );
 }

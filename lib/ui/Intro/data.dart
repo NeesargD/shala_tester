@@ -15,16 +15,16 @@ final splashScreenList = [
   SplashItem(
     title: 'YOGA & MEDITATION',
     subTitle: 'Anytime, Anywhere & in your native language',
-    color: primaryColor, image: 'assets/splashscreen1.svg',
+    color: ColorRes.primaryColor, image: 'assets/splashscreen1.svg',
   ),
   SplashItem(
     title: 'GUIDED EXPERIENCE',
     subTitle: 'By handpicked certified instructors',
-    color: primaryColor, image: 'assets/splashscreen2.svg',
+    color: ColorRes.primaryColor, image: 'assets/splashscreen2.svg',
   ),
   SplashItem(
     title: 'TAILORED PROGRAMS',
     subTitle: 'To help you achieve your objectives',
-    color: primaryColor, image: 'assets/splashscreen3.svg',
+    color: ColorRes.primaryColor, image: 'assets/splashscreen3.svg',
   ),
 ];

@@ -32,7 +32,7 @@ class ProgressDialogUtils {
           children: <Widget>[
             Center(
               child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(primaryColor),
+                valueColor: AlwaysStoppedAnimation<Color>(ColorRes.primaryColor),
               ),
             )
           ],
