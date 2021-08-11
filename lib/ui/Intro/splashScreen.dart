@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shala_yoga/base/utils/constants/color_constant.dart';
 import 'package:shala_yoga/ui/Intro/data.dart';
 
@@ -50,18 +51,17 @@ class _IntroScreenState extends State<IntroScreen> {
                         children: [
                           Container(
                             height: MediaQuery.of(context).size.height*0.5,
-                            child: Image.asset('assets/img1.jpg',
-                                fit: BoxFit.fill),
+                            child: SvgPicture.asset(splashScreenList[index].image),
                           ),
                           Spacer(flex: 2),
                           Text(splashScreenList[index].title,style: TextStyle(
                               color: white,
-                              fontSize: 45,
+                              fontSize: 50,
                             letterSpacing: 0
                           ),),
                           Text(splashScreenList[index].subTitle,
                             style: TextStyle( letterSpacing: 0,
-                              fontSize: 24,
+                              fontSize: 30,
                               color: white
                           ),),
                          Spacer(),

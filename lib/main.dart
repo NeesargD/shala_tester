@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
       // },
       theme: ThemeData(
         primaryColor: primaryColor,
-        fontFamily: 'BeVietnam',
+        fontFamily: 'Sfui',
       ),
       onGenerateRoute: locator<NavigationUtils>().generateRoute,
       initialRoute: routeSplash,
