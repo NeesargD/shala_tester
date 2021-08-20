@@ -4,9 +4,9 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'base/dependencyinjection/locator.dart';
 import 'base/utils/constants/color_constant.dart';
-import 'base/utils/constants/navigation_route_constants.dart';
+import 'base/utils/navigation/navigation_route_constants.dart';
 import 'base/utils/localization/localization.dart';
-import 'base/utils/navigation_utils.dart';
+import 'base/utils/navigation/navigation_utils.dart';
 import 'base/utils/preference_utils.dart';
 
 Future<void> main() async {

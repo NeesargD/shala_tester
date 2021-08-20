@@ -8,5 +8,12 @@ class ColorRes {
   static const Color primaryTextColor = Color(0xff060605);
   static const Color secondaryTextColor = Color(0xff0C0C0B);
   static const Color white = Color(0xffffffff);
+  static const Color whiteGradient = Color(0xfff5f5f5);
+  static const Color greyText = Color(0xff757575);
+  static const Color greyBorder = Color(0xff707070);
+  static const Color greyIcon = Color(0xffCCCCCC);
+  static const Color lightGrey = Color(0xffA4A2A2);
   static const Color indicatorColor = Color(0xffB9D79E);
+  static const Color appBarColor = Color(0xfff3f3f3);
+  static const Color green = Color(0xff73A72E);
 }

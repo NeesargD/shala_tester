@@ -151,3 +151,11 @@ Future<DateTime?> pickDate(
   );
   return picked ?? initialDate;
 }
+
+double screenHeight({required BuildContext context, double percent = 1}) {
+  return MediaQuery.of(context).size.height * percent;
+}
+
+double screenWidth({required BuildContext context, double percent = 1}) {
+  return MediaQuery.of(context).size.width * percent;
+}

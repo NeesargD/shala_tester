@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import '../utils/constants/app_constant.dart';
 
 extension ScaffoldExtension on Widget {
-  Scaffold baseScaffold({required BuildContext context}) {
+  SafeArea baseScaffold({required BuildContext context}) {
     getScreenSize(context);
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: this,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: this,
       ),
     );
   }

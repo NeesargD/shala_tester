@@ -2,7 +2,9 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:shala_yoga/base/utils/constants/navigation_route_constants.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shala_yoga/base/utils/constants/image_constant.dart';
+import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
 import '../../../base/extensions/scaffold_extension.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -29,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
       switchInCurve: Curves.fastLinearToSlowEaseIn,
       transitionBuilder: (Widget child, Animation<double> animation) =>
           SlideTransition(
-        position: Tween<Offset>(begin: Offset(-10, 0), end: Offset(0.25, 0.0))
+        position: Tween<Offset>(begin: Offset(-10, 0), end: Offset(0.35, 0.0))
             .animate(animation),
         child: child,
       ),
@@ -38,7 +40,9 @@ class _SplashScreenState extends State<SplashScreen> {
           ? Container()
           : Align(
               alignment: Alignment.centerLeft,
-              child: Container(),
+              child: SvgPicture.asset(
+                ImageRes.icAppLogo
+              ),
             ),
     ).baseScaffold(context: context);
   }
