@@ -36,7 +36,8 @@ class Content {
   List<Page> page;
 
   factory Content.fromJson(Map<String, dynamic> json) => Content(
-        page: json["pages"] == null ? [] : List<Page>.from(json["pages"].map((x) => Page.fromJson(x))),
+        page: json["pages"] == null ? [] : List<Page>
+      .from(json["pages"].map((x) => Page.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {

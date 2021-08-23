@@ -21,4 +21,17 @@ class StringRes {
   static const errorTitle = 'Oops! something\'s missing...';
   static const errorDescription =
       'It seems like we can\'t find what you searched. The page you are looking for doesn\'t exist, isn\'t available or was loading incorrectly.';
+
+  // Instructors_Screen
+
+  static const String instructor = "Instructors";
+  static const String instructor_name = "LEDAE ANDERSON";
+  static const String instructor_name0 = "PRISCILLA";
+
+  static const String arabic_language ="AR";
+  static const String english_language ="EN";
+
+  static const String style1 ="style1";
+  static const String style2 ="style2";
+
 }

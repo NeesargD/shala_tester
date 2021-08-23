@@ -27,7 +27,7 @@ class IntroBloc extends Bloc<IntroEvent, IntroState> {
         if (_onboardingModel.success) {
           if (_onboardingModel.content!.page.length != 0) {
             yield IntroSuccess(onboardingModel: _onboardingModel);
-          } else {
+          } else{
             yield IntroFailure(message: _onboardingModel.message);
           }
         } else {

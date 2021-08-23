@@ -4,3 +4,4 @@ const String routeIntro = "routeIntro";
 const String routeStartUpScreen = "routeStartUpScreen";
 const String routeQuestionAnswer = "routeQuestionAnswer";
 const String routeRecommendation = "routeRecommendation";
+const String routeInstructors = "routeInstructors";

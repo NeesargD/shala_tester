@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shala_yoga/blocs/instructor_bloc/instructor_bloc.dart';
 import 'package:shala_yoga/blocs/intro_bloc/intro_bloc.dart';
 import 'package:shala_yoga/blocs/quiz_details_bloc/quiz_details_bloc.dart';
 import 'package:shala_yoga/ui/Intro/intro_screen.dart';
 import 'package:shala_yoga/ui/Intro/splashScreen.dart';
+import 'package:shala_yoga/ui/instuctors/instructor_screen.dart';
 import 'package:shala_yoga/ui/question_answer_screen.dart';
 import 'package:shala_yoga/ui/recommendation/recommendation_screen.dart';
 import 'package:shala_yoga/ui/start_up/startup_screen.dart';
@@ -38,6 +40,13 @@ class NavigationUtils {
           builder: (_) => BlocProvider(
             create: (context) => QuizDetailsBloc(),
             child: RecommendationScreen(),
+          ),
+        );
+      case routeInstructors:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => InstructorBloc(),
+            child: InstructorScreen(),
           ),
         );
       default:

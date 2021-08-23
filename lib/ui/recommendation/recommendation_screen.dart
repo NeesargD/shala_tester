@@ -16,6 +16,7 @@ class RecommendationScreen extends StatefulWidget {
 }
 
 class _RecommendationScreenState extends State<RecommendationScreen> {
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
