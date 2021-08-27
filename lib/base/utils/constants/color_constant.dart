@@ -19,6 +19,6 @@ class ColorRes {
   static const Color green = Color(0xff73A72E);
   static const Color premiumBackground = Color(0xffC8B273);
   static const Color unselectedTextGrey = Color(0xffAFADAD);
-
+  static const Color red = Color(0xffFF0000);
   static const Color appBackground = Color(0xffF9F9F9);
 }

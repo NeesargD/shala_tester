@@ -8,6 +8,7 @@ import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
 import 'package:shala_yoga/blocs/instructor_bloc/instructor_bloc.dart';
+import 'package:shala_yoga/ui/widgets/common_instructor_circle_avatar.dart';
 import 'package:shala_yoga/ui/widgets/failure_widget.dart';
 import 'package:shala_yoga/ui/widgets/loading_widget.dart';
 
@@ -58,13 +59,8 @@ class _InstructorScreenState extends State<InstructorScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            CircleAvatar(
-                              radius: 25,
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(25),
-                                  child:
-                                      Image.network(state.instructorModel.content!.instructors[index].profilePicture)),
-                            ),
+                            InstructorCircleAvatar(radius: 25, imageSource: state.instructorModel
+                                .content!.instructors[index].profilePicture),
                             Padding(
                               padding: const EdgeInsetsDirectional.only(start: 20),
                               child: Column(

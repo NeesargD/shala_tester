@@ -7,3 +7,7 @@ const String routeRecommendation = "routeRecommendation";
 const String routeInstructors = "routeInstructors";
 const String routeInstructorDetails = "routeInstructorDetails";
 const String routeDashboard = "routeDashboard";
+const String routeSetting = "routeSetting";
+const String routeMyAccount = "routeMyAccount";
+const String routeNotification = "routeNotification";
+const String routeHomeScreen = "routeHomeScreen";

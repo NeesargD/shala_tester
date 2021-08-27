@@ -3,12 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shala_yoga/base/utils/constants/color_constant.dart';
 import 'package:shala_yoga/base/utils/constants/image_constant.dart';
+import 'package:shala_yoga/base/utils/constants/string_res.dart';
 import 'package:shala_yoga/blocs/instructor_bloc/instructor_bloc.dart';
 import 'package:shala_yoga/blocs/instructor_details_bloc/instructor_details_bloc.dart';
 import 'package:shala_yoga/blocs/recommended_bloc/recommendation_bloc.dart';
+import 'package:shala_yoga/ui/dashboard/home/home.dart';
 import 'package:shala_yoga/ui/dashboard/recommendation/recommendation_screen.dart';
 import 'package:shala_yoga/ui/instructors/instructor_details_screen.dart';
 import 'package:shala_yoga/ui/instructors/instructor_screen.dart';
+import 'package:shala_yoga/ui/setting/setting_screen.dart';
+import 'package:shala_yoga/ui/widgets/bottom_sheet.dart';
 
 class DashboardScreen extends StatefulWidget {
   final int index;
@@ -38,15 +42,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
       child: ValueListenableBuilder<int>(
         builder: (context, value, child) {
           return Scaffold(
+            key: appState.scaffoldKey,
             resizeToAvoidBottomInset: false,
             body: Stack(
               children: [
                 IndexedStack(
                   index: value,
                   children: [
-                    Center(
-                      child: Text('Under Development'),
-                    ),
+                    HomeScreen(),
                     Center(
                       child: Text('Under Development'),
                     ),
@@ -61,7 +64,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       child: Text('Under Development'),
                     ),
                     BlocProvider(
-                      create: (context) => RecommendationBloc()..add(GetRecommendationContent()),
+                      create: (context) =>
+                          RecommendationBloc()..add(GetRecommendationContent()),
                       child: RecommendationScreen(),
                     ),
                   ],
@@ -83,7 +87,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         children: [
                           SvgPicture.asset(
                             ImageRes.home,
-                            color: _currentIndex.value == 0 ? ColorRes.primaryColor : ColorRes.greyIcon,
+                            color: _currentIndex.value == 0
+                                ? ColorRes.primaryColor
+                                : ColorRes.greyIcon,
                             height: 20,
                             width: 20,
                             fit: BoxFit.contain,
@@ -93,7 +99,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             "Home",
                             style: TextStyle(
                                 fontSize: 11,
-                                color: _currentIndex.value == 0 ? ColorRes.primaryColor : ColorRes.greyText),
+                                color: _currentIndex.value == 0
+                                    ? ColorRes.primaryColor
+                                    : ColorRes.greyText),
                           ),
                         ],
                       ),
@@ -106,7 +114,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         children: [
                           SvgPicture.asset(
                             ImageRes.play,
-                            color: _currentIndex.value == 1 ? ColorRes.primaryColor : ColorRes.greyIcon,
+                            color: _currentIndex.value == 1
+                                ? ColorRes.primaryColor
+                                : ColorRes.greyIcon,
                             height: 20,
                             width: 20,
                             fit: BoxFit.contain,
@@ -116,7 +126,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             "CLASSES",
                             style: TextStyle(
                                 fontSize: 11,
-                                color: _currentIndex.value == 1 ? ColorRes.primaryColor : ColorRes.greyText),
+                                color: _currentIndex.value == 1
+                                    ? ColorRes.primaryColor
+                                    : ColorRes.greyText),
                           ),
                         ],
                       ),
@@ -129,7 +141,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         children: [
                           SvgPicture.asset(
                             ImageRes.programs,
-                            color: _currentIndex.value == 2 ? ColorRes.primaryColor : ColorRes.greyIcon,
+                            color: _currentIndex.value == 2
+                                ? ColorRes.primaryColor
+                                : ColorRes.greyIcon,
                             height: 20,
                             width: 20,
                             fit: BoxFit.contain,
@@ -139,7 +153,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             "PROGRAMS",
                             style: TextStyle(
                                 fontSize: 11,
-                                color: _currentIndex.value == 2 ? ColorRes.primaryColor : ColorRes.greyText),
+                                color: _currentIndex.value == 2
+                                    ? ColorRes.primaryColor
+                                    : ColorRes.greyText),
                           ),
                         ],
                       ),
@@ -152,7 +168,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         children: [
                           SvgPicture.asset(
                             ImageRes.yogaPosture,
-                            color: _currentIndex.value == 3 ? ColorRes.primaryColor : ColorRes.greyIcon,
+                            color: _currentIndex.value == 3
+                                ? ColorRes.primaryColor
+                                : ColorRes.greyIcon,
                             height: 20,
                             width: 20,
                             fit: BoxFit.contain,
@@ -162,7 +180,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             "INSTRUCTORS",
                             style: TextStyle(
                                 fontSize: 11,
-                                color: _currentIndex.value == 3 ? ColorRes.primaryColor : ColorRes.greyText),
+                                color: _currentIndex.value == 3
+                                    ? ColorRes.primaryColor
+                                    : ColorRes.greyText),
                           ),
                         ],
                       ),
@@ -175,7 +195,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         children: [
                           SvgPicture.asset(
                             ImageRes.myPractice,
-                            color: _currentIndex.value == 4 ? ColorRes.primaryColor : ColorRes.greyIcon,
+                            color: _currentIndex.value == 4
+                                ? ColorRes.primaryColor
+                                : ColorRes.greyIcon,
                             height: 20,
                             width: 20,
                             fit: BoxFit.contain,
@@ -185,7 +207,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             "MY PRACTICE",
                             style: TextStyle(
                                 fontSize: 11,
-                                color: _currentIndex.value == 4 ? ColorRes.primaryColor : ColorRes.greyText),
+                                color: _currentIndex.value == 4
+                                    ? ColorRes.primaryColor
+                                    : ColorRes.greyText),
                           ),
                         ],
                       ),

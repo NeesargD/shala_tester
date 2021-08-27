@@ -44,6 +44,12 @@ class TextStyles {
     fontSize: 18.0,
     color: ColorRes.white,
   );
+  static const TextStyle SB1875 = TextStyle(
+    inherit: true,
+    fontWeight: FontWeight.w600,
+    fontSize: 18.0,
+    color: ColorRes.greyText,
+  );
   static const TextStyle SB15FF = TextStyle(
     inherit: true,
     fontWeight: FontWeight.w600,
@@ -76,6 +82,13 @@ class TextStyles {
   );
 
   ///LIGHT TEXT_STYLES
+
+  static const TextStyle L30FF = TextStyle(
+    inherit: true,
+    fontWeight: FontWeight.w400,
+    fontSize: 30.0,
+    color: ColorRes.white,
+  );
 
   static const TextStyle L2075 = TextStyle(
     //20-grey
@@ -120,10 +133,14 @@ class TextStyles {
     color: ColorRes.greyText,
   );
   static const TextStyle R18FF = TextStyle(
-    //18-white
     inherit: true,
     fontSize: 18.0,
     color: ColorRes.white,
+  );
+  static const TextStyle R1675 = TextStyle(
+    inherit: true,
+    fontSize: 16.0,
+    color: ColorRes.greyText,
   );
   static const TextStyle R1575 = TextStyle(
     //15-grey

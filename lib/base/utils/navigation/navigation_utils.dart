@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shala_yoga/blocs/instructor_details_bloc/instructor_details_bloc.dart';
-import 'package:shala_yoga/blocs/recommended_bloc/recommendation_bloc.dart';
-import 'package:shala_yoga/ui/dashboard/dashboard_screen.dart';
-import 'package:shala_yoga/ui/instructors/instructor_details_screen.dart';
+import 'package:shala_yoga/ui/setting/notification/notification.dart';
+import '../../../blocs/instructor_details_bloc/instructor_details_bloc.dart';
+import '../../../blocs/recommended_bloc/recommendation_bloc.dart';
+import '../../../ui/dashboard/dashboard_screen.dart';
+import '../../../ui/dashboard/home/home.dart';
+import '../../../ui/instructors/instructor_details_screen.dart';
+import '../../../ui/setting/my_account/my_account_screen.dart';
+import '../../../ui/setting/setting_screen.dart';
 
 import '../../../blocs/instructor_bloc/instructor_bloc.dart';
 import '../../../blocs/intro_bloc/intro_bloc.dart';
@@ -45,6 +49,8 @@ class NavigationUtils {
             child: RecommendationScreen(),
           ),
         );
+      case routeHomeScreen:
+        return MaterialPageRoute(builder: (_) => HomeScreen());
       case routeInstructors:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
@@ -58,6 +64,18 @@ class NavigationUtils {
             create: (context) => InstructorDetailsBloc()..add(GetInstructorDetailsScreen(id: args!['id'],)),
             child: InstructorProfileScreen(),
           ),
+        );
+      case routeSetting:
+        return MaterialPageRoute(
+          builder: (_)=> SettingScreen(),
+        );
+      case routeMyAccount:
+        return MaterialPageRoute(
+          builder: (_)=> MyAccountScreen(),
+        );
+      case routeNotification:
+        return MaterialPageRoute(
+          builder: (_)=> NotificationScreen(),
         );
       case routeDashboard:
         return MaterialPageRoute(builder: (_) => DashboardScreen(index: args!['index'],));
