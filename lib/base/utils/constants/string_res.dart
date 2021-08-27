@@ -28,10 +28,12 @@ class StringRes {
   static const String instructor_name = "LEDAE ANDERSON";
   static const String instructor_name0 = "PRISCILLA";
 
-  static const String arabic_language ="AR";
-  static const String english_language ="EN";
+  static const String arabic_language = "AR";
+  static const String english_language = "EN";
 
-  static const String style1 ="style1";
-  static const String style2 ="style2";
+  static const String style1 = "style1";
+  static const String style2 = "style2";
 
+  //TAGS
+  static const String tagInstructor = 'tag_instructor';
 }

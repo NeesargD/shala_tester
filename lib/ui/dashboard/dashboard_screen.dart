@@ -42,7 +42,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
       child: ValueListenableBuilder<int>(
         builder: (context, value, child) {
           return Scaffold(
-            key: appState.scaffoldKey,
             resizeToAvoidBottomInset: false,
             body: Stack(
               children: [

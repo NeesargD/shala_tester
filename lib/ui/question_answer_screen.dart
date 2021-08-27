@@ -45,6 +45,20 @@ class _QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
           ),
           elevation: 0,
           backgroundColor: ColorRes.white,
+          actions: [
+            InkWell(
+              onTap: (){
+                NavigationUtils.pushAndRemoveUntil(context, routeDashboard,arguments: {'index':0});
+              },
+              child: Icon(
+                Icons.clear,
+                color: ColorRes.greyText,
+              ),
+            ),
+            const SizedBox(
+              width: 20,
+            ),
+          ],
         ),
         body: BlocBuilder<QuizDetailsBloc, QuizDetailsState>(
           builder: (context, state) {
@@ -77,25 +91,56 @@ class _QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                 const SizedBox(
                                   height: 20,
                                 ),
-                                ListView.builder(
-                                  shrinkWrap: true,
-                                  physics: NeverScrollableScrollPhysics(),
-                                  itemCount: state.quizModel.content[index].answers!.length,
-                                  itemBuilder: (context, i) {
-                                    return Container(
-                                      decoration: BoxDecoration(
-                                        border: Border.all(color: ColorRes.lightGrey, width: 1),
-                                        borderRadius: BorderRadius.circular(10),
+                                state.quizModel.content[index].answers!.length > 5
+                                    ? Padding(
+                                        padding: const EdgeInsetsDirectional.only(start: 50, end: 50),
+                                        child: GridView.builder(
+                                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                              crossAxisCount: 2,
+                                              crossAxisSpacing: 23,
+                                              mainAxisSpacing: 23,
+                                              childAspectRatio: 4 / 3),
+                                          padding: EdgeInsets.all(0),
+                                          shrinkWrap: true,
+                                          physics: NeverScrollableScrollPhysics(),
+                                          itemCount: state.quizModel.content[index].answers!.length,
+                                          itemBuilder: (context, i) {
+                                            return Container(
+                                              decoration: BoxDecoration(
+                                                border: Border.all(color: ColorRes.lightGrey, width: 1),
+                                                borderRadius: BorderRadius.circular(10),
+                                              ),
+                                              // padding: EdgeInsetsDirectional.fromSTEB(17, 28, 17, 28),
+                                              // margin: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 10),
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                state.quizModel.content[index].answers![i].answerValue,
+                                                style: TextStyles.R1875,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      )
+                                    : ListView.builder(
+                                        shrinkWrap: true,
+                                        physics: NeverScrollableScrollPhysics(),
+                                        itemCount: state.quizModel.content[index].answers!.length,
+                                        itemBuilder: (context, i) {
+                                          return Container(
+                                            decoration: BoxDecoration(
+                                              border: Border.all(color: ColorRes.lightGrey, width: 1),
+                                              borderRadius: BorderRadius.circular(10),
+                                            ),
+                                            padding: EdgeInsetsDirectional.fromSTEB(20, 28, 0, 29),
+                                            margin: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 10),
+                                            child: Text(
+                                              state.quizModel.content[index].answers![i].answerValue,
+                                              style: TextStyles.R1875,
+                                            ),
+                                          );
+                                        },
                                       ),
-                                      padding: EdgeInsetsDirectional.fromSTEB(20, 28, 0, 29),
-                                      margin: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 10),
-                                      child: Text(
-                                        state.quizModel.content[index].answers![i].answerValue,
-                                        style: TextStyles.R1875,
-                                      ),
-                                    );
-                                  },
-                                ),
                               ],
                             ),
                           ),

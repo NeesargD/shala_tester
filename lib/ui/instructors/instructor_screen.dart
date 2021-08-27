@@ -1,16 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shala_yoga/base/utils/common_methods.dart';
-import 'package:shala_yoga/base/utils/constants/color_constant.dart';
-import 'package:shala_yoga/base/utils/constants/string_res.dart';
-import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
-import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
-import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
-import 'package:shala_yoga/blocs/instructor_bloc/instructor_bloc.dart';
-import 'package:shala_yoga/ui/widgets/common_instructor_circle_avatar.dart';
-import 'package:shala_yoga/ui/widgets/failure_widget.dart';
-import 'package:shala_yoga/ui/widgets/loading_widget.dart';
+
+import '../../base/utils/common_methods.dart';
+import '../../base/utils/constants/color_constant.dart';
+import '../../base/utils/constants/string_res.dart';
+import '../../base/utils/constants/textstyle_constants.dart';
+import '../../base/utils/navigation/navigation_route_constants.dart';
+import '../../base/utils/navigation/navigation_utils.dart';
+import '../../blocs/instructor_bloc/instructor_bloc.dart';
+import '../widgets/circular_image.dart';
+import '../widgets/failure_widget.dart';
+import '../widgets/loading_widget.dart';
 
 class InstructorScreen extends StatefulWidget {
   const InstructorScreen({Key? key}) : super(key: key);
@@ -59,8 +60,7 @@ class _InstructorScreenState extends State<InstructorScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            InstructorCircleAvatar(radius: 25, imageSource: state.instructorModel
-                                .content!.instructors[index].profilePicture),
+                            CircularImage(imageUrl: state.instructorModel.content!.instructors[index].profilePicture),
                             Padding(
                               padding: const EdgeInsetsDirectional.only(start: 20),
                               child: Column(

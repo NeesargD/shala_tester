@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shala_yoga/base/utils/constants/image_constant.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
+import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
 import '../../../base/extensions/scaffold_extension.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -56,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen> {
               performLogoTransition = !performLogoTransition;
             });
           } else if (timer.tick == 3) {
-            Navigator.of(context).pushNamed(routeIntro, arguments: null);
+            NavigationUtils.pushReplacement(context, routeIntro);
             // Your Navigation
             this.dispose();
           }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shala_yoga/base/utils/constants/color_constant.dart';
-import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
+
+import '../../base/utils/constants/color_constant.dart';
+import '../../base/utils/constants/textstyle_constants.dart';
 
 class CommonListTileWidget extends StatelessWidget {
   final String titleText;
@@ -8,13 +9,9 @@ class CommonListTileWidget extends StatelessWidget {
   final double itemSpace;
   final VoidCallback onTap;
 
-  const CommonListTileWidget({
-    Key? key,
-    required this.titleText,
-    required this.imagePath,
-    required this.onTap,
-    this.itemSpace = 15
-  }) : super(key: key);
+  const CommonListTileWidget(
+      {Key? key, required this.titleText, required this.imagePath, required this.onTap, this.itemSpace = 15})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +36,7 @@ class CommonListTileWidget extends StatelessWidget {
         color: ColorRes.greyText,
       ),
       dense: true,
-      contentPadding:
-          EdgeInsetsDirectional.only(start: 0, end: 0, bottom: itemSpace,
-              top: itemSpace),
+      contentPadding: EdgeInsetsDirectional.only(start: 0, end: 0, bottom: itemSpace, top: itemSpace),
     );
   }
 }

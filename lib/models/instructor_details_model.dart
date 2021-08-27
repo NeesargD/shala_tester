@@ -1,3 +1,7 @@
+// To parse this JSON data, do
+//
+//     final instructorDetailsModel = instructorDetailsModelFromJson(jsonString);
+
 import 'dart:convert';
 
 InstructorDetailsModel instructorDetailsModelFromJson(String str) => InstructorDetailsModel.fromJson(json.decode(str));
@@ -17,8 +21,8 @@ class InstructorDetailsModel {
 
   factory InstructorDetailsModel.fromJson(Map<String, dynamic> json) => InstructorDetailsModel(
         content: json["content"] == null ? null : Content.fromJson(json["content"]),
-        success: json["success"] == null ? null : json["success"],
-        message: json["message"] == null ? null : json["message"],
+        success: json["success"],
+        message: json["message"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -30,86 +34,122 @@ class InstructorDetailsModel {
 
 class Content {
   Content({
-    this.instructor,
-    required this.programs,
-    required this.classes,
+    required this.instructorDetails,
+    required this.instructorsPrograms,
+    required this.instructorsClasses,
   });
 
-  Instructor? instructor;
-  List<Program> programs;
-  List<Classes> classes;
+  InstructorDetails instructorDetails;
+  List<Programs> instructorsPrograms;
+  List<Classes> instructorsClasses;
 
   factory Content.fromJson(Map<String, dynamic> json) => Content(
-        instructor: json["instructor"] == null ? null : Instructor.fromJson(json["instructor"]),
-        programs: json["programs"] == null ? [] : List<Program>.from(json["programs"].map((x) => Program.fromJson(x))),
-        classes: json["classes"] == null ? [] : List<Classes>.from(json["classes"].map((x) => Classes.fromJson(x))),
+        instructorDetails: InstructorDetails.fromJson(json["instructor"]),
+        instructorsPrograms: List<Programs>.from(json["programs"].map((x) => Programs.fromJson(x))),
+        instructorsClasses: List<Classes>.from(json["classes"].map((x) => Classes.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "instructor": instructor == null ? null : instructor!.toJson(),
-        "programs": List<dynamic>.from(programs.map((x) => x.toJson())),
-        "classes": List<dynamic>.from(classes.map((x) => x.toJson())),
+        "instructor": instructorDetails.toJson(),
+        "programs": List<dynamic>.from(instructorsPrograms.map((x) => x.toJson())),
+        "classes": List<dynamic>.from(instructorsClasses.map((x) => x.toJson())),
       };
 }
 
 class Classes {
   Classes({
     required this.id,
-    required this.instructorId,
-    required this.programIdId,
+    required this.instructor,
     required this.title,
-    required this.durations,
+    required this.focus,
+    required this.style,
     required this.level,
-    required this.languageId,
-    required this.videoUrl,
     required this.isLock,
-    required this.weight,
+    required this.language,
+    required this.durations,
+    required this.videoUrl,
     required this.coverImage,
   });
 
   int id;
-  int instructorId;
-  int programIdId;
+  ClassInstructor instructor;
   String title;
-  String durations;
+  List<String> focus;
+  List<String> style;
   String level;
-  int languageId;
-  String videoUrl;
+  String language;
   bool isLock;
-  int weight;
+  String durations;
+  String videoUrl;
   String coverImage;
 
   factory Classes.fromJson(Map<String, dynamic> json) => Classes(
-        id: json["id"] == null ? null : json["id"],
-        instructorId: json["instructor_id"] == null ? null : json["instructor_id"],
-        programIdId: json["program_id_id"] == null ? null : json["program_id_id"],
-        title: json["title"] == null ? '' : json["title"],
-        durations: json["durations"] == null ? 0.toString() : json["durations"],
-        level: json["level"] == null ? '' : json["level"],
-        languageId: json["language_id"] == null ? null : json["language_id"],
-        videoUrl: json["video_url"] == null ? null : json["video_url"],
-        isLock: json["is_lock"] == null ? true : json["is_lock"],
-        weight: json["weight"] == null ? null : json["weight"],
-        coverImage: json["cover_image"] == null ? null : json["cover_image"],
+        id: json["id"],
+        instructor: ClassInstructor.fromJson(json["instructor"]),
+        title: json["title"],
+        focus: List<String>.from(json["focus"].map((x) => x)),
+        style: List<String>.from(json["style"].map((x) => x)),
+        level: json["level"],
+        language: json["language"],
+        isLock: json["is_lock"],
+        durations: json["durations"],
+        videoUrl: json["video_url"],
+        coverImage: json["cover_image"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "instructor_id": instructorId,
-        "program_id_id": programIdId,
+        "instructor": instructor.toJson(),
         "title": title,
-        "durations": durations,
+        "focus": List<dynamic>.from(focus.map((x) => x)),
+        "style": List<dynamic>.from(style.map((x) => x)),
         "level": level,
-        "language_id": languageId,
-        "video_url": videoUrl,
         "is_lock": isLock,
-        "weight": weight,
+        "language": language,
+        "durations": durations,
+        "video_url": videoUrl,
         "cover_image": coverImage,
       };
 }
 
-class Instructor {
-  Instructor({
+class ClassInstructor {
+  ClassInstructor({
+    required this.id,
+    required this.firstname,
+    required this.lastname,
+    required this.languages,
+    required this.style,
+    required this.profilePicture,
+  });
+
+  int id;
+  String firstname;
+  String lastname;
+  List<String> languages;
+  List<String> style;
+  String profilePicture;
+
+  factory ClassInstructor.fromJson(Map<String, dynamic> json) => ClassInstructor(
+        id: json["id"],
+        firstname: json["firstname"],
+        lastname: json["lastname"],
+        languages: List<String>.from(json["languages"].map((x) => x)),
+        style: List<String>.from(json["style"].map((x) => x)),
+        profilePicture: json["profile_picture"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "firstname": firstname,
+        "lastname": lastname,
+        "languages": List<dynamic>.from(languages.map((x) => x)),
+        "style": List<dynamic>.from(style.map((x) => x)),
+        "profile_picture": profilePicture,
+      };
+}
+
+class InstructorDetails {
+  InstructorDetails({
     required this.id,
     required this.firstname,
     required this.lastname,
@@ -137,19 +177,19 @@ class Instructor {
   int program;
   int classes;
 
-  factory Instructor.fromJson(Map<String, dynamic> json) => Instructor(
-        id: json["id"] == null ? null : json["id"],
-        firstname: json["firstname"] == null ? '' : json["firstname"],
-        lastname: json["lastname"] == null ? '' : json["lastname"],
-        languages: json["languages"] == null ? [] : List<String>.from(json["languages"].map((x) => x)),
-        style: json["style"] == null ? [] : List<String>.from(json["style"].map((x) => x)),
-        country: json["country"] == null ? '' : json["country"],
-        state: json["state"] == null ? '' : json["state"],
-        description: json["description"] == null ? '' : json["description"],
-        profilePicture: json["profile_picture"] == null ? '' : json["profile_picture"],
-        follower: json["follwer"] == null ? 0 : json["follwer"],
-        program: json["program"] == null ? 0 : json["program"],
-        classes: json["classes"] == null ? 0 : json["classes"],
+  factory InstructorDetails.fromJson(Map<String, dynamic> json) => InstructorDetails(
+        id: json["id"],
+        firstname: json["firstname"],
+        lastname: json["lastname"],
+        languages: List<String>.from(json["languages"].map((x) => x)),
+        style: List<String>.from(json["style"].map((x) => x)),
+        country: json["country"],
+        state: json["state"],
+        description: json["description"],
+        profilePicture: json["profile_picture"],
+        follower: json["follower"],
+        program: json["program"],
+        classes: json["classes"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -162,56 +202,56 @@ class Instructor {
         "state": state,
         "description": description,
         "profile_picture": profilePicture,
-        "follwer": follower,
+        "follower": follower,
         "program": program,
         "classes": classes,
       };
 }
 
-class Program {
-  Program({
+class Programs {
+  Programs({
     required this.id,
-    required this.instructorId,
+    required this.instructor,
     required this.title,
-    required this.teaserVideoUrl,
+    required this.style,
+    required this.focus,
     required this.level,
-    required this.description,
+    required this.languages,
     required this.count,
     required this.coverImage,
-    required this.weight,
   });
 
   int id;
-  int instructorId;
+  ClassInstructor instructor;
   String title;
-  String teaserVideoUrl;
+  List<String> style;
+  List<String> focus;
   String level;
-  String description;
+  List<String> languages;
   int count;
   String coverImage;
-  int weight;
 
-  factory Program.fromJson(Map<String, dynamic> json) => Program(
-        id: json["id"] == null ? null : json["id"],
-        instructorId: json["instructor_id"] == null ? null : json["instructor_id"],
-        title: json["title"] == null ? null : json["title"],
-        teaserVideoUrl: json["teaser_Video_Url"] == null ? null : json["teaser_Video_Url"],
-        level: json["level"] == null ? null : json["level"],
-        description: json["description"] == null ? null : json["description"],
-        count: json["count"] == null ? null : json["count"],
-        coverImage: json["cover_Image"] == null ? null : json["cover_Image"],
-        weight: json["weight"] == null ? null : json["weight"],
+  factory Programs.fromJson(Map<String, dynamic> json) => Programs(
+        id: json["id"],
+        instructor: ClassInstructor.fromJson(json["instructor"]),
+        title: json["title"],
+        style: List<String>.from(json["style"].map((x) => x)),
+        focus: List<String>.from(json["focus"].map((x) => x)),
+        level: json["level"],
+        languages: List<String>.from(json["languages"].map((x) => x)),
+        count: json["count"],
+        coverImage: json["cover_Image"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "instructor_id": instructorId,
+        "instructor": instructor.toJson(),
         "title": title,
-        "teaser_Video_Url": teaserVideoUrl,
+        "style": List<dynamic>.from(style.map((x) => x)),
+        "focus": List<dynamic>.from(focus.map((x) => x)),
         "level": level,
-        "description": description,
+        "languages": List<dynamic>.from(languages.map((x) => x)),
         "count": count,
         "cover_Image": coverImage,
-        "weight": weight,
       };
 }
