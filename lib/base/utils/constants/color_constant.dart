@@ -12,8 +12,13 @@ class ColorRes {
   static const Color greyText = Color(0xff757575);
   static const Color greyBorder = Color(0xff707070);
   static const Color greyIcon = Color(0xffCCCCCC);
+  static const Color greyIndicator = Color(0xffe8e8e8);
   static const Color lightGrey = Color(0xffA4A2A2);
   static const Color indicatorColor = Color(0xffB9D79E);
   static const Color appBarColor = Color(0xfff3f3f3);
   static const Color green = Color(0xff73A72E);
+  static const Color premiumBackground = Color(0xffC8B273);
+  static const Color unselectedTextGrey = Color(0xffAFADAD);
+
+  static const Color appBackground = Color(0xffF9F9F9);
 }

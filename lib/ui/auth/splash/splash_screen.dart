@@ -56,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen> {
               performLogoTransition = !performLogoTransition;
             });
           } else if (timer.tick == 3) {
-            Navigator.of(context).pushNamed(routeInstructors, arguments: null);
+            Navigator.of(context).pushNamed(routeIntro, arguments: null);
             // Your Navigation
             this.dispose();
           }

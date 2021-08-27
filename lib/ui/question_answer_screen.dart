@@ -105,7 +105,7 @@ class _QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                           child: CustomButton(
                               onTap: () {
                                 if (index == state.quizModel.content.length - 1) {
-                                  NavigationUtils.pushAndRemoveUntil(context, routeRecommendation);
+                                  NavigationUtils.pushAndRemoveUntil(context, routeDashboard, arguments: {"index": 5});
                                 } else {
                                   _pageController.nextPage(duration: Duration(milliseconds: 350), curve: Curves.easeIn);
                                 }

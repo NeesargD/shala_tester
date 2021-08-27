@@ -64,58 +64,58 @@ Widget getBottomSheetAction(
     );
 
 // Pick Image From Gallery
-Future<File> getImageFromGallery(BuildContext context) async {
-  final _picker = ImagePicker();
-  var _file;
-  try {
-    final pickedFile = await _picker.pickImage(
-      source: ImageSource.gallery,
-      imageQuality: imageQuality,
-    );
-    if (pickedFile != null) {
-      _file = File(pickedFile.path);
-    }
-  } on PlatformException catch (e) {
-    if (e.code == permissionTypePhotos) {
-      openSettings(context);
-    }
-  }
-  return _file;
-}
+// Future<File> getImageFromGallery(BuildContext context) async {
+//   final _picker = ImagePicker();
+//   var _file;
+//   try {
+//     final pickedFile = await _picker.pickImage(
+//       source: ImageSource.gallery,
+//       imageQuality: imageQuality,
+//     );
+//     if (pickedFile != null) {
+//       _file = File(pickedFile.path);
+//     }
+//   } on PlatformException catch (e) {
+//     if (e.code == permissionTypePhotos) {
+//       openSettings(context);
+//     }
+//   }
+//   return _file;
+// }
 
 // Pick Image From Camera
-Future<File> getImageFromCamera(BuildContext context) async {
-  final _picker = ImagePicker();
-  var _file;
-  try {
-    final pickedFile = await _picker.pickImage(
-      source: ImageSource.camera,
-      preferredCameraDevice: CameraDevice.rear,
-      imageQuality: imageQuality,
-    );
-    if (pickedFile != null) {
-      _file = File(pickedFile.path);
-    }
-  } on PlatformException catch (e) {
-    if (e.code == permissionTypeCamera) {
-      openSettings(context);
-    }
-  }
-  return _file;
-}
+// Future<File> getImageFromCamera(BuildContext context) async {
+//   final _picker = ImagePicker();
+//   var _file;
+//   try {
+//     final pickedFile = await _picker.pickImage(
+//       source: ImageSource.camera,
+//       preferredCameraDevice: CameraDevice.rear,
+//       imageQuality: imageQuality,
+//     );
+//     if (pickedFile != null) {
+//       _file = File(pickedFile.path);
+//     }
+//   } on PlatformException catch (e) {
+//     if (e.code == permissionTypeCamera) {
+//       openSettings(context);
+//     }
+//   }
+//   return _file;
+// }
 
 // To Open App Settings
-void openSettings(BuildContext context) {
-  showOkCancelAlertDialog(
-    context: context,
-    message: Localization.of(context)!.alertPermissionNotRestricted,
-    cancelButtonTitle: Localization.of(context)!.cancel,
-    okButtonTitle: Localization.of(context)!.ok,
-    okButtonAction: () {
-      AppSettings.openAppSettings();
-    },
-  );
-}
+// void openSettings(BuildContext context) {
+//   showOkCancelAlertDialog(
+//     context: context,
+//     message: Localization.of(context)!.alertPermissionNotRestricted,
+//     cancelButtonTitle: Localization.of(context)!.cancel,
+//     okButtonTitle: Localization.of(context)!.ok,
+//     okButtonAction: () {
+//       AppSettings.openAppSettings();
+//     },
+//   );
+// }
 
 // To Get the Device ID
 Future<String> getDeviceId() async {

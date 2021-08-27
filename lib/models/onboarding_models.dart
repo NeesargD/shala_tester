@@ -57,7 +57,7 @@ class Page {
   String splashText;
 
   factory Page.fromJson(Map<String, dynamic> json) => Page(
-        splashTitle: json["splashTitle"] == null ? '' : json["splashTitle"],
+        splashTitle: json["splashtitle"] == null ? '' : json["splashtitle"],
         image: json["image"] == null ? '' : json["image"],
         splashText: json["splashText"] == null ? '' : json["splashText"],
       );

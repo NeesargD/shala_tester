@@ -66,7 +66,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
                 ),
                 CustomButton(
                   onTap: () {
-                    NavigationUtils.push(context, routeQuestionAnswer);
+                    NavigationUtils.pushReplacement(context, routeDashboard,arguments: {'index':0});
                   },
                   buttonText: 'BROWSE ALL CLASSES',
                   backgroundColor: ColorRes.white,

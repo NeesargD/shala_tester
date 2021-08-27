@@ -4,9 +4,11 @@ import 'package:dio/dio.dart';
 import 'package:shala_yoga/base/utils/config.dart';
 import 'package:shala_yoga/base/utils/constants/string_res.dart';
 import 'package:shala_yoga/models/error_response.dart';
+import 'package:shala_yoga/models/instructor_details_model.dart';
 import 'package:shala_yoga/models/instructor_models.dart';
 import 'package:shala_yoga/models/onboarding_models.dart';
 import 'package:shala_yoga/models/quiz_model.dart';
+import 'package:shala_yoga/models/recommendation_model.dart';
 
 class ApiServices {
   static final ApiServices _apiController = ApiServices._internal();
@@ -130,18 +132,42 @@ class ApiServices {
       throw _handleError(e);
     }
   }
-    Future<InstructorModel> instructorApi(/*{required Map<String, dynamic> param}*/) async{
-      try{
-        Response response = await _dio.get(
-          Config.instructor,
-        );
-        print("------");
-        return InstructorModel.fromJson(response.data);
-      } on DioError catch(e){
-        throw _handleError(e);
-      }
-    }
 
+  Future<InstructorModel> instructorApi(/*{required Map<String, dynamic> param}*/) async {
+    try {
+      Response response = await _dio.get(
+        Config.instructor,
+      );
+      print("------");
+      return InstructorModel.fromJson(response.data);
+    } on DioError catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  Future<InstructorDetailsModel> instructorDetailsApi({required Map<String,dynamic>param}) async {
+    try {
+      Response response = await _dio.get(
+        Config.instructorDetails,queryParameters: param
+      );
+      print("------");
+      return InstructorDetailsModel.fromJson(response.data);
+    } on DioError catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  Future<RecommendationModel> recommendedContent(/*{required Map<String,dynamic> param}*/) async {
+    try {
+      Response response = await _dio.get(
+        Config.recommendation,
+      );
+      print("------");
+      return RecommendationModel.fromJson(response.data);
+    } on DioError catch (e) {
+      throw _handleError(e);
+    }
+  }
 
   /// put
 // Future<AddToCartResponseModel> addToCartApi({Map params}) async {

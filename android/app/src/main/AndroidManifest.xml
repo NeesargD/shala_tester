@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.shalaonline.shala_yoga">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="shala_yoga"
         android:icon="@mipmap/ic_launcher">
