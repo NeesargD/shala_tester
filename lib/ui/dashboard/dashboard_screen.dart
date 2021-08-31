@@ -64,7 +64,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ),
                     BlocProvider(
                       create: (context) =>
-                          RecommendationBloc()..add(GetRecommendationContent()),
+                          RecommendationBloc(),
                       child: RecommendationScreen(),
                     ),
                   ],
@@ -78,7 +78,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    GestureDetector(
+                    InkWell(
                       onTap: () {
                         _onTap(0);
                       },
@@ -105,7 +105,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ],
                       ),
                     ),
-                    GestureDetector(
+                    InkWell(
                       onTap: () {
                         _onTap(1);
                       },
@@ -132,7 +132,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ],
                       ),
                     ),
-                    GestureDetector(
+                    InkWell(
                       onTap: () {
                         _onTap(2);
                       },
@@ -159,7 +159,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ],
                       ),
                     ),
-                    GestureDetector(
+                    InkWell(
                       onTap: () {
                         _onTap(3);
                       },
@@ -186,7 +186,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ],
                       ),
                     ),
-                    GestureDetector(
+                    InkWell(
                       onTap: () {
                         _onTap(4);
                       },

@@ -10,4 +10,6 @@ const String routeDashboard = "routeDashboard";
 const String routeSetting = "routeSetting";
 const String routeMyAccount = "routeMyAccount";
 const String routeNotification = "routeNotification";
+const String routeFilterScreen = "routeFilterScreen";
 const String routeHomeScreen = "routeHomeScreen";
+const String routeSupportScreen = "routeSupportScreen";

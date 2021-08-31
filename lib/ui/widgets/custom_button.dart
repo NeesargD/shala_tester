@@ -9,6 +9,7 @@ class CustomButton extends StatelessWidget {
   final Color borderColor;
   final TextStyle textStyle;
   final double widthPercent;
+  final double height;
 
   const CustomButton(
       {Key? key,
@@ -18,7 +19,9 @@ class CustomButton extends StatelessWidget {
       required this.foregroundColor,
       required this.borderColor,
       required this.textStyle,
-      this.widthPercent = 0.80})
+      this.widthPercent = 0.80,
+      this.height = 40,
+      })
       : super(key: key);
 
   @override
@@ -30,8 +33,10 @@ class CustomButton extends StatelessWidget {
         style: textStyle,
       ),
       style: ButtonStyle(
-        minimumSize: MaterialStateProperty.all<Size>(Size(screenWidth(context: context, percent: widthPercent), 40)),
-        fixedSize: MaterialStateProperty.all<Size>(Size(screenWidth(context: context, percent: 0.80), 40)),
+        minimumSize: MaterialStateProperty.all<Size>(Size(screenWidth
+          (context: context, percent: widthPercent), height)),
+        fixedSize: MaterialStateProperty.all<Size>(Size(screenWidth(context:
+        context, percent: widthPercent),height)),
         foregroundColor: MaterialStateProperty.all<Color>(foregroundColor),
         backgroundColor: MaterialStateProperty.all<Color>(backgroundColor),
         elevation: MaterialStateProperty.all<double>(0),

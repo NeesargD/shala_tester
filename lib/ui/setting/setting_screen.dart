@@ -42,7 +42,9 @@ class _SettingScreenState extends State<SettingScreen> {
                   }),
               SizedBox(height: 38),
               CommonListTileWidget(titleText: "SUPPORT", imagePath: ' ',
-                  onTap: (){}),
+                  onTap: (){
+                    NavigationUtils.push(context, routeSupportScreen);
+                  }),
               CommonListTileWidget(titleText: "TERMS & CONDITIONS", imagePath: ' ',
                   onTap: (){}),
               CommonListTileWidget(titleText: "PRIVACY POLICY", imagePath: ' ',

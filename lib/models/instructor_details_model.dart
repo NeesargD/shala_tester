@@ -226,7 +226,7 @@ class Programs {
   String title;
   List<String> style;
   List<String> focus;
-  String level;
+  List<String> level;
   List<String> languages;
   int count;
   String coverImage;
@@ -237,7 +237,7 @@ class Programs {
         title: json["title"],
         style: List<String>.from(json["style"].map((x) => x)),
         focus: List<String>.from(json["focus"].map((x) => x)),
-        level: json["level"],
+        level: List<String>.from(json["level"].map((x) => x)),
         languages: List<String>.from(json["languages"].map((x) => x)),
         count: json["count"],
         coverImage: json["cover_Image"],
@@ -249,7 +249,7 @@ class Programs {
         "title": title,
         "style": List<dynamic>.from(style.map((x) => x)),
         "focus": List<dynamic>.from(focus.map((x) => x)),
-        "level": level,
+        "level": List<dynamic>.from(level.map((x) => x)),
         "languages": List<dynamic>.from(languages.map((x) => x)),
         "count": count,
         "cover_Image": coverImage,

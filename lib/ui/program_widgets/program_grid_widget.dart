@@ -73,7 +73,7 @@ class ProgramGridWidget extends StatelessWidget {
                       width: 3,
                     ),
                     Flexible(
-                      child: Text(programDetails.level,
+                      child: Text(programDetails.level.join(","),
                           overflow: TextOverflow.visible, maxLines: 2, style: TextStyles.R1275),
                     ),
                   ],

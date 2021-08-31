@@ -1,16 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shala_yoga/base/utils/common_methods.dart';
 import 'package:shala_yoga/base/utils/constants/color_constant.dart';
 import 'package:shala_yoga/base/utils/constants/image_constant.dart';
 import 'package:shala_yoga/base/utils/constants/string_res.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
 import 'package:shala_yoga/models/instructor_details_model.dart';
 
-class ClassesGridWidget extends StatelessWidget {
-  final Classes classesDetail;
+class ClassesRecommendedWidget extends StatelessWidget {
 
-  const ClassesGridWidget({Key? key, required this.classesDetail}) : super(key: key);
+  final String title;
+  final String coverImage;
+  final String language;
+  bool? isLock;
+  final String level;
+  final String style;
+  final String durations;
+
+  ClassesRecommendedWidget({required this.title, required this.coverImage, required this.language, this.isLock,
+      required this.level, required this.style, required this.durations});
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +35,13 @@ class ClassesGridWidget extends StatelessWidget {
               blurRadius: 10,
               color: ColorRes.whiteGradient,
             )
-          ],
-      ),
+          ]),
       child: Column(
         children: [
           Stack(
             children: [
-              Image.network(
-                '${classesDetail.coverImage}',
-                alignment: AlignmentDirectional.topCenter,
+              Image.asset(coverImage,
+                fit: BoxFit.cover,
               ),
               Stack(
                 children: [
@@ -48,7 +55,7 @@ class ClassesGridWidget extends StatelessWidget {
                               margin: EdgeInsetsDirectional.fromSTEB(5, 8, 0, 0),
                               decoration: ShapeDecoration(
                                 color:
-                                    classesDetail.isLock == true ? ColorRes.premiumBackground : ColorRes.primaryColor,
+                                isLock == true ? ColorRes.premiumBackground : ColorRes.primaryColor,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
@@ -56,7 +63,7 @@ class ClassesGridWidget extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(15, 3, 15, 3),
                                 child:
-                                    Text(classesDetail.isLock == true ? "PREMIUM" : "FREE", style: TextStyles.SB10FF),
+                                Text(isLock == true ? "PREMIUM" : "FREE", style: TextStyles.SB10FF),
                               ),
                             ),
                             Spacer(),
@@ -68,7 +75,7 @@ class ClassesGridWidget extends StatelessWidget {
                                   CircleAvatar(
                                     backgroundColor: ColorRes.white,
                                     radius: 10,
-                                    child: Text('${classesDetail.language.substring(0, 2)}', style: TextStyles.R1075),
+                                    child: Text('${language.substring(0, 2)}', style: TextStyles.R1075),
                                   ),
                                 ],
                               ),
@@ -90,8 +97,7 @@ class ClassesGridWidget extends StatelessWidget {
                 children: [
                   Container(
                     margin: EdgeInsetsDirectional.fromSTEB(11, 13, 52, 0),
-                    child: Text(
-                      classesDetail.title,
+                    child: Text(title,
                       style: TextStyles.SB1475,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
@@ -108,13 +114,13 @@ class ClassesGridWidget extends StatelessWidget {
                       const SizedBox(
                         width: 3,
                       ),
-                      Text("Fitness", style: TextStyles.R1275),
+                      Text(style, style: TextStyles.R1275),
                       SizedBox(width: 10),
                       SvgPicture.asset(ImageRes.levels),
                       const SizedBox(
                         width: 3,
                       ),
-                      Text(classesDetail.level, style: TextStyles.R1275),
+                      Text(level, style: TextStyles.R1275),
                     ],
                   ),
                 ],
@@ -141,7 +147,7 @@ class ClassesGridWidget extends StatelessWidget {
                       child: Center(
                         child: Text.rich(
                           TextSpan(
-                              text: appState.parseDuration(classesDetail.durations).inMinutes.toString(),
+                              text: appState.parseDuration(durations).inMinutes.toString(),
                               style: TextStyles.R1275,
                               children: [TextSpan(text: "\nmin", style: TextStyles.R875)]),
                           textAlign: TextAlign.center,
