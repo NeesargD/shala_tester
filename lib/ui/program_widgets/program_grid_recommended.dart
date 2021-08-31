@@ -7,7 +7,7 @@ import 'package:shala_yoga/base/utils/constants/color_constant.dart';
 import 'package:shala_yoga/base/utils/constants/image_constant.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
 
-class ProgramGridRecommended extends StatelessWidget {
+class RecommendedProgramList extends StatelessWidget {
 
   final String coverImage;
   final int countClass;
@@ -15,10 +15,12 @@ class ProgramGridRecommended extends StatelessWidget {
   final String title;
   final String style;
   final String level;
+  final double height;
+  final double width;
 
 
-  ProgramGridRecommended({required this.coverImage, required this.countClass, required this.languages,
-      required this.title, required this.style, required this.level});
+  RecommendedProgramList({required this.coverImage, required this.countClass, required this.languages,
+      required this.title, required this.style, required this.level, this.height = 0.30, this.width = 0.70});
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +29,8 @@ class ProgramGridRecommended extends StatelessWidget {
         Stack(
           children: [
             Container(
-                height: screenHeight(context: context, percent: 0.30),
-                width: screenWidth(context: context, percent: 0.70),
+                height: screenHeight(context: context, percent: height),
+                width: screenWidth(context: context, percent: width),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(4),
                 ),
@@ -42,8 +44,8 @@ class ProgramGridRecommended extends StatelessWidget {
                   fit : BoxFit.cover),
                 )),
             Container(
-              height: screenHeight(context: context, percent: 0.30),
-              width: screenWidth(context: context, percent: 0.70),
+              height: screenHeight(context: context, percent: height),
+              width: screenWidth(context: context, percent: width),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(4),
                   gradient: LinearGradient(
@@ -73,7 +75,7 @@ class ProgramGridRecommended extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                '${countClass}',
+                                '$countClass',
                                 style: TextStyles.R31FF,
                               ),
                               Text(
@@ -188,9 +190,6 @@ class ProgramGridRecommended extends StatelessWidget {
               ),
             ),
           ],
-        ),
-        const SizedBox(
-          width: 30,
         ),
       ],
     );

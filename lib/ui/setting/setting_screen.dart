@@ -17,9 +17,11 @@ class SettingScreen extends StatefulWidget {
 class _SettingScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(
+    return SafeArea(
+        child: Scaffold(
       appBar: AppBar(
-        elevation: 0,centerTitle: true,
+        elevation: 0,
+        centerTitle: true,
         title: Text('Settings', style: TextStyles.L2075),
         backgroundColor: ColorRes.appBarColor,
       ),
@@ -28,36 +30,51 @@ class _SettingScreenState extends State<SettingScreen> {
           padding: EdgeInsetsDirectional.fromSTEB(27, 32, 27, 0),
           child: Column(
             children: [
-              CommonListTileWidget(titleText: "MY ACCOUNT", imagePath: ' ',
-                  onTap: (){
+              CommonListTileWidget(
+                  titleText: "MY ACCOUNT",
+                  imagePath: ' ',
+                  onTap: () {
                     NavigationUtils.push(context, routeMyAccount);
                   }),
-              CommonListTileWidget(titleText: "TIME ZONE", imagePath: ' ',
-                  onTap: (){}),
-              CommonListTileWidget(titleText: "LANGUAGE", imagePath: ' ',
-                  onTap: (){}),
-              CommonListTileWidget(titleText: "NOTIFICATIONS", imagePath: ' ',
-                  onTap: (){
+              CommonListTileWidget(
+                  titleText: "TIME ZONE", imagePath: ' ', onTap: () {}),
+              CommonListTileWidget(
+                  titleText: "LANGUAGE", imagePath: ' ', onTap: () {}),
+              CommonListTileWidget(
+                  titleText: "NOTIFICATIONS",
+                  imagePath: ' ',
+                  onTap: () {
                     NavigationUtils.push(context, routeNotification);
                   }),
               SizedBox(height: 38),
-              CommonListTileWidget(titleText: "SUPPORT", imagePath: ' ',
-                  onTap: (){
+              CommonListTileWidget(
+                  titleText: "SUPPORT",
+                  imagePath: ' ',
+                  onTap: () {
                     NavigationUtils.push(context, routeSupportScreen);
                   }),
-              CommonListTileWidget(titleText: "TERMS & CONDITIONS", imagePath: ' ',
-                  onTap: (){}),
-              CommonListTileWidget(titleText: "PRIVACY POLICY", imagePath: ' ',
-                  onTap: (){}),
-              CommonListTileWidget(titleText: "ABOUT", imagePath: ' ',
-                  onTap: (){}),
-              CommonListTileWidget(titleText: "INVITE FRIENDS", imagePath: ' ',
-                  onTap: (){}),
+              CommonListTileWidget(
+                  titleText: "TERMS & CONDITIONS",
+                  imagePath: ' ',
+                  onTap: () {}),
+              CommonListTileWidget(
+                  titleText: "PRIVACY POLICY", imagePath: ' ', onTap: () {}),
+              CommonListTileWidget(
+                  titleText: "ABOUT", imagePath: ' ', onTap: () {}),
+              CommonListTileWidget(
+                  titleText: "INVITE FRIENDS", imagePath: ' ', onTap: () {}),
               SizedBox(height: 35),
-              CustomButton(onTap: (){}, buttonText: "LOG OUT", backgroundColor:
-              ColorRes.greyText, foregroundColor: Colors.transparent, borderColor:
-              Colors.transparent,
-                  textStyle: TextStyles.SB18FF)
+              CustomButton(
+                onTap: () {},
+                buttonText: "LOG OUT",
+                backgroundColor: ColorRes.greyText,
+                foregroundColor: Colors.transparent,
+                borderColor: Colors.transparent,
+                textStyle: TextStyles.SB18FF,
+                height: 46,
+                widthPercent: 0.9,
+              ),
+              SizedBox(height: 10),
             ],
           ),
         ),

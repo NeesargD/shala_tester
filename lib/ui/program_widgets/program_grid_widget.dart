@@ -9,24 +9,30 @@ import 'package:shala_yoga/ui/widgets/custom_network_image.dart';
 class ProgramGridWidget extends StatelessWidget {
   final Programs programDetails;
 
-  const ProgramGridWidget({Key? key, required this.programDetails}) : super(key: key);
+  const ProgramGridWidget({Key? key, required this.programDetails})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
-          decoration: BoxDecoration(
-            color: ColorRes.white,
-            borderRadius: BorderRadius.circular(4),
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(4),
-              topRight: Radius.circular(4),
+        Positioned(
+          top: 0,
+          left: 0,
+          right: 0,
+          child: Container(
+            decoration: BoxDecoration(
+              color: ColorRes.white,
+              borderRadius: BorderRadius.circular(4),
             ),
-            child: CustomNetworkImage(
-              imageUrl: '${programDetails.coverImage}',
+            child: ClipRRect(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(4),
+                topRight: Radius.circular(4),
+              ),
+              child: CustomNetworkImage(
+                imageUrl: '${programDetails.coverImage}',
+              ),
             ),
           ),
         ),
@@ -41,9 +47,13 @@ class ProgramGridWidget extends StatelessWidget {
                     Column(
                       children: [
                         Text.rich(
-                          TextSpan(text: '${programDetails.count}' + "\n", style: TextStyles.R31FF, children: [
-                            TextSpan(text: "Classes", style: TextStyles.R12FF),
-                          ]),
+                          TextSpan(
+                              text: '${programDetails.count}' + "\n",
+                              style: TextStyles.R31FF,
+                              children: [
+                                TextSpan(
+                                    text: "Classes", style: TextStyles.R12FF),
+                              ]),
                         ),
                       ],
                     ),
@@ -74,7 +84,9 @@ class ProgramGridWidget extends StatelessWidget {
                     ),
                     Flexible(
                       child: Text(programDetails.level.join(","),
-                          overflow: TextOverflow.visible, maxLines: 2, style: TextStyles.R1275),
+                          overflow: TextOverflow.visible,
+                          maxLines: 2,
+                          style: TextStyles.R1275),
                     ),
                   ],
                 ),

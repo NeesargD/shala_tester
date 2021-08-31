@@ -45,8 +45,10 @@ class _OnboardScreenState extends State<OnboardScreen> {
   @override
   Widget build(BuildContext context) {
     const pageDecoration = const PageDecoration(
-      titleTextStyle: TextStyle(color: ColorRes.white, fontSize: 50, letterSpacing: 0),
-      bodyTextStyle: TextStyle(letterSpacing: 0, fontSize: 30, color: ColorRes.white),
+      titleTextStyle:
+          TextStyle(color: ColorRes.white, fontSize: 50, letterSpacing: 0),
+      bodyTextStyle:
+          TextStyle(letterSpacing: 0, fontSize: 30, color: ColorRes.white),
       descriptionPadding: EdgeInsets.fromLTRB(0.0, 16.0, 0.0, 0.0),
       pageColor: ColorRes.primaryColor,
       imagePadding: EdgeInsets.zero,
@@ -69,7 +71,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                 .map((e) => PageViewModel(
                       image: SvgPicture.network(
                         e.image,
-                        height: screenHeight(context: context,percent: 0.40),
+                        height: screenHeight(context: context, percent: 0.40),
                         width: screenWidth(context: context),
                       ),
                       titleWidget: Container(
@@ -88,7 +90,10 @@ class _OnboardScreenState extends State<OnboardScreen> {
                         margin: EdgeInsetsDirectional.only(start: 30, end: 10),
                         child: Text(
                           e.splashText,
-                          style: TextStyle(color: ColorRes.white, fontSize: 30, letterSpacing: 0),
+                          style: TextStyle(
+                              color: ColorRes.white,
+                              fontSize: 30,
+                              letterSpacing: 0),
                         ),
                       ),
                       decoration: pageDecoration,
@@ -115,8 +120,12 @@ class _OnboardScreenState extends State<OnboardScreen> {
                 color: ColorRes.white,
               ),
             ),
+            // isTopSafeArea: true,
+            // isBottomSafeArea: true,
             curve: Curves.fastLinearToSlowEaseIn,
-            controlsPadding: kIsWeb ? const EdgeInsets.all(12.0) : const EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 4.0),
+            controlsPadding: kIsWeb
+                ? const EdgeInsets.all(12.0)
+                : const EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 4.0),
             dotsDecorator: const DotsDecorator(
               size: Size(10.0, 10.0),
               color: ColorRes.indicatorColor,

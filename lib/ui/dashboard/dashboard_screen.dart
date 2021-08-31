@@ -78,139 +78,154 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    InkWell(
-                      onTap: () {
-                        _onTap(0);
-                      },
-                      child: Column(
-                        children: [
-                          SvgPicture.asset(
-                            ImageRes.home,
-                            color: _currentIndex.value == 0
-                                ? ColorRes.primaryColor
-                                : ColorRes.greyIcon,
-                            height: 20,
-                            width: 20,
-                            fit: BoxFit.contain,
-                          ),
-                          SizedBox(height: 6),
-                          Text(
-                            "Home",
-                            style: TextStyle(
-                                fontSize: 11,
-                                color: _currentIndex.value == 0
-                                    ? ColorRes.primaryColor
-                                    : ColorRes.greyText),
-                          ),
-                        ],
+                    Expanded(
+                      flex: 1,
+                      child: InkWell(
+                        onTap: () {
+                          _onTap(0);
+                        },
+                        child: Column(
+                          children: [
+                            SvgPicture.asset(
+                              ImageRes.home,
+                              color: _currentIndex.value == 0
+                                  ? ColorRes.primaryColor
+                                  : ColorRes.greyIcon,
+                              height: 20,
+                              width: 20,
+                              fit: BoxFit.contain,
+                            ),
+                            SizedBox(height: 6),
+                            Text(
+                              "Home",
+                              style: TextStyle(
+                                  fontSize: 11,
+                                  color: _currentIndex.value == 0
+                                      ? ColorRes.primaryColor
+                                      : ColorRes.greyText),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    InkWell(
-                      onTap: () {
-                        _onTap(1);
-                      },
-                      child: Column(
-                        children: [
-                          SvgPicture.asset(
-                            ImageRes.play,
-                            color: _currentIndex.value == 1
-                                ? ColorRes.primaryColor
-                                : ColorRes.greyIcon,
-                            height: 20,
-                            width: 20,
-                            fit: BoxFit.contain,
-                          ),
-                          SizedBox(height: 6),
-                          Text(
-                            "CLASSES",
-                            style: TextStyle(
-                                fontSize: 11,
-                                color: _currentIndex.value == 1
-                                    ? ColorRes.primaryColor
-                                    : ColorRes.greyText),
-                          ),
-                        ],
+                    Expanded(
+                      flex: 1,
+                      child: InkWell(
+                        onTap: () {
+                          _onTap(1);
+                        },
+                        child: Column(
+                          children: [
+                            SvgPicture.asset(
+                              ImageRes.play,
+                              color: _currentIndex.value == 1
+                                  ? ColorRes.primaryColor
+                                  : ColorRes.greyIcon,
+                              height: 20,
+                              width: 20,
+                              fit: BoxFit.contain,
+                            ),
+                            SizedBox(height: 6),
+                            Text(
+                              "CLASSES",
+                              style: TextStyle(
+                                  fontSize: 11,
+                                  color: _currentIndex.value == 1
+                                      ? ColorRes.primaryColor
+                                      : ColorRes.greyText),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    InkWell(
-                      onTap: () {
-                        _onTap(2);
-                      },
-                      child: Column(
-                        children: [
-                          SvgPicture.asset(
-                            ImageRes.programs,
-                            color: _currentIndex.value == 2
-                                ? ColorRes.primaryColor
-                                : ColorRes.greyIcon,
-                            height: 20,
-                            width: 20,
-                            fit: BoxFit.contain,
-                          ),
-                          SizedBox(height: 6),
-                          Text(
-                            "PROGRAMS",
-                            style: TextStyle(
-                                fontSize: 11,
-                                color: _currentIndex.value == 2
-                                    ? ColorRes.primaryColor
-                                    : ColorRes.greyText),
-                          ),
-                        ],
+                    Expanded(
+                      flex: 1,
+                      child: InkWell(
+                        onTap: () {
+                          _onTap(2);
+                        },
+                        child: Column(
+                          children: [
+                            SvgPicture.asset(
+                              ImageRes.programs,
+                              color: _currentIndex.value == 2
+                                  ? ColorRes.primaryColor
+                                  : ColorRes.greyIcon,
+                              height: 20,
+                              width: 20,
+                              fit: BoxFit.contain,
+                            ),
+                            SizedBox(height: 6),
+                            Text(
+                              "PROGRAMS",
+                              style: TextStyle(
+                                  fontSize: 11,
+                                  color: _currentIndex.value == 2
+                                      ? ColorRes.primaryColor
+                                      : ColorRes.greyText),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    InkWell(
-                      onTap: () {
-                        _onTap(3);
-                      },
-                      child: Column(
-                        children: [
-                          SvgPicture.asset(
-                            ImageRes.yogaPosture,
-                            color: _currentIndex.value == 3
-                                ? ColorRes.primaryColor
-                                : ColorRes.greyIcon,
-                            height: 20,
-                            width: 20,
-                            fit: BoxFit.contain,
-                          ),
-                          SizedBox(height: 6),
-                          Text(
-                            "INSTRUCTORS",
-                            style: TextStyle(
-                                fontSize: 11,
-                                color: _currentIndex.value == 3
-                                    ? ColorRes.primaryColor
-                                    : ColorRes.greyText),
-                          ),
-                        ],
+                    Expanded(
+                      flex: 1,
+                      child: InkWell(
+                        onTap: () {
+                          _onTap(3);
+                        },
+                        child: Column(
+                          children: [
+                            SvgPicture.asset(
+                              ImageRes.yogaPosture,
+                              color: _currentIndex.value == 3
+                                  ? ColorRes.primaryColor
+                                  : ColorRes.greyIcon,
+                              height: 20,
+                              width: 20,
+                              fit: BoxFit.contain,
+                            ),
+                            SizedBox(height: 6),
+                            Text(
+                              "INSTRUCTORS",
+                              style: TextStyle(
+                                  fontSize: 11,
+                                  color: _currentIndex.value == 3
+                                      ? ColorRes.primaryColor
+                                      : ColorRes.greyText),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    InkWell(
-                      onTap: () {
-                        _onTap(4);
-                      },
-                      child: Column(
-                        children: [
-                          SvgPicture.asset(
-                            ImageRes.myPractice,
-                            color: _currentIndex.value == 4
-                                ? ColorRes.primaryColor
-                                : ColorRes.greyIcon,
-                            height: 20,
-                            width: 20,
-                            fit: BoxFit.contain,
-                          ),
-                          SizedBox(height: 6),
-                          Text(
-                            "MY PRACTICE",
-                            style: TextStyle(
-                                fontSize: 11,
-                                color: _currentIndex.value == 4
-                                    ? ColorRes.primaryColor
-                                    : ColorRes.greyText),
-                          ),
-                        ],
+                    Expanded(
+                      flex: 1,
+                      child: InkWell(
+                        onTap: () {
+                          _onTap(4);
+                        },
+                        child: Column(
+                          children: [
+                            SvgPicture.asset(
+                              ImageRes.myPractice,
+                              color: _currentIndex.value == 4
+                                  ? ColorRes.primaryColor
+                                  : ColorRes.greyIcon,
+                              height: 20,
+                              width: 20,
+                              fit: BoxFit.contain,
+                            ),
+                            SizedBox(height: 6),
+                            Text(
+                              "MY PRACTICE",
+                              style: TextStyle(
+                                  fontSize: 11,
+                                  color: _currentIndex.value == 4
+                                      ? ColorRes.primaryColor
+                                      : ColorRes.greyText),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],

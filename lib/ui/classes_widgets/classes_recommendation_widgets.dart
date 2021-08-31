@@ -100,7 +100,7 @@ class ClassesRecommendedWidget extends StatelessWidget {
                     child: Text(title,
                       style: TextStyles.SB1475,
                       overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
+                      maxLines: 3,
                     ),
                     color: ColorRes.white,
                   ),

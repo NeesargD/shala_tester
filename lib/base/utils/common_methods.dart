@@ -159,3 +159,9 @@ double screenHeight({required BuildContext context, double percent = 1}) {
 double screenWidth({required BuildContext context, double percent = 1}) {
   return MediaQuery.of(context).size.width * percent;
 }
+
+Widget safeAreaWidget(BuildContext context) {
+  return SizedBox(
+    height: MediaQuery.of(context).padding.top,
+  );
+}

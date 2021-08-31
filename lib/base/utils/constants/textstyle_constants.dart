@@ -180,6 +180,12 @@ class TextStyles {
     fontSize: 14.0,
     color: ColorRes.white,
   );
+
+  static const TextStyle R14A2 = TextStyle(
+    inherit: true,
+    fontSize: 14.0,
+    color: ColorRes.lightGrey,
+  );
   static const TextStyle R1375 = TextStyle(
     //13-grey
     inherit: true,
