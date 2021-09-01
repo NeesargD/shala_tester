@@ -25,6 +25,8 @@ class StringRes {
   // Instructors_Screen
 
   static const String instructor = "Instructors";
+  static const String classes = "Classes";
+  static const String programs = "Programs";
   static const String instructor_name = "LEDAE ANDERSON";
   static const String instructor_name0 = "PRISCILLA";
 

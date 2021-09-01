@@ -6,7 +6,6 @@ import 'package:shala_yoga/base/utils/constants/color_constant.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
-import 'package:shala_yoga/ui/classes_widgets/classes_card_widget.dart';
 import 'package:shala_yoga/ui/classes_widgets/classes_recommended_with_circleAvatar.dart';
 import 'package:shala_yoga/ui/classes_widgets/classes_recommendation_widgets.dart';
 import 'package:shala_yoga/ui/program_widgets/program_grid_recommended.dart';
@@ -378,7 +377,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                               radius: 30,
                                               child: Image.asset(
                                                 "assets/shala_tumbnail.jpg",
-                                                fit: BoxFit.cover,
+                                                fit: BoxFit.fill,
+                                                height: 60,
+                                                width: 60,
                                               ),
                                             ),
                                           ),

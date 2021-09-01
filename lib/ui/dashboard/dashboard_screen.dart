@@ -8,11 +8,14 @@ import 'package:shala_yoga/blocs/instructor_bloc/instructor_bloc.dart';
 import 'package:shala_yoga/blocs/instructor_details_bloc/instructor_details_bloc.dart';
 import 'package:shala_yoga/blocs/recommended_bloc/recommendation_bloc.dart';
 import 'package:shala_yoga/ui/dashboard/home/home.dart';
+import 'package:shala_yoga/ui/dashboard/programs/programs_screen.dart';
 import 'package:shala_yoga/ui/dashboard/recommendation/recommendation_screen.dart';
 import 'package:shala_yoga/ui/instructors/instructor_details_screen.dart';
 import 'package:shala_yoga/ui/instructors/instructor_screen.dart';
 import 'package:shala_yoga/ui/setting/setting_screen.dart';
 import 'package:shala_yoga/ui/widgets/bottom_sheet.dart';
+
+import 'classes/classes_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   final int index;
@@ -49,12 +52,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   index: value,
                   children: [
                     HomeScreen(),
-                    Center(
-                      child: Text('Under Development'),
-                    ),
-                    Center(
-                      child: Text('Under Development'),
-                    ),
+                    ClassesScreen(),
+                    ProgramsScreen(),
                     BlocProvider(
                       create: (context) => InstructorBloc(),
                       child: InstructorScreen(),
