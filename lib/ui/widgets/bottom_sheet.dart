@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shala_yoga/base/utils/constants/image_constant.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
 
@@ -15,15 +16,15 @@ class BottomSheetWidget extends StatelessWidget {
       child: Column(
         children: [
           CommonListTileWidget(titleText: "SUBSCRIPTION",
-              imagePath: ' ', onTap: (){}),
+              imagePath: ImageRes.bottom_sheet_subscription, onTap: (){}),
           CommonListTileWidget(titleText: "ABOUT US",
-              imagePath: ' ', onTap: (){}),
+              imagePath: ImageRes.bottom_sheet_about_us, onTap: (){}),
           CommonListTileWidget(titleText: "SETTINGS",
-              imagePath: ' ', onTap: (){
+              imagePath: ImageRes.bottom_sheet_setting, onTap: (){
                 NavigationUtils.push(context, routeSetting);
               }),
           CommonListTileWidget(titleText: "LOGOUT",
-              imagePath: ' ', onTap: (){}),
+              imagePath: ImageRes.bottom_sheet_setting, onTap: (){}),
         ],
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../base/utils/constants/color_constant.dart';
 import '../../base/utils/constants/textstyle_constants.dart';
@@ -25,7 +26,7 @@ class CommonListTileWidget extends StatelessWidget {
           color: ColorRes.primaryColor,
         ),
         alignment: Alignment.center,
-        child: Icon(Icons.account_circle, color: ColorRes.white),
+        child: SvgPicture.asset(imagePath),
       ),
       title: Text(
         titleText,

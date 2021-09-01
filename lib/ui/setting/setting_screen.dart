@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shala_yoga/base/utils/common_methods.dart';
 import 'package:shala_yoga/base/utils/constants/color_constant.dart';
+import 'package:shala_yoga/base/utils/constants/image_constant.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
@@ -32,37 +33,42 @@ class _SettingScreenState extends State<SettingScreen> {
             children: [
               CommonListTileWidget(
                   titleText: "MY ACCOUNT",
-                  imagePath: ' ',
+                  imagePath: ImageRes.setting_my_account,
                   onTap: () {
                     NavigationUtils.push(context, routeMyAccount);
                   }),
               CommonListTileWidget(
-                  titleText: "TIME ZONE", imagePath: ' ', onTap: () {}),
+                  titleText: "TIME ZONE", imagePath: ImageRes.setting_timezone,
+                  onTap: () {}),
               CommonListTileWidget(
-                  titleText: "LANGUAGE", imagePath: ' ', onTap: () {}),
+                  titleText: "LANGUAGE", imagePath: ImageRes.setting_language,
+                  onTap: ()
+              {}),
               CommonListTileWidget(
                   titleText: "NOTIFICATIONS",
-                  imagePath: ' ',
+                  imagePath: ImageRes.setting_notifications,
                   onTap: () {
                     NavigationUtils.push(context, routeNotification);
                   }),
               SizedBox(height: 38),
               CommonListTileWidget(
                   titleText: "SUPPORT",
-                  imagePath: ' ',
+                  imagePath: ImageRes.setting_support,
                   onTap: () {
                     NavigationUtils.push(context, routeSupportScreen);
                   }),
               CommonListTileWidget(
                   titleText: "TERMS & CONDITIONS",
-                  imagePath: ' ',
+                  imagePath: ImageRes.setting_terms_condition,
                   onTap: () {}),
               CommonListTileWidget(
-                  titleText: "PRIVACY POLICY", imagePath: ' ', onTap: () {}),
+                  titleText: "PRIVACY POLICY", imagePath: ImageRes.setting_privacy_policy,
+                  onTap: () {}),
               CommonListTileWidget(
-                  titleText: "ABOUT", imagePath: ' ', onTap: () {}),
+                  titleText: "ABOUT", imagePath: ImageRes.setting_about, onTap: () {}),
               CommonListTileWidget(
-                  titleText: "INVITE FRIENDS", imagePath: ' ', onTap: () {}),
+                  titleText: "INVITE FRIENDS", imagePath: ImageRes.setting_invite_friends,
+                  onTap: () {}),
               SizedBox(height: 35),
               CustomButton(
                 onTap: () {},

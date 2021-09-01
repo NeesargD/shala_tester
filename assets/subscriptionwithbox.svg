@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40.931" height="40.931" viewBox="0 0 40.931 40.931">
+  <g id="subscriptionwithbox" transform="translate(-27.787 -291.042)">
+    <rect id="Rectangle" width="40.931" height="40.931" rx="8" transform="translate(27.787 291.042)" fill="#78b543"/>
+    <g id="subscription" transform="translate(39.441 300.042)">
+      <path id="Combined_Shape" data-name="Combined Shape" d="M2.369,22.739A2.369,2.369,0,0,1,0,20.37c0-4.974,4.453-9,9.948-9s9.948,4.027,9.948,9a2.368,2.368,0,0,1-2.368,2.369Zm2.843-18A4.737,4.737,0,1,1,9.948,9.474,4.737,4.737,0,0,1,5.212,4.738Z" transform="translate(0 0)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

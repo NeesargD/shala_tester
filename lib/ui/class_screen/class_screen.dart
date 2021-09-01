@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:shala_yoga/base/utils/constants/color_constant.dart';
+import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
 
 class ClassScreen extends StatefulWidget {
   const ClassScreen({Key? key}) : super(key: key);
@@ -11,18 +14,7 @@ class _ClassScreenState extends State<ClassScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Row(
-            children:[
-              IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back)),
-              Spacer(),
-              IconButton(onPressed: (){}, icon: Icon(Icons.access_time)),
-              IconButton(onPressed: (){}, icon: Icon(Icons.favorite_border)),
-            ]
-          ),
-        ],
-      ),
+      backgroundColor: ColorRes.primaryColor,
     );
   }
 }

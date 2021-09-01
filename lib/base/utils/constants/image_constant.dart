@@ -16,4 +16,22 @@ class ImageRes {
   static const String yogaStyle = 'assets/yoga_style.svg';
   static const String levels = 'assets/levels.svg';
   static const String hourGlass = 'assets/hourglass.svg';
+
+  ///bottom sheet
+  static const String bottom_sheet_about_us = 'assets/about_us.svg';
+  static const String bottom_sheet_subscription = 'assets/subscription.svg';
+  static const String bottom_sheet_setting = 'assets/setting.svg';
+
+
+  ///setting
+  static const String setting_my_account = 'assets/my_account.svg';
+  static const String setting_about = 'assets/about.svg';
+  static const String setting_invite_friends = 'assets/invite_friends.svg';
+  static const String setting_language = 'assets/language.svg';
+  static const String setting_notifications = 'assets/notification.svg';
+  static const String setting_support = 'assets/support.svg';
+  static const String setting_privacy_policy = 'assets/privacy_policy.svg';
+  static const String setting_terms_condition = 'assets/Terms&conditions.svg';
+  static const String setting_timezone = 'assets/timezone.svg';
+
 }

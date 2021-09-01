@@ -487,7 +487,8 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                                 const SizedBox(
                                   width: 5,
                                 ),
-                                Text(recommendedClass.level, style: TextStyles.R1275),
+                                Text(recommendedClass.level, style:
+                                TextStyles.R1275),
                                 Spacer(),
                                 SvgPicture.asset(ImageRes.hourGlass),
                                 const SizedBox(
