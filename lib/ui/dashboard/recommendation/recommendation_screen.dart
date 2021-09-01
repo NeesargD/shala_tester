@@ -344,7 +344,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                                     ),
                                     Flexible(
                                       child: Text(
-                                        recommendedProgram.level,
+                                        recommendedProgram.level.join(','),
                                         style: TextStyles.R1275,
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,

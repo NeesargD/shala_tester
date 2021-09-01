@@ -6,7 +6,17 @@ class Config {
   static const String splash = 'splash';
   static const String quizDetails = 'quiz_details';
 
+
   static const String instructor = 'instructor';
   static const String instructorDetails = 'instructor_details';
+
   static const String recommendation = 'recommendedcontent';
+
+  static const String getAllClasses = 'allclasses';
+  static const String getClassDetails = 'classesdetails';
+
+  static const String getAllPrograms = 'allprograms';
+  static const String getProgramDetails = 'programdetails';
+
+
 }

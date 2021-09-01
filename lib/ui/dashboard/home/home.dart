@@ -176,10 +176,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 itemBuilder: (c, i) {
                                   return RecommendedProgramList(
                                       coverImage: 'assets/shala_tumbnail.jpg',
-                                      languages: 'AR',
+                                      languages: ['AR'],
                                       title: 'xyz',
-                                      style: 'Fitness',
-                                      level: 'Advanced',
+                                      style: ['Fitness'],
+                                      level: ['Advanced'],
                                       width: 0.75,
                                       countClass: 5);
                                 },
@@ -216,10 +216,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                       : RecommendedProgramList(
                                           coverImage:
                                               'assets/shala_tumbnail.jpg',
-                                          languages: 'AR',
+                                          languages: ['AR'],
                                           title: 'xyz',
-                                          style: 'Fitness',
-                                          level: 'Advanced',
+                                          style: ['Fitness'],
+                                          level: ['Advanced'],
                                           width: 0.75,
                                           countClass: 5);
                                 },
