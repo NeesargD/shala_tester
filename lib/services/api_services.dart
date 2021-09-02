@@ -3,10 +3,12 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:shala_yoga/base/utils/config.dart';
 import 'package:shala_yoga/base/utils/constants/string_res.dart';
+import 'package:shala_yoga/models/classes/classes_model.dart';
 import 'package:shala_yoga/models/error_response.dart';
 import 'package:shala_yoga/models/instructor_details_model.dart';
 import 'package:shala_yoga/models/instructor_models.dart';
 import 'package:shala_yoga/models/onboarding_models.dart';
+import 'package:shala_yoga/models/programs/programs_model.dart';
 import 'package:shala_yoga/models/quiz_model.dart';
 import 'package:shala_yoga/models/recommendation_model.dart';
 
@@ -133,7 +135,7 @@ class ApiServices {
     }
   }
 
-  Future<InstructorModel> instructorApi(/*{required Map<String, dynamic> param}*/) async {
+  Future<InstructorModel> getAllInstructors(/*{required Map<String, dynamic> param}*/) async {
     try {
       Response response = await _dio.get(
         Config.instructor,
@@ -164,6 +166,30 @@ class ApiServices {
       );
       print("------");
       return RecommendationModel.fromJson(response.data);
+    } on DioError catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  Future<ClassesModel> getAllClasses(/*{required Map<String, dynamic> param}*/) async {
+    try {
+      Response response = await _dio.get(
+        Config.getAllClasses,
+      );
+      print("------");
+      return ClassesModel.fromJson(response.data);
+    } on DioError catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  Future<ProgramsModel> getAllPrograms(/*{required Map<String, dynamic> param}*/) async {
+    try {
+      Response response = await _dio.get(
+        Config.getAllPrograms,
+      );
+      print("------");
+      return ProgramsModel.fromJson(response.data);
     } on DioError catch (e) {
       throw _handleError(e);
     }

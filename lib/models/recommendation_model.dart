@@ -149,7 +149,7 @@ class RecommendedProgram {
   int id;
   Object? instructor;
   String title;
-  String level;
+  List<String> level;
   List<String> style;
   List<String> languages;
   int count;
@@ -159,7 +159,8 @@ class RecommendedProgram {
       id: json["id"] == null ? 0 : json["id"],
       instructor: json["instructor"] == null ? null : Instructor.fromJson(json["instructor"]),
       title: json["title"] == null ? '' : json["title"],
-      level: json["level"] == null ? '' : json["level"],
+      level: json["level"] == null ? [] : List<String>.from(json["level"].map(
+      (x) => x)),
       style: json["style"] == null ? [] : List<String>.from(json["style"].map(
       (x) => x)),
   languages: json["languages"] == null ?[] : List<String>.from
@@ -172,7 +173,7 @@ class RecommendedProgram {
     "id": id,
     "instructor": instructor,
     "title": title,
-    "level": level,
+    "level": List<dynamic>.from(level.map((x) => x)),
     "style": List<dynamic>.from(style.map((x) => x)),
     "languages": List<dynamic>.from(languages.map((x) => x)),
     "count": count,

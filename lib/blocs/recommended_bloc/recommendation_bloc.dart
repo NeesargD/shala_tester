@@ -25,7 +25,8 @@ class RecommendationBloc extends Bloc<RecommendationEvent, RecommendationState> 
         } else {
           yield RecommendationFailure(message: _recommendationModel.message);
         }
-      } catch (e) {
+      }
+      catch (e) {
         print(e.toString());
         try {
           ErrorResponse? errorResponse = e as ErrorResponse?;

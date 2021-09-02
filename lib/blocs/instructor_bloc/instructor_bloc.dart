@@ -20,7 +20,7 @@ class InstructorBloc extends Bloc<InstructorEvent,InstructorState>{
     if (event is GetInstructorScreen){
       try{
 
-        _instructorModel = await ApiServices().instructorApi();
+        _instructorModel = await ApiServices().getAllInstructors();
         if(_instructorModel.success){
           if(_instructorModel.content!.instructors.length != 0){
             yield InstructorSuccess(instructorModel: _instructorModel);

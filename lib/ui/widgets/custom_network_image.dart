@@ -5,13 +5,14 @@ import 'package:shala_yoga/base/utils/constants/image_constant.dart';
 
 class CustomNetworkImage extends StatelessWidget {
   final String imageUrl;
+  final BoxFit boxFit;
 
-  const CustomNetworkImage({Key? key, required this.imageUrl}) : super(key: key);
+  const CustomNetworkImage({Key? key, required this.imageUrl, this.boxFit = BoxFit.fill}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
-      fit: BoxFit.fill,
+      fit: boxFit,
       imageUrl: imageUrl,
       errorWidget: (context, url, error) {
         return SvgPicture.asset(

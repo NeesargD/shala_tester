@@ -1,22 +1,22 @@
 part of 'instructor_bloc.dart';
 
-abstract class InstructorState extends Equatable{
+abstract class InstructorState extends Equatable {
   const InstructorState();
 }
 
-  class InstructorInitial extends InstructorState{
+class InstructorInitial extends InstructorState {
   @override
-  List<Object> get props=>[];
-  }
+  List<Object> get props => [];
+}
 
-  class InstructorSuccess extends InstructorState{
+class InstructorSuccess extends InstructorState {
   final InstructorModel instructorModel;
 
   InstructorSuccess({required this.instructorModel});
 
   @override
   List<Object?> get props => [instructorModel];
-  }
+}
 
 class InstructorFailure extends InstructorState {
   final String message;

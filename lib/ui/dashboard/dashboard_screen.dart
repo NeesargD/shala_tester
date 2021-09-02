@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shala_yoga/base/utils/constants/color_constant.dart';
-import 'package:shala_yoga/base/utils/constants/image_constant.dart';
-import 'package:shala_yoga/base/utils/constants/string_res.dart';
-import 'package:shala_yoga/blocs/instructor_bloc/instructor_bloc.dart';
-import 'package:shala_yoga/blocs/instructor_details_bloc/instructor_details_bloc.dart';
-import 'package:shala_yoga/blocs/recommended_bloc/recommendation_bloc.dart';
-import 'package:shala_yoga/ui/dashboard/home/home.dart';
-import 'package:shala_yoga/ui/dashboard/programs/programs_screen.dart';
-import 'package:shala_yoga/ui/dashboard/recommendation/recommendation_screen.dart';
-import 'package:shala_yoga/ui/instructors/instructor_details_screen.dart';
-import 'package:shala_yoga/ui/instructors/instructor_screen.dart';
-import 'package:shala_yoga/ui/setting/setting_screen.dart';
-import 'package:shala_yoga/ui/widgets/bottom_sheet.dart';
+import 'package:shala_yoga/blocs/programs/programs_bloc/programs_bloc.dart';
+import '../../base/utils/constants/color_constant.dart';
+import '../../base/utils/constants/image_constant.dart';
+import '../../blocs/classes/classes_bloc/classes_bloc.dart';
+import '../../blocs/instructor_bloc/instructor_bloc.dart';
+import '../../blocs/recommended_bloc/recommendation_bloc.dart';
+import 'home/home.dart';
+import 'programs/programs_screen.dart';
+import 'recommendation/recommendation_screen.dart';
+import '../instructors/instructor_screen.dart';
 
 import 'classes/classes_screen.dart';
 
@@ -52,8 +49,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   index: value,
                   children: [
                     HomeScreen(),
-                    ClassesScreen(),
-                    ProgramsScreen(),
+                    BlocProvider(
+                      create: (context) => ClassesBloc(),
+                      child: ClassesScreen(),
+                    ),
+                    BlocProvider(
+                      create: (context) => ProgramsBloc(),
+                      child: ProgramsScreen(),
+                    ),
+
                     BlocProvider(
                       create: (context) => InstructorBloc(),
                       child: InstructorScreen(),
@@ -62,8 +66,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       child: Text('Under Development'),
                     ),
                     BlocProvider(
-                      create: (context) =>
-                          RecommendationBloc(),
+                      create: (context) => RecommendationBloc(),
                       child: RecommendationScreen(),
                     ),
                   ],
