@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 
 import '../../../base/utils/common_methods.dart';
 import '../../../base/utils/constants/color_constant.dart';
@@ -55,12 +56,12 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("GREAT!", style: TextStyles.SB4078),
+                              Text(AppLocalizations.of(context)!.translate('great'), style: 
+                              TextStyles.SB4078),
                               Container(
                                 width: screenWidth(context: context, percent: 0.55),
                                 child: Text(
-                                    'Based on your answers, we recommend the following '
-                                    'programs & classes',
+                                    AppLocalizations.of(context)!.translate("base_on_your_answer_we_recommend_following_classes"),
                                     style: TextStyles.R2075),
                               ),
                             ],
@@ -75,10 +76,12 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                       children: [
                         RichText(
                           text: TextSpan(
-                            text: "RECOMMENDED\n",
+                            text: "${AppLocalizations.of(context)!.translate('recommended')}\n",
                             style: TextStyles.R1575,
                             children: [
-                              TextSpan(text: 'PROGRAMS', style: TextStyles.R2075),
+                              TextSpan(text: AppLocalizations.of(context)!
+                                  .translate('programs'), style: TextStyles
+                                  .R2075),
                             ],
                           ),
                         ),
@@ -107,10 +110,11 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                       children: [
                         RichText(
                           text: TextSpan(
-                            text: "RECOMMENDED\n",
+                            text: "${AppLocalizations.of(context)!.translate('recommended')}\n",
                             style: TextStyles.R1575,
                             children: [
-                              TextSpan(text: 'CLASSES', style: TextStyles.R2075),
+                              TextSpan(text: AppLocalizations.of(context)!
+          .translate('classes'), style: TextStyles.R2075),
                             ],
                           ),
                         ),
@@ -149,10 +153,13 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                             padding: const EdgeInsetsDirectional.fromSTEB(20, 10, 20, 10),
                             child: RichText(
                               text: TextSpan(
-                                text: "Join us today for\n",
+                                text: "${AppLocalizations.of(context)!.translate("join_us_today_for")}\n",
                                 style: TextStyles.R1575,
                                 children: [
-                                  TextSpan(text: '30% Discount', style: TextStyles.R3075),
+                                  TextSpan(text: '30% '+ AppLocalizations.of
+                                    (context)!.translate("discount_30%"),
+                                      style: TextStyles
+                                      .R3075),
                                 ],
                               ),
                             ),
@@ -170,7 +177,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                                 color: ColorRes.primaryColor,
                               ),
                               child: Text(
-                                'LIMITED OFFER',
+                              AppLocalizations.of(context)!.translate("limited_offer"),
                                 style: TextStyles.SB10FF,
                               ),
                             ),
@@ -183,7 +190,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                       alignment: Alignment.center,
                       child: CustomButton(
                           onTap: () {},
-                          buttonText: 'DISCOVER ALL OUR CLASSES',
+                          buttonText: AppLocalizations.of(context)!.translate("discover_all_our_classes"),
                           backgroundColor: ColorRes.greyText,
                           foregroundColor: ColorRes.white,
                           borderColor: ColorRes.greyText,
@@ -256,7 +263,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                                 style: TextStyles.R31FF,
                               ),
                               Text(
-                                'Classes',
+                                AppLocalizations.of(context)!.translate("classes"),
                                 style: TextStyles.R12FF,
                               ),
                             ],
@@ -417,7 +424,11 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child:
-                                    Text(recommendedClass.isLock == true ? "PREMIUM" : "FREE", style: TextStyles.R12FF),
+                                    Text(recommendedClass.isLock == true ?
+                                        AppLocalizations.of(context)!.translate('premium')
+                                        : AppLocalizations.of(context)!.translate('free'),
+                                        style:
+                                    TextStyles.R12FF),
                               ),
                               Spacer(),
                               InkWell(

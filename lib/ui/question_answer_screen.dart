@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 
 import '../base/utils/common_methods.dart';
 import '../base/utils/constants/color_constant.dart';
@@ -155,7 +156,7 @@ class _QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                   _pageController.nextPage(duration: Duration(milliseconds: 350), curve: Curves.easeIn);
                                 }
                               },
-                              buttonText: 'NEXT',
+                              buttonText: AppLocalizations.of(context)!.translate('next'),
                               backgroundColor: ColorRes.green,
                               foregroundColor: ColorRes.white,
                               borderColor: ColorRes.green,

@@ -25,10 +25,6 @@ class StringRes {
   // Instructors_Screen
 
   static const String instructor = "Instructors";
-  static const String classes = "Classes";
-  static const String programs = "Programs";
-  static const String instructor_name = "LEDAE ANDERSON";
-  static const String instructor_name0 = "PRISCILLA";
 
   static const String arabic_language = "AR";
   static const String english_language = "EN";
@@ -38,4 +34,7 @@ class StringRes {
 
   //TAGS
   static const String tagInstructor = 'tag_instructor';
+
+  //language change
+  static const String selectedLanguage = 'selected_language';
 }

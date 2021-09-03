@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shala_yoga/base/utils/common_methods.dart';
 import 'package:shala_yoga/base/utils/constants/color_constant.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
+import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
 import 'package:shala_yoga/ui/classes_widgets/classes_recommended_with_circleAvatar.dart';
@@ -50,7 +51,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               Opacity(
                                   opacity: 0.30,
                                   child:
-                                      Text("Namaste", style: TextStyles.L30FF)),
+                                      Text(AppLocalizations.of(context)!.translate("namaste"), 
+                                          style: 
+                                      TextStyles.L30FF)),
                               Spacer(),
                               IconButton(
                                   onPressed: () {
@@ -164,7 +167,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             const SizedBox(height: 24),
-                            Text("CONTINUE WATCHING", style: TextStyles.SB1875),
+                            Text(AppLocalizations.of(context)!.translate("continue_watching"), style: 
+                            TextStyles.SB1875),
                             const SizedBox(height: 16),
                             Container(
                               height: 189,
@@ -191,7 +195,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             const SizedBox(height: 52),
-                            Text("RECOMMENDED FOR YOU",
+                            Text(AppLocalizations.of(context)!.translate("recommended_for_you"),
                                 style: TextStyles.SB1875),
                             const SizedBox(height: 14),
                             Container(
@@ -231,11 +235,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             const SizedBox(height: 37),
-                            Text("Our recommendation for you",
+                            Text(AppLocalizations.of(context)!.translate("our_recommendation_for_you"),
                                 style: TextStyles.R1575),
                             Row(
                               children: [
-                                Text("STRETCHING", style: TextStyles.SB1878),
+                                Text(AppLocalizations.of(context)!.translate("stretching"), style:
+                                TextStyles
+                                    .SB1878),
                                 Spacer(),
                                 Container(
                                   decoration: BoxDecoration(
@@ -250,7 +256,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       const SizedBox(
                                         width: 5,
                                       ),
-                                      Text("Change", style: TextStyles.R1275),
+                                      Text(AppLocalizations.of(context)!.translate("change"),
+                                          style:
+                                      TextStyles.R1275),
                                     ],
                                   ),
                                 ),
@@ -287,7 +295,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             const SizedBox(height: 35),
-                            Text("POPULAR IN YOGA", style: TextStyles.SB1875),
+                            Text(AppLocalizations.of(context)!.translate("popular_in_yoga"), style:
+                            TextStyles.SB1875),
                             const SizedBox(height: 22),
                             Container(
                               height: 189,
@@ -315,7 +324,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             const SizedBox(height: 38),
-                            Text("THIS WEEK SELECTION",
+                            Text(AppLocalizations.of(context)!.translate("this_week_selection"),
                                 style: TextStyles.SB1875),
                             const SizedBox(height: 15),
                             SizedBox(
@@ -356,7 +365,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             //     duration: "30",
                             //     language: "AR"),
                             const SizedBox(height: 30),
-                            Text("FEATURED INSTRUCTORS",
+                            Text(AppLocalizations.of(context)!.translate("featured_instruction"),
                                 style: TextStyles.SB1875),
                             const SizedBox(height: 15),
                             SizedBox(
@@ -394,8 +403,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ),
                                           Text(
                                             index == 1
-                                                ? "English"
-                                                : "Arabic/ English",
+                                                ? AppLocalizations.of
+                                              (context)!.translate("english")
+                                                : "${AppLocalizations.of
+                                              (context)!.translate("arabic")
+                                            }/" "${AppLocalizations.of
+                                          (context)!.translate("english")}",
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyles.R14A2,

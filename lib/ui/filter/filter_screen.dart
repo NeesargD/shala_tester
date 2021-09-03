@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shala_yoga/base/utils/constants/color_constant.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
+import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 import 'package:shala_yoga/ui/widgets/custom_button.dart';
 import 'package:shala_yoga/ui/widgets/filter_selecter.dart';
 
@@ -31,7 +32,7 @@ class _FilterScreenState extends State<FilterScreen> {
         ),
         centerTitle: true,
         title: Text(
-          'Filter',
+          AppLocalizations.of(context)!.translate('filter'),
           style: TextStyles.L2075,
         ),
       ),
@@ -54,14 +55,14 @@ class _FilterScreenState extends State<FilterScreen> {
                   child: TextFormField(
                     decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: "Start typing!",
+                      hintText: AppLocalizations.of(context)!.translate('start_typing'),
                       hintStyle: TextStyles.R1575,
                     ),
                   ),
                 ),
               ),
               SizedBox(height: 20),
-              Text("DURATION", style: TextStyles.SB1575),
+              Text(AppLocalizations.of(context)!.translate('duration'), style: TextStyles.SB1575),
               RangeSlider(
                 min: 0,
                 max: 90,
@@ -75,32 +76,19 @@ class _FilterScreenState extends State<FilterScreen> {
                 },
               ),
               SizedBox(height: 42),
-              Text("LANGUAGES", style: TextStyles.SB1575),
+              Text(AppLocalizations.of(context)!.translate("language"), style: TextStyles.SB1575),
               SizedBox(height: 7),
               Row(
                 children: [
-                  FilterSelected(filterSelector: "Arabic"),
+                  FilterSelected(filterSelector: AppLocalizations.of(context)
+                  !.translate("arabic")),
                   SizedBox(width: 9),
-                  FilterSelected(filterSelector: "English"),
+                  FilterSelected(filterSelector: AppLocalizations.of(context)
+                  !.translate('english')),
                 ],
               ),
               SizedBox(height: 35),
-              Text("LANGUAGES", style: TextStyles.SB1575),
-              SizedBox(height: 7),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    FilterSelected(filterSelector: "Beginner"),
-                    SizedBox(width: 9),
-                    FilterSelected(filterSelector: "Intermediate"),
-                    SizedBox(width: 9),
-                    FilterSelected(filterSelector: "Advanced"),
-                  ],
-                ),
-              ),
-              SizedBox(height: 35),
-              Text("LEVEL", style: TextStyles.SB1575),
+              Text(AppLocalizations.of(context)!.translate('level'), style: TextStyles.SB1575),
               SizedBox(height: 7),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -115,7 +103,7 @@ class _FilterScreenState extends State<FilterScreen> {
                 ),
               ),
               SizedBox(height: 35),
-              Text("STYLE", style: TextStyles.SB1575),
+              Text(AppLocalizations.of(context)!.translate('style'), style: TextStyles.SB1575),
               SizedBox(height: 7),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -130,7 +118,7 @@ class _FilterScreenState extends State<FilterScreen> {
                 ),
               ),
               SizedBox(height: 35),
-              Text("FOCUS", style: TextStyles.SB1575),
+              Text(AppLocalizations.of(context)!.translate("focus"), style: TextStyles.SB1575),
               SizedBox(height: 7),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -145,7 +133,7 @@ class _FilterScreenState extends State<FilterScreen> {
                 ),
               ),
               SizedBox(height: 35),
-              Text("INSTRUCTORS", style: TextStyles.SB1575),
+              Text(AppLocalizations.of(context)!.translate('instructor'), style: TextStyles.SB1575),
               SizedBox(height: 7),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -179,7 +167,7 @@ class _FilterScreenState extends State<FilterScreen> {
               Expanded(flex: 1,
                 child: CustomButton(
                     onTap: () {},
-                    buttonText: "RESET",
+                    buttonText: AppLocalizations.of(context)!.translate("reset"),
                     backgroundColor: ColorRes.white,
                     foregroundColor: ColorRes.white,
                     height: 52,
@@ -191,7 +179,7 @@ class _FilterScreenState extends State<FilterScreen> {
               Expanded(flex: 1,
                 child: CustomButton(
                     onTap: () {},
-                    buttonText: "DONE",
+                    buttonText: AppLocalizations.of(context)!.translate('done'),
                     backgroundColor: ColorRes.primaryColor,
                     foregroundColor: ColorRes.white,
                     height: 52,

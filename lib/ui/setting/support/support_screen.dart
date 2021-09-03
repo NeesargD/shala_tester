@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shala_yoga/base/utils/constants/color_constant.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
 import 'package:shala_yoga/base/utils/enum_utils.dart';
+import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 import 'package:shala_yoga/ui/setting/support/support_model.dart';
 import 'package:shala_yoga/ui/widgets/custom_button.dart';
 
@@ -33,7 +34,7 @@ class _SupportScreenState extends State<SupportScreen> {
           ),
           centerTitle: true,
           title: Text(
-            'Support',
+           AppLocalizations.of(context)!.translate('support'),
             style: TextStyles.L2075,
           ),
         ),
@@ -55,7 +56,8 @@ class _SupportScreenState extends State<SupportScreen> {
               child: Padding(
                 padding:
                     EdgeInsetsDirectional.only(start: 25, top: 12, bottom: 14),
-                child: Text("MOST FREQUENTLY ASKED", style: TextStyles.SB1578),
+                child: Text(AppLocalizations.of(context)!.translate("most_frequently_asked"), style: TextStyles
+                    .SB1578),
               ),
             ),
             SizedBox(height: 30),
@@ -81,7 +83,8 @@ class _SupportScreenState extends State<SupportScreen> {
               child: Padding(
                 padding:
                     EdgeInsetsDirectional.only(start: 25, top: 12, bottom: 14),
-                child: Text("APP SUPPORT", style: TextStyles.SB1578),
+                child: Text(AppLocalizations.of(context)!.translate("app_support"), style: TextStyles
+                    .SB1578),
               ),
             ),
             SizedBox(height: 33),
@@ -105,7 +108,7 @@ class _SupportScreenState extends State<SupportScreen> {
                   flex: 1,
                   child: CustomButton(
                       onTap: () {},
-                      buttonText: "CONTACT US",
+                      buttonText: AppLocalizations.of(context)!.translate('contact_us'),
                       backgroundColor: ColorRes.white,
                       foregroundColor: ColorRes.white,
                       height: 52,
@@ -118,7 +121,7 @@ class _SupportScreenState extends State<SupportScreen> {
                   flex: 1,
                   child: CustomButton(
                       onTap: () {},
-                      buttonText: "WHATSAPP",
+                      buttonText: AppLocalizations.of(context)!.translate('whats_app'),
                       backgroundColor: ColorRes.primaryColor,
                       foregroundColor: ColorRes.white,
                       height: 52,

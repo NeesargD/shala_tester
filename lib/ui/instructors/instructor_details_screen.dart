@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 import 'package:shala_yoga/ui/classes_widgets/classes_grid_widget.dart';
 import 'package:shala_yoga/ui/program_widgets/program_grid_widget.dart';
 import 'package:shala_yoga/ui/widgets/circular_image.dart';
@@ -99,7 +100,7 @@ class _InstructorProfileScreenState extends State<InstructorProfileScreen>
                                         Text(
                                             '${state.instructorDetailsModel.content!.instructorDetails.follower}',
                                             style: TextStyles.R1875),
-                                        Text('Followers',
+                                        Text(AppLocalizations.of(context)!.translate("followers"),
                                             style: TextStyles.R1275),
                                       ],
                                     ),
@@ -112,7 +113,7 @@ class _InstructorProfileScreenState extends State<InstructorProfileScreen>
                                         Text(
                                             '${state.instructorDetailsModel.content!.instructorDetails.classes}',
                                             style: TextStyles.R1875),
-                                        Text('Classes',
+                                        Text(AppLocalizations.of(context)!.translate("classes"),
                                             style: TextStyles.R1275),
                                       ],
                                     ),
@@ -125,7 +126,7 @@ class _InstructorProfileScreenState extends State<InstructorProfileScreen>
                                         Text(
                                             '${state.instructorDetailsModel.content!.instructorDetails.program}',
                                             style: TextStyles.R1875),
-                                        Text('Programs',
+                                        Text(AppLocalizations.of(context)!.translate("programs"),
                                             style: TextStyles.R1275),
                                       ],
                                     ),
@@ -174,8 +175,8 @@ class _InstructorProfileScreenState extends State<InstructorProfileScreen>
                             unselectedLabelStyle: TextStyles.SB15AF,
                             unselectedLabelColor: ColorRes.unselectedTextGrey,
                             tabs: [
-                              Tab(text: 'CLASSES'),
-                              Tab(text: 'PROGRAMS'),
+                              Tab(text: AppLocalizations.of(context)!.translate('classes')),
+                              Tab(text: AppLocalizations.of(context)!.translate("programs")),
                             ]),
                       ),
                     ),
@@ -230,7 +231,7 @@ class _InstructorProfileScreenState extends State<InstructorProfileScreen>
                       margin: EdgeInsetsDirectional.only(start: 35, end: 35),
                       child: CustomButton(
                           onTap: () {},
-                          buttonText: "FOLLOW",
+                          buttonText: AppLocalizations.of(context)!.translate("follow"),
                           backgroundColor: ColorRes.white,
                           foregroundColor: ColorRes.white,
                           borderColor: ColorRes.primaryColor,

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import "package:introduction_screen/introduction_screen.dart";
 import 'package:shala_yoga/base/utils/common_methods.dart';
+import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
 
@@ -105,16 +106,16 @@ class _OnboardScreenState extends State<OnboardScreen> {
             skipFlex: 0,
             nextFlex: 0,
             //rtl: true, // Display as right-to-left
-            skip: const Text(
-              'Skip',
+            skip:  Text(
+              AppLocalizations.of(context)!.translate("skip"),
               style: TextStyle(color: ColorRes.white),
             ),
             next: const Icon(
               Icons.arrow_forward,
               color: ColorRes.white,
             ),
-            done: const Text(
-              'Done',
+            done:  Text(
+              AppLocalizations.of(context)!.translate('done'),
               style: TextStyle(
                 fontWeight: FontWeight.w600,
                 color: ColorRes.white,

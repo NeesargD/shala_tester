@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shala_yoga/base/utils/common_methods.dart';
 import 'package:shala_yoga/base/utils/constants/color_constant.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
+import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
 import 'package:shala_yoga/ui/widgets/custom_button.dart';
@@ -40,7 +41,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
                 ),
                 Container(
                   margin: EdgeInsetsDirectional.fromSTEB(50, 30, 50, 0),
-                  child: Text("Not sure which program is right for you?",
+                  child: Text(AppLocalizations.of(context)!.translate("not_sure_which_program_is_right"),
                       style: TextStyles.SB3075, textAlign: TextAlign.left),
                 ),
                 Center(
@@ -58,7 +59,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
                   onTap: () {
                     NavigationUtils.push(context, routeQuestionAnswer);
                   },
-                  buttonText: 'START QUIZ',
+                  buttonText: AppLocalizations.of(context)!.translate('start_quiz'),
                   backgroundColor: ColorRes.green,
                   foregroundColor: ColorRes.white,
                   borderColor: ColorRes.green,
@@ -68,7 +69,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
                   onTap: () {
                     NavigationUtils.pushReplacement(context, routeDashboard,arguments: {'index':0});
                   },
-                  buttonText: 'BROWSE ALL CLASSES',
+                  buttonText: AppLocalizations.of(context)!.translate('browse_all_classes'),
                   backgroundColor: ColorRes.white,
                   foregroundColor: ColorRes.white,
                   borderColor: ColorRes.greyBorder,

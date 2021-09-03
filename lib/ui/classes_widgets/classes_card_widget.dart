@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shala_yoga/base/utils/common_methods.dart';
+import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 import 'package:shala_yoga/ui/widgets/custom_network_image.dart';
 import '../../base/utils/constants/color_constant.dart';
 import '../../base/utils/constants/image_constant.dart';
@@ -70,7 +71,8 @@ class ClassesCardWidget extends StatelessWidget {
                           : ColorRes.primaryColor,
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: Text(isLock == true ? "PREMIUM" : "FREE",
+                    child: Text(isLock == true ? AppLocalizations.of(context)
+                    !.translate("premium") : AppLocalizations.of(context)!.translate('free'),
                         style: TextStyles.R12FF),
                   ),
                 ),

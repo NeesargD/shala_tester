@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shala_yoga/ui/filter/filter_screen.dart';
+import 'package:shala_yoga/ui/setting/language/language.dart';
 import 'package:shala_yoga/ui/setting/notification/notification.dart';
 import 'package:shala_yoga/ui/setting/support/support_screen.dart';
 import '../../../blocs/instructor_details_bloc/instructor_details_bloc.dart';
@@ -83,6 +84,10 @@ class NavigationUtils {
         return MaterialPageRoute(
           builder: (_)=> NotificationScreen(),
         );
+        case routeLanguage:
+      return MaterialPageRoute(
+          builder: (_)=> LanguageScreen(),
+      );
       case routeDashboard:
         return MaterialPageRoute(builder: (_) => DashboardScreen(index: args!['index'],));
       case routeFilterScreen:

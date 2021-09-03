@@ -5,6 +5,7 @@ import 'package:shala_yoga/base/utils/constants/color_constant.dart';
 import 'package:shala_yoga/base/utils/constants/image_constant.dart';
 import 'package:shala_yoga/base/utils/constants/string_res.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
+import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 import 'package:shala_yoga/models/instructor_details_model.dart';
 
 class ClassesGridWidget extends StatelessWidget {
@@ -56,7 +57,11 @@ class ClassesGridWidget extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(15, 3, 15, 3),
                                 child:
-                                    Text(classesDetail.isLock == true ? "PREMIUM" : "FREE", style: TextStyles.SB10FF),
+                                    Text(classesDetail.isLock == true ?
+                                    AppLocalizations.of(context)!.translate('premium') :
+                                    AppLocalizations.of(context)!.translate('free'), style:
+                                    TextStyles
+                                        .SB10FF),
                               ),
                             ),
                             Spacer(),

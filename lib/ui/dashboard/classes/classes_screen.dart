@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shala_yoga/base/utils/constants/string_res.dart';
+import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 import 'package:shala_yoga/blocs/classes/classes_bloc/classes_bloc.dart';
 import 'package:shala_yoga/ui/classes_widgets/classes_card_widget.dart';
 import 'package:shala_yoga/ui/widgets/failure_widget.dart';
@@ -37,7 +38,7 @@ class _ClassesScreenState extends State<ClassesScreen> {
         centerTitle: true,
         elevation: 0,
         backgroundColor: ColorRes.appBarColor,
-        title: Text(StringRes.classes, style: TextStyles.L2075),
+        title: Text(AppLocalizations.of(context)!.translate('classes'), style: TextStyles.L2075),
       ),
       body: BlocBuilder<ClassesBloc, ClassesState>(
         builder: (context, state) {

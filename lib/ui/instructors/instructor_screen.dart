@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 
 import '../../base/utils/common_methods.dart';
 import '../../base/utils/constants/color_constant.dart';
@@ -36,7 +37,7 @@ class _InstructorScreenState extends State<InstructorScreen> {
           centerTitle: true,
           elevation: 0,
           backgroundColor: ColorRes.appBarColor,
-          title: Text(StringRes.instructor, style: TextStyles.L2075),
+          title: Text(AppLocalizations.of(context)!.translate("instructors"), style: TextStyles.L2075),
         ),
         body: BlocBuilder<InstructorBloc, InstructorState>(
           builder: (context, state) {

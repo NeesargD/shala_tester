@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shala_yoga/base/utils/constants/string_res.dart';
+import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 import 'package:shala_yoga/blocs/programs/programs_bloc/programs_bloc.dart';
 import 'package:shala_yoga/ui/classes_widgets/classes_card_widget.dart';
 import 'package:shala_yoga/ui/program_widgets/program_grid_recommended.dart';
@@ -36,7 +37,7 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
         centerTitle: true,
         elevation: 0,
         backgroundColor: ColorRes.appBarColor,
-        title: Text(StringRes.programs, style: TextStyles.L2075),
+        title: Text(AppLocalizations.of(context)!.translate('programs'), style: TextStyles.L2075),
       ),
       body: BlocBuilder<ProgramsBloc, ProgramsState>(
         builder: (context, state) {

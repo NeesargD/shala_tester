@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 
 import '../../../base/utils/constants/color_constant.dart';
 import '../../../base/utils/constants/textstyle_constants.dart';
@@ -28,7 +29,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
           children: [
             Row(
               children: [
-                Text("PROMOTIONS AND UPDATES", style: TextStyles.SB1878),
+                Text(AppLocalizations.of(context)!.translate('promotions_updates'), style: TextStyles.SB1878),
                 Spacer(),
                 Switch.adaptive(
                   onChanged: (value) {
@@ -49,7 +50,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
             SizedBox(height: 30),
             Row(
               children: [
-                Text("PRIVATE", style: TextStyles.SB1878),
+                Text(AppLocalizations.of(context)!.translate('private'), style: TextStyles.SB1878),
                 Spacer(),
                 Switch.adaptive(
                   onChanged: (value) {

@@ -6,6 +6,7 @@ import 'package:shala_yoga/base/utils/common_methods.dart';
 import 'package:shala_yoga/base/utils/constants/color_constant.dart';
 import 'package:shala_yoga/base/utils/constants/image_constant.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
+import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 import 'package:shala_yoga/ui/widgets/custom_network_image.dart';
 
 class RecommendedProgramList extends StatelessWidget {
@@ -78,7 +79,7 @@ class RecommendedProgramList extends StatelessWidget {
                             style: TextStyles.R31FF,
                           ),
                           Text(
-                            'Classes',
+                            AppLocalizations.of(context)!.translate('classes'),
                             style: TextStyles.R12FF,
                           ),
                         ],

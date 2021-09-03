@@ -4,6 +4,7 @@ import 'package:shala_yoga/base/utils/common_methods.dart';
 import 'package:shala_yoga/base/utils/constants/color_constant.dart';
 import 'package:shala_yoga/base/utils/constants/image_constant.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
+import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 
 class RecommendedClassList extends StatelessWidget {
   final String coverImage;
@@ -71,7 +72,9 @@ class RecommendedClassList extends StatelessWidget {
                               : ColorRes.primaryColor,
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Text(isLock == true ? "PREMIUM" : "FREE",
+                        child: Text(isLock == true ? AppLocalizations.of
+                          (context)!.translate('premium') : AppLocalizations
+                            .of(context)!.translate('free'),
                             style: TextStyles.R12FF),
                       ),
                       Spacer(),

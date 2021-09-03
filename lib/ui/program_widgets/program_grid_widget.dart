@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shala_yoga/base/utils/constants/color_constant.dart';
 import 'package:shala_yoga/base/utils/constants/image_constant.dart';
+import 'package:shala_yoga/base/utils/constants/string_res.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
+import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 import 'package:shala_yoga/models/instructor_details_model.dart';
 import 'package:shala_yoga/ui/widgets/custom_network_image.dart';
 
@@ -52,7 +55,9 @@ class ProgramGridWidget extends StatelessWidget {
                               style: TextStyles.R31FF,
                               children: [
                                 TextSpan(
-                                    text: "Classes", style: TextStyles.R12FF),
+                                    text: AppLocalizations.of(context)!.translate("classes"),
+                                    style:
+                                TextStyles.R12FF),
                               ]),
                         ),
                       ],
@@ -62,7 +67,7 @@ class ProgramGridWidget extends StatelessWidget {
                     CircleAvatar(
                       backgroundColor: ColorRes.white,
                       radius: 10,
-                      child: Text('AR', style: TextStyles.R1075),
+                      child: Text(StringRes.arabic_language, style: TextStyles.R1075),
                     ),
                     SizedBox(width: 11),
                   ],

@@ -3,8 +3,10 @@ import 'package:shala_yoga/base/utils/common_methods.dart';
 import 'package:shala_yoga/base/utils/constants/color_constant.dart';
 import 'package:shala_yoga/base/utils/constants/image_constant.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
+import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
+import 'package:shala_yoga/ui/setting/language/language.dart';
 import 'package:shala_yoga/ui/widgets/common_list_tile_widget.dart';
 import 'package:shala_yoga/ui/widgets/custom_button.dart';
 
@@ -23,7 +25,7 @@ class _SettingScreenState extends State<SettingScreen> {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: Text('Settings', style: TextStyles.L2075),
+        title: Text(AppLocalizations.of(context)!.translate("settings"), style: TextStyles.L2075),
         backgroundColor: ColorRes.appBarColor,
       ),
       body: SingleChildScrollView(
@@ -32,47 +34,58 @@ class _SettingScreenState extends State<SettingScreen> {
           child: Column(
             children: [
               CommonListTileWidget(
-                  titleText: "MY ACCOUNT",
+                  titleText: AppLocalizations.of(context)!.translate("my_account"),
                   imagePath: ImageRes.setting_my_account,
                   onTap: () {
                     NavigationUtils.push(context, routeMyAccount);
                   }),
               CommonListTileWidget(
-                  titleText: "TIME ZONE", imagePath: ImageRes.setting_timezone,
+                  titleText: AppLocalizations.of(context)!.translate
+                    ("time_zone"), imagePath: ImageRes.setting_timezone,
                   onTap: () {}),
               CommonListTileWidget(
-                  titleText: "LANGUAGE", imagePath: ImageRes.setting_language,
+                  titleText: AppLocalizations.of(context)!.translate
+                    ("language"), imagePath: ImageRes.setting_language,
                   onTap: ()
-              {}),
+              {
+                NavigationUtils.push(context, routeLanguage);
+              }),
               CommonListTileWidget(
-                  titleText: "NOTIFICATIONS",
+                  titleText: AppLocalizations.of(context)!.translate
+                    ("notification"),
                   imagePath: ImageRes.setting_notifications,
                   onTap: () {
                     NavigationUtils.push(context, routeNotification);
                   }),
               SizedBox(height: 38),
               CommonListTileWidget(
-                  titleText: "SUPPORT",
+                  titleText: AppLocalizations.of(context)!.translate("support"),
                   imagePath: ImageRes.setting_support,
                   onTap: () {
                     NavigationUtils.push(context, routeSupportScreen);
                   }),
               CommonListTileWidget(
-                  titleText: "TERMS & CONDITIONS",
+                  titleText: AppLocalizations.of(context)!.translate
+                    ("terms&condition"),
                   imagePath: ImageRes.setting_terms_condition,
                   onTap: () {}),
               CommonListTileWidget(
-                  titleText: "PRIVACY POLICY", imagePath: ImageRes.setting_privacy_policy,
+                  titleText: AppLocalizations.of(context)!.translate("privacy_policy"), imagePath: ImageRes
+                  .setting_privacy_policy,
                   onTap: () {}),
               CommonListTileWidget(
-                  titleText: "ABOUT", imagePath: ImageRes.setting_about, onTap: () {}),
+                  titleText: AppLocalizations.of(context)!.translate('about'), imagePath: ImageRes
+                  .setting_about, onTap: ()
+              {}),
               CommonListTileWidget(
-                  titleText: "INVITE FRIENDS", imagePath: ImageRes.setting_invite_friends,
+                  titleText: AppLocalizations.of(context)!.translate
+                    ('invite_friends'), imagePath: ImageRes
+                  .setting_invite_friends,
                   onTap: () {}),
               SizedBox(height: 35),
               CustomButton(
                 onTap: () {},
-                buttonText: "LOG OUT",
+                buttonText: AppLocalizations.of(context)!.translate('log_out'),
                 backgroundColor: ColorRes.greyText,
                 foregroundColor: Colors.transparent,
                 borderColor: Colors.transparent,

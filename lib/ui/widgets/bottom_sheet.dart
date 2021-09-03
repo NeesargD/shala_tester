@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shala_yoga/base/utils/constants/image_constant.dart';
+import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
 
@@ -15,15 +16,15 @@ class BottomSheetWidget extends StatelessWidget {
       padding: EdgeInsetsDirectional.fromSTEB(27, 42, 27, 0),
       child: Column(
         children: [
-          CommonListTileWidget(titleText: "SUBSCRIPTION",
+          CommonListTileWidget(titleText:AppLocalizations.of(context)!.translate('subscription'),
               imagePath: ImageRes.bottom_sheet_subscription, onTap: (){}),
-          CommonListTileWidget(titleText: "ABOUT US",
+          CommonListTileWidget(titleText: AppLocalizations.of(context)!.translate('about_us'),
               imagePath: ImageRes.bottom_sheet_about_us, onTap: (){}),
-          CommonListTileWidget(titleText: "SETTINGS",
+          CommonListTileWidget(titleText: AppLocalizations.of(context)!.translate("settings"),
               imagePath: ImageRes.bottom_sheet_setting, onTap: (){
                 NavigationUtils.push(context, routeSetting);
               }),
-          CommonListTileWidget(titleText: "LOGOUT",
+          CommonListTileWidget(titleText: AppLocalizations.of(context)!.translate("log_out"),
               imagePath: ImageRes.bottom_sheet_setting, onTap: (){}),
         ],
       ),

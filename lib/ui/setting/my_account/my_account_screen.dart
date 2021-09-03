@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shala_yoga/base/utils/constants/color_constant.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
+import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 import 'package:shala_yoga/ui/widgets/common_list_tile_widget.dart';
 import 'package:shala_yoga/ui/widgets/custom_button.dart';
 
@@ -20,7 +21,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
         appBar: AppBar(
           elevation: 0,
           centerTitle: true,
-          title: Text("My Account", style: TextStyles.L2075),
+          title: Text(AppLocalizations.of(context)!.translate('my_account'), style: TextStyles.L2075),
           backgroundColor: ColorRes.appBarColor,
         ),
         bottomSheet: Padding(
@@ -29,10 +30,12 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
             mainAxisSize: MainAxisSize.min,
             children: [
               CommonListTileWidget(
-                  titleText:"MY SUBSCRIPTION" , imagePath: ' ', onTap: (){},
+                  titleText: AppLocalizations.of(context)!.translate("my_subscriptions") , imagePath: ' ',
+                  onTap: (){},
                   itemSpace: 9),
               CommonListTileWidget(
-                titleText:"RESET PASSWORD" , imagePath: ' ', onTap: (){},
+                titleText:AppLocalizations.of(context)!.translate('reset_password') , imagePath: ' ', 
+                onTap: (){},
                 itemSpace: 9,),
               SizedBox(height: 15),
             ],
@@ -46,7 +49,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Opacity(opacity: 0.50,
-                    child: Text("Your Email",
+                    child: Text(AppLocalizations.of(context)!.translate("your_mail"),
                         style: TextStyles.R1675),
                   ),
                   TextField(
@@ -62,7 +65,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                   ),
                   SizedBox(height: 37),
                   Opacity( opacity: 0.50,
-                    child: Text("Phone Number",
+                    child: Text(AppLocalizations.of(context)!.translate('phone_number'),
                         style: TextStyles.R1675),
                   ),
                   TextField(keyboardType: TextInputType.phone,
@@ -78,7 +81,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                   ),
                   SizedBox(height: 37),
                   Opacity(opacity: 0.50,
-                    child: Text("Location",
+                    child: Text(AppLocalizations.of(context)!.translate('location'),
                         style: TextStyles.R1675)
                   ),
                   TextField(
@@ -91,13 +94,11 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                   ),
                   SizedBox(height: 37),
                   CustomButton(widthPercent: 1,onTap: (){},
-                      buttonText: "SAVE CHANGES",
+                      buttonText: AppLocalizations.of(context)!.translate('save_changes'),
                       backgroundColor: ColorRes.primaryColor,
                       foregroundColor: Colors.transparent,
                       borderColor: Colors.transparent,
                       textStyle: TextStyles.SB18FF),
-
-
                 ],
               ),
             ),
