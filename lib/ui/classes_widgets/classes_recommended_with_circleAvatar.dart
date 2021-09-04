@@ -120,7 +120,7 @@ class RecommendedClassList extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Container(
-                      alignment: Alignment.centerLeft,
+                      alignment: AlignmentDirectional.centerStart,
                       width:
                           screenWidth(context: context, percent: 0.50),
                       padding: EdgeInsetsDirectional.only(start: 10),
@@ -166,11 +166,11 @@ class RecommendedClassList extends StatelessWidget {
                   ],
                 ),
               ),
-              Positioned(
+              PositionedDirectional(
                 top: -22,
-                right: 10,
+                end: 10,
                 child: Align(
-                  alignment: Alignment.topRight,
+                  alignment: AlignmentDirectional.topEnd,
                   child: CircleAvatar(
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(22),

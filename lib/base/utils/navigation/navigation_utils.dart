@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shala_yoga/blocs/classes/classes_details_bloc/classes_details_bloc.dart';
+import 'package:shala_yoga/ui/dashboard/classes/classes_details_screen.dart';
 import 'package:shala_yoga/ui/filter/filter_screen.dart';
 import 'package:shala_yoga/ui/setting/language/language.dart';
 import 'package:shala_yoga/ui/setting/notification/notification.dart';
@@ -92,6 +94,13 @@ class NavigationUtils {
         return MaterialPageRoute(builder: (_) => DashboardScreen(index: args!['index'],));
       case routeFilterScreen:
         return MaterialPageRoute(builder: (_) => FilterScreen());
+      case routeClassDetailsScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => ClassesDetailsBloc()..add(GetClassDetails(id: args!['id'],)),
+            child: ClassDetailsScreen(),
+          ),
+        );
       default:
         return _errorRoute(" Coming soon...");
     }

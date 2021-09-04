@@ -53,11 +53,13 @@ class Answer {
     required this.id,
     required this.answerValue,
     required this.orderBy,
+    this.isSelected = false,
   });
 
   int id;
   String answerValue;
   int orderBy;
+  bool isSelected;
 
   factory Answer.fromJson(Map<String, dynamic> json) => Answer(
     id: json["id"] == null ? 0 : json["id"],

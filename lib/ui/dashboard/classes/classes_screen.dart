@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shala_yoga/base/utils/constants/string_res.dart';
 import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
+import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
+import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
 import 'package:shala_yoga/blocs/classes/classes_bloc/classes_bloc.dart';
 import 'package:shala_yoga/ui/classes_widgets/classes_card_widget.dart';
 import 'package:shala_yoga/ui/widgets/failure_widget.dart';
@@ -53,15 +55,21 @@ class _ClassesScreenState extends State<ClassesScreen> {
               itemBuilder: (context, index) {
                 return Container(
                   margin: EdgeInsetsDirectional.only(start: 20, end: 20),
-                  child: ClassesCardWidget(
-                      image: state.classesModel.content!.classes[index].coverImage,
-                      day: "TUESDAY",
-                      title: state.classesModel.content!.classes[index].title,
-                      style: state.classesModel.content!.classes[index].style[0],
-                      isLock: state.classesModel.content!.classes[index].isLock,
-                      level: state.classesModel.content!.classes[index].level,
-                      duration: appState.parseDuration(state.classesModel.content!.classes[index].durations).inMinutes.toString(),
-                      language: state.classesModel.content!.classes[index].language),
+                  child: InkWell(
+                    onTap: () {
+                      // NavigationUtils.push(context, routeClassDetailsScreen,
+                      //     arguments: {'id': state.classesModel.content!.classes[index].id});
+                    },
+                    child: ClassesCardWidget(
+                        image: state.classesModel.content!.classes[index].coverImage,
+                        day: "TUESDAY",
+                        title: state.classesModel.content!.classes[index].title,
+                        style: state.classesModel.content!.classes[index].style[0],
+                        isLock: state.classesModel.content!.classes[index].isLock,
+                        level: state.classesModel.content!.classes[index].level,
+                        duration: appState.parseDuration(state.classesModel.content!.classes[index].durations).inMinutes.toString(),
+                        language: state.classesModel.content!.classes[index].language),
+                  ),
                 );
               },
             );

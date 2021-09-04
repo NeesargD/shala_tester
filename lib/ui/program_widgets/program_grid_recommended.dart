@@ -55,8 +55,8 @@ class RecommendedProgramList extends StatelessWidget {
                   ColorRes.white.withOpacity(0.05),
                 ],
                 stops: [0.3, 0.55, 1],
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
+                begin: AlignmentDirectional.bottomCenter,
+                end: AlignmentDirectional.topCenter,
               )),
           child: Stack(
             children: [
@@ -128,7 +128,7 @@ class RecommendedProgramList extends StatelessWidget {
                   ),
                   Spacer(),
                   Container(
-                    alignment: Alignment.centerLeft,
+                    alignment: AlignmentDirectional.centerStart,
                     width: screenWidth(context: context, percent: 0.40),
                     padding: EdgeInsetsDirectional.only(start: 14),
                     child: Text(

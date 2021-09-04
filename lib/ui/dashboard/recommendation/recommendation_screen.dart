@@ -50,7 +50,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                     Stack(
                       children: [
                         Container(
-                            alignment: Alignment.topRight, child: SvgPicture.asset('assets/home_screen_image.svg')),
+                            alignment: AlignmentDirectional.topEnd, child: SvgPicture.asset('assets/home_screen_image.svg')),
                         Container(
                           margin: EdgeInsetsDirectional.fromSTEB(0, 20, 80, 0),
                           child: Column(
@@ -165,11 +165,11 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                             ),
                           ),
                         ),
-                        Positioned(
-                          right: 20,
+                        PositionedDirectional(
+                          end: 20,
                           top: -9,
                           child: Align(
-                            alignment: Alignment.topRight,
+                            alignment: AlignmentDirectional.topEnd,
                             child: Container(
                               padding: EdgeInsetsDirectional.fromSTEB(16, 4, 16, 4),
                               decoration: BoxDecoration(
@@ -239,8 +239,8 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                       ColorRes.white.withOpacity(0.05),
                     ],
                     stops: [0.3, 0.55, 1],
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
+                    begin: AlignmentDirectional.bottomCenter,
+                    end: AlignmentDirectional.topCenter,
                   )),
               child: Stack(
                 children: [
@@ -299,7 +299,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                       ),
                       Spacer(),
                       Container(
-                        alignment: Alignment.centerLeft,
+                        alignment: AlignmentDirectional.centerStart,
                         width: screenWidth(context: context, percent: 0.40),
                         padding: EdgeInsetsDirectional.only(start: 14),
                         child: Text(
@@ -473,7 +473,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Container(
-                              alignment: Alignment.centerLeft,
+                              alignment: AlignmentDirectional.centerStart,
                               width: screenWidth(context: context, percent: 0.50),
                               padding: EdgeInsetsDirectional.only(start: 10),
                               child: Text(
@@ -519,11 +519,11 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                           ],
                         ),
                       ),
-                      Positioned(
+                      PositionedDirectional(
                         top: -22,
-                        right: 10,
+                        end: 10,
                         child: Align(
-                          alignment: Alignment.topRight,
+                          alignment: AlignmentDirectional.topEnd,
                           child: CircleAvatar(
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(22),

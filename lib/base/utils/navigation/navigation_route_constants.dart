@@ -14,3 +14,5 @@ const String routeLanguage = "routeLanguage";
 const String routeFilterScreen = "routeFilterScreen";
 const String routeHomeScreen = "routeHomeScreen";
 const String routeSupportScreen = "routeSupportScreen";
+const String routeClassDetailsScreen = "routeClassDetailsScreen";
+const String routeProgramDetailsScreen = "routeProgramDetailsScreen";

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
+import 'package:shala_yoga/models/quiz_model.dart';
 
 import '../base/utils/common_methods.dart';
 import '../base/utils/constants/color_constant.dart';
@@ -24,6 +25,7 @@ class _QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
   PageController _pageController = PageController();
   int initialPage = 0;
   bool isSelected = false;
+  List<SubmitAnswers> submitAnswers = [];
 
   @override
   void dispose() {
@@ -48,8 +50,9 @@ class _QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
           backgroundColor: ColorRes.white,
           actions: [
             InkWell(
-              onTap: (){
-                NavigationUtils.pushAndRemoveUntil(context, routeDashboard,arguments: {'index':0});
+              onTap: () {
+                NavigationUtils.pushAndRemoveUntil(context, routeDashboard,
+                    arguments: {'index': 0});
               },
               child: Icon(
                 Icons.clear,
@@ -81,7 +84,8 @@ class _QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                         Padding(
                           padding: const EdgeInsetsDirectional.only(start: 20),
                           child: Text(
-                            state.quizModel.content[index].questionId!.questionValue,
+                            state.quizModel.content[index].questionId!
+                                .questionValue,
                             style: TextStyles.SB2575,
                           ),
                         ),
@@ -92,56 +96,101 @@ class _QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                 const SizedBox(
                                   height: 20,
                                 ),
-                                state.quizModel.content[index].answers!.length > 5
+                                state.quizModel.content[index].answers!.length >
+                                    5
                                     ? Padding(
-                                        padding: const EdgeInsetsDirectional.only(start: 50, end: 50),
-                                        child: GridView.builder(
-                                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                              crossAxisCount: 2,
-                                              crossAxisSpacing: 23,
-                                              mainAxisSpacing: 23,
-                                              childAspectRatio: 4 / 3),
-                                          padding: EdgeInsets.all(0),
-                                          shrinkWrap: true,
-                                          physics: NeverScrollableScrollPhysics(),
-                                          itemCount: state.quizModel.content[index].answers!.length,
-                                          itemBuilder: (context, i) {
-                                            return Container(
-                                              decoration: BoxDecoration(
-                                                border: Border.all(color: ColorRes.lightGrey, width: 1),
-                                                borderRadius: BorderRadius.circular(10),
-                                              ),
-                                              // padding: EdgeInsetsDirectional.fromSTEB(17, 28, 17, 28),
-                                              // margin: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 10),
-                                              alignment: Alignment.center,
-                                              child: Text(
-                                                state.quizModel.content[index].answers![i].answerValue,
-                                                style: TextStyles.R1875,
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            );
-                                          },
+                                  padding:
+                                  const EdgeInsetsDirectional.only(
+                                      start: 50, end: 50),
+                                  child: GridView.builder(
+                                    gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2,
+                                        crossAxisSpacing: 23,
+                                        mainAxisSpacing: 23,
+                                        childAspectRatio: 4 / 3),
+                                    padding: EdgeInsets.all(0),
+                                    shrinkWrap: true,
+                                    physics:
+                                    NeverScrollableScrollPhysics(),
+                                    itemCount: state.quizModel
+                                        .content[index].answers!.length,
+                                    itemBuilder: (context, i) {
+                                      return Container(
+                                        decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: ColorRes.lightGrey,
+                                              width: 1),
+                                          borderRadius:
+                                          BorderRadius.circular(10),
                                         ),
-                                      )
+                                        // padding: EdgeInsetsDirectional.fromSTEB(17, 28, 17, 28),
+                                        // margin: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 10),
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          state.quizModel.content[index]
+                                              .answers![i].answerValue,
+                                          style: TextStyles.R1875,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                )
                                     : ListView.builder(
-                                        shrinkWrap: true,
-                                        physics: NeverScrollableScrollPhysics(),
-                                        itemCount: state.quizModel.content[index].answers!.length,
-                                        itemBuilder: (context, i) {
-                                          return Container(
-                                            decoration: BoxDecoration(
-                                              border: Border.all(color: ColorRes.lightGrey, width: 1),
-                                              borderRadius: BorderRadius.circular(10),
-                                            ),
-                                            padding: EdgeInsetsDirectional.fromSTEB(20, 28, 0, 29),
-                                            margin: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 10),
-                                            child: Text(
-                                              state.quizModel.content[index].answers![i].answerValue,
-                                              style: TextStyles.R1875,
-                                            ),
-                                          );
-                                        },
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  itemCount: state.quizModel
+                                      .content[index].answers!.length,
+                                  itemBuilder: (context, i) {
+                                    return listItem(state.quizModel
+                                        .content[index].answers![i]);
+                                    return InkWell(
+                                      onTap: () {
+                                        state.quizModel.content[index]
+                                            .answers![i].isSelected =
+                                        !state
+                                            .quizModel
+                                            .content[index]
+                                            .answers![i]
+                                            .isSelected;
+
+                                        setState(() {});
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: ColorRes.lightGrey,
+                                                width: 1),
+                                            borderRadius:
+                                            BorderRadius.circular(10),
+                                            color: state
+                                                .quizModel
+                                                .content[index]
+                                                .answers![i]
+                                                .isSelected
+                                                ? ColorRes.primaryColor
+                                                : ColorRes.white),
+                                        padding: EdgeInsetsDirectional
+                                            .fromSTEB(20, 28, 0, 29),
+                                        margin: EdgeInsetsDirectional
+                                            .fromSTEB(20, 0, 20, 10),
+                                        child: Text(
+                                          state.quizModel.content[index]
+                                              .answers![i].answerValue,
+                                          style: state
+                                              .quizModel
+                                              .content[index]
+                                              .answers![i]
+                                              .isSelected
+                                              ? TextStyles.R1875.copyWith(
+                                              color: ColorRes.white)
+                                              : TextStyles.R1875,
+                                        ),
                                       ),
+                                    );
+                                  },
+                                ),
                               ],
                             ),
                           ),
@@ -150,13 +199,36 @@ class _QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                           alignment: Alignment.center,
                           child: CustomButton(
                               onTap: () {
-                                if (index == state.quizModel.content.length - 1) {
-                                  NavigationUtils.pushAndRemoveUntil(context, routeDashboard, arguments: {"index": 5});
+                                if (index ==
+                                    state.quizModel.content.length - 1) {
+                                  NavigationUtils.pushAndRemoveUntil(
+                                      context, routeDashboard,
+                                      arguments: {"index": 5});
                                 } else {
-                                  _pageController.nextPage(duration: Duration(milliseconds: 350), curve: Curves.easeIn);
+                                  List<String> selectedAnswers = [];
+                                  state.quizModel.content[index].answers!
+                                      .forEach((element) {
+                                    if (element.isSelected) {
+                                      selectedAnswers
+                                          .add(element.id.toString());
+                                    }
+                                  });
+
+                                  SubmitAnswers submit = SubmitAnswers(
+                                      questionId: state.quizModel.content[index]
+                                          .questionId!.id,
+                                      answers: selectedAnswers);
+                                  submitAnswers.add(submit);
+
+                                  print(submitAnswers[0].answers.toString());
+                                  print(submitAnswers[0].questionId.toString());
+                                  _pageController.nextPage(
+                                      duration: Duration(milliseconds: 350),
+                                      curve: Curves.easeIn);
                                 }
                               },
-                              buttonText: AppLocalizations.of(context)!.translate('next'),
+                              buttonText: AppLocalizations.of(context)!
+                                  .translate('next'),
                               backgroundColor: ColorRes.green,
                               foregroundColor: ColorRes.white,
                               borderColor: ColorRes.green,
@@ -180,4 +252,35 @@ class _QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
       ),
     );
   }
+
+  Widget listItem(Answer answer) {
+        return InkWell(
+      onTap: () {
+        answer.isSelected = !answer.isSelected;
+
+        setState(() {});
+      },
+      child: Container(
+        decoration: BoxDecoration(
+            border: Border.all(color: ColorRes.lightGrey, width: 1),
+            borderRadius: BorderRadius.circular(10),
+            color: answer.isSelected ? ColorRes.primaryColor : ColorRes.white),
+        padding: EdgeInsetsDirectional.fromSTEB(20, 28, 0, 29),
+        margin: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 10),
+        child: Text(
+          answer.answerValue,
+          style: answer.isSelected
+              ? TextStyles.R1875.copyWith(color: ColorRes.white)
+              : TextStyles.R1875,
+        ),
+      ),
+    );
+  }
+}
+
+class SubmitAnswers {
+  final int questionId;
+  final List<String> answers;
+
+  SubmitAnswers({required this.questionId, required this.answers});
 }

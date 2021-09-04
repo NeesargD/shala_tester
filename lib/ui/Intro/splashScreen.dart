@@ -79,10 +79,10 @@ class _IntroScreenState extends State<IntroScreen> {
                 );
               },
             ),
-            Positioned(
+            PositionedDirectional(
               bottom: 20,
-              left: 0,
-              right: 0,
+              start: 0,
+              end: 0,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: splashScreenList.asMap().entries.map((entry) {

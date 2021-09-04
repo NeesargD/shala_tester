@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:shala_yoga/base/utils/config.dart';
 import 'package:shala_yoga/base/utils/constants/string_res.dart';
+import 'package:shala_yoga/models/classes/class_details_model.dart';
 import 'package:shala_yoga/models/classes/classes_model.dart';
 import 'package:shala_yoga/models/error_response.dart';
 import 'package:shala_yoga/models/instructor_details_model.dart';
@@ -178,6 +179,18 @@ class ApiServices {
       );
       print("------");
       return ClassesModel.fromJson(response.data);
+    } on DioError catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  Future<ClassDetailsModel> getClassDetails({required Map<String,dynamic>param}) async {
+    try {
+      Response response = await _dio.get(
+          Config.getClassDetails,queryParameters: param
+      );
+      print("------");
+      return ClassDetailsModel.fromJson(response.data);
     } on DioError catch (e) {
       throw _handleError(e);
     }

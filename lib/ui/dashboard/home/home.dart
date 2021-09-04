@@ -136,9 +136,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                           }),
                                     ),
                                   ),
-                                  Positioned(
+                                  PositionedDirectional(
                                     bottom: 15,
-                                    left: 10,
+                                    start: 10,
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,

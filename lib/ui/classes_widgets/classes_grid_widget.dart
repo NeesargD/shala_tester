@@ -124,11 +124,11 @@ class ClassesGridWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              Positioned(
+              PositionedDirectional(
                 top: -13,
-                right: 10,
+                end: 10,
                 child: Align(
-                  alignment: Alignment.topRight,
+                  alignment: AlignmentDirectional.topEnd,
                   child: Container(
                       height: 30,
                       width: 30,

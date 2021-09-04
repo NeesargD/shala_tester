@@ -41,7 +41,7 @@ class CustomButton extends StatelessWidget {
         backgroundColor: MaterialStateProperty.all<Color>(backgroundColor),
         elevation: MaterialStateProperty.all<double>(0),
         padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-          EdgeInsets.symmetric(horizontal: 30),
+          EdgeInsetsDirectional.only(start: 30,end: 30),
         ),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(

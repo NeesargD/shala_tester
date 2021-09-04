@@ -102,7 +102,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             Text(
                               AppLocalizations.of(context)!.translate("home"),
                               style: TextStyle(
-                                  fontSize: 11,
+                                  fontSize: 10,
                                   color: _currentIndex.value == 0
                                       ? ColorRes.primaryColor
                                       : ColorRes.greyText),
@@ -134,7 +134,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               AppLocalizations.of(context)!.translate
                                 ("classes"),
                               style: TextStyle(
-                                  fontSize: 11,
+                                  fontSize: 10,
                                   color: _currentIndex.value == 1
                                       ? ColorRes.primaryColor
                                       : ColorRes.greyText),
@@ -164,7 +164,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             Text(
                             AppLocalizations.of(context)!.translate("programs"),
                               style: TextStyle(
-                                  fontSize: 11,
+                                  fontSize: 10,
                                   color: _currentIndex.value == 2
                                       ? ColorRes.primaryColor
                                       : ColorRes.greyText),
@@ -194,7 +194,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             Text(
                               AppLocalizations.of(context)!.translate("instructors"),
                               style: TextStyle(
-                                  fontSize: 11,
+                                  fontSize: 10,
                                   color: _currentIndex.value == 3
                                       ? ColorRes.primaryColor
                                       : ColorRes.greyText),
@@ -224,7 +224,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             Text(
                             AppLocalizations.of(context)!.translate("my_practice"),
                               style: TextStyle(
-                                  fontSize: 11,
+                                  fontSize: 10,
                                   color: _currentIndex.value == 4
                                       ? ColorRes.primaryColor
                                       : ColorRes.greyText),

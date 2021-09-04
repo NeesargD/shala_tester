@@ -41,8 +41,11 @@ class _StartUpScreenState extends State<StartUpScreen> {
                 ),
                 Container(
                   margin: EdgeInsetsDirectional.fromSTEB(50, 30, 50, 0),
-                  child: Text(AppLocalizations.of(context)!.translate("not_sure_which_program_is_right"),
-                      style: TextStyles.SB3075, textAlign: TextAlign.left),
+                  child: Text(
+                      AppLocalizations.of(context)!
+                          .translate("not_sure_which_program_is_right"),
+                      style: TextStyles.SB3075,
+                      textAlign: TextAlign.left),
                 ),
                 Center(
                   child: SvgPicture.asset(
@@ -59,7 +62,8 @@ class _StartUpScreenState extends State<StartUpScreen> {
                   onTap: () {
                     NavigationUtils.push(context, routeQuestionAnswer);
                   },
-                  buttonText: AppLocalizations.of(context)!.translate('start_quiz'),
+                  buttonText:
+                      AppLocalizations.of(context)!.translate('start_quiz'),
                   backgroundColor: ColorRes.green,
                   foregroundColor: ColorRes.white,
                   borderColor: ColorRes.green,
@@ -67,9 +71,11 @@ class _StartUpScreenState extends State<StartUpScreen> {
                 ),
                 CustomButton(
                   onTap: () {
-                    NavigationUtils.pushReplacement(context, routeDashboard,arguments: {'index':0});
+                    NavigationUtils.pushReplacement(context, routeDashboard,
+                        arguments: {'index': 0});
                   },
-                  buttonText: AppLocalizations.of(context)!.translate('browse_all_classes'),
+                  buttonText: AppLocalizations.of(context)!
+                      .translate('browse_all_classes'),
                   backgroundColor: ColorRes.white,
                   foregroundColor: ColorRes.white,
                   borderColor: ColorRes.greyBorder,

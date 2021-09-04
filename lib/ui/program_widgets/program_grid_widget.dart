@@ -19,10 +19,10 @@ class ProgramGridWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Positioned(
+        PositionedDirectional(
           top: 0,
-          left: 0,
-          right: 0,
+          start: 0,
+          end: 0,
           child: Container(
             decoration: BoxDecoration(
               color: ColorRes.white,

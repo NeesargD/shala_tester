@@ -86,6 +86,12 @@ class TextStyles {
     fontSize: 10.0,
     color: ColorRes.white,
   );
+  static const TextStyle SB1278 = TextStyle(
+    inherit: true,
+    fontWeight: FontWeight.w600,
+    fontSize: 12.0,
+    color: ColorRes.primaryColor,
+  );
   static const TextStyle SB1078 = TextStyle(
     inherit: true,
     fontWeight: FontWeight.w600,
