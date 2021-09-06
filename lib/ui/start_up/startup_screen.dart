@@ -26,11 +26,11 @@ class _StartUpScreenState extends State<StartUpScreen> {
         body: SingleChildScrollView(
           child: SizedBox(
             width: screenWidth(context: context),
-            height: screenHeight(context: context),
+            // height: screenHeight(context: context),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SizedBox(height: MediaQuery.of(context).size.height * 0.005),
+                SizedBox(height: 20),
                 Center(
                   child: SvgPicture.asset(
                     'assets/shala_logo_ar.svg',
@@ -40,7 +40,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsetsDirectional.fromSTEB(50, 30, 50, 0),
+                  margin: EdgeInsetsDirectional.fromSTEB(50, 30, 50, 15),
                   child: Text(
                       AppLocalizations.of(context)!
                           .translate("not_sure_which_program_is_right"),

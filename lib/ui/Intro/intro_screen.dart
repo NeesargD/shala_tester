@@ -47,13 +47,13 @@ class _OnboardScreenState extends State<OnboardScreen> {
   Widget build(BuildContext context) {
     const pageDecoration = const PageDecoration(
       titleTextStyle:
-          TextStyle(color: ColorRes.white, fontSize: 50, letterSpacing: 0),
+          TextStyle(color: ColorRes.white, fontSize: 35, letterSpacing: 0),
       bodyTextStyle:
-          TextStyle(letterSpacing: 0, fontSize: 30, color: ColorRes.white),
+          TextStyle(letterSpacing: 0, fontSize: 15, color: ColorRes.white),
       descriptionPadding: EdgeInsets.fromLTRB(0.0, 16.0, 0.0, 0.0),
       pageColor: ColorRes.primaryColor,
       imagePadding: EdgeInsets.zero,
-      contentMargin: EdgeInsets.zero,
+      contentMargin: EdgeInsets.zero,imageFlex: 2,
       imageAlignment: Alignment.center,
       titlePadding: EdgeInsets.zero,
       bodyAlignment: Alignment.centerLeft,
@@ -70,10 +70,15 @@ class _OnboardScreenState extends State<OnboardScreen> {
             globalBackgroundColor: ColorRes.primaryColor,
             pages: state.onboardingModel.content!.page
                 .map((e) => PageViewModel(
-                      image: SvgPicture.network(
-                        e.image,
-                        height: screenHeight(context: context, percent: 0.40),
-                        width: screenWidth(context: context),
+                      image: Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: SvgPicture.network(
+                          e.image,
+                          fit: BoxFit.contain,
+                          alignment: Alignment.center,
+                          height: screenHeight(context: context, percent: 0.45),
+                          width: screenWidth(context: context),
+                        ),
                       ),
                       titleWidget: Container(
                         alignment: Alignment.centerLeft,
@@ -82,7 +87,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                           e.splashTitle,
                           style: TextStyle(
                             color: ColorRes.white,
-                            fontSize: 50,
+                            fontSize: 35,
                           ),
                         ),
                       ),
@@ -93,7 +98,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                           e.splashText,
                           style: TextStyle(
                               color: ColorRes.white,
-                              fontSize: 30,
+                              fontSize: 25,
                               letterSpacing: 0),
                         ),
                       ),
