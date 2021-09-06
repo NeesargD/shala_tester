@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shala_yoga/blocs/classes/classes_details_bloc/classes_details_bloc.dart';
+import 'package:shala_yoga/blocs/home/home_bloc/home_bloc.dart';
 import 'package:shala_yoga/blocs/programs/program_detail_bloc/program_detail_bloc.dart';
 import 'package:shala_yoga/ui/dashboard/classes/classes_details_screen.dart';
 import 'package:shala_yoga/ui/dashboard/programs/program_details_screen.dart';
@@ -52,12 +53,17 @@ class NavigationUtils {
       case routeRecommendation:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => RecommendationBloc()..add(GetRecommendationContent()),
+            create: (context) =>
+                RecommendationBloc()..add(GetRecommendationContent()),
             child: RecommendationScreen(),
           ),
         );
       case routeHomeScreen:
-        return MaterialPageRoute(builder: (_) => HomeScreen());
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => HomeBloc(),
+                  child: HomeScreen(),
+                ));
       case routeInstructors:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
@@ -68,46 +74,57 @@ class NavigationUtils {
       case routeInstructorDetails:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => InstructorDetailsBloc()..add(GetInstructorDetailsScreen(id: args!['id'],)),
+            create: (context) => InstructorDetailsBloc()
+              ..add(GetInstructorDetailsScreen(
+                id: args!['id'],
+              )),
             child: InstructorProfileScreen(),
           ),
         );
       case routeSetting:
         return MaterialPageRoute(
-          builder: (_)=> SettingScreen(),
+          builder: (_) => SettingScreen(),
         );
       case routeMyAccount:
         return MaterialPageRoute(
-          builder: (_)=> MyAccountScreen(),
+          builder: (_) => MyAccountScreen(),
         );
       case routeSupportScreen:
         return MaterialPageRoute(
-          builder: (_)=> SupportScreen(),
+          builder: (_) => SupportScreen(),
         );
       case routeNotification:
         return MaterialPageRoute(
-          builder: (_)=> NotificationScreen(),
+          builder: (_) => NotificationScreen(),
         );
-        case routeLanguage:
-      return MaterialPageRoute(
-          builder: (_)=> LanguageScreen(),
-      );
+      case routeLanguage:
+        return MaterialPageRoute(
+          builder: (_) => LanguageScreen(),
+        );
       case routeDashboard:
-        return MaterialPageRoute(builder: (_) => DashboardScreen(index: args!['index'],));
+        return MaterialPageRoute(
+            builder: (_) => DashboardScreen(
+                  index: args!['index'],
+                ));
       case routeFilterScreen:
         return MaterialPageRoute(builder: (_) => FilterScreen());
       case routeClassDetailsScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => ClassesDetailsBloc()..add(GetClassDetails(id: args!['id'],)),
+            create: (context) => ClassesDetailsBloc()
+              ..add(GetClassDetails(
+                id: args!['id'],
+              )),
             child: ClassDetailsScreen(),
           ),
         );
       case routeProgramDetailsScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => ProgramDetailBloc()..add(GetProgramDetail(id:
-            args!['id'],)),
+            create: (context) => ProgramDetailBloc()
+              ..add(GetProgramDetail(
+                id: args!['id'],
+              )),
             child: ProgramDetailScreen(),
           ),
         );
@@ -118,15 +135,19 @@ class NavigationUtils {
 
   Route<dynamic> _errorRoute(String message) {
     return MaterialPageRoute(builder: (_) {
-      return Scaffold(appBar: AppBar(title: Text('Error')), body: Center(child: Text(message)));
+      return Scaffold(
+          appBar: AppBar(title: Text('Error')),
+          body: Center(child: Text(message)));
     });
   }
 
-  static void pushReplacement(BuildContext context, String routeName, {Object? arguments}) {
+  static void pushReplacement(BuildContext context, String routeName,
+      {Object? arguments}) {
     Navigator.of(context).pushReplacementNamed(routeName, arguments: arguments);
   }
 
-  static Future<dynamic> push(BuildContext context, String routeName, {Object? arguments}) {
+  static Future<dynamic> push(BuildContext context, String routeName,
+      {Object? arguments}) {
     return Navigator.of(context).pushNamed(routeName, arguments: arguments);
   }
 
@@ -134,7 +155,11 @@ class NavigationUtils {
     Navigator.of(context).pop(args);
   }
 
-  static Future<dynamic> pushAndRemoveUntil(BuildContext context, String routeName, {Object? arguments}) {
-    return Navigator.of(context).pushNamedAndRemoveUntil(routeName, (route) => false, arguments: arguments);
+  static Future<dynamic> pushAndRemoveUntil(
+      BuildContext context, String routeName,
+      {Object? arguments}) {
+    return Navigator.of(context).pushNamedAndRemoveUntil(
+        routeName, (route) => false,
+        arguments: arguments);
   }
 }

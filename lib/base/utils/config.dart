@@ -18,5 +18,6 @@ class Config {
   static const String getAllPrograms = 'allprograms';
   static const String getProgramDetail = 'programdetails';
 
+  static const String getHome = 'home';
 
 }

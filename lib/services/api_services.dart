@@ -6,6 +6,7 @@ import 'package:shala_yoga/base/utils/constants/string_res.dart';
 import 'package:shala_yoga/models/classes/class_details_model.dart';
 import 'package:shala_yoga/models/classes/classes_model.dart';
 import 'package:shala_yoga/models/error_response.dart';
+import 'package:shala_yoga/models/home/res_home_model.dart';
 import 'package:shala_yoga/models/instructor_details_model.dart';
 import 'package:shala_yoga/models/instructor_models.dart';
 import 'package:shala_yoga/models/onboarding_models.dart';
@@ -217,6 +218,18 @@ class ApiServices {
       );
       print("------");
       return ProgramDetailModel.fromJson(response.data);
+    } on DioError catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  Future<HomeModel> getHome() async {
+    try {
+      Response response = await _dio.get(
+          Config.getHome
+      );
+      print("------");
+      return HomeModel.fromJson(response.data);
     } on DioError catch (e) {
       throw _handleError(e);
     }

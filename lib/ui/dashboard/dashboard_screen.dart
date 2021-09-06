@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
+import 'package:shala_yoga/blocs/home/home_bloc/home_bloc.dart';
 import 'package:shala_yoga/blocs/programs/programs_bloc/programs_bloc.dart';
 import '../../base/utils/constants/color_constant.dart';
 import '../../base/utils/constants/image_constant.dart';
@@ -49,7 +50,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 IndexedStack(
                   index: value,
                   children: [
-                    HomeScreen(),
+                    BlocProvider(
+                      create: (context) => HomeBloc(),
+                      child: HomeScreen(),
+                    ),
                     BlocProvider(
                       create: (context) => ClassesBloc(),
                       child: ClassesScreen(),
@@ -162,7 +166,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ),
                             SizedBox(height: 6),
                             Text(
-                            AppLocalizations.of(context)!.translate("programs"),
+                              AppLocalizations.of(context)!.translate(
+                                  "programs"),
                               style: TextStyle(
                                   fontSize: 10,
                                   color: _currentIndex.value == 2
@@ -192,7 +197,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ),
                             SizedBox(height: 6),
                             Text(
-                              AppLocalizations.of(context)!.translate("instructors"),
+                              AppLocalizations.of(context)!.translate(
+                                  "instructors"),
                               style: TextStyle(
                                   fontSize: 10,
                                   color: _currentIndex.value == 3
@@ -222,7 +228,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ),
                             SizedBox(height: 6),
                             Text(
-                            AppLocalizations.of(context)!.translate("my_practice"),
+                              AppLocalizations.of(context)!.translate(
+                                  "my_practice"),
                               style: TextStyle(
                                   fontSize: 10,
                                   color: _currentIndex.value == 4
