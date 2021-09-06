@@ -50,6 +50,9 @@ class MyApp extends StatelessWidget {
             // },
             theme: ThemeData(
               primaryColor: ColorRes.primaryColor,
+              primaryColorDark: ColorRes.primaryColor,
+              accentColor: ColorRes.primaryColor,
+              primarySwatch: Colors.green,
               fontFamily: 'Sfui',
             ),
             onGenerateRoute: locator<NavigationUtils>().generateRoute,

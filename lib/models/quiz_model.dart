@@ -86,6 +86,7 @@ class QuestionId {
   String questionType;
   String questionValue;
   int orderBy;
+  int? selectedIndex;
 
   factory QuestionId.fromJson(Map<String, dynamic> json) => QuestionId(
     id: json["id"] == null ? 0 : json["id"],
