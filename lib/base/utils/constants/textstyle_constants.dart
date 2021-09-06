@@ -25,7 +25,12 @@ class TextStyles {
     fontSize: 30.0,
     color: ColorRes.greyText,
   );
-
+  static const TextStyle SB2275 = TextStyle(
+    inherit: true,
+    fontWeight: FontWeight.w600,
+    fontSize: 22.0,
+    color: ColorRes.greyText,
+  );
   static const TextStyle SB2575 = TextStyle(
     inherit: true,
     fontWeight: FontWeight.w600,
@@ -67,6 +72,12 @@ class TextStyles {
     fontWeight: FontWeight.w600,
     fontSize: 15.0,
     color: ColorRes.greyText,
+  );
+  static const TextStyle SB1555 = TextStyle(
+    inherit: true,
+    fontWeight: FontWeight.w600,
+    fontSize: 15.0,
+    color: ColorRes.greyTextDark,
   );
   static const TextStyle SB1578 = TextStyle(
     inherit: true,
@@ -123,7 +134,12 @@ class TextStyles {
     fontSize: 18.0,
     color: ColorRes.greyText,
   );
-
+  static const TextStyle L1400 = TextStyle(
+    inherit: true,
+    fontWeight: FontWeight.w400,
+    fontSize: 14.0,
+    color: ColorRes.primaryTextColor,
+  );
   ///REGULAR TEXT_STYLES
 
   static const TextStyle R31FF = TextStyle(
@@ -175,6 +191,11 @@ class TextStyles {
     fontSize: 16.0,
     color: ColorRes.unselectedTextGrey,
   );
+  static const TextStyle R1578 = TextStyle(
+    inherit: true,
+    fontSize: 15.0,
+    color: ColorRes.primaryColor,
+  );
   static const TextStyle R1575 = TextStyle(
     //15-grey
     inherit: true,
@@ -186,7 +207,12 @@ class TextStyles {
     fontSize: 14.0,
     color: ColorRes.white,
   );
-
+  static const TextStyle R1475 = TextStyle(
+    //15-grey
+    inherit: true,
+    fontSize: 14.0,
+    color: ColorRes.greyText,
+  );
   static const TextStyle R14A2 = TextStyle(
     inherit: true,
     fontSize: 14.0,
@@ -197,6 +223,12 @@ class TextStyles {
     inherit: true,
     fontSize: 13.0,
     color: ColorRes.greyText,
+  );
+  static const TextStyle R1200 = TextStyle(
+    //12-white
+    inherit: true,
+    fontSize: 12.0,
+    color: ColorRes.primaryTextColor,
   );
   static const TextStyle R12FF = TextStyle(
     //12-white

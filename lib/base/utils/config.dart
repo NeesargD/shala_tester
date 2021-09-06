@@ -16,7 +16,7 @@ class Config {
   static const String getClassDetails = 'classesdetails';
 
   static const String getAllPrograms = 'allprograms';
-  static const String getProgramDetails = 'programdetails';
+  static const String getProgramDetail = 'programdetails';
 
 
 }

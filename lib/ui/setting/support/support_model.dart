@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shala_yoga/base/utils/constants/color_constant.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
+import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 
 class SupportModel extends StatelessWidget {
 
@@ -35,8 +36,7 @@ class SupportModel extends StatelessWidget {
           Padding(
             padding: EdgeInsetsDirectional.only(start: 60, end: 20),
             child: Text(
-                "Dear Yoga Creative, our FAQ section can hep you find the "
-                    "answer you want faster",
+                AppLocalizations.of(context)!.translate('dear_yoga_creative_faq'),
                 style: TextStyles.R16AD),
           ),
         ],

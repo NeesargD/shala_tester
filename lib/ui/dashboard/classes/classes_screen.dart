@@ -57,8 +57,8 @@ class _ClassesScreenState extends State<ClassesScreen> {
                   margin: EdgeInsetsDirectional.only(start: 20, end: 20),
                   child: InkWell(
                     onTap: () {
-                      // NavigationUtils.push(context, routeClassDetailsScreen,
-                      //     arguments: {'id': state.classesModel.content!.classes[index].id});
+                      NavigationUtils.push(context, routeClassDetailsScreen,
+                          arguments: {'id': state.classesModel.content!.classes[index].id});
                     },
                     child: ClassesCardWidget(
                         image: state.classesModel.content!.classes[index].coverImage,

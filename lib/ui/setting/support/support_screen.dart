@@ -43,8 +43,7 @@ class _SupportScreenState extends State<SupportScreen> {
           padding: EdgeInsetsDirectional.only(start: 20, end: 20, top: 28),
           children: [
             Text(
-                "Dear Yoga Creative, our FAQ section can help you find the"
-                " answer you want faster",
+                AppLocalizations.of(context)!.translate('dear_yoga_creative_faq'),
                 style: TextStyles.R1875),
             SizedBox(height: 30),
             Container(

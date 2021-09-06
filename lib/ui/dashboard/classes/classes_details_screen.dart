@@ -2,16 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shala_yoga/base/utils/common_methods.dart';
-import 'package:shala_yoga/base/utils/constants/string_res.dart';
-import 'package:shala_yoga/blocs/classes/classes_bloc/classes_bloc.dart';
-import 'package:shala_yoga/blocs/classes/classes_details_bloc/classes_details_bloc.dart';
-import 'package:shala_yoga/blocs/classes/classes_details_bloc/classes_details_bloc.dart';
-import 'package:shala_yoga/ui/classes_widgets/classes_grid_widget.dart';
-import 'package:shala_yoga/ui/widgets/circular_image.dart';
-import 'package:shala_yoga/ui/widgets/custom_network_image.dart';
-import 'package:shala_yoga/ui/widgets/failure_widget.dart';
-import 'package:shala_yoga/ui/widgets/loading_widget.dart';
+import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
+import '../../../base/utils/common_methods.dart';
+import '../../../base/utils/constants/string_res.dart';
+import '../../../blocs/classes/classes_details_bloc/classes_details_bloc.dart';
+import '../../classes_widgets/classes_grid_widget.dart';
+import '../../widgets/circular_image.dart';
+import '../../widgets/custom_network_image.dart';
+import '../../widgets/failure_widget.dart';
+import '../../widgets/loading_widget.dart';
 import '../../../base/utils/constants/color_constant.dart';
 import '../../../base/utils/constants/image_constant.dart';
 import '../../../base/utils/constants/textstyle_constants.dart';
@@ -339,7 +338,8 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                       itemBuilder: (BuildContext context, int index) {
                                         return ClassesGridWidget(
                                             classesDetail: state.classDetailsModel
-                                                .content!.similarClasses[index]);
+                                                .content!
+                                                .similarClasses[index]);
                                       },
                                     )
                                   ],

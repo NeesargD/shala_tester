@@ -67,7 +67,8 @@ class ProgramGridWidget extends StatelessWidget {
                     CircleAvatar(
                       backgroundColor: ColorRes.white,
                       radius: 10,
-                      child: Text(StringRes.arabic_language, style: TextStyles.R1075),
+                      child: Text("AR", style:
+                      TextStyles.R1075),
                     ),
                     SizedBox(width: 11),
                   ],

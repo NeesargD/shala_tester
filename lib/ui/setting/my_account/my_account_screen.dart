@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shala_yoga/base/utils/constants/color_constant.dart';
+import 'package:shala_yoga/base/utils/constants/image_constant.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
 import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 import 'package:shala_yoga/ui/widgets/common_list_tile_widget.dart';
@@ -30,11 +31,13 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
             mainAxisSize: MainAxisSize.min,
             children: [
               CommonListTileWidget(
-                  titleText: AppLocalizations.of(context)!.translate("my_subscriptions") , imagePath: ' ',
+                  titleText: AppLocalizations.of(context)!.translate
+                    ("my_subscriptions") , imagePath:ImageRes.my_account_subscription,
                   onTap: (){},
                   itemSpace: 9),
               CommonListTileWidget(
-                titleText:AppLocalizations.of(context)!.translate('reset_password') , imagePath: ' ', 
+                titleText:AppLocalizations.of(context)!.translate
+                  ('reset_password') , imagePath: ImageRes.my_account_reset_password,
                 onTap: (){},
                 itemSpace: 9,),
               SizedBox(height: 15),

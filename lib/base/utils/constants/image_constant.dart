@@ -34,4 +34,13 @@ class ImageRes {
   static const String setting_terms_condition = 'assets/Terms&conditions.svg';
   static const String setting_timezone = 'assets/timezone.svg';
 
+
+  //program detail screen
+  static const String classes_play ='assets/classes.svg';
+  static const String red_video_play ='assets/red_video_play.svg';
+  static const String back_rounded ='assets/back.svg';
+
+  //my account screen
+  static const String my_account_subscription = 'assets/mysubscription.svg';
+  static const String my_account_reset_password = 'assets/reset_password.svg';
 }

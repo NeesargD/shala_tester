@@ -25,7 +25,8 @@ class _LanguageScreenState extends State<LanguageScreen> {
           appBar: AppBar(
             centerTitle: true,
             elevation: 0,
-            title: Text('LANGUAGE', style: TextStyles.L2075),
+            title: Text(AppLocalizations.of(context)!.translate("language"), style: TextStyles
+                .L2075),
             backgroundColor: ColorRes.appBarColor,
           ),
           body: Padding(

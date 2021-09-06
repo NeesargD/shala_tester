@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shala_yoga/base/utils/constants/string_res.dart';
 import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
+import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
+import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
 import 'package:shala_yoga/blocs/programs/programs_bloc/programs_bloc.dart';
 import 'package:shala_yoga/ui/classes_widgets/classes_card_widget.dart';
 import 'package:shala_yoga/ui/program_widgets/program_grid_recommended.dart';
@@ -53,14 +55,21 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
               itemBuilder: (context, index) {
                 return Container(
                   margin: EdgeInsetsDirectional.only(start: 20, end: 20),
-                  child: RecommendedProgramList(
-                      coverImage: state.programsModel.content!.programs[index].coverImage,
-                      languages: state.programsModel.content!.programs[index].languages,
-                      title: state.programsModel.content!.programs[index].title,
-                      style: state.programsModel.content!.programs[index].style,
-                      level: state.programsModel.content!.programs[index].level,
-                      width: 0.9,
-                      countClass: 5),
+                  child: InkWell(
+                    onTap: () {
+                      NavigationUtils.push(context, routeProgramDetailsScreen,
+                          arguments: {'id': state.programsModel.content!
+                              .programs[index].id});
+                    },
+                    child: RecommendedProgramList(
+                        coverImage: state.programsModel.content!.programs[index].coverImage,
+                        languages: state.programsModel.content!.programs[index].languages,
+                        title: state.programsModel.content!.programs[index].title,
+                        style: state.programsModel.content!.programs[index].style,
+                        level: state.programsModel.content!.programs[index].level,
+                        width: 0.9,
+                        countClass: 5),
+                  ),
                 );
               },
             );

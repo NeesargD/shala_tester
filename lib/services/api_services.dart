@@ -9,6 +9,7 @@ import 'package:shala_yoga/models/error_response.dart';
 import 'package:shala_yoga/models/instructor_details_model.dart';
 import 'package:shala_yoga/models/instructor_models.dart';
 import 'package:shala_yoga/models/onboarding_models.dart';
+import 'package:shala_yoga/models/programs/program_details_model.dart';
 import 'package:shala_yoga/models/programs/programs_model.dart';
 import 'package:shala_yoga/models/quiz_model.dart';
 import 'package:shala_yoga/models/recommendation_model.dart';
@@ -208,6 +209,18 @@ class ApiServices {
     }
   }
 
+  Future<ProgramDetailModel> getProgramDetail({required Map<String,
+      dynamic>param}) async {
+    try {
+      Response response = await _dio.get(
+          Config.getProgramDetail,queryParameters: param
+      );
+      print("------");
+      return ProgramDetailModel.fromJson(response.data);
+    } on DioError catch (e) {
+      throw _handleError(e);
+    }
+  }
   /// put
 // Future<AddToCartResponseModel> addToCartApi({Map params}) async {
 //   try {

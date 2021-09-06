@@ -136,6 +136,7 @@
   "premium": "PREMIUM",
   "done": "DONE",
   "skip": "SKIP",
+
   "most_frequently_asked": "MOST FREQUENTLY ASKED",
   "app_support": "App Support",
   "contact_us": "CONTACT US",
@@ -144,5 +145,11 @@
   "private": "PRIVATE",
   "follow": "FOLLOW",
   "followers": "Followers",
-  "arabic_mode": "الوضع العربي"
+  "arabic_mode": "الوضع العربي",
+  "dear_yoga_creative_faq":"Dear Yoga Creative,our FAQ section can hep you find the answer you want faster",
+  "would_like_to_receive_notification":"I would like to receive useful notifications from time to time to encourage me benefit to the max from Shala recommendations.",
+  "get_necessary_notification":"Get notified whenever necessary: New interesting content and reminders that you care about",
+  "start_watching": "START WATCHING",
+  "add_to_my_list": "ADD TO MY LIST",
+  "watch_later": "WATCH LATER"
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shala_yoga/blocs/classes/classes_details_bloc/classes_details_bloc.dart';
+import 'package:shala_yoga/blocs/programs/program_detail_bloc/program_detail_bloc.dart';
 import 'package:shala_yoga/ui/dashboard/classes/classes_details_screen.dart';
+import 'package:shala_yoga/ui/dashboard/programs/program_details_screen.dart';
 import 'package:shala_yoga/ui/filter/filter_screen.dart';
 import 'package:shala_yoga/ui/setting/language/language.dart';
 import 'package:shala_yoga/ui/setting/notification/notification.dart';
@@ -99,6 +101,14 @@ class NavigationUtils {
           builder: (_) => BlocProvider(
             create: (context) => ClassesDetailsBloc()..add(GetClassDetails(id: args!['id'],)),
             child: ClassDetailsScreen(),
+          ),
+        );
+      case routeProgramDetailsScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => ProgramDetailBloc()..add(GetProgramDetail(id:
+            args!['id'],)),
+            child: ProgramDetailScreen(),
           ),
         );
       default:

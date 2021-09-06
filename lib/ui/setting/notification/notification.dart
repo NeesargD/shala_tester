@@ -11,6 +11,7 @@ class NotificationScreen extends StatefulWidget {
 
 class _NotificationScreenState extends State<NotificationScreen> {
   bool isSelected = false;
+
   bool isOn = false;
 
   @override
@@ -20,7 +21,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        title: Text('Notifications', style: TextStyles.L2075),
+        title: Text(AppLocalizations.of(context)!.translate("notification"), style: TextStyles.L2075),
         backgroundColor: ColorRes.appBarColor,
       ),
       body: Padding(
@@ -43,8 +44,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
               ],
             ),
             Text(
-              "I would like to receive useful notifications from time to "
-              "time to encourage me benefit to the max from Shala recommendations.",
+              AppLocalizations.of(context)!.translate('would_like_to_receive_notification'),
               style: TextStyles.L1875,
             ),
             SizedBox(height: 30),
@@ -64,7 +64,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
               ],
             ),
             Text(
-              "Get notified whenever necessary: New interesting content and reminders that you care about",
+              AppLocalizations.of(context)!.translate("get_necessary_notification"),
               style: TextStyles.L1875,
             ),
           ],
