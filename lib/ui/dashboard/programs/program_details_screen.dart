@@ -347,6 +347,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                           Text("WEEK 1", style: TextStyles.SB1555),
                           SizedBox(height: 5),
                           ListView.separated(
+                            physics: NeverScrollableScrollPhysics(),
                             padding: EdgeInsets.only(top: 10, bottom: 10),
                             shrinkWrap: true,
                             itemCount: state
