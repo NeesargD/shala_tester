@@ -3,8 +3,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:shala_yoga/base/utils/common_methods.dart';
 import 'package:shala_yoga/base/utils/constants/color_constant.dart';
 import 'package:shala_yoga/base/utils/constants/image_constant.dart';
+import 'package:shala_yoga/base/utils/constants/string_res.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
 import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
+import 'package:shala_yoga/ui/widgets/circular_image.dart';
+import 'package:shala_yoga/ui/widgets/custom_network_image.dart';
 
 class RecommendedClassList extends StatelessWidget {
   final String coverImage;
@@ -45,15 +48,10 @@ class RecommendedClassList extends StatelessWidget {
             width: screenWidth(context: context, percent: width),
             child: Stack(
               children: [
-                // CachedNetworkImage(
-                //   imageUrl: recommendedClass.coverImage,
-                //   fit: BoxFit.fill,
-                //   height: MediaQuery.of(context).size.height * 0.2,
-                //   width: MediaQuery.of(context).size.width,
-                // ),
-                Image.asset(coverImage,
-                    width: screenWidth(context: context, percent: 1),
-                    fit: BoxFit.cover),
+                SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.2,
+                    width: MediaQuery.of(context).size.width,
+                    child: CustomNetworkImage(imageUrl: coverImage)),
                 Padding(
                   padding: EdgeInsetsDirectional.only(top: 8),
                   child: Row(
@@ -64,17 +62,15 @@ class RecommendedClassList extends StatelessWidget {
                         width: 10,
                       ),
                       Container(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            15, 5, 15, 5),
+                        padding: EdgeInsetsDirectional.fromSTEB(15, 5, 15, 5),
                         decoration: BoxDecoration(
-                          color: isLock == true
-                              ? ColorRes.premiumBackground
-                              : ColorRes.primaryColor,
+                          color: isLock == true ? ColorRes.premiumBackground : ColorRes.primaryColor,
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Text(isLock == true ? AppLocalizations.of
-                          (context)!.translate('premium') : AppLocalizations
-                            .of(context)!.translate('free'),
+                        child: Text(
+                            isLock == true
+                                ? AppLocalizations.of(context)!.translate('premium')
+                                : AppLocalizations.of(context)!.translate('free'),
                             style: TextStyles.R12FF),
                       ),
                       Spacer(),
@@ -121,8 +117,7 @@ class RecommendedClassList extends StatelessWidget {
                   children: [
                     Container(
                       alignment: AlignmentDirectional.centerStart,
-                      width:
-                          screenWidth(context: context, percent: 0.50),
+                      width: screenWidth(context: context, percent: 0.50),
                       padding: EdgeInsetsDirectional.only(start: 10),
                       child: Text(
                         title,
@@ -154,7 +149,7 @@ class RecommendedClassList extends StatelessWidget {
                         ),
                         Text.rich(
                           TextSpan(
-                              text: duration,
+                              text: appState.parseDuration(duration).inMinutes.toString(),
                               style: TextStyles.R1275,
                               children: [TextSpan(text: " min")]),
                         ),
@@ -170,18 +165,11 @@ class RecommendedClassList extends StatelessWidget {
                 top: -22,
                 end: 10,
                 child: Align(
-                  alignment: AlignmentDirectional.topEnd,
-                  child: CircleAvatar(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(22),
-                      child: Image.asset(
-                        image,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    radius: 22,
-                  ),
-                ),
+                    alignment: AlignmentDirectional.topEnd,
+                    child: CircularImage(
+                      imageUrl: image,
+                      imageRadius: 22,
+                    )),
               )
             ],
           ),

@@ -8,6 +8,7 @@ import 'package:shala_yoga/base/utils/constants/string_res.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
 import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 import 'package:shala_yoga/models/instructor_details_model.dart';
+import 'package:shala_yoga/ui/widgets/custom_network_image.dart';
 
 class ClassesRecommendedWidget extends StatelessWidget {
 
@@ -41,9 +42,13 @@ class ClassesRecommendedWidget extends StatelessWidget {
         children: [
           Stack(
             children: [
-              Image.asset(coverImage,
-                fit: BoxFit.cover,
-              ),
+              SizedBox(
+                  height: 100,
+                  width: double.infinity,
+                  child: CustomNetworkImage(imageUrl: coverImage,boxFit: BoxFit.cover,)),
+              // Image.asset(coverImage,
+              //   fit: BoxFit.cover,
+              // ),
               Stack(
                 children: [
                   Container(
@@ -118,13 +123,13 @@ class ClassesRecommendedWidget extends StatelessWidget {
                       const SizedBox(
                         width: 3,
                       ),
-                      Text(style, style: TextStyles.R1275),
+                      Flexible(child: Text(style, style: TextStyles.R1275)),
                       SizedBox(width: 10),
                       SvgPicture.asset(ImageRes.levels),
                       const SizedBox(
                         width: 3,
                       ),
-                      Text(level, style: TextStyles.R1275),
+                      Flexible(child: Text(level, style: TextStyles.R1275)),
                     ],
                   ),
                 ],
