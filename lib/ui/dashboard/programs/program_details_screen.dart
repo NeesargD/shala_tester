@@ -27,6 +27,9 @@ class ProgramDetailScreen extends StatefulWidget {
 }
 
 class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
+
+  bool textDescription = false;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -240,16 +243,30 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                           ),
                           SizedBox(height: 22),
                           Container(
-                            child: Scrollbar(
-                              child: SingleChildScrollView(
-                                child: Text(
-                                  state.programDetailModel.content!.programs
-                                      .description,
+                            child: Column(
+                              children: [
+                                Text(state.programDetailModel.content!.programs.description,
+                                  maxLines: textDescription ? state
+                                      .programDetailModel.content!.programs.description
+                                      .length
+                                      : 2,
                                   style: TextStyles.R1375,
                                   textAlign: TextAlign.justify,
-                                  maxLines: 3,
                                 ),
-                              ),
+                                InkWell(
+                                  onTap: (){ setState(() {
+                                    textDescription = !textDescription;
+                                  }); },
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      textDescription ? Text("Show Less",style:
+                                      TextStyles.R1578) :  Text("Show More",style:
+                                      TextStyles.R1578),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],

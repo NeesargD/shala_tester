@@ -24,6 +24,7 @@ class InstructorProfileScreen extends StatefulWidget {
 class _InstructorProfileScreenState extends State<InstructorProfileScreen>
     with SingleTickerProviderStateMixin {
   TabController? _tabController;
+  bool textDescription = false;
 
   @override
   void initState() {
@@ -140,18 +141,33 @@ class _InstructorProfileScreenState extends State<InstructorProfileScreen>
                     ),
                     SizedBox(height: 21),
                     Container(
-                      height: 120,
                       margin: EdgeInsetsDirectional.only(
                           start: 25, end: 25, bottom: 0),
-                      child: Scrollbar(
-                        child: SingleChildScrollView(
-                          child: Text(
+                      child: Column(
+                        children: [
+                          Text(
                             state.instructorDetailsModel.content!
-                                .instructorDetails.description,
+                                .instructorDetails.description ,
+                            maxLines: textDescription ? state
+                                .instructorDetailsModel.content!
+                                .instructorDetails.description.length : 3,
                             style: TextStyles.R1375,
                             textAlign: TextAlign.justify,
                           ),
-                        ),
+                          InkWell(
+                            onTap: (){ setState(() {
+                              textDescription = !textDescription;
+                            }); },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                textDescription ? Text("Show Less",style:
+                                TextStyles.R1578) :  Text("Show More",style:
+                                TextStyles.R1578),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     SizedBox(height: 20),

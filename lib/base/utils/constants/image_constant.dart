@@ -43,4 +43,7 @@ class ImageRes {
   //my account screen
   static const String my_account_subscription = 'assets/mysubscription.svg';
   static const String my_account_reset_password = 'assets/reset_password.svg';
+
+  ///loader
+  static const String take_a_breath = 'assets/take_a_breath.svg';
 }
