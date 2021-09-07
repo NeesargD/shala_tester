@@ -17,111 +17,116 @@ class ProgramGridWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        PositionedDirectional(
-          top: 0,
-          start: 0,
-          end: 0,
-          child: Container(
-            decoration: BoxDecoration(
-              color: ColorRes.white,
-              borderRadius: BorderRadius.circular(4),
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(4),
-                topRight: Radius.circular(4),
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: Stack(
+        children: [
+          PositionedDirectional(
+            top: 0,
+            start: 0,
+            end: 0,
+            child: Container(
+              decoration: BoxDecoration(
+                color: ColorRes.white,
+                borderRadius: BorderRadius.circular(4),
               ),
-              child: CustomNetworkImage(
-                imageUrl: '${programDetails.coverImage}',
+              child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(4),
+                  topRight: Radius.circular(4),
+                ),
+                child: CustomNetworkImage(
+                  imageUrl: '${programDetails.coverImage}',
+                ),
               ),
             ),
           ),
-        ),
-        Stack(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    SizedBox(width: 9),
-                    Column(
-                      children: [
-                        Text.rich(
-                          TextSpan(
-                              text: '${programDetails.count}' + "\n",
-                              style: TextStyles.R31FF,
-                              children: [
-                                TextSpan(
-                                    text: AppLocalizations.of(context)!.translate("classes"),
-                                    style:
-                                TextStyles.R12FF),
-                              ]),
-                        ),
-                      ],
-                    ),
-                    Spacer(),
-                    Icon(Icons.mic, size: 20, color: ColorRes.white),
-                    CircleAvatar(
-                      backgroundColor: ColorRes.white,
-                      radius: 10,
-                      child: Text("AR", style:
-                      TextStyles.R1075),
-                    ),
-                    SizedBox(width: 11),
-                  ],
-                ),
-                Spacer(),
-                Padding(
-                  padding: EdgeInsetsDirectional.only(start: 10, end: 30),
-                  child: Text(programDetails.title),
-                ),
-                SizedBox(height: 9),
-                Row(
-                  children: [
-                    const SizedBox(
-                      width: 12,
-                    ),
-                    SvgPicture.asset(ImageRes.levels),
-                    const SizedBox(
-                      width: 3,
-                    ),
-                    Flexible(
-                      child: Text(programDetails.level.join(","),
-                          overflow: TextOverflow.visible,
-                          maxLines: 2,
-                          style: TextStyles.R1275),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 5),
-                Row(
-                  children: [
-                    const SizedBox(
-                      width: 12,
-                    ),
-                    SvgPicture.asset(ImageRes.yogaStyle),
-                    const SizedBox(
-                      width: 3,
-                    ),
-                    Flexible(
-                      child: Text(
-                        programDetails.style.join(','),
-                        style: TextStyles.R1275,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
+          Stack(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      SizedBox(width: 9),
+                      Column(
+                        children: [
+                          Text.rich(
+                            TextSpan(
+                                text: '${programDetails.count}' + "\n",
+                                style: TextStyles.R31FF,
+                                children: [
+                                  TextSpan(
+                                      text: AppLocalizations.of(context)!.translate("classes"),
+                                      style:
+                                  TextStyles.R12FF),
+                                ]),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 8),
-              ],
-            ),
-          ],
-        ),
-      ],
+                      Spacer(),
+                      Icon(Icons.mic, size: 20, color: ColorRes.white),
+                      CircleAvatar(
+                        backgroundColor: ColorRes.white,
+                        radius: 10,
+                        child: Text("AR", style:
+                        TextStyles.R1075),
+                      ),
+                      SizedBox(width: 11),
+                    ],
+                  ),
+                  Spacer(),
+                  Padding(
+                    padding: EdgeInsetsDirectional.only(start: 10, end: 30),
+                    child: Text(programDetails.title),
+                  ),
+                  SizedBox(height: 9),
+                  Row(
+                    children: [
+                      const SizedBox(
+                        width: 12,
+                      ),
+                      SvgPicture.asset(ImageRes.levels),
+                      const SizedBox(
+                        width: 3,
+                      ),
+                      Flexible(
+                        child: Text(programDetails.level.join(","),
+                            overflow: TextOverflow.visible,
+                            maxLines: 2,
+                            style: TextStyles.R1275),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 5),
+                  Row(
+                    children: [
+                      const SizedBox(
+                        width: 12,
+                      ),
+                      SvgPicture.asset(ImageRes.yogaStyle),
+                      const SizedBox(
+                        width: 3,
+                      ),
+                      Flexible(
+                        child: Text(
+                          programDetails.style.join(','),
+                          style: TextStyles.R1275,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 8),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

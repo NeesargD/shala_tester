@@ -86,7 +86,7 @@ class RecommendedClassList extends StatelessWidget {
                         radius: 10,
                         backgroundColor: ColorRes.white,
                         child: Text(
-                          languages,
+                          languages.substring(0,2),
                           style: TextStyles.R1075,
                         ),
                       ),

@@ -207,8 +207,8 @@ class _InstructorProfileScreenState extends State<InstructorProfileScreen>
                               gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
                                       childAspectRatio: 0.74,
-                                      mainAxisSpacing: 25,
-                                      crossAxisSpacing: 25,
+                                      mainAxisSpacing: 15,
+                                      crossAxisSpacing: 15,
                                       crossAxisCount: 2),
                               itemCount: state.instructorDetailsModel.content!
                                   .instructorsClasses.length,
@@ -227,8 +227,8 @@ class _InstructorProfileScreenState extends State<InstructorProfileScreen>
                               gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
                                       childAspectRatio: 3 / 4,
-                                      mainAxisSpacing: 32,
-                                      crossAxisSpacing: 40,
+                                      mainAxisSpacing: 15,
+                                      crossAxisSpacing: 15,
                                       crossAxisCount: 2),
                               itemCount: state.instructorDetailsModel.content!
                                   .instructorsPrograms.length,
@@ -244,7 +244,7 @@ class _InstructorProfileScreenState extends State<InstructorProfileScreen>
                       ),
                     ),
                     Container(
-                      margin: EdgeInsetsDirectional.only(start: 35, end: 35),
+                      margin: EdgeInsetsDirectional.only(start: 35, end: 35,bottom: 10,top: 5),
                       child: CustomButton(
                           onTap: () {},
                           buttonText: AppLocalizations.of(context)!.translate("follow"),

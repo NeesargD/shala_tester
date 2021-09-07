@@ -484,40 +484,47 @@ class _HomeScreenState extends State<HomeScreen> {
                                         scrollDirection: Axis.horizontal,
                                         padding: EdgeInsets.zero,
                                         itemBuilder: (context, index) {
-                                          return SizedBox(
-                                            width: 100,
-                                            child: Column(
-                                              children: [
-                                                ClipRRect(
-                                                  borderRadius: BorderRadius.circular(30),
-                                                  child: CircleAvatar(
-                                                    radius: 30,
-                                                    child: Image.network(
-                                                      state
-                                                          .homeModel.content!.featureInstructor![index].profilePicture!,
-                                                      fit: BoxFit.fill,
-                                                      height: 60,
-                                                      width: 60,
+                                          return InkWell(
+                                            onTap: (){
+                                              NavigationUtils.push(context, routeInstructorDetails,
+                                                  arguments: {'id': state
+                                                      .homeModel.content!.featureInstructor![index].id!});
+                                            },
+                                            child: SizedBox(
+                                              width: 100,
+                                              child: Column(
+                                                children: [
+                                                  ClipRRect(
+                                                    borderRadius: BorderRadius.circular(30),
+                                                    child: CircleAvatar(
+                                                      radius: 30,
+                                                      child: Image.network(
+                                                        state
+                                                            .homeModel.content!.featureInstructor![index].profilePicture!,
+                                                        fit: BoxFit.fill,
+                                                        height: 60,
+                                                        width: 60,
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 8,
-                                                ),
-                                                Text(
-                                                  state.homeModel.content!.featureInstructor![index].firstname!,
-                                                  maxLines: 1,
-                                                  overflow: TextOverflow.ellipsis,
-                                                  style: TextStyles.R1575,
-                                                ),
-                                                Text(
-                                                  state.homeModel.content!.featureInstructor![index].languages!
-                                                      .join("/"),
-                                                  maxLines: 1,
-                                                  overflow: TextOverflow.ellipsis,
-                                                  style: TextStyles.R14A2,
-                                                ),
-                                              ],
+                                                  const SizedBox(
+                                                    height: 8,
+                                                  ),
+                                                  Text(
+                                                    state.homeModel.content!.featureInstructor![index].firstname!,
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: TextStyles.R1575,
+                                                  ),
+                                                  Text(
+                                                    state.homeModel.content!.featureInstructor![index].languages!
+                                                        .join("/"),
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: TextStyles.R14A2,
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           );
                                         },

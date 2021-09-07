@@ -72,10 +72,10 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
             ),
             body: SafeArea(
               child: SingleChildScrollView(
-                child: Column(children: [
+                child: Stack(children: [
                   Container(
                     width: screenWidth(context: context),
-                    height: screenHeight(context: context, percent: 0.38),
+                    height: 250,
                     color: ColorRes.greyText,
                     child: Stack(
                       children: [
@@ -139,7 +139,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                     ),
                   ),
                   Container(
-                    // margin: EdgeInsetsDirectional.only(start: 7, end: 7,top: 260),
+                     margin: EdgeInsetsDirectional.only(start: 7, end: 7,top: 240),
                     width: MediaQuery.of(context).size.width * 0.96,
                     decoration: BoxDecoration(
                       color: ColorRes.white,
