@@ -107,16 +107,32 @@ class _HomeScreenState extends State<HomeScreen> {
                                           width: screenWidth(context: context),
                                           child: CarouselSlider(
                                             items: state.homeModel.content!.banner!
-                                                .map((item) => Container(
-                                                      margin: EdgeInsets.all(5.0),
-                                                      decoration: BoxDecoration(
-                                                        borderRadius: BorderRadius.circular(10),
-                                                      ),
-                                                      child: ClipRRect(
+                                                .map((item) => InkWell(
+                                                      onTap: () {
+                                                        if (item.bannertype == 'classes') {
+                                                          NavigationUtils.push(context, routeClassDetailsScreen,
+                                                              arguments: {'id': item.classesId});
+                                                        } else if (item.bannertype == 'programs') {
+                                                          NavigationUtils.push(context, routeProgramDetailsScreen,
+                                                              arguments: {'id': item.programId});
+                                                        } else if (item.bannertype == 'instructor') {
+                                                          NavigationUtils.push(context, routeInstructorDetails,
+                                                              arguments: {'id': item.instructorId});
+                                                        } else {
+                                                         launchURL(item.externallink!);
+                                                        }
+                                                      },
+                                                      child: Container(
+                                                        margin: EdgeInsets.all(5.0),
+                                                        decoration: BoxDecoration(
                                                           borderRadius: BorderRadius.circular(10),
-                                                          child: Image.network(item.bannerimage!,
-                                                              fit: BoxFit.cover,
-                                                              width: MediaQuery.of(context).size.width)),
+                                                        ),
+                                                        child: ClipRRect(
+                                                            borderRadius: BorderRadius.circular(10),
+                                                            child: Image.network(item.bannerimage!,
+                                                                fit: BoxFit.cover,
+                                                                width: MediaQuery.of(context).size.width)),
+                                                      ),
                                                     ))
                                                 .toList(),
                                             carouselController: _controller,
@@ -303,10 +319,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     .homeModel.content!.dynamicContent![index].classesContent!.length,
                                                 itemBuilder: (context, i) {
                                                   return InkWell(
-                                                    onTap: (){
+                                                    onTap: () {
                                                       NavigationUtils.push(context, routeClassDetailsScreen,
-                                                          arguments: {'id': state
-                                                              .homeModel.content!.dynamicContent![index].classesContent![1].id});
+                                                          arguments: {
+                                                            'id': state.homeModel.content!.dynamicContent![index]
+                                                                .classesContent![1].id
+                                                          });
                                                     },
                                                     child: Container(
                                                       width: screenWidth(context: context, percent: 0.40),
@@ -351,10 +369,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     .homeModel.content!.dynamicContent![index].classesContent!.length,
                                                 itemBuilder: (c, i) {
                                                   return InkWell(
-                                                    onTap: (){
+                                                    onTap: () {
                                                       NavigationUtils.push(context, routeClassDetailsScreen,
-                                                          arguments: {'id': state
-                                                              .homeModel.content!.dynamicContent![index].classesContent![1].id});
+                                                          arguments: {
+                                                            'id': state.homeModel.content!.dynamicContent![index]
+                                                                .classesContent![1].id
+                                                          });
                                                     },
                                                     child: RecommendedClassList(
                                                         coverImage: state.homeModel.content!.dynamicContent![index]
@@ -401,10 +421,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     .homeModel.content!.dynamicContent![index].programsContent!.length,
                                                 itemBuilder: (c, i) {
                                                   return InkWell(
-                                                    onTap: (){
+                                                    onTap: () {
                                                       NavigationUtils.push(context, routeProgramDetailsScreen,
-                                                          arguments: {'id': state
-                                                              .homeModel.content!.dynamicContent![index].programsContent![1].id});
+                                                          arguments: {
+                                                            'id': state.homeModel.content!.dynamicContent![index]
+                                                                .programsContent![1].id
+                                                          });
                                                     },
                                                     child: RecommendedProgramList(
                                                         coverImage: state.homeModel.content!.dynamicContent![index]

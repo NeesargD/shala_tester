@@ -46,6 +46,7 @@ dependencies:
   flutter_bloc: ^7.1.0
   equatable:
   introduction_screen: ^2.1.0
+  url_launcher: ^6.0.10
   #localization en-ar
   flutter_localizations:
     sdk: flutter
