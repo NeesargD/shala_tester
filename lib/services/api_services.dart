@@ -181,6 +181,17 @@ class ApiServices {
     }
   }
 
+  Future<Map> postQuestionAnswer(
+      {required Map<String, dynamic> param}) async {
+    try {
+      Response response =
+          await _dio.post(Config.postQuestionAnswer, data: param);
+      return response.data;
+    } on DioError catch (e) {
+      throw _handleError(e);
+    }
+  }
+
   Future<RecommendationModel> recommendedContent(
       /*{required Map<String,dynamic> param}*/) async {
     try {

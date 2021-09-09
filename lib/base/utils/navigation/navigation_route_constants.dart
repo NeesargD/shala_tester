@@ -16,3 +16,4 @@ const String routeHomeScreen = "routeHomeScreen";
 const String routeSupportScreen = "routeSupportScreen";
 const String routeClassDetailsScreen = "routeClassDetailsScreen";
 const String routeProgramDetailsScreen = "routeProgramDetailsScreen";
+const String routeBreathLoader = "routeBreathLoader";

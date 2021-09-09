@@ -11,16 +11,12 @@ class AppState {
 
   AppState._internal();
 
-
-
-
-
+  String deviceId = '';
   DateFormat format = DateFormat('yyyy-MM-dd');
   DateFormat formatDD = DateFormat('dd/MM/yyyy');
   DateFormat formatDT = DateFormat('dd-MM-yyyy HH:mm');
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
 
   Duration parseDuration(String s) {
     int hours = 0;
@@ -36,5 +32,4 @@ class AppState {
     micros = (double.parse(parts[parts.length - 1]) * 1000000).round();
     return Duration(hours: hours, minutes: minutes, microseconds: micros);
   }
-
 }

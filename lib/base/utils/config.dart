@@ -6,7 +6,6 @@ class Config {
   static const String splash = 'splash';
   static const String quizDetails = 'quiz_details';
 
-
   static const String instructor = 'instructor';
   static const String instructorDetails = 'instructor_details';
 
@@ -21,4 +20,5 @@ class Config {
   static const String getHome = 'home';
   static const String getFaq = 'faq';
 
+  static const String postQuestionAnswer = 'submit_quiz';
 }

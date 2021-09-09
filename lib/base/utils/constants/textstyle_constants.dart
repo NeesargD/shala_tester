@@ -31,6 +31,18 @@ class TextStyles {
     fontSize: 22.0,
     color: ColorRes.greyText,
   );
+  static const TextStyle L25FF = TextStyle(              //25-white
+    inherit: true,
+    fontWeight: FontWeight.w400,
+    fontSize: 25.0,
+    color: ColorRes.white,
+  );
+  static const TextStyle L15FF = TextStyle(
+    inherit: true,
+    fontWeight: FontWeight.w400,
+    fontSize: 15.0,
+    color: ColorRes.white,
+  );
   static const TextStyle SB2575 = TextStyle(
     inherit: true,
     fontWeight: FontWeight.w600,

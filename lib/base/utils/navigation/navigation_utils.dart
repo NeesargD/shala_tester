@@ -4,12 +4,14 @@ import 'package:shala_yoga/blocs/classes/classes_details_bloc/classes_details_bl
 import 'package:shala_yoga/blocs/faq/faq_bloc.dart';
 import 'package:shala_yoga/blocs/home/home_bloc/home_bloc.dart';
 import 'package:shala_yoga/blocs/programs/program_detail_bloc/program_detail_bloc.dart';
+import 'package:shala_yoga/blocs/question_answer/question_answer_bloc.dart';
 import 'package:shala_yoga/ui/dashboard/classes/classes_details_screen.dart';
 import 'package:shala_yoga/ui/dashboard/programs/program_details_screen.dart';
 import 'package:shala_yoga/ui/filter/filter_screen.dart';
 import 'package:shala_yoga/ui/setting/language/language.dart';
 import 'package:shala_yoga/ui/setting/notification/notification.dart';
 import 'package:shala_yoga/ui/setting/support/support_screen.dart';
+import 'package:shala_yoga/ui/widgets/breathe_loader.dart';
 import '../../../blocs/instructor_details_bloc/instructor_details_bloc.dart';
 import '../../../blocs/recommended_bloc/recommendation_bloc.dart';
 import '../../../ui/dashboard/dashboard_screen.dart';
@@ -109,6 +111,14 @@ class NavigationUtils {
         return MaterialPageRoute(
             builder: (_) => DashboardScreen(
                   index: args!['index'],
+                ));
+      case routeBreathLoader:
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => QuestionAnswerBloc(),
+                  child: BreatheLoader(
+                    questionAnswerList: args!['questionAnswerList'],
+                  ),
                 ));
       case routeFilterScreen:
         return MaterialPageRoute(builder: (_) => FilterScreen());

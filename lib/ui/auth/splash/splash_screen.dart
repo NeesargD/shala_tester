@@ -5,6 +5,7 @@ import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shala_yoga/base/utils/constants/image_constant.dart';
+import 'package:shala_yoga/base/utils/constants/string_res.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
 import '../../../base/extensions/scaffold_extension.dart';
@@ -40,6 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
       id = deviceIos.identifierForVendor;
       print('Running on $id');
     }
+    appState.deviceId = id;
   }
 
   //Builder Method
