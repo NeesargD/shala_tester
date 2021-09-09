@@ -8,7 +8,6 @@ import 'package:shala_yoga/blocs/classes/classes_bloc/classes_bloc.dart';
 import 'package:shala_yoga/ui/classes_widgets/classes_card_widget.dart';
 import 'package:shala_yoga/ui/widgets/failure_widget.dart';
 import 'package:shala_yoga/ui/widgets/loading_widget.dart';
-import '../../../base/extensions/scaffold_extension.dart';
 import 'package:shala_yoga/base/utils/constants/color_constant.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
 

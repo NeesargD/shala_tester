@@ -19,5 +19,6 @@ class Config {
   static const String getProgramDetail = 'programdetails';
 
   static const String getHome = 'home';
+  static const String getFaq = 'faq';
 
 }

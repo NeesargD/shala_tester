@@ -4,7 +4,6 @@ import 'package:shala_yoga/base/utils/constants/string_res.dart';
 import 'package:shala_yoga/base/utils/localization/app_language.dart';
 import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 import 'package:shala_yoga/base/utils/preference.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../base/utils/constants/color_constant.dart';
 import '../../../base/utils/constants/textstyle_constants.dart';

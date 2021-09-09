@@ -1,13 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shala_yoga/base/utils/common_methods.dart';
 import 'package:shala_yoga/base/utils/constants/color_constant.dart';
 import 'package:shala_yoga/base/utils/constants/image_constant.dart';
 import 'package:shala_yoga/base/utils/constants/string_res.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
 import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
-import 'package:shala_yoga/models/instructor_details_model.dart';
 import 'package:shala_yoga/ui/widgets/custom_network_image.dart';
 
 class ClassesRecommendedWidget extends StatelessWidget {
@@ -15,7 +13,7 @@ class ClassesRecommendedWidget extends StatelessWidget {
   final String title;
   final String coverImage;
   final String language;
-  bool? isLock;
+  final bool? isLock;
   final String level;
   final String style;
   final String durations;

@@ -47,8 +47,8 @@ class Content {
   );
 
   Map<String, dynamic> toJson() => {
-    "recommended_programs": recommendedPrograms == null ? null : List<dynamic>.from(recommendedPrograms.map((x) => x.toJson())),
-    "recommended_classes": recommendedClasses == null ? null : List<dynamic>.from(recommendedClasses.map((x) => x.toJson())),
+    "recommended_programs": recommendedPrograms.isEmpty ? null : List<dynamic>.from(recommendedPrograms.map((x) => x.toJson())),
+    "recommended_classes": recommendedClasses.isEmpty ? null : List<dynamic>.from(recommendedClasses.map((x) => x.toJson())),
   };
 }
 

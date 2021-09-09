@@ -144,26 +144,6 @@ class _QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                           }else{
                                             return listItemMultipleChoice(state.quizModel.content[index].answers![i], state.quizModel.content[index].questionId!.questionType);
                                           }
-
-                                          return InkWell(
-                                            onTap: () {
-                                              state.quizModel.content[index].answers![i].isSelected = !state.quizModel.content[index].answers![i].isSelected;
-
-                                              setState(() {});
-                                            },
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                  border: Border.all(color: ColorRes.lightGrey, width: 1),
-                                                  borderRadius: BorderRadius.circular(10),
-                                                  color: state.quizModel.content[index].answers![i].isSelected ? ColorRes.primaryColor : ColorRes.white),
-                                              padding: EdgeInsetsDirectional.fromSTEB(20, 28, 0, 29),
-                                              margin: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 10),
-                                              child: Text(
-                                                state.quizModel.content[index].answers![i].answerValue,
-                                                style: state.quizModel.content[index].answers![i].isSelected ? TextStyles.R1875.copyWith(color: ColorRes.white) : TextStyles.R1875,
-                                              ),
-                                            ),
-                                          );
                                         },
                                       ),
                               ],

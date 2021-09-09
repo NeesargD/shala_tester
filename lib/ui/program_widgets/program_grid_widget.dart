@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shala_yoga/base/utils/constants/color_constant.dart';
 import 'package:shala_yoga/base/utils/constants/image_constant.dart';
-import 'package:shala_yoga/base/utils/constants/string_res.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
 import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 import 'package:shala_yoga/models/instructor_details_model.dart';

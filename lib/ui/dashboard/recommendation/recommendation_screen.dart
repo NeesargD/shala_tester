@@ -600,74 +600,74 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
         ),
       ],
     );
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.yellow,
-      ),
-      margin: EdgeInsetsDirectional.fromSTEB(0, 10, 60, 0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Container(
-                  margin: EdgeInsetsDirectional.only(start: 10),
-                  padding: EdgeInsets.all(5),
-                  alignment: Alignment.topLeft,
-                  decoration: BoxDecoration(color: ColorRes.primaryColor, borderRadius: BorderRadius.circular(10)),
-                  child: Text("FREE", style: TextStyles.R12FF)),
-              Spacer(),
-              IconButton(onPressed: () {}, icon: Icon(Icons.mic, color: ColorRes.white)),
-              const SizedBox(
-                width: 10,
-              )
-            ],
-          ),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.09),
-          Container(
-            alignment: Alignment.centerLeft,
-            width: MediaQuery.of(context).size.width * 0.60,
-            child: ListTile(
-              title: Text('Easy Yoga For Complete Begin For Complete', style: TextStyles.SB1475),
-            ),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  IconButton(onPressed: () {}, icon: Icon(Icons.add_location_rounded, color: ColorRes.primaryColor)),
-                  Row(
-                    children: [
-                      Text("Fitness", style: TextStyles.R1275),
-                    ],
-                  ),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.playlist_play_sharp, color: ColorRes.primaryColor)),
-                  Row(
-                    children: [
-                      Text("All Levels", style: TextStyles.R1275),
-                    ],
-                  ),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.access_time, color: ColorRes.primaryColor)),
-                  Row(
-                    children: [
-                      Text("20", style: TextStyles.R1275),
-                      Column(
-                        children: [
-                          Text(
-                            "min",
-                            style: TextStyles.R1275,
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
+    // return Container(
+    //   decoration: BoxDecoration(
+    //     color: Colors.yellow,
+    //   ),
+    //   margin: EdgeInsetsDirectional.fromSTEB(0, 10, 60, 0),
+    //   child: Column(
+    //     crossAxisAlignment: CrossAxisAlignment.start,
+    //     children: [
+    //       Row(
+    //         children: [
+    //           Container(
+    //               margin: EdgeInsetsDirectional.only(start: 10),
+    //               padding: EdgeInsets.all(5),
+    //               alignment: Alignment.topLeft,
+    //               decoration: BoxDecoration(color: ColorRes.primaryColor, borderRadius: BorderRadius.circular(10)),
+    //               child: Text("FREE", style: TextStyles.R12FF)),
+    //           Spacer(),
+    //           IconButton(onPressed: () {}, icon: Icon(Icons.mic, color: ColorRes.white)),
+    //           const SizedBox(
+    //             width: 10,
+    //           )
+    //         ],
+    //       ),
+    //       SizedBox(height: MediaQuery.of(context).size.height * 0.09),
+    //       Container(
+    //         alignment: Alignment.centerLeft,
+    //         width: MediaQuery.of(context).size.width * 0.60,
+    //         child: ListTile(
+    //           title: Text('Easy Yoga For Complete Begin For Complete', style: TextStyles.SB1475),
+    //         ),
+    //       ),
+    //       Column(
+    //         crossAxisAlignment: CrossAxisAlignment.start,
+    //         children: [
+    //           Row(
+    //             children: [
+    //               IconButton(onPressed: () {}, icon: Icon(Icons.add_location_rounded, color: ColorRes.primaryColor)),
+    //               Row(
+    //                 children: [
+    //                   Text("Fitness", style: TextStyles.R1275),
+    //                 ],
+    //               ),
+    //               IconButton(onPressed: () {}, icon: Icon(Icons.playlist_play_sharp, color: ColorRes.primaryColor)),
+    //               Row(
+    //                 children: [
+    //                   Text("All Levels", style: TextStyles.R1275),
+    //                 ],
+    //               ),
+    //               IconButton(onPressed: () {}, icon: Icon(Icons.access_time, color: ColorRes.primaryColor)),
+    //               Row(
+    //                 children: [
+    //                   Text("20", style: TextStyles.R1275),
+    //                   Column(
+    //                     children: [
+    //                       Text(
+    //                         "min",
+    //                         style: TextStyles.R1275,
+    //                       )
+    //                     ],
+    //                   )
+    //                 ],
+    //               ),
+    //             ],
+    //           ),
+    //         ],
+    //       ),
+    //     ],
+    //   ),
+    // );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shala_yoga/blocs/classes/classes_details_bloc/classes_details_bloc.dart';
+import 'package:shala_yoga/blocs/faq/faq_bloc.dart';
 import 'package:shala_yoga/blocs/home/home_bloc/home_bloc.dart';
 import 'package:shala_yoga/blocs/programs/program_detail_bloc/program_detail_bloc.dart';
 import 'package:shala_yoga/ui/dashboard/classes/classes_details_screen.dart';
@@ -91,7 +92,10 @@ class NavigationUtils {
         );
       case routeSupportScreen:
         return MaterialPageRoute(
-          builder: (_) => SupportScreen(),
+          builder: (_) => BlocProvider(
+            create: (context) => FaqBloc(),
+            child: SupportScreen(),
+          ),
         );
       case routeNotification:
         return MaterialPageRoute(

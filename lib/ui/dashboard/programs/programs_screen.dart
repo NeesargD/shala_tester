@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shala_yoga/base/utils/constants/string_res.dart';
 import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
 import 'package:shala_yoga/blocs/programs/programs_bloc/programs_bloc.dart';
-import 'package:shala_yoga/ui/classes_widgets/classes_card_widget.dart';
 import 'package:shala_yoga/ui/program_widgets/program_grid_recommended.dart';
 import 'package:shala_yoga/ui/widgets/failure_widget.dart';
 import 'package:shala_yoga/ui/widgets/loading_widget.dart';
-import '../../../base/extensions/scaffold_extension.dart';
 import 'package:shala_yoga/base/utils/constants/color_constant.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
 

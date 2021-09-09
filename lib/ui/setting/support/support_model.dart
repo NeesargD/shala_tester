@@ -4,15 +4,14 @@ import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
 import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 
 class SupportModel extends StatelessWidget {
+  final String question;
+  final String answer;
 
-  final String supportQuestion;
-
-
-  SupportModel({required this.supportQuestion});
+  SupportModel({required this.question, required this.answer});
 
   @override
   Widget build(BuildContext context) {
-    return  Theme(
+    return Theme(
       data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
       child: ExpansionTile(
         trailing: SizedBox.shrink(),
@@ -21,13 +20,11 @@ class SupportModel extends StatelessWidget {
             Icon(Icons.circle, color: ColorRes.primaryColor),
             SizedBox(width: 16),
             Flexible(
-              child: GestureDetector(
-                child: Text(supportQuestion, style:
-                TextStyles.R1875,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,),
-                onTap: (){
-                },
+              child: Text(
+                question,
+                style: TextStyles.R1875,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
               ),
             ),
           ],
@@ -36,7 +33,7 @@ class SupportModel extends StatelessWidget {
           Padding(
             padding: EdgeInsetsDirectional.only(start: 60, end: 20),
             child: Text(
-                AppLocalizations.of(context)!.translate('dear_yoga_creative_faq'),
+                answer,
                 style: TextStyles.R16AD),
           ),
         ],

@@ -1,11 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shala_yoga/base/utils/constants/color_constant.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
-import 'package:shala_yoga/base/utils/enum_utils.dart';
 import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
+import 'package:shala_yoga/blocs/faq/faq_bloc.dart';
 import 'package:shala_yoga/ui/setting/support/support_model.dart';
 import 'package:shala_yoga/ui/widgets/custom_button.dart';
+import 'package:shala_yoga/ui/widgets/failure_widget.dart';
+import 'package:shala_yoga/ui/widgets/loading_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SupportScreen extends StatefulWidget {
   const SupportScreen({Key? key}) : super(key: key);
@@ -15,6 +19,17 @@ class SupportScreen extends StatefulWidget {
 }
 
 class _SupportScreenState extends State<SupportScreen> {
+  String contactUs = "";
+  String whatsApp = "";
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration.zero, () {
+      context.read<FaqBloc>().add(GetAllFaq());
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -34,69 +49,81 @@ class _SupportScreenState extends State<SupportScreen> {
           ),
           centerTitle: true,
           title: Text(
-           AppLocalizations.of(context)!.translate('support'),
+            AppLocalizations.of(context)!.translate('support'),
             style: TextStyles.L2075,
           ),
         ),
-        body: ListView(
-          scrollDirection: Axis.vertical,
-          padding: EdgeInsetsDirectional.only(start: 20, end: 20, top: 28),
-          children: [
-            Text(
-                AppLocalizations.of(context)!.translate('dear_yoga_creative_faq'),
-                style: TextStyles.R1875),
-            SizedBox(height: 30),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                color: ColorRes.appBarColor,
-                borderRadius: BorderRadius.circular(50),
-              ),
-              child: Padding(
-                padding:
-                    EdgeInsetsDirectional.only(start: 25, top: 12, bottom: 14),
-                child: Text(AppLocalizations.of(context)!.translate("most_frequently_asked"), style: TextStyles
-                    .SB1578),
-              ),
-            ),
-            SizedBox(height: 30),
-            SupportModel(
-                supportQuestion: 'What is pro ' '(Sliver and Gold)?'),
-            SizedBox(height: 30),
-            SupportModel(
-                supportQuestion:
-                    'How to cancel the Pro subscription/free trial?'),
-            SizedBox(height: 30),
-            SupportModel(supportQuestion: 'What is pro (Sliver and Gold)?'),
-            SizedBox(height: 30),
-            SupportModel(
-                supportQuestion:
-                    'Why I can’t load/open the videos/ audios successfully?'),
-            SizedBox(height: 33),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                color: ColorRes.appBarColor,
-                borderRadius: BorderRadius.circular(50),
-              ),
-              child: Padding(
-                padding:
-                    EdgeInsetsDirectional.only(start: 25, top: 12, bottom: 14),
-                child: Text(AppLocalizations.of(context)!.translate("app_support"), style: TextStyles
-                    .SB1578),
-              ),
-            ),
-            SizedBox(height: 33),
-            SupportModel(supportQuestion: 'App Support'),
-            SizedBox(height: 30),
-            SupportModel(supportQuestion: 'Account & Profile settings'),
-            SizedBox(height: 30),
-            SupportModel(
-                supportQuestion: 'Subscriptions & Billing  and refunds'),
-            SizedBox(height: 18),
-          ],
+        body: BlocBuilder<FaqBloc, FaqState>(
+          builder: (context, state) {
+            if (state is FaqSuccess) {
+              contactUs = state.faqModel.contact!.supportcontact!;
+              whatsApp = state.faqModel.contact!.whatsappcontact!;
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Text(
+                        AppLocalizations.of(context)!
+                            .translate('dear_yoga_creative_faq'),
+                        style: TextStyles.R1875),
+                    ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: state.faqModel.content!.length,
+                        itemBuilder: (c, index) {
+                          return Padding(
+                            padding: EdgeInsetsDirectional.only(
+                                start: 20, end: 20, top: 28),
+                            child: Column(
+                              children: [
+                                SizedBox(height: 30),
+                                Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  decoration: BoxDecoration(
+                                    color: ColorRes.appBarColor,
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.only(
+                                        start: 25, top: 12, bottom: 14),
+                                    child: Text(
+                                        state.faqModel.content![index].title!,
+                                        style: TextStyles.SB1578),
+                                  ),
+                                ),
+                                SizedBox(height: 30),
+                                ListView.builder(
+                                    physics: NeverScrollableScrollPhysics(),
+                                    padding: EdgeInsets.zero,
+                                    shrinkWrap: true,
+                                    itemCount: state.faqModel.content![index]
+                                        .questionAnswer!.length,
+                                    itemBuilder: (c, i) {
+                                      return SupportModel(
+                                        question: state.faqModel.content![index]
+                                            .questionAnswer![i].question!,
+                                        answer: state.faqModel.content![index]
+                                            .questionAnswer![i].answer!,
+                                      );
+                                    }),
+                              ],
+                            ),
+                          );
+                        }),
+                    const SizedBox(
+                      height: 30,
+                    )
+                  ],
+                ),
+              );
+            }
+            if (state is FaqFailure) {
+              return FailureWidget(message: state.message);
+            }
+            return LoadingWidget();
+          },
         ),
-        bottomNavigationBar: BottomAppBar(elevation: 0,
+        bottomNavigationBar: BottomAppBar(
+          elevation: 0,
           child: Padding(
             padding: EdgeInsetsDirectional.only(
                 top: 30, bottom: 30, start: 25, end: 25),
@@ -106,8 +133,17 @@ class _SupportScreenState extends State<SupportScreen> {
                 Expanded(
                   flex: 1,
                   child: CustomButton(
-                      onTap: () {},
-                      buttonText: AppLocalizations.of(context)!.translate('contact_us'),
+                      onTap: () async {
+                        var phoneUrl = 'tel:$contactUs';
+                        await canLaunch(phoneUrl)
+                            ? launch(phoneUrl)
+                            : ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                    content:
+                                        Text("Phone couldn't be launched")));
+                      },
+                      buttonText:
+                          AppLocalizations.of(context)!.translate('contact_us'),
                       backgroundColor: ColorRes.white,
                       foregroundColor: ColorRes.white,
                       height: 52,
@@ -119,8 +155,17 @@ class _SupportScreenState extends State<SupportScreen> {
                 Expanded(
                   flex: 1,
                   child: CustomButton(
-                      onTap: () {},
-                      buttonText: AppLocalizations.of(context)!.translate('whats_app'),
+                      onTap: () async {
+                        var whatsappUrl = "whatsapp://send?phone=$whatsApp";
+                        await canLaunch(whatsappUrl)
+                            ? launch(whatsappUrl)
+                            : ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                    content:
+                                        Text("Whatsapp couldn't be launched")));
+                      },
+                      buttonText:
+                          AppLocalizations.of(context)!.translate('whats_app'),
                       backgroundColor: ColorRes.primaryColor,
                       foregroundColor: ColorRes.white,
                       height: 52,

@@ -9,8 +9,6 @@ import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart
 import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
 import 'package:shala_yoga/ui/widgets/custom_button.dart';
 
-import '../question_answer_screen.dart';
-
 class StartUpScreen extends StatefulWidget {
   const StartUpScreen({Key? key}) : super(key: key);
 

@@ -5,7 +5,6 @@ import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 
 import '../../base/utils/common_methods.dart';
 import '../../base/utils/constants/color_constant.dart';
-import '../../base/utils/constants/string_res.dart';
 import '../../base/utils/constants/textstyle_constants.dart';
 import '../../base/utils/navigation/navigation_route_constants.dart';
 import '../../base/utils/navigation/navigation_utils.dart';

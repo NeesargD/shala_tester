@@ -24,23 +24,6 @@ class _OnboardScreenState extends State<OnboardScreen> {
 
   void _onIntroEnd(context) {
     NavigationUtils.pushReplacement(context, routeStartUpScreen);
-    // Navigator.of(context).push(
-    //   MaterialPageRoute(builder: (_) => HomePage()),
-    // );
-  }
-
-  Widget _buildFullscrenImage() {
-    return Image.asset(
-      'assets/fullscreen.jpg',
-      fit: BoxFit.cover,
-      height: double.infinity,
-      width: double.infinity,
-      alignment: Alignment.center,
-    );
-  }
-
-  Widget _buildImage(String assetName, [double width = 350]) {
-    return Image.asset('assets/$assetName', width: width);
   }
 
   @override
@@ -53,7 +36,8 @@ class _OnboardScreenState extends State<OnboardScreen> {
       descriptionPadding: EdgeInsets.fromLTRB(0.0, 16.0, 0.0, 0.0),
       pageColor: ColorRes.primaryColor,
       imagePadding: EdgeInsets.zero,
-      contentMargin: EdgeInsets.zero,imageFlex: 2,
+      contentMargin: EdgeInsets.zero,
+      imageFlex: 2,
       imageAlignment: Alignment.center,
       titlePadding: EdgeInsets.zero,
       bodyAlignment: Alignment.centerLeft,
@@ -111,7 +95,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
             skipFlex: 0,
             nextFlex: 0,
             //rtl: true, // Display as right-to-left
-            skip:  Text(
+            skip: Text(
               AppLocalizations.of(context)!.translate("skip"),
               style: TextStyle(color: ColorRes.white),
             ),
@@ -119,7 +103,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
               Icons.arrow_forward,
               color: ColorRes.white,
             ),
-            done:  Text(
+            done: Text(
               AppLocalizations.of(context)!.translate('done'),
               style: TextStyle(
                 fontWeight: FontWeight.w600,

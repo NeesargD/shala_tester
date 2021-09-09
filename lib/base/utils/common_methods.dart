@@ -1,17 +1,11 @@
 import 'dart:io';
-import 'package:app_settings/app_settings.dart';
 import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'constants/app_constant.dart';
 import 'constants/color_constant.dart';
-import 'constants/dic_params.dart';
 import 'constants/fontsize_constant.dart';
-import 'dialog_utils.dart';
-import 'localization/localization.dart';
 
 // Get Text Widget
 Widget getTextWidget(

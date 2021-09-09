@@ -17,7 +17,7 @@ class RecommendedClassList extends StatelessWidget {
   final String style;
   final String image;
   final String level;
-  bool? isLock;
+  final bool? isLock;
   final double height;
   final double width;
 
