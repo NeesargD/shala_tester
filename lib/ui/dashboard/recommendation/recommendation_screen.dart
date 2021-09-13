@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
+import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
+import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
 
 import '../../../base/utils/common_methods.dart';
 import '../../../base/utils/constants/color_constant.dart';
@@ -49,20 +51,16 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                     ),
                     Stack(
                       children: [
-                        Container(
-                            alignment: AlignmentDirectional.topEnd, child: SvgPicture.asset('assets/home_screen_image.svg')),
+                        Container(alignment: AlignmentDirectional.topEnd, child: SvgPicture.asset('assets/home_screen_image.svg')),
                         Container(
                           margin: EdgeInsetsDirectional.fromSTEB(0, 20, 80, 0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(AppLocalizations.of(context)!.translate('great'), style: 
-                              TextStyles.SB4078),
+                              Text(AppLocalizations.of(context)!.translate('great'), style: TextStyles.SB4078),
                               Container(
                                 width: screenWidth(context: context, percent: 0.55),
-                                child: Text(
-                                    AppLocalizations.of(context)!.translate("base_on_your_answer_we_recommend_following_classes"),
-                                    style: TextStyles.R2075),
+                                child: Text(AppLocalizations.of(context)!.translate("base_on_your_answer_we_recommend_following_classes"), style: TextStyles.R2075),
                               ),
                             ],
                           ),
@@ -79,9 +77,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                             text: "${AppLocalizations.of(context)!.translate('recommended')}\n",
                             style: TextStyles.R1575,
                             children: [
-                              TextSpan(text: AppLocalizations.of(context)!
-                                  .translate('programs'), style: TextStyles
-                                  .R2075),
+                              TextSpan(text: AppLocalizations.of(context)!.translate('programs'), style: TextStyles.R2075),
                             ],
                           ),
                         ),
@@ -113,8 +109,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                             text: "${AppLocalizations.of(context)!.translate('recommended')}\n",
                             style: TextStyles.R1575,
                             children: [
-                              TextSpan(text: AppLocalizations.of(context)!
-          .translate('classes'), style: TextStyles.R2075),
+                              TextSpan(text: AppLocalizations.of(context)!.translate('classes'), style: TextStyles.R2075),
                             ],
                           ),
                         ),
@@ -156,10 +151,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                                 text: "${AppLocalizations.of(context)!.translate("join_us_today_for")}\n",
                                 style: TextStyles.R1575,
                                 children: [
-                                  TextSpan(text: '30% '+ AppLocalizations.of
-                                    (context)!.translate("discount_30%"),
-                                      style: TextStyles
-                                      .R3075),
+                                  TextSpan(text: '30% ' + AppLocalizations.of(context)!.translate("discount_30%"), style: TextStyles.R3075),
                                 ],
                               ),
                             ),
@@ -177,7 +169,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                                 color: ColorRes.primaryColor,
                               ),
                               child: Text(
-                              AppLocalizations.of(context)!.translate("limited_offer"),
+                                AppLocalizations.of(context)!.translate("limited_offer"),
                                 style: TextStyles.SB10FF,
                               ),
                             ),
@@ -189,7 +181,9 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                     Align(
                       alignment: Alignment.center,
                       child: CustomButton(
-                          onTap: () {},
+                          onTap: () {
+                            NavigationUtils.pushAndRemoveUntil(context, routeDashboard, arguments: {"index": 0});
+                          },
                           buttonText: AppLocalizations.of(context)!.translate("discover_all_our_classes"),
                           backgroundColor: ColorRes.greyText,
                           foregroundColor: ColorRes.white,
@@ -418,17 +412,11 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                               Container(
                                 padding: EdgeInsetsDirectional.fromSTEB(15, 5, 15, 5),
                                 decoration: BoxDecoration(
-                                  color: recommendedClass.isLock == true
-                                      ? ColorRes.premiumBackground
-                                      : ColorRes.primaryColor,
+                                  color: recommendedClass.isLock == true ? ColorRes.premiumBackground : ColorRes.primaryColor,
                                   borderRadius: BorderRadius.circular(10),
                                 ),
-                                child:
-                                    Text(recommendedClass.isLock == true ?
-                                        AppLocalizations.of(context)!.translate('premium')
-                                        : AppLocalizations.of(context)!.translate('free'),
-                                        style:
-                                    TextStyles.R12FF),
+                                child: Text(recommendedClass.isLock == true ? AppLocalizations.of(context)!.translate('premium') : AppLocalizations.of(context)!.translate('free'),
+                                    style: TextStyles.R12FF),
                               ),
                               Spacer(),
                               InkWell(
@@ -498,18 +486,14 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                                 const SizedBox(
                                   width: 5,
                                 ),
-                                Text(recommendedClass.level, style:
-                                TextStyles.R1275),
+                                Text(recommendedClass.level, style: TextStyles.R1275),
                                 Spacer(),
                                 SvgPicture.asset(ImageRes.hourGlass),
                                 const SizedBox(
                                   width: 5,
                                 ),
                                 Text.rich(
-                                  TextSpan(
-                                      text: recommendedClass.durations,
-                                      style: TextStyles.R1275,
-                                      children: [TextSpan(text: " min")]),
+                                  TextSpan(text: recommendedClass.durations, style: TextStyles.R1275, children: [TextSpan(text: " min")]),
                                 ),
                                 const SizedBox(
                                   width: 10,

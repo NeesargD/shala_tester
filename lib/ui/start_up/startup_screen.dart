@@ -28,7 +28,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SizedBox(height: 20),
+                SizedBox(height: 50),
                 Center(
                   child: SvgPicture.asset(
                     'assets/shala_logo_ar.svg',
@@ -38,7 +38,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsetsDirectional.fromSTEB(50, 30, 50, 15),
+                  margin: EdgeInsetsDirectional.only(start: 71,end: 89,top: 52,bottom: 11),
                   child: Text(
                       AppLocalizations.of(context)!
                           .translate("not_sure_which_program_is_right"),

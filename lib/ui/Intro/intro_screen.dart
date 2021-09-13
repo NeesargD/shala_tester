@@ -7,6 +7,7 @@ import 'package:shala_yoga/base/utils/common_methods.dart';
 import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
+import 'package:shala_yoga/base/utils/preference_utils.dart';
 
 import '../../../base/extensions/scaffold_extension.dart';
 import '../../base/utils/constants/color_constant.dart';
@@ -23,6 +24,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
   final introKey = GlobalKey<IntroductionScreenState>();
 
   void _onIntroEnd(context) {
+    setBool("intro", true);
     NavigationUtils.pushReplacement(context, routeStartUpScreen);
   }
 

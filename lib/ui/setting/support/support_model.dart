@@ -17,7 +17,11 @@ class SupportModel extends StatelessWidget {
         trailing: SizedBox.shrink(),
         title: Row(
           children: [
-            Icon(Icons.circle, color: ColorRes.primaryColor),
+           CircleAvatar(
+             radius: 12,
+             backgroundColor: ColorRes.primaryColor,
+             child: Text("?",style: TextStyle(color: ColorRes.white),),
+           ),
             SizedBox(width: 16),
             Flexible(
               child: Text(

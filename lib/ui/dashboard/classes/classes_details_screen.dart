@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
 import 'package:shala_yoga/ui/video_player/custom_video_player.dart';
 import '../../../base/utils/navigation/navigation_utils.dart';
 
@@ -50,7 +51,9 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                   children: [
                     CustomButton(
                         onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChewieDemo(),));
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => ChewieDemo(),
+                          ));
                         },
                         buttonText: 'START WATCHING',
                         backgroundColor: ColorRes.primaryColor,
@@ -110,7 +113,11 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                 children: [
                                   InkWell(
                                     onTap: () {
-                                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChewieDemo(title: state.classDetailsModel.content!.classes.videoUrl,),));
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) => ChewieDemo(
+                                          videoUrl: state.classDetailsModel.content!.classes.videoUrl,
+                                        ),
+                                      ));
                                     },
                                     child: Center(
                                       child: Padding(
@@ -266,7 +273,11 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(childAspectRatio: 0.74, mainAxisSpacing: 25, crossAxisSpacing: 25, crossAxisCount: 2),
                               itemCount: state.classDetailsModel.content!.similarClasses.length,
                               itemBuilder: (BuildContext context, int index) {
-                                return ClassesGridWidget(classesDetail: state.classDetailsModel.content!.similarClasses[index]);
+                                return InkWell(
+                                    onTap: () {
+                                      NavigationUtils.pushReplacement(context, routeClassDetailsScreen, arguments: {"id": state.classDetailsModel.content!.similarClasses[index].id});
+                                    },
+                                    child: ClassesGridWidget(classesDetail: state.classDetailsModel.content!.similarClasses[index]));
                               },
                             ),
                             const SizedBox(height: 30),
@@ -292,13 +303,20 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                               children: [
                                 Column(
                                   children: [
-                                    CircleAvatar(
-                                      radius: 35,
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(35),
-                                        child: CircularImage(
-                                          imageUrl: state.classDetailsModel.content!.classes.instructor.profilePicture,
-                                          imageRadius: 35,
+                                    InkWell(
+                                      onTap: () {
+                                        NavigationUtils.push(context, routeInstructorDetails, arguments: {
+                                          'id': state.classDetailsModel.content!.classes.instructor.id,
+                                        });
+                                      },
+                                      child: CircleAvatar(
+                                        radius: 35,
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(35),
+                                          child: CircularImage(
+                                            imageUrl: state.classDetailsModel.content!.classes.instructor.profilePicture,
+                                            imageRadius: 35,
+                                          ),
                                         ),
                                       ),
                                     ),

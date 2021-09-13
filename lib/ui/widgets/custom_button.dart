@@ -31,6 +31,7 @@ class CustomButton extends StatelessWidget {
       child: Text(
         buttonText,
         style: textStyle,
+        textAlign: TextAlign.center,
       ),
       style: ButtonStyle(
         minimumSize: MaterialStateProperty.all<Size>(Size(screenWidth

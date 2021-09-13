@@ -9,7 +9,6 @@ import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 import 'package:shala_yoga/ui/widgets/custom_network_image.dart';
 
 class RecommendedProgramList extends StatelessWidget {
-
   final String coverImage;
   final int countClass;
   final List<String> languages;
@@ -19,13 +18,12 @@ class RecommendedProgramList extends StatelessWidget {
   final double height;
   final double width;
 
-
-  RecommendedProgramList({required this.coverImage, required this.countClass, required this.languages,
-      required this.title, required this.style, required this.level, this.height = 0.30, this.width = 0.70});
+  RecommendedProgramList(
+      {required this.coverImage, required this.countClass, required this.languages, required this.title, required this.style, required this.level, this.height = 0.30, this.width = 0.70});
 
   @override
   Widget build(BuildContext context) {
-    return  Stack(
+    return Stack(
       children: [
         Container(
             height: screenHeight(context: context, percent: height),
@@ -109,9 +107,7 @@ class RecommendedProgramList extends StatelessWidget {
                                       child: CircleAvatar(
                                         backgroundColor: ColorRes.white,
                                         radius: 10,
-                                        child: Text(
-                                            '${languages[i].substring(0, 2)}',
-                                            style: TextStyles.R1075),
+                                        child: Text('${languages[i].substring(0, 2)}', style: TextStyles.R1075),
                                       ),
                                     );
                                   },
@@ -144,44 +140,48 @@ class RecommendedProgramList extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Expanded(child: Row(
-                            children: [
-                              const SizedBox(
-                                width: 14,
-                              ),
-                              SvgPicture.asset(ImageRes.yogaStyle),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Expanded(
-                                child: Text(
-                                  style.join(','),
-                                  style: TextStyles.R1275,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
+                          Expanded(
+                            child: Row(
+                              children: [
+                                const SizedBox(
+                                  width: 14,
                                 ),
-                              ),
-                            ],
-                          ),),
-                          Expanded(child: Row(
-                            children: [
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              SvgPicture.asset(ImageRes.levels),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Expanded(
-                                child: Text(
-                                  level.join(','),
-                                  style: TextStyles.R1275,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
+                                SvgPicture.asset(ImageRes.yogaStyle),
+                                const SizedBox(
+                                  width: 10,
                                 ),
-                              ),
-                            ],
-                          ),),
+                                Expanded(
+                                  child: Text(
+                                    style.join(','),
+                                    style: TextStyles.R1275,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: Row(
+                              children: [
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                SvgPicture.asset(ImageRes.levels),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    level.join(','),
+                                    style: TextStyles.R1275,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                           /*SizedBox(
                             width: screenWidth(context: context, percent: 0.33),
                             child: Row(

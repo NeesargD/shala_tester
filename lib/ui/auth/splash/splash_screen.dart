@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shala_yoga/base/utils/preference_utils.dart';
 import '../../../base/utils/constants/image_constant.dart';
 import '../../../base/utils/constants/string_res.dart';
 import '../../../base/utils/navigation/navigation_route_constants.dart';
@@ -73,7 +74,16 @@ class _SplashScreenState extends State<SplashScreen> {
               performLogoTransition = !performLogoTransition;
             });
           } else if (timer.tick == 3) {
-            NavigationUtils.pushReplacement(context, routeIntro);
+            if (getBool("intro")) {
+              if (getBool("quizSubmitted")) {
+                NavigationUtils.pushAndRemoveUntil(context, routeDashboard, arguments: {"index": 0});
+              } else {
+                NavigationUtils.pushReplacement(context, routeStartUpScreen);
+              }
+            } else {
+              NavigationUtils.pushReplacement(context, routeIntro);
+            }
+
             // Your Navigation
             this.dispose();
           }

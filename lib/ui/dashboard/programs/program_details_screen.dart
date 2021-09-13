@@ -28,7 +28,6 @@ class ProgramDetailScreen extends StatefulWidget {
 }
 
 class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
-
   bool textDescription = false;
 
   @override
@@ -49,19 +48,20 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
               bottomNavigationBar: BottomAppBar(
                 elevation: 0,
                 child: Container(
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [ColorRes.white, ColorRes.whiteGradient])),
+                  decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [ColorRes.white, ColorRes.whiteGradient])),
                   height: MediaQuery.of(context).size.height * 0.18,
-                  margin:
-                      EdgeInsetsDirectional.only(start: 17, end: 17, top: 15),
+                  margin: EdgeInsetsDirectional.only(start: 17, end: 17, top: 15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       CustomButton(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => ChewieDemo(
+                                videoUrl: state.programDetailModel.content!.classes[0].videoUrl,
+                              ),
+                            ));
+                          },
                           buttonText: 'START WATCHING',
                           backgroundColor: ColorRes.primaryColor,
                           foregroundColor: ColorRes.whiteGradient,
@@ -86,8 +86,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                       Container(
                         height: MediaQuery.of(context).size.height * 0.4,
                         child: CustomNetworkImage(
-                          imageUrl: state
-                              .programDetailModel.content!.programs.coverImage,
+                          imageUrl: state.programDetailModel.content!.programs.coverImage,
                           boxFit: BoxFit.cover,
                         ),
                       ),
@@ -109,8 +108,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                           clipBehavior: Clip.none,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.only(
-                                  start: 25, end: 23, top: 40),
+                              padding: EdgeInsetsDirectional.only(start: 25, end: 23, top: 40),
                               child: Column(children: [
                                 Row(
                                   children: [
@@ -118,12 +116,10 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                       onTap: () {
                                         Navigator.pop(context);
                                       },
-                                      child: Icon(Icons.arrow_back,
-                                          color: ColorRes.white, size: 26),
+                                      child: Icon(Icons.arrow_back, color: ColorRes.white, size: 26),
                                     ),
                                     Spacer(),
-                                    Icon(Icons.access_time,
-                                        color: ColorRes.white, size: 26),
+                                    Icon(Icons.access_time, color: ColorRes.white, size: 26),
                                     SizedBox(width: 20),
                                     Icon(
                                       Icons.favorite_border,
@@ -139,8 +135,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                     CircleAvatar(
                                       backgroundColor: ColorRes.white,
                                       radius: 10,
-                                      child:
-                                          Text('AR', style: TextStyles.R1075),
+                                      child: Text('AR', style: TextStyles.R1075),
                                     ),
                                   ],
                                 ),
@@ -148,11 +143,9 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                   children: [
                                     Expanded(
                                       child: Padding(
-                                        padding:
-                                            EdgeInsetsDirectional.only(end: 80),
+                                        padding: EdgeInsetsDirectional.only(end: 80),
                                         child: Text(
-                                          state.programDetailModel.content!
-                                              .programs.title,
+                                          state.programDetailModel.content!.programs.title,
                                           style: TextStyles.SB2275,
                                           overflow: TextOverflow.ellipsis,
                                           maxLines: 2,
@@ -160,18 +153,19 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                       ),
                                     ),
                                     Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
                                         InkWell(
                                           onTap: () {
-                                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChewieDemo(),));
+                                            Navigator.of(context).push(MaterialPageRoute(
+                                              builder: (context) => ChewieDemo(
+                                                videoUrl: state.programDetailModel.content!.programs.teaserVideoUrl,
+                                              ),
+                                            ));
                                           },
-                                          child: SvgPicture.asset(
-                                              ImageRes.red_video_play),
+                                          child: SvgPicture.asset(ImageRes.red_video_play),
                                         ),
-                                        Text("Watch teaser",
-                                            style: TextStyles.L1400),
+                                        Text("Watch teaser", style: TextStyles.L1400),
                                         SizedBox(height: 20)
                                       ],
                                     ),
@@ -189,8 +183,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                       ),
                     ]),
                     Padding(
-                      padding: EdgeInsetsDirectional.only(
-                          start: 25, end: 23, top: 20),
+                      padding: EdgeInsetsDirectional.only(start: 25, end: 23, top: 20),
                       child: Column(
                         children: [
                           Row(
@@ -202,13 +195,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                               ),
                               Flexible(
                                 flex: 2,
-                                child: Text(
-                                    state.programDetailModel.content!.programs
-                                        .style
-                                        .join(','),
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 2,
-                                    style: TextStyles.R1475),
+                                child: Text(state.programDetailModel.content!.programs.style.join(','), overflow: TextOverflow.ellipsis, maxLines: 2, style: TextStyles.R1475),
                               ),
                               Spacer(),
                               SvgPicture.asset(ImageRes.levels),
@@ -217,13 +204,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                               ),
                               Flexible(
                                 flex: 2,
-                                child: Text(
-                                    state.programDetailModel.content!.programs
-                                        .level
-                                        .join(', '),
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 2,
-                                    style: TextStyles.R1475),
+                                child: Text(state.programDetailModel.content!.programs.level.join(', '), overflow: TextOverflow.ellipsis, maxLines: 2, style: TextStyles.R1475),
                               ),
                               Spacer(),
                               SvgPicture.asset(ImageRes.classes_play),
@@ -234,15 +215,9 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                 flex: 2,
                                 child: RichText(
                                   text: TextSpan(
-                                      text:
-                                          '${state.programDetailModel.content!.programs.count.toString()}\n',
+                                      text: '${state.programDetailModel.content!.programs.count.toString()}\n',
                                       style: TextStyles.R1475,
-                                      children: [
-                                        TextSpan(
-                                            text: AppLocalizations.of(context)!
-                                                .translate('classes'),
-                                            style: TextStyles.R1475)
-                                      ]),
+                                      children: [TextSpan(text: AppLocalizations.of(context)!.translate('classes'), style: TextStyles.R1475)]),
                                 ),
                               ),
                             ],
@@ -251,24 +226,22 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                           Container(
                             child: Column(
                               children: [
-                                Text(state.programDetailModel.content!.programs.description,
-                                  maxLines: textDescription ? state
-                                      .programDetailModel.content!.programs.description
-                                      .length
-                                      : 2,
+                                Text(
+                                  state.programDetailModel.content!.programs.description,
+                                  maxLines: textDescription ? state.programDetailModel.content!.programs.description.length : 2,
                                   style: TextStyles.R1375,
                                   textAlign: TextAlign.justify,
                                 ),
                                 InkWell(
-                                  onTap: (){ setState(() {
-                                    textDescription = !textDescription;
-                                  }); },
+                                  onTap: () {
+                                    setState(() {
+                                      textDescription = !textDescription;
+                                    });
+                                  },
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      textDescription ? Text("Show Less",style:
-                                      TextStyles.R1578) :  Text("Show More",style:
-                                      TextStyles.R1578),
+                                      textDescription ? Text("Show Less", style: TextStyles.R1578) : Text("Show More", style: TextStyles.R1578),
                                     ],
                                   ),
                                 ),
@@ -287,37 +260,19 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                           Text("Program focus", style: TextStyles.R1578),
                           Stack(
                             children: [
-                              Divider(
-                                  color: ColorRes.greyIcon.withOpacity(0.80),
-                                  thickness: 2),
-                              Divider(
-                                  color: ColorRes.primaryColor,
-                                  thickness: 2,
-                                  endIndent: screenWidth(
-                                      context: context, percent: 0.60)),
+                              Divider(color: ColorRes.greyIcon.withOpacity(0.80), thickness: 2),
+                              Divider(color: ColorRes.primaryColor, thickness: 2, endIndent: screenWidth(context: context, percent: 0.60)),
                             ],
                           ),
                           SizedBox(height: 10),
-                          Text(
-                              state.programDetailModel.content!.programs.focus
-                                  .join(','),
-                              style: TextStyles.R1375),
+                          Text(state.programDetailModel.content!.programs.focus.join(','), style: TextStyles.R1375),
                           SizedBox(height: 23),
-                          Text(
-                              AppLocalizations.of(context)!
-                                  .translate('classes'),
-                              style: TextStyles.R1578),
+                          Text(AppLocalizations.of(context)!.translate('classes'), style: TextStyles.R1578),
                           Stack(
                             clipBehavior: Clip.none,
                             children: [
-                              Divider(
-                                  color: ColorRes.greyIcon.withOpacity(0.80),
-                                  thickness: 2),
-                              Divider(
-                                  color: ColorRes.primaryColor,
-                                  thickness: 2,
-                                  endIndent: screenWidth(
-                                      context: context, percent: 0.60)),
+                              Divider(color: ColorRes.greyIcon.withOpacity(0.80), thickness: 2),
+                              Divider(color: ColorRes.primaryColor, thickness: 2, endIndent: screenWidth(context: context, percent: 0.60)),
                               PositionedDirectional(
                                   top: -20,
                                   end: 0,
@@ -326,15 +281,9 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                       Container(
                                         color: ColorRes.white,
                                         child: Padding(
-                                          padding: EdgeInsetsDirectional.only
-                                            (end: 1),
+                                          padding: EdgeInsetsDirectional.only(end: 1),
                                           child: CircularImage(
-                                            imageUrl: state
-                                                .programDetailModel
-                                                .content!
-                                                .programs
-                                                .instructor
-                                                .profilePicture,
+                                            imageUrl: state.programDetailModel.content!.programs.instructor.profilePicture,
                                             imageRadius: 21,
                                           ),
                                         ),
@@ -342,12 +291,12 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                       SizedBox(width: 15),
                                       Text(
                                         "Multiple "
-                                            "Instructors",
+                                        "Instructors",
                                         style: TextStyles.R1200,
                                       ),
                                     ],
                                   )),
-                              ],
+                            ],
                           ),
                           SizedBox(height: 33),
                           Text("WEEK 1", style: TextStyles.SB1555),
@@ -356,8 +305,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                             physics: NeverScrollableScrollPhysics(),
                             padding: EdgeInsets.only(top: 10, bottom: 10),
                             shrinkWrap: true,
-                            itemCount: state
-                                .programDetailModel.content!.classes.length,
+                            itemCount: state.programDetailModel.content!.classes.length,
                             separatorBuilder: (context, index) => SizedBox(
                               height: 30,
                             ),
@@ -365,35 +313,17 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                               return Container(
                                 child: InkWell(
                                   onTap: () {
-                                    NavigationUtils.push(
-                                        context, routeClassDetailsScreen,
-                                        arguments: {
-                                          'id': state.programDetailModel
-                                              .content!.classes[index].id
-                                        });
+                                    NavigationUtils.push(context, routeClassDetailsScreen, arguments: {'id': state.programDetailModel.content!.classes[index].id});
                                   },
                                   child: ClassesCardWidget(
-                                      image: state.programDetailModel.content!
-                                          .classes[index].coverImage,
+                                      image: state.programDetailModel.content!.classes[index].coverImage,
                                       day: "TUESDAY",
-                                      title: state.programDetailModel.content!
-                                          .classes[index].title,
-                                      style: state.programDetailModel.content!
-                                          .classes[index].style[0],
-                                      isLock: state.programDetailModel.content!
-                                          .classes[index].isLock,
-                                      level: state.programDetailModel.content!
-                                          .classes[index].level,
-                                      duration: appState
-                                          .parseDuration(state
-                                              .programDetailModel
-                                              .content!
-                                              .classes[index]
-                                              .durations)
-                                          .inMinutes
-                                          .toString(),
-                                      language: state.programDetailModel
-                                          .content!.classes[index].language),
+                                      title: state.programDetailModel.content!.classes[index].title,
+                                      style: state.programDetailModel.content!.classes[index].style[0],
+                                      isLock: state.programDetailModel.content!.classes[index].isLock,
+                                      level: state.programDetailModel.content!.classes[index].level,
+                                      duration: appState.parseDuration(state.programDetailModel.content!.classes[index].durations).inMinutes.toString(),
+                                      language: state.programDetailModel.content!.classes[index].language),
                                 ),
                               );
                             },

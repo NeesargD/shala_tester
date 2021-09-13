@@ -176,7 +176,7 @@ class TextStyles {
     //18-grey
     inherit: true,
     fontSize: 18.0,
-    color: ColorRes.greyText,
+    color: ColorRes.greySupportColor,
   );
   static const TextStyle R18FF = TextStyle(
     inherit: true,

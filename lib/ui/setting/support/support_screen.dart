@@ -61,18 +61,22 @@ class _SupportScreenState extends State<SupportScreen> {
               return SingleChildScrollView(
                 child: Column(
                   children: [
-                    Text(
-                        AppLocalizations.of(context)!
-                            .translate('dear_yoga_creative_faq'),
-                        style: TextStyles.R1875),
+                    Padding(
+                      padding: const EdgeInsetsDirectional.only(start: 20,end: 20,top: 28,bottom: 34),
+                      child: Text(
+                          AppLocalizations.of(context)!
+                              .translate('dear_yoga_creative_faq'),
+                          style: TextStyles.R1875),
+                    ),
                     ListView.builder(
+                      padding: EdgeInsets.zero,
                         physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: state.faqModel.content!.length,
                         itemBuilder: (c, index) {
                           return Padding(
                             padding: EdgeInsetsDirectional.only(
-                                start: 20, end: 20, top: 28),
+                                start: 20, end: 20),
                             child: Column(
                               children: [
                                 SizedBox(height: 30),
@@ -126,53 +130,47 @@ class _SupportScreenState extends State<SupportScreen> {
           elevation: 0,
           child: Padding(
             padding: EdgeInsetsDirectional.only(
-                top: 30, bottom: 30, start: 25, end: 25),
+                top: 30, bottom: 30, start: 27, end: 27),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(width: 5),
-                Expanded(
-                  flex: 1,
-                  child: CustomButton(
-                      onTap: () async {
-                        var phoneUrl = 'tel:$contactUs';
-                        await canLaunch(phoneUrl)
-                            ? launch(phoneUrl)
-                            : ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                    content:
-                                        Text("Phone couldn't be launched")));
-                      },
-                      buttonText:
-                          AppLocalizations.of(context)!.translate('contact_us'),
-                      backgroundColor: ColorRes.white,
-                      foregroundColor: ColorRes.white,
-                      height: 52,
-                      widthPercent: 0.4,
-                      borderColor: ColorRes.primaryColor,
-                      textStyle: TextStyles.R1778),
-                ),
+                CustomButton(
+                    onTap: () async {
+                      var phoneUrl = 'tel:$contactUs';
+                      await canLaunch(phoneUrl)
+                          ? launch(phoneUrl)
+                          : ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                  content:
+                                      Text("Phone couldn't be launched")));
+                    },
+                    buttonText:
+                        AppLocalizations.of(context)!.translate('contact_us'),
+                    backgroundColor: ColorRes.white,
+                    foregroundColor: ColorRes.white,
+                    height: 52,
+                    widthPercent: 0.40,
+                    borderColor: ColorRes.primaryColor,
+                    textStyle: TextStyles.R1778),
                 SizedBox(width: 10),
-                Expanded(
-                  flex: 1,
-                  child: CustomButton(
-                      onTap: () async {
-                        var whatsappUrl = "whatsapp://send?phone=$whatsApp";
-                        await canLaunch(whatsappUrl)
-                            ? launch(whatsappUrl)
-                            : ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                    content:
-                                        Text("Whatsapp couldn't be launched")));
-                      },
-                      buttonText:
-                          AppLocalizations.of(context)!.translate('whats_app'),
-                      backgroundColor: ColorRes.primaryColor,
-                      foregroundColor: ColorRes.white,
-                      height: 52,
-                      widthPercent: 0.4,
-                      borderColor: ColorRes.primaryColor,
-                      textStyle: TextStyles.R17FF),
-                ),
+                CustomButton(
+                    onTap: () async {
+                      var whatsappUrl = "whatsapp://send?phone=$whatsApp";
+                      await canLaunch(whatsappUrl)
+                          ? launch(whatsappUrl)
+                          : ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                  content:
+                                      Text("Whatsapp couldn't be launched")));
+                    },
+                    buttonText:
+                        AppLocalizations.of(context)!.translate('whats_app'),
+                    backgroundColor: ColorRes.primaryColor,
+                    foregroundColor: ColorRes.white,
+                    height: 52,
+                    widthPercent: 0.40,
+                    borderColor: ColorRes.primaryColor,
+                    textStyle: TextStyles.R17FF),
               ],
             ),
           ),

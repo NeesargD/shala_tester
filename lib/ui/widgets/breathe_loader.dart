@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shala_yoga/base/utils/preference_utils.dart';
 import '../../base/utils/constants/color_constant.dart';
 import '../../base/utils/constants/image_constant.dart';
 import '../../base/utils/constants/textstyle_constants.dart';
@@ -34,6 +35,7 @@ class _BreatheLoaderState extends State<BreatheLoader> {
         body: BlocListener<QuestionAnswerBloc, QuestionAnswerState>(
           listener: (context, state) {
             if (state is QuestionAnswerSuccess) {
+              setBool("quizSubmitted", true);
               NavigationUtils.pushAndRemoveUntil(context, routeDashboard,
                   arguments: {"index": 5});
             }

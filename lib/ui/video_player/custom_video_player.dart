@@ -8,10 +8,10 @@ import 'package:video_player/video_player.dart';
 class ChewieDemo extends StatefulWidget {
   const ChewieDemo({
     Key? key,
-    this.title = 'Chewie Demo',
+    this.videoUrl = 'Chewie Demo',
   }) : super(key: key);
 
-  final String title;
+  final String videoUrl;
 
   @override
   State<StatefulWidget> createState() {
