@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
+import 'package:shala_yoga/ui/video_player/custom_video_player.dart';
+import '../../../base/utils/navigation/navigation_utils.dart';
 
 import '../../../base/utils/common_methods.dart';
 import '../../../base/utils/constants/color_constant.dart';
@@ -40,11 +41,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
             backgroundColor: ColorRes.whiteGradient,
             bottomNavigationBar: BottomAppBar(
               child: Container(
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [ColorRes.white, ColorRes.whiteGradient])),
+                decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [ColorRes.white, ColorRes.whiteGradient])),
                 height: 120,
                 // height: MediaQuery.of(context).size.height * 0.18,
                 margin: EdgeInsetsDirectional.only(start: 17, end: 17, top: 10),
@@ -52,7 +49,9 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     CustomButton(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChewieDemo(),));
+                        },
                         buttonText: 'START WATCHING',
                         backgroundColor: ColorRes.primaryColor,
                         foregroundColor: ColorRes.whiteGradient,
@@ -103,28 +102,32 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                       )),
                                   Spacer(),
                                   IconButton(onPressed: () {}, icon: Icon(Icons.access_time, color: ColorRes.white)),
-                                  IconButton(
-                                      onPressed: () {}, icon: Icon(Icons.favorite_border, color: ColorRes.white)),
+                                  IconButton(onPressed: () {}, icon: Icon(Icons.favorite_border, color: ColorRes.white)),
                                 ],
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Center(
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.only(top: 43),
-                                      child: Container(
-                                        padding: EdgeInsetsDirectional.all(15),
-                                        decoration: BoxDecoration(
-                                          color: ColorRes.white.withOpacity(0.20),
-                                          border: Border.all(color: ColorRes.white),
-                                          borderRadius: BorderRadius.circular(25),
-                                        ),
-                                        child: Center(
-                                          child: Icon(
-                                            Icons.play_arrow_rounded,
-                                            color: ColorRes.white,
-                                            size: 20,
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChewieDemo(title: state.classDetailsModel.content!.classes.videoUrl,),));
+                                    },
+                                    child: Center(
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.only(top: 43),
+                                        child: Container(
+                                          padding: EdgeInsetsDirectional.all(15),
+                                          decoration: BoxDecoration(
+                                            color: ColorRes.white.withOpacity(0.20),
+                                            border: Border.all(color: ColorRes.white),
+                                            borderRadius: BorderRadius.circular(25),
+                                          ),
+                                          child: Center(
+                                            child: Icon(
+                                              Icons.play_arrow_rounded,
+                                              color: ColorRes.white,
+                                              size: 20,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -139,7 +142,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                     ),
                   ),
                   Container(
-                     margin: EdgeInsetsDirectional.only(start: 7, end: 7,top: 240),
+                    margin: EdgeInsetsDirectional.only(start: 7, end: 7, top: 240),
                     width: MediaQuery.of(context).size.width * 0.96,
                     decoration: BoxDecoration(
                       color: ColorRes.white,
@@ -168,11 +171,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                   ),
                                   SizedBox(height: 3),
                                   RichText(
-                                    text: TextSpan(text: "Part of ", style: TextStyles.R1275, children: [
-                                      TextSpan(
-                                          text: state.classDetailsModel.content!.classes.partOf,
-                                          style: TextStyles.SB1278)
-                                    ]),
+                                    text: TextSpan(text: "Part of ", style: TextStyles.R1275, children: [TextSpan(text: state.classDetailsModel.content!.classes.partOf, style: TextStyles.SB1278)]),
                                   ),
                                   SizedBox(height: 30),
                                   Row(
@@ -181,8 +180,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                       const SizedBox(
                                         width: 5,
                                       ),
-                                      Text(state.classDetailsModel.content!.classes.style.join(','),
-                                          style: TextStyles.R1575),
+                                      Text(state.classDetailsModel.content!.classes.style.join(','), style: TextStyles.R1575),
                                       Spacer(),
                                       SvgPicture.asset(ImageRes.levels),
                                       const SizedBox(
@@ -194,13 +192,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                       const SizedBox(
                                         width: 5,
                                       ),
-                                      Text(
-                                          appState
-                                                  .parseDuration(state.classDetailsModel.content!.classes.durations)
-                                                  .inMinutes
-                                                  .toString() +
-                                              ' min',
-                                          style: TextStyles.R1575),
+                                      Text(appState.parseDuration(state.classDetailsModel.content!.classes.durations).inMinutes.toString() + ' min', style: TextStyles.R1575),
                                     ],
                                   ),
                                   SizedBox(height: 30),
@@ -246,14 +238,12 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                             SizedBox(height: 10),
                             Padding(
                               padding: EdgeInsetsDirectional.only(start: 17),
-                              child: Text(state.classDetailsModel.content!.classes.focus.join(','),
-                                  style: TextStyles.R1375),
+                              child: Text(state.classDetailsModel.content!.classes.focus.join(','), style: TextStyles.R1375),
                             ),
                             SizedBox(height: 23),
                             Padding(
                               padding: EdgeInsetsDirectional.only(start: 17),
-                              child: Text("Similar Classes",
-                                  style: TextStyles.R1575.copyWith(color: ColorRes.primaryColor)),
+                              child: Text("Similar Classes", style: TextStyles.R1575.copyWith(color: ColorRes.primaryColor)),
                             ),
                             Stack(
                               children: [
@@ -273,12 +263,10 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                               padding: EdgeInsets.zero,
                               shrinkWrap: true,
                               physics: NeverScrollableScrollPhysics(),
-                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                  childAspectRatio: 0.74, mainAxisSpacing: 25, crossAxisSpacing: 25, crossAxisCount: 2),
+                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(childAspectRatio: 0.74, mainAxisSpacing: 25, crossAxisSpacing: 25, crossAxisCount: 2),
                               itemCount: state.classDetailsModel.content!.similarClasses.length,
                               itemBuilder: (BuildContext context, int index) {
-                                return ClassesGridWidget(
-                                    classesDetail: state.classDetailsModel.content!.similarClasses[index]);
+                                return ClassesGridWidget(classesDetail: state.classDetailsModel.content!.similarClasses[index]);
                               },
                             ),
                             const SizedBox(height: 30),
@@ -292,8 +280,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                               CircleAvatar(
                                 backgroundColor: ColorRes.white,
                                 radius: 10,
-                                child: Text(state.classDetailsModel.content!.classes.language.substring(0, 2),
-                                    style: TextStyles.R1075),
+                                child: Text(state.classDetailsModel.content!.classes.language.substring(0, 2), style: TextStyles.R1075),
                               ),
                             ],
                           ),
@@ -317,9 +304,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                     ),
                                     SizedBox(height: 3),
                                     Text(
-                                      state.classDetailsModel.content!.classes.instructor.firstname +
-                                          '\n' +
-                                          state.classDetailsModel.content!.classes.instructor.lastname,
+                                      state.classDetailsModel.content!.classes.instructor.firstname + '\n' + state.classDetailsModel.content!.classes.instructor.lastname,
                                       textAlign: TextAlign.center,
                                     ),
                                   ],

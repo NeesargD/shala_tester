@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shala_yoga/ui/video_player/custom_video_player.dart';
 import '../../../base/utils/common_methods.dart';
 import '../../../base/utils/constants/color_constant.dart';
 import '../../../base/utils/constants/image_constant.dart';
@@ -162,8 +163,13 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
-                                        SvgPicture.asset(
-                                            ImageRes.red_video_play),
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChewieDemo(),));
+                                          },
+                                          child: SvgPicture.asset(
+                                              ImageRes.red_video_play),
+                                        ),
                                         Text("Watch teaser",
                                             style: TextStyles.L1400),
                                         SizedBox(height: 20)
