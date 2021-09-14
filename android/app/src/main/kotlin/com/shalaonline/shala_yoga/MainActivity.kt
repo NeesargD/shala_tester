@@ -1,4 +1,4 @@
-package com.shalaonline.shala_yoga
+package com.app.shalaonline
 
 import io.flutter.embedding.android.FlutterActivity
 

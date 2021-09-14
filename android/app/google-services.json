@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "816615638730",
+    "project_id": "shala-mobile-app",
+    "storage_bucket": "shala-mobile-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:816615638730:android:c860a57be58b6420351633",
+        "android_client_info": {
+          "package_name": "com.app.shalaonline"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "816615638730-sn60u6d9v6ddaht9df53jvuism0o3eld.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCRt7K12J4zjrdaDwX0UALecS_n-uUd4U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "816615638730-sn60u6d9v6ddaht9df53jvuism0o3eld.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

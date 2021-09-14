@@ -8,6 +8,8 @@ import '../../base/utils/navigation/navigation_utils.dart';
 import '../widgets/common_list_tile_widget.dart';
 import '../widgets/custom_button.dart';
 import '../../base/utils/common_methods.dart';
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+import 'package:share_plus/share_plus.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -17,6 +19,13 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    var abc = getBundleId();
+    print(abc);
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -85,7 +94,9 @@ class _SettingScreenState extends State<SettingScreen> {
                   titleText: AppLocalizations.of(context)!.translate
                     ('invite_friends'), imagePath: ImageRes
                   .setting_invite_friends,
-                  onTap: () {}),
+                  onTap: () {
+                    generateDynamicLink();
+                  }),
               SizedBox(height: 35),
               CustomButton(
                 onTap: () {},
@@ -103,5 +114,66 @@ class _SettingScreenState extends State<SettingScreen> {
         ),
       ),
     ));
+  }
+
+  // dynamic link share
+  void generateDynamicLink() async {
+    // final DynamicLinkParameters parameters = DynamicLinkParameters(
+    //   uriPrefix: 'https://socialdemo.page.link',
+    //   link: Uri.parse('https://socialdemo.page.link/invitefriend=$code'),
+    //   androidParameters: AndroidParameters(
+    //     packageName: 'com.example.socialdemo',
+    //     minimumVersion: 1,
+    //   ),
+    //   iosParameters: IosParameters(
+    //     bundleId: 'com.example.socialdemo',
+    //     minimumVersion: '1.0.1',
+    //     appStoreId: '123456789',
+    //   ),
+    //   socialMetaTagParameters: SocialMetaTagParameters(
+    //     title: 'Social Login',
+    //     description: 'Social login app for learn and earn!',
+    //   ),
+    // );
+    //
+    // final Uri dynamicUrl = await parameters.buildUrl();
+    // final ShortDynamicLink shortenedLink =
+    // await DynamicLinkParameters.shortenUrl(
+    //   dynamicUrl,
+    //   DynamicLinkParametersOptions(
+    //       shortDynamicLinkPathLength: ShortDynamicLinkPathLength.unguessable),
+    // );
+    // final Uri shortUrl = shortenedLink.shortUrl;
+    //
+    // print(shortUrl);
+    // print(dynamicUrl);
+    //
+    // Share.share('Social Login $shortUrl');
+    final DynamicLinkParameters parameters = DynamicLinkParameters(
+      uriPrefix: 'https://shalaonline.page.link',
+      link: Uri.parse('https://shalaonline.page.link//inviteFriend=1'),
+      androidParameters: AndroidParameters(
+        packageName: 'com.app.shalaonline',
+        minimumVersion: 1,
+      ),
+      iosParameters: IosParameters(
+        bundleId: 'com.example.ios',
+        minimumVersion: '1.0.1',
+        appStoreId: '123456789',
+      ),
+
+    );
+    final Uri dynamicUrl = await parameters.buildUrl();
+    final ShortDynamicLink shortenedLink =
+    await DynamicLinkParameters.shortenUrl(
+      dynamicUrl,
+      DynamicLinkParametersOptions(
+          shortDynamicLinkPathLength: ShortDynamicLinkPathLength.unguessable),
+    );
+    final Uri shortUrl = shortenedLink.shortUrl;
+    print(shortUrl);
+    print(dynamicUrl);
+
+    Share.share('Shala Online Yoga $shortUrl');
   }
 }

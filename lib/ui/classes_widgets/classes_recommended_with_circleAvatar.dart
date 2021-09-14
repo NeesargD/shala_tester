@@ -49,9 +49,19 @@ class RecommendedClassList extends StatelessWidget {
             child: Stack(
               children: [
                 SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.2,
-                    width: MediaQuery.of(context).size.width,
-                    child: CustomNetworkImage(imageUrl: coverImage)),
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  width: MediaQuery.of(context).size.width,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(4),
+                      topRight: Radius.circular(4),
+                    ),
+                    child: CustomNetworkImage(
+                      imageUrl: coverImage,
+                      boxFit: BoxFit.fill,
+                    ),
+                  ),
+                ),
                 Padding(
                   padding: EdgeInsetsDirectional.only(top: 8),
                   child: Row(
@@ -67,11 +77,7 @@ class RecommendedClassList extends StatelessWidget {
                           color: isLock == true ? ColorRes.premiumBackground : ColorRes.primaryColor,
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Text(
-                            isLock == true
-                                ? AppLocalizations.of(context)!.translate('premium')
-                                : AppLocalizations.of(context)!.translate('free'),
-                            style: TextStyles.R12FF),
+                        child: Text(isLock == true ? AppLocalizations.of(context)!.translate('premium') : AppLocalizations.of(context)!.translate('free'), style: TextStyles.R12FF),
                       ),
                       Spacer(),
                       InkWell(
@@ -86,7 +92,7 @@ class RecommendedClassList extends StatelessWidget {
                         radius: 10,
                         backgroundColor: ColorRes.white,
                         child: Text(
-                          languages.substring(0,2),
+                          languages.substring(0, 2),
                           style: TextStyles.R1075,
                         ),
                       ),
@@ -104,7 +110,7 @@ class RecommendedClassList extends StatelessWidget {
             children: [
               Container(
                 height: 79,
-                width: screenWidth(context: context, percent: 0.70),
+                width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -148,10 +154,7 @@ class RecommendedClassList extends StatelessWidget {
                           width: 5,
                         ),
                         Text.rich(
-                          TextSpan(
-                              text: appState.parseDuration(duration).inMinutes.toString(),
-                              style: TextStyles.R1275,
-                              children: [TextSpan(text: " min")]),
+                          TextSpan(text: appState.parseDuration(duration).inMinutes.toString(), style: TextStyles.R1275, children: [TextSpan(text: " min")]),
                         ),
                         const SizedBox(
                           width: 10,

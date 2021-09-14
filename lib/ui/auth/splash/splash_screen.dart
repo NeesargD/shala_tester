@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shala_yoga/base/utils/preference_utils.dart';
@@ -26,6 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(Duration.zero, () {
+      initDynamicLinks();
       getDeviceInfo();
       startTime();
     });
@@ -43,6 +45,29 @@ class _SplashScreenState extends State<SplashScreen> {
       print('Running on $id');
     }
     appState.deviceId = id;
+  }
+
+  // link open and user refer code get
+  void initDynamicLinks() async {
+    FirebaseDynamicLinks.instance.onLink(onSuccess: (PendingDynamicLinkData? dynamicLink) async {
+      final Uri? deepLink = dynamicLink?.link;
+      print("....>>>>>>>......$deepLink");
+      if (deepLink != null) {
+        print("............$deepLink");
+        // Navigator.pushNamed(context, deepLink.path);
+      }
+    }, onError: (OnLinkErrorException e) async {
+      print('onLinkError');
+      print(e.message);
+    });
+
+    final PendingDynamicLinkData? data = await FirebaseDynamicLinks.instance.getInitialLink();
+    final Uri? deepLink = data?.link;
+
+    if (deepLink != null) {
+      // Navigator.pushNamed(context, deepLink.path);
+    }
+    print("....>>>>>>>......$deepLink");
   }
 
   //Builder Method
@@ -73,7 +98,7 @@ class _SplashScreenState extends State<SplashScreen> {
             setState(() {
               performLogoTransition = !performLogoTransition;
             });
-          } else if (timer.tick == 3) {
+          } else if (timer.tick == 4) {
             if (getBool("intro")) {
               if (getBool("quizSubmitted")) {
                 NavigationUtils.pushAndRemoveUntil(context, routeDashboard, arguments: {"index": 0});

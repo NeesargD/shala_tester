@@ -35,7 +35,8 @@ dependencies:
   # For Network Connection
   dio: ^4.0.0
   # For Shared Preferences
-  shared_preferences: ^2.0.6
+  shared_preferences: ^2.0.7
+  dotted_border: ^2.0.0+1
   # For Lint Errors
   pedantic: ^1.11.0
   # For Dislay Toast
@@ -60,6 +61,11 @@ dependencies:
   equatable:
   # for splash pages
   introduction_screen: ^2.1.0
+  firebase_dynamic_links: ^2.0.9
+  share_plus: ^2.1.4
+  package_info_plus: ^1.0.6
+  firebase_core: ^1.6.0
+  firebase_analytics: ^8.3.2
   url_launcher: ^6.0.10
   device_info_plus: ^2.1.0
   #video-player

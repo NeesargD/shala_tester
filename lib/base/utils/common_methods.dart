@@ -2,20 +2,13 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'package:package_info_plus/package_info_plus.dart';
 import 'constants/app_constant.dart';
 import 'constants/color_constant.dart';
 import 'constants/fontsize_constant.dart';
 
 // Get Text Widget
-Widget getTextWidget(
-        {required String title,
-        Color textColor = ColorRes.primaryTextColor,
-        double textFontSize = fontSize14,
-        FontWeight? textFontWeight,
-        TextAlign? textAlign,
-        int? maxLines}) =>
-    Text(
+Widget getTextWidget({required String title, Color textColor = ColorRes.primaryTextColor, double textFontSize = fontSize14, FontWeight? textFontWeight, TextAlign? textAlign, int? maxLines}) => Text(
       title,
       textAlign: textAlign,
       maxLines: maxLines,
@@ -28,12 +21,7 @@ Widget getTextWidget(
     );
 
 // Get Bottom Sheet
-Widget getBottomSheetAction(
-        {required BuildContext context,
-        required IconData icon,
-        required String title,
-        required Function onTap}) =>
-    GestureDetector(
+Widget getBottomSheetAction({required BuildContext context, required IconData icon, required String title, required Function onTap}) => GestureDetector(
       onTap: () {
         Navigator.of(context).pop();
         onTap();
@@ -124,12 +112,18 @@ Future<String?> getDeviceId() async {
   }
 }
 
+Future<String> getBundleId() async {
+  PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
+  String appName = packageInfo.appName;
+  String packageName = packageInfo.packageName;
+  String version = packageInfo.version;
+  String buildNumber = packageInfo.buildNumber;
+  return packageName;
+}
+
 // Common Date Picker
-Future<DateTime?> pickDate(
-    {required BuildContext context,
-    DateTime? initialDate,
-    DateTime? firstDate,
-    DateTime? lastDate}) async {
+Future<DateTime?> pickDate({required BuildContext context, DateTime? initialDate, DateTime? firstDate, DateTime? lastDate}) async {
   final picked = await showDatePicker(
     context: context,
     initialDate: initialDate ?? DateTime.now(),
@@ -161,5 +155,4 @@ Widget safeAreaWidget(BuildContext context) {
   );
 }
 
-void launchURL(String url) async =>
-    await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
+void launchURL(String url) async => await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
