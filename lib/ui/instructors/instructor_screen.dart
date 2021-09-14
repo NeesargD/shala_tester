@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
+import 'package:shala_yoga/ui/widgets/bottom_sheet.dart';
 
 import '../../base/utils/common_methods.dart';
 import '../../base/utils/constants/color_constant.dart';
@@ -37,6 +38,28 @@ class _InstructorScreenState extends State<InstructorScreen> {
           elevation: 0,
           backgroundColor: ColorRes.appBarColor,
           title: Text(AppLocalizations.of(context)!.translate("instructors"), style: TextStyles.L2075),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  NavigationUtils.push(context, routeFilterScreen);
+                },
+                icon: Icon(
+                  Icons.search,
+                  color: ColorRes.greyText,
+                )),
+            GestureDetector(
+              child: Icon(Icons.more_vert, color: ColorRes.greyText),
+              onTap: () {
+                showModalBottomSheet(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
+                  ),
+                  context: context,
+                  builder: (context) => BottomSheetWidget(),
+                );
+              },
+            ),
+          ],
         ),
         body: BlocBuilder<InstructorBloc, InstructorState>(
           builder: (context, state) {
@@ -51,8 +74,7 @@ class _InstructorScreenState extends State<InstructorScreen> {
                   itemBuilder: (BuildContext context, int index) {
                     return InkWell(
                       onTap: () {
-                        NavigationUtils.push(context, routeInstructorDetails,
-                            arguments: {'id': state.instructorModel.content!.instructors[index].id});
+                        NavigationUtils.push(context, routeInstructorDetails, arguments: {'id': state.instructorModel.content!.instructors[index].id});
                       },
                       child: Container(
                         color: ColorRes.appBarColor,
@@ -67,15 +89,13 @@ class _InstructorScreenState extends State<InstructorScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    '${state.instructorModel.content!.instructors[index].firstname}' +
-                                        ' ${state.instructorModel.content!.instructors[index].lastname}',
+                                    '${state.instructorModel.content!.instructors[index].firstname}' + ' ${state.instructorModel.content!.instructors[index].lastname}',
                                     style: TextStyles.SB1578,
                                     textAlign: TextAlign.start,
                                   ),
                                   SizedBox(
                                     width: screenWidth(context: context, percent: 0.30),
-                                    child: Text(state.instructorModel.content!.instructors[index].style.join(","),
-                                        style: TextStyles.R1375),
+                                    child: Text(state.instructorModel.content!.instructors[index].style.join(","), style: TextStyles.R1375),
                                   )
                                 ],
                               ),
@@ -99,9 +119,7 @@ class _InstructorScreenState extends State<InstructorScreen> {
                                       child: CircleAvatar(
                                         backgroundColor: ColorRes.lightGrey,
                                         radius: 10,
-                                        child: Text(
-                                            '${state.instructorModel.content!.instructors[index].languages[i].substring(0, 2)}',
-                                            style: TextStyles.R10FF),
+                                        child: Text('${state.instructorModel.content!.instructors[index].languages[i].substring(0, 2)}', style: TextStyles.R10FF),
                                       ),
                                     );
                                   },

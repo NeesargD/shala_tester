@@ -6,6 +6,7 @@ import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart
 import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
 import 'package:shala_yoga/blocs/classes/classes_bloc/classes_bloc.dart';
 import 'package:shala_yoga/ui/classes_widgets/classes_card_widget.dart';
+import 'package:shala_yoga/ui/widgets/bottom_sheet.dart';
 import 'package:shala_yoga/ui/widgets/failure_widget.dart';
 import 'package:shala_yoga/ui/widgets/loading_widget.dart';
 import 'package:shala_yoga/base/utils/constants/color_constant.dart';
@@ -17,7 +18,6 @@ class ClassesScreen extends StatefulWidget {
 }
 
 class _ClassesScreenState extends State<ClassesScreen> {
-
   @override
   void initState() {
     context.read<ClassesBloc>().add(GetAllClasses());
@@ -27,7 +27,6 @@ class _ClassesScreenState extends State<ClassesScreen> {
   @override
   void didUpdateWidget(covariant ClassesScreen oldWidget) {
     context.read<ClassesBloc>().add(GetAllClasses());
-
     super.didUpdateWidget(oldWidget);
   }
 
@@ -40,6 +39,28 @@ class _ClassesScreenState extends State<ClassesScreen> {
         elevation: 0,
         backgroundColor: ColorRes.appBarColor,
         title: Text(AppLocalizations.of(context)!.translate('classes'), style: TextStyles.L2075),
+        actions: [
+          IconButton(
+              onPressed: () {
+                NavigationUtils.push(context, routeFilterScreen);
+              },
+              icon: Icon(
+                Icons.search,
+                color: ColorRes.greyText,
+              )),
+          GestureDetector(
+            child: Icon(Icons.more_vert, color: ColorRes.greyText),
+            onTap: () {
+              showModalBottomSheet(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
+                ),
+                context: context,
+                builder: (context) => BottomSheetWidget(),
+              );
+            },
+          ),
+        ],
       ),
       body: BlocBuilder<ClassesBloc, ClassesState>(
         builder: (context, state) {
@@ -56,8 +77,7 @@ class _ClassesScreenState extends State<ClassesScreen> {
                   margin: EdgeInsetsDirectional.only(start: 20, end: 20),
                   child: InkWell(
                     onTap: () {
-                      NavigationUtils.push(context, routeClassDetailsScreen,
-                          arguments: {'id': state.classesModel.content!.classes[index].id});
+                      NavigationUtils.push(context, routeClassDetailsScreen, arguments: {'id': state.classesModel.content!.classes[index].id});
                     },
                     child: ClassesCardWidget(
                         image: state.classesModel.content!.classes[index].coverImage,

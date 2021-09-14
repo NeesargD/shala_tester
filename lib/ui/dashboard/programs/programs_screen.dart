@@ -5,6 +5,7 @@ import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart
 import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
 import 'package:shala_yoga/blocs/programs/programs_bloc/programs_bloc.dart';
 import 'package:shala_yoga/ui/program_widgets/program_grid_recommended.dart';
+import 'package:shala_yoga/ui/widgets/bottom_sheet.dart';
 import 'package:shala_yoga/ui/widgets/failure_widget.dart';
 import 'package:shala_yoga/ui/widgets/loading_widget.dart';
 import 'package:shala_yoga/base/utils/constants/color_constant.dart';
@@ -28,6 +29,7 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
 
     super.didUpdateWidget(oldWidget);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,26 +39,45 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
         elevation: 0,
         backgroundColor: ColorRes.appBarColor,
         title: Text(AppLocalizations.of(context)!.translate('programs'), style: TextStyles.L2075),
+        actions: [
+          IconButton(
+              onPressed: () {
+                NavigationUtils.push(context, routeFilterScreen);
+              },
+              icon: Icon(
+                Icons.search,
+                color: ColorRes.greyText,
+              )),
+          GestureDetector(
+            child: Icon(Icons.more_vert, color: ColorRes.greyText),
+            onTap: () {
+              showModalBottomSheet(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
+                ),
+                context: context,
+                builder: (context) => BottomSheetWidget(),
+              );
+            },
+          ),
+        ],
       ),
       body: BlocBuilder<ProgramsBloc, ProgramsState>(
         builder: (context, state) {
-          if(state is ProgramsSuccess){
+          if (state is ProgramsSuccess) {
             return ListView.separated(
               padding: EdgeInsets.only(top: 10, bottom: 10),
               shrinkWrap: true,
               itemCount: state.programsModel.content!.programs.length,
-              separatorBuilder: (context, index) =>
-                  SizedBox(
-                    height: 15,
-                  ),
+              separatorBuilder: (context, index) => SizedBox(
+                height: 15,
+              ),
               itemBuilder: (context, index) {
                 return Container(
                   margin: EdgeInsetsDirectional.only(start: 20, end: 20),
                   child: InkWell(
                     onTap: () {
-                      NavigationUtils.push(context, routeProgramDetailsScreen,
-                          arguments: {'id': state.programsModel.content!
-                              .programs[index].id});
+                      NavigationUtils.push(context, routeProgramDetailsScreen, arguments: {'id': state.programsModel.content!.programs[index].id});
                     },
                     child: RecommendedProgramList(
                         coverImage: state.programsModel.content!.programs[index].coverImage,
@@ -71,7 +92,7 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
               },
             );
           }
-          if(state is ProgramsFailure){
+          if (state is ProgramsFailure) {
             return FailureWidget(message: state.message);
           }
           return LoadingWidget();
