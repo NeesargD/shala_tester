@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:shala_yoga/base/utils/constants/color_constant.dart';
-import 'package:shala_yoga/base/utils/constants/image_constant.dart';
-import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
-import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
-import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
-import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
-import 'package:shala_yoga/ui/widgets/common_list_tile_widget.dart';
-import 'package:shala_yoga/ui/widgets/custom_button.dart';
+import '../../base/utils/constants/color_constant.dart';
+import '../../base/utils/constants/image_constant.dart';
+import '../../base/utils/constants/textstyle_constants.dart';
+import '../../base/utils/localization/app_localizations.dart';
+import '../../base/utils/navigation/navigation_route_constants.dart';
+import '../../base/utils/navigation/navigation_utils.dart';
+import '../widgets/common_list_tile_widget.dart';
+import '../widgets/custom_button.dart';
+import '../../base/utils/common_methods.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -63,18 +64,23 @@ class _SettingScreenState extends State<SettingScreen> {
                     NavigationUtils.push(context, routeSupportScreen);
                   }),
               CommonListTileWidget(
-                  titleText: AppLocalizations.of(context)!.translate
-                    ("terms&condition"),
+                  titleText: AppLocalizations.of(context)!.translate("terms&condition"),
                   imagePath: ImageRes.setting_terms_condition,
-                  onTap: () {}),
+                  onTap: () {
+                    launchURL('https://www.shalaonline.com/app/en/terms-of-use');
+                  }),
               CommonListTileWidget(
                   titleText: AppLocalizations.of(context)!.translate("privacy_policy"), imagePath: ImageRes
                   .setting_privacy_policy,
-                  onTap: () {}),
+                  onTap: () {
+                    launchURL('https://www.shalaonline.com/app/en/privacy-policy');
+                  }),
               CommonListTileWidget(
                   titleText: AppLocalizations.of(context)!.translate('about'), imagePath: ImageRes
-                  .setting_about, onTap: ()
-              {}),
+                  .setting_about,
+                  onTap: () {
+                launchURL('https://www.shalaonline.com/app/en/about-us');
+              }),
               CommonListTileWidget(
                   titleText: AppLocalizations.of(context)!.translate
                     ('invite_friends'), imagePath: ImageRes

@@ -15,6 +15,7 @@ import 'package:shala_yoga/models/programs/program_details_model.dart';
 import 'package:shala_yoga/models/programs/programs_model.dart';
 import 'package:shala_yoga/models/quiz_model.dart';
 import 'package:shala_yoga/models/recommendation_model.dart';
+import 'package:shala_yoga/ui/question_answer_screen.dart';
 
 class ApiServices {
   static final ApiServices _apiController = ApiServices._internal();
@@ -134,8 +135,10 @@ class ApiServices {
     }
   }
 
+
   Future<QuizModel> quizDetailsApi(
       /*{required Map<String, dynamic> param}*/) async {
+
     try {
       Response response = await _dio.get(
         Config.quizDetails,

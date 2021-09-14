@@ -3,7 +3,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shala_yoga/ui/video_player/custom_video_player.dart';
+import '../../video_player/custom_video_player.dart';
+import '../../widgets/expand_shrink_text.dart';
+
 import '../../../base/utils/common_methods.dart';
 import '../../../base/utils/constants/color_constant.dart';
 import '../../../base/utils/constants/image_constant.dart';
@@ -185,6 +187,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                     Padding(
                       padding: EdgeInsetsDirectional.only(start: 25, end: 23, top: 20),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -223,31 +226,9 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                             ],
                           ),
                           SizedBox(height: 22),
-                          Container(
-                            child: Column(
-                              children: [
-                                Text(
-                                  state.programDetailModel.content!.programs.description,
-                                  maxLines: textDescription ? state.programDetailModel.content!.programs.description.length : 2,
-                                  style: TextStyles.R1375,
-                                  textAlign: TextAlign.justify,
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    setState(() {
-                                      textDescription = !textDescription;
-                                    });
-                                  },
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      textDescription ? Text("Show Less", style: TextStyles.R1578) : Text("Show More", style: TextStyles.R1578),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                          ExpandShrinkText(state.programDetailModel
+                              .content!.programs.description,
+                          trimLines:5,),
                         ],
                       ),
                     ),

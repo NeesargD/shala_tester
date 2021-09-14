@@ -5,6 +5,7 @@ import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 import 'package:shala_yoga/ui/classes_widgets/classes_grid_widget.dart';
 import 'package:shala_yoga/ui/program_widgets/program_grid_widget.dart';
 import 'package:shala_yoga/ui/widgets/circular_image.dart';
+import 'package:shala_yoga/ui/widgets/expand_shrink_text.dart';
 
 import '../../base/utils/constants/color_constant.dart';
 import '../../base/utils/constants/textstyle_constants.dart';
@@ -143,31 +144,10 @@ class _InstructorProfileScreenState extends State<InstructorProfileScreen>
                     Container(
                       margin: EdgeInsetsDirectional.only(
                           start: 25, end: 25, bottom: 0),
-                      child: Column(
-                        children: [
-                          Text(
-                            state.instructorDetailsModel.content!
-                                .instructorDetails.description ,
-                            maxLines: textDescription ? state
-                                .instructorDetailsModel.content!
-                                .instructorDetails.description.length : 3,
-                            style: TextStyles.R1375,
-                            textAlign: TextAlign.justify,
-                          ),
-                          InkWell(
-                            onTap: (){ setState(() {
-                              textDescription = !textDescription;
-                            }); },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                textDescription ? Text("Show Less",style:
-                                TextStyles.R1578) :  Text("Show More",style:
-                                TextStyles.R1578),
-                              ],
-                            ),
-                          ),
-                        ],
+                      child: ExpandShrinkText(
+                        state.instructorDetailsModel.content!
+                            .instructorDetails.description,
+                        trimLines: 3,
                       ),
                     ),
                     SizedBox(height: 20),

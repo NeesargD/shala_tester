@@ -2,9 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
-import 'package:shala_yoga/ui/video_player/custom_video_player.dart';
+import '../../../base/utils/navigation/navigation_route_constants.dart';
+import '../../video_player/custom_video_player.dart';
 import '../../../base/utils/navigation/navigation_utils.dart';
+import '../../widgets/expand_shrink_text.dart';
 
 import '../../../base/utils/common_methods.dart';
 import '../../../base/utils/constants/color_constant.dart';
@@ -203,13 +204,12 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                     ],
                                   ),
                                   SizedBox(height: 30),
-                                  Text(
+                                  ExpandShrinkText(
                                     state.classDetailsModel.content!.classes.description,
-                                    style: TextStyles.R1375,
-                                    textAlign: TextAlign.justify,
+                                  trimLines: 5,
                                   ),
                                   /*Container(
-                                    height: 120,
+                                    height: 120,x
                                     child: Scrollbar(
                                       child: SingleChildScrollView(
                                         child: Text(
