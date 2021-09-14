@@ -21,4 +21,5 @@ class Config {
   static const String getFaq = 'faq';
 
   static const String postQuestionAnswer = 'submit_quiz';
+  static const String getFilter = 'filter';
 }

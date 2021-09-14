@@ -35,10 +35,8 @@ class RecommendedProgramList extends StatelessWidget {
               borderRadius: BorderRadius.circular(4),
               child: CustomNetworkImage(
                 imageUrl: coverImage,
-                boxFit: BoxFit.fill,
+                boxFit: BoxFit.cover,
               ),
-              // child: Image.asset(coverImage,
-              // fit : BoxFit.cover),
             )),
         Container(
           height: screenHeight(context: context, percent: height),

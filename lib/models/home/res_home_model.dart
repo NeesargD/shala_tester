@@ -42,18 +42,16 @@ class Content {
   });
 
   List<Banner>? banner;
-  List<dynamic>? continueWatching;
-  List<dynamic>? recommendedContent;
+  ContinueWatching? continueWatching;
+  List<RecommendedContent>? recommendedContent;
   List<DynamicContent>? dynamicContent;
   List<Instructor>? featureInstructor;
 
   factory Content.fromJson(Map<String, dynamic> json) => Content(
         banner:
             List<Banner>.from(json["banner"].map((x) => Banner.fromJson(x))),
-        continueWatching:
-            List<dynamic>.from(json["continue_watching"].map((x) => x)),
-        recommendedContent:
-            List<dynamic>.from(json["recommended_content"].map((x) => x)),
+    continueWatching: json["continue_watching"] == null ? null : ContinueWatching.fromJson(json["continue_watching"]),
+    recommendedContent: List<RecommendedContent>.from(json["recommended_content"].map((x) => RecommendedContent.fromJson(x))),
         dynamicContent: List<DynamicContent>.from(
             json["dynamic_content"].map((x) => DynamicContent.fromJson(x))),
         featureInstructor: List<Instructor>.from(
@@ -62,8 +60,7 @@ class Content {
 
   Map<String, dynamic> toJson() => {
         "banner": List<dynamic>.from(banner!.map((x) => x.toJson())),
-        "continue_watching":
-            List<dynamic>.from(continueWatching!.map((x) => x)),
+    "continue_watching": continueWatching == null ? null : continueWatching!.toJson(),
         "recommended_content":
             List<dynamic>.from(recommendedContent!.map((x) => x)),
         "dynamic_content":
@@ -108,6 +105,46 @@ class Banner {
         "externallink": externallink,
         "bannerimage": bannerimage,
       };
+}
+
+class ContinueWatching {
+  ContinueWatching({
+    required this.programId,
+  });
+
+  List<ProgramsContent> programId;
+
+  factory ContinueWatching.fromJson(Map<String, dynamic> json) => ContinueWatching(
+    programId: json["program_id"] == null ? [] : List<ProgramsContent>.from(json["program_id"].map((x) => ProgramsContent.fromJson(x))),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "program_id": List<dynamic>.from(programId.map((x) => x.toJson())),
+  };
+}
+
+class RecommendedContent {
+  RecommendedContent({
+    required this.contentType,
+    this.programs,
+    this.classes,
+  });
+
+  String contentType;
+  ProgramsContent? programs;
+  ClassesContent? classes;
+
+  factory RecommendedContent.fromJson(Map<String, dynamic> json) => RecommendedContent(
+    contentType: json["content_type"] == null ? '' : json["content_type"],
+    programs: json["programs"] == null ? null : ProgramsContent.fromJson(json["programs"]),
+    classes: json["classes"] == null ? null : ClassesContent.fromJson(json["classes"]),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "content_type": contentType,
+    "programs": programs == null ? null : programs!.toJson(),
+    "classes": classes == null ? null : classes!.toJson(),
+  };
 }
 
 class DynamicContent {

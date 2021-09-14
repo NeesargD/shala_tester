@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shala_yoga/base/utils/constants/color_constant.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
-import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 
 class SupportModel extends StatelessWidget {
   final String question;

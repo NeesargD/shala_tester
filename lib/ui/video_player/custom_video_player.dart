@@ -20,7 +20,7 @@ class ChewieDemo extends StatefulWidget {
 }
 
 class _ChewieDemoState extends State<ChewieDemo> {
-  TargetPlatform? _platform;
+  //TargetPlatform? _platform;
   late VideoPlayerController _videoPlayerController1;
   late VideoPlayerController _videoPlayerController2;
   ChewieController? _chewieController;
@@ -30,7 +30,6 @@ class _ChewieDemoState extends State<ChewieDemo> {
     super.initState();
     // print(widget.title);
     initializePlayer();
-
   }
 
   @override
@@ -67,34 +66,6 @@ class _ChewieDemoState extends State<ChewieDemo> {
     //       text: 'Whats up? :)',
     //     ),
     //   ];
-
-    final subtitles = [
-      Subtitle(
-        index: 0,
-        start: Duration.zero,
-        end: const Duration(seconds: 10),
-        text: const TextSpan(children: [
-          TextSpan(
-            text: 'Hello',
-            style: TextStyle(color: Colors.red, fontSize: 22),
-          ),
-          TextSpan(
-            text: ' from ',
-            style: TextStyle(color: Colors.green, fontSize: 20),
-          ),
-          TextSpan(
-            text: 'subtitles',
-            style: TextStyle(color: Colors.blue, fontSize: 18),
-          )
-        ]).toString(),
-      ),
-      Subtitle(index: 0, start: const Duration(seconds: 10), end: const Duration(seconds: 20), text: 'Whats up? :)'
-          // text: const TextSpan(
-          //   text: 'Whats up? :)',
-          //   style: TextStyle(color: Colors.amber, fontSize: 22, fontStyle: FontStyle.italic),
-          // ),
-          ),
-    ];
 
     _chewieController = ChewieController(
       videoPlayerController: _videoPlayerController1,

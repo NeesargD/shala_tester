@@ -7,6 +7,7 @@ import 'package:shala_yoga/models/classes/class_details_model.dart';
 import 'package:shala_yoga/models/classes/classes_model.dart';
 import 'package:shala_yoga/models/error_response.dart';
 import 'package:shala_yoga/models/faq/faq_model.dart';
+import 'package:shala_yoga/models/filter/get_filter.dart';
 import 'package:shala_yoga/models/home/res_home_model.dart';
 import 'package:shala_yoga/models/instructor_details_model.dart';
 import 'package:shala_yoga/models/instructor_models.dart';
@@ -15,7 +16,6 @@ import 'package:shala_yoga/models/programs/program_details_model.dart';
 import 'package:shala_yoga/models/programs/programs_model.dart';
 import 'package:shala_yoga/models/quiz_model.dart';
 import 'package:shala_yoga/models/recommendation_model.dart';
-import 'package:shala_yoga/ui/question_answer_screen.dart';
 
 class ApiServices {
   static final ApiServices _apiController = ApiServices._internal();
@@ -72,9 +72,7 @@ class ApiServices {
   // }
 
   ErrorResponse _handleError(DioError error) {
-    if (error.type == DioErrorType.other &&
-        error.error != null &&
-        error.error is SocketException) {}
+    if (error.type == DioErrorType.other && error.error != null && error.error is SocketException) {}
 
     ErrorResponse errorResponse = ErrorResponse();
 
@@ -89,41 +87,33 @@ class ApiServices {
             if (error.response!.data.length > 1) {
               errorResponse = ErrorResponse.fromJson(error.response!.data);
             } else {
-              errorResponse = ErrorResponse(
-                  errors: [Error(detail: error.response!.data["error"])]);
+              errorResponse = ErrorResponse(errors: [Error(detail: error.response!.data["error"])]);
             }
           } catch (e) {
-            errorResponse =
-                ErrorResponse(errors: [Error(detail: StringRes.errorGeneral)]);
+            errorResponse = ErrorResponse(errors: [Error(detail: StringRes.errorGeneral)]);
           }
         } else {
-          errorResponse =
-              ErrorResponse(errors: [Error(detail: StringRes.errorGeneral)]);
+          errorResponse = ErrorResponse(errors: [Error(detail: StringRes.errorGeneral)]);
         }
 
         break;
       case DioErrorType.connectTimeout:
-        errorResponse =
-            ErrorResponse(errors: [Error(detail: StringRes.serverTimeout)]);
+        errorResponse = ErrorResponse(errors: [Error(detail: StringRes.serverTimeout)]);
         break;
       case DioErrorType.receiveTimeout:
-        errorResponse =
-            ErrorResponse(errors: [Error(detail: StringRes.serverTimeout)]);
+        errorResponse = ErrorResponse(errors: [Error(detail: StringRes.serverTimeout)]);
         break;
       case DioErrorType.sendTimeout:
-        errorResponse =
-            ErrorResponse(errors: [Error(detail: StringRes.serverTimeout)]);
+        errorResponse = ErrorResponse(errors: [Error(detail: StringRes.serverTimeout)]);
         break;
       case DioErrorType.other:
-        errorResponse = ErrorResponse(
-            errors: [Error(detail: StringRes.somethingWentWrong)]);
+        errorResponse = ErrorResponse(errors: [Error(detail: StringRes.somethingWentWrong)]);
         break;
     }
     return errorResponse;
   }
 
-  Future<OnboardingModel> onBoardAPI(
-      /*{required Map<String, dynamic> param}*/) async {
+  Future<OnboardingModel> onBoardAPI(/*{required Map<String, dynamic> param}*/) async {
     try {
       Response response = await _dio.get(
         Config.splash,
@@ -135,10 +125,7 @@ class ApiServices {
     }
   }
 
-
-  Future<QuizModel> quizDetailsApi(
-      /*{required Map<String, dynamic> param}*/) async {
-
+  Future<QuizModel> quizDetailsApi(/*{required Map<String, dynamic> param}*/) async {
     try {
       Response response = await _dio.get(
         Config.quizDetails,
@@ -150,8 +137,7 @@ class ApiServices {
     }
   }
 
-  Future<InstructorModel> getAllInstructors(
-      /*{required Map<String, dynamic> param}*/) async {
+  Future<InstructorModel> getAllInstructors(/*{required Map<String, dynamic> param}*/) async {
     try {
       Response response = await _dio.get(
         Config.instructor,
@@ -163,11 +149,9 @@ class ApiServices {
     }
   }
 
-  Future<InstructorDetailsModel> instructorDetailsApi(
-      {required Map<String, dynamic> param}) async {
+  Future<InstructorDetailsModel> instructorDetailsApi({required Map<String, dynamic> param}) async {
     try {
-      Response response =
-          await _dio.get(Config.instructorDetails, queryParameters: param);
+      Response response = await _dio.get(Config.instructorDetails, queryParameters: param);
       print("------");
       return InstructorDetailsModel.fromJson(response.data);
     } on DioError catch (e) {
@@ -184,19 +168,16 @@ class ApiServices {
     }
   }
 
-  Future<Map> postQuestionAnswer(
-      {required Map<String, dynamic> param}) async {
+  Future<Map> postQuestionAnswer({required Map<String, dynamic> param}) async {
     try {
-      Response response =
-          await _dio.post(Config.postQuestionAnswer, data: param);
+      Response response = await _dio.post(Config.postQuestionAnswer, data: param);
       return response.data;
     } on DioError catch (e) {
       throw _handleError(e);
     }
   }
 
-  Future<RecommendationModel> recommendedContent(
-      /*{required Map<String,dynamic> param}*/) async {
+  Future<RecommendationModel> recommendedContent() async {
     try {
       Response response = await _dio.get(
         Config.recommendation,
@@ -208,8 +189,19 @@ class ApiServices {
     }
   }
 
-  Future<ClassesModel> getAllClasses(
-      /*{required Map<String, dynamic> param}*/) async {
+  Future<GetFilterModel> getFilter() async {
+    try {
+      Response response = await _dio.get(
+        Config.getFilter,
+      );
+      print("------");
+      return GetFilterModel.fromJson(response.data);
+    } on DioError catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  Future<ClassesModel> getAllClasses(/*{required Map<String, dynamic> param}*/) async {
     try {
       Response response = await _dio.get(
         Config.getAllClasses,
@@ -221,11 +213,9 @@ class ApiServices {
     }
   }
 
-  Future<ClassDetailsModel> getClassDetails(
-      {required Map<String, dynamic> param}) async {
+  Future<ClassDetailsModel> getClassDetails({required Map<String, dynamic> param}) async {
     try {
-      Response response =
-          await _dio.get(Config.getClassDetails, queryParameters: param);
+      Response response = await _dio.get(Config.getClassDetails, queryParameters: param);
       print("------");
       return ClassDetailsModel.fromJson(response.data);
     } on DioError catch (e) {
@@ -233,8 +223,7 @@ class ApiServices {
     }
   }
 
-  Future<ProgramsModel> getAllPrograms(
-      /*{required Map<String, dynamic> param}*/) async {
+  Future<ProgramsModel> getAllPrograms(/*{required Map<String, dynamic> param}*/) async {
     try {
       Response response = await _dio.get(
         Config.getAllPrograms,
@@ -246,11 +235,9 @@ class ApiServices {
     }
   }
 
-  Future<ProgramDetailModel> getProgramDetail(
-      {required Map<String, dynamic> param}) async {
+  Future<ProgramDetailModel> getProgramDetail({required Map<String, dynamic> param}) async {
     try {
-      Response response =
-          await _dio.get(Config.getProgramDetail, queryParameters: param);
+      Response response = await _dio.get(Config.getProgramDetail, queryParameters: param);
       print("------");
       return ProgramDetailModel.fromJson(response.data);
     } on DioError catch (e) {
@@ -267,27 +254,4 @@ class ApiServices {
       throw _handleError(e);
     }
   }
-
-  /// put
-// Future<AddToCartResponseModel> addToCartApi({Map params}) async {
-//   try {
-//     Response response = await _dio
-//         .put(ApiEndPoint.cart + '/${appState.userId}', data: params);
-//     return AddToCartResponseModel.fromJson(response.data);
-//   } on DioError catch (e) {
-//     throw _handleError(e);
-//   }
-// }
-
-  ///delete
-// Future<ClearCartResponseModel> clearCartApi({Map params}) async {
-//   try {
-//     Response response = await _dio
-//         .delete(ApiEndPoint.cartExt + '/${appState.userId}',data: params);
-//     return ClearCartResponseModel.fromJson(response.data);
-//   } on DioError catch (e) {
-//     throw _handleError(e);
-//   }
-// }
-
 }

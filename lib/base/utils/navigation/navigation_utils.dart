@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shala_yoga/blocs/classes/classes_details_bloc/classes_details_bloc.dart';
 import 'package:shala_yoga/blocs/faq/faq_bloc.dart';
+import 'package:shala_yoga/blocs/filter/get_filter/get_filter_bloc.dart';
 import 'package:shala_yoga/blocs/home/home_bloc/home_bloc.dart';
 import 'package:shala_yoga/blocs/programs/program_detail_bloc/program_detail_bloc.dart';
 import 'package:shala_yoga/blocs/question_answer/question_answer_bloc.dart';
@@ -56,8 +57,7 @@ class NavigationUtils {
       case routeRecommendation:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) =>
-                RecommendationBloc()..add(GetRecommendationContent()),
+            create: (context) => RecommendationBloc()..add(GetRecommendationContent()),
             child: RecommendationScreen(),
           ),
         );
@@ -121,7 +121,11 @@ class NavigationUtils {
                   ),
                 ));
       case routeFilterScreen:
-        return MaterialPageRoute(builder: (_) => FilterScreen());
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => GetFilterBloc(),
+                  child: FilterScreen(),
+                ));
       case routeClassDetailsScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
@@ -149,19 +153,15 @@ class NavigationUtils {
 
   Route<dynamic> _errorRoute(String message) {
     return MaterialPageRoute(builder: (_) {
-      return Scaffold(
-          appBar: AppBar(title: Text('Error')),
-          body: Center(child: Text(message)));
+      return Scaffold(appBar: AppBar(title: Text('Error')), body: Center(child: Text(message)));
     });
   }
 
-  static void pushReplacement(BuildContext context, String routeName,
-      {Object? arguments}) {
+  static void pushReplacement(BuildContext context, String routeName, {Object? arguments}) {
     Navigator.of(context).pushReplacementNamed(routeName, arguments: arguments);
   }
 
-  static Future<dynamic> push(BuildContext context, String routeName,
-      {Object? arguments}) {
+  static Future<dynamic> push(BuildContext context, String routeName, {Object? arguments}) {
     return Navigator.of(context).pushNamed(routeName, arguments: arguments);
   }
 
@@ -169,11 +169,7 @@ class NavigationUtils {
     Navigator.of(context).pop(args);
   }
 
-  static Future<dynamic> pushAndRemoveUntil(
-      BuildContext context, String routeName,
-      {Object? arguments}) {
-    return Navigator.of(context).pushNamedAndRemoveUntil(
-        routeName, (route) => false,
-        arguments: arguments);
+  static Future<dynamic> pushAndRemoveUntil(BuildContext context, String routeName, {Object? arguments}) {
+    return Navigator.of(context).pushNamedAndRemoveUntil(routeName, (route) => false, arguments: arguments);
   }
 }
