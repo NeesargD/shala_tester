@@ -25,6 +25,12 @@ class TextStyles {
     fontSize: 30.0,
     color: ColorRes.greyText,
   );
+  static const TextStyle SB25FF = TextStyle(
+    inherit: true,
+    fontWeight: FontWeight.w600,
+    fontSize: 25.0,
+    color: ColorRes.white,
+  );
   static const TextStyle SB2275 = TextStyle(
     inherit: true,
     fontWeight: FontWeight.w600,

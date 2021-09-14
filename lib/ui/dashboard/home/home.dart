@@ -317,7 +317,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                           image: state.homeModel.content!.recommendedContent![i].classes!.instructor!.profilePicture!,
                                                           level: state.homeModel.content!.recommendedContent![i].classes!.level!,
                                                           width: 0.75,
-                                                          duration: appState.parseDuration(state.homeModel.content!.recommendedContent![i].classes!.durations!).inMinutes.toString()),
+                                                          duration: state.homeModel.content!.recommendedContent![i].classes!.durations!,),
                                                     )
                                                   : InkWell(
                                                       onTap: () {

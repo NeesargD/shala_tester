@@ -181,7 +181,7 @@ class _InstructorProfileScreenState extends State<InstructorProfileScreen>
                         children: [
                           Container(
                             margin: EdgeInsetsDirectional.only(
-                                start: 35, end: 35, top: 10),
+                                start: 20, end: 20, top: 10),
                             child: GridView.builder(
                               padding: EdgeInsets.zero,
                               gridDelegate:
@@ -201,7 +201,7 @@ class _InstructorProfileScreenState extends State<InstructorProfileScreen>
                           ),
                           Container(
                             margin: EdgeInsetsDirectional.only(
-                                start: 35, end: 35, top: 10),
+                                start: 20, end: 20, top: 10),
                             child: GridView.builder(
                               padding: EdgeInsets.zero,
                               gridDelegate:
