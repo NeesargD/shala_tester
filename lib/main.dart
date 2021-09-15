@@ -1,10 +1,11 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:shala_yoga/base/utils/localization/app_language.dart';
-import 'package:shala_yoga/ui/in_app_purchase_manager.dart';
 import 'base/dependencyinjection/locator.dart';
 import 'base/utils/constants/color_constant.dart';
 import 'base/utils/localization/app_localizations.dart';
@@ -15,6 +16,7 @@ import 'base/utils/preference_utils.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await init();
+  configLoading();
   await Firebase.initializeApp();
   // await initializeDateFormatting();
   setupLocator();
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
         statusBarBrightness: Brightness.dark,
       ),
     );
-
+    final botToastBuilder = BotToastInit();
     return ChangeNotifierProvider<AppLanguage>(
       create: (_) => AppLanguage(),
       lazy: false,
@@ -65,15 +67,36 @@ class MyApp extends StatelessWidget {
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
+            builder: (context, child) {
+              child = botToastBuilder(context, FlutterEasyLoading(child: child));
+              return child;
+            },
             supportedLocales:  [
               Locale('en', ''), // English, no country code
               Locale('ar', ''), // Arabic, no country code
             ],
+            navigatorObservers: [BotToastNavigatorObserver()],
           );
         },
       ),
     );
   }
+}
+
+void configLoading() {
+  EasyLoading.instance
+    ..displayDuration = const Duration(milliseconds: 2000)
+    ..indicatorType = EasyLoadingIndicatorType.doubleBounce
+    ..maskType = EasyLoadingMaskType.custom
+    ..loadingStyle = EasyLoadingStyle.custom
+    ..indicatorSize = 100
+    ..radius = 10.0
+    ..progressColor = Colors.yellow
+    ..backgroundColor = Colors.transparent
+    ..indicatorColor = Colors.white
+    ..textColor = Colors.yellow
+    ..maskColor = Colors.black.withOpacity(0.5)
+    ..userInteractions = false;
 }
 
 
