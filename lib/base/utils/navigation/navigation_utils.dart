@@ -11,6 +11,7 @@ import 'package:shala_yoga/ui/dashboard/programs/program_details_screen.dart';
 import 'package:shala_yoga/ui/filter/filter_screen.dart';
 import 'package:shala_yoga/ui/setting/language/language.dart';
 import 'package:shala_yoga/ui/setting/notification/notification.dart';
+import 'package:shala_yoga/ui/setting/subscription/subscription_screen.dart';
 import 'package:shala_yoga/ui/setting/support/support_screen.dart';
 import 'package:shala_yoga/ui/widgets/breathe_loader.dart';
 import '../../../blocs/instructor_details_bloc/instructor_details_bloc.dart';
@@ -67,6 +68,10 @@ class NavigationUtils {
                   create: (context) => HomeBloc(),
                   child: HomeScreen(),
                 ));
+
+      case routeSubscription:
+        return MaterialPageRoute(
+            builder: (_) => SubscribeScreen());
       case routeInstructors:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(

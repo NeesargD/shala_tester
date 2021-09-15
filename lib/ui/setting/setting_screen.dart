@@ -118,40 +118,9 @@ class _SettingScreenState extends State<SettingScreen> {
 
   // dynamic link share
   void generateDynamicLink() async {
-    // final DynamicLinkParameters parameters = DynamicLinkParameters(
-    //   uriPrefix: 'https://socialdemo.page.link',
-    //   link: Uri.parse('https://socialdemo.page.link/invitefriend=$code'),
-    //   androidParameters: AndroidParameters(
-    //     packageName: 'com.example.socialdemo',
-    //     minimumVersion: 1,
-    //   ),
-    //   iosParameters: IosParameters(
-    //     bundleId: 'com.example.socialdemo',
-    //     minimumVersion: '1.0.1',
-    //     appStoreId: '123456789',
-    //   ),
-    //   socialMetaTagParameters: SocialMetaTagParameters(
-    //     title: 'Social Login',
-    //     description: 'Social login app for learn and earn!',
-    //   ),
-    // );
-    //
-    // final Uri dynamicUrl = await parameters.buildUrl();
-    // final ShortDynamicLink shortenedLink =
-    // await DynamicLinkParameters.shortenUrl(
-    //   dynamicUrl,
-    //   DynamicLinkParametersOptions(
-    //       shortDynamicLinkPathLength: ShortDynamicLinkPathLength.unguessable),
-    // );
-    // final Uri shortUrl = shortenedLink.shortUrl;
-    //
-    // print(shortUrl);
-    // print(dynamicUrl);
-    //
-    // Share.share('Social Login $shortUrl');
     final DynamicLinkParameters parameters = DynamicLinkParameters(
       uriPrefix: 'https://shalaonline.page.link',
-      link: Uri.parse('https://shalaonline.page.link//inviteFriend=1'),
+      link: Uri.parse('https://shalaonline.page.link/inviteFriend=1'),
       androidParameters: AndroidParameters(
         packageName: 'com.app.shalaonline',
         minimumVersion: 1,

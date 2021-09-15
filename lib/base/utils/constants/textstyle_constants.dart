@@ -145,6 +145,19 @@ class TextStyles {
     fontSize: 20.0,
     color: ColorRes.greyText,
   );
+  static const TextStyle R1078 = TextStyle(
+    //10-white
+    inherit: true,
+    fontSize: 10.0,
+    color: ColorRes.primaryColor,
+  );
+  static const TextStyle L1275 = TextStyle(
+    //14-grey
+    inherit: true,
+    fontWeight: FontWeight.w400,
+    fontSize: 12.0,
+    color: ColorRes.greyText,
+  );
 
   static const TextStyle SB20FF = TextStyle(
     inherit: true,

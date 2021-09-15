@@ -17,18 +17,29 @@ class BottomSheetWidget extends StatelessWidget {
       padding: EdgeInsetsDirectional.fromSTEB(27, 42, 27, 0),
       child: Column(
         children: [
-          CommonListTileWidget(titleText:AppLocalizations.of(context)!.translate('subscription'),
-              imagePath: ImageRes.bottom_sheet_subscription, onTap: (){}),
-          CommonListTileWidget(titleText: AppLocalizations.of(context)!.translate('about_us'),
-              imagePath: ImageRes.bottom_sheet_about_us, onTap: (){
+          CommonListTileWidget(
+              titleText:
+                  AppLocalizations.of(context)!.translate('subscription'),
+              imagePath: ImageRes.bottom_sheet_subscription,
+              onTap: () {
+                NavigationUtils.push(context, routeSubscription);
+              }),
+          CommonListTileWidget(
+              titleText: AppLocalizations.of(context)!.translate('about_us'),
+              imagePath: ImageRes.bottom_sheet_about_us,
+              onTap: () {
                 launchURL('https://www.shalaonline.com/app/en/about-us');
               }),
-          CommonListTileWidget(titleText: AppLocalizations.of(context)!.translate("settings"),
-              imagePath: ImageRes.bottom_sheet_setting, onTap: (){
+          CommonListTileWidget(
+              titleText: AppLocalizations.of(context)!.translate("settings"),
+              imagePath: ImageRes.bottom_sheet_setting,
+              onTap: () {
                 NavigationUtils.push(context, routeSetting);
               }),
-          CommonListTileWidget(titleText: AppLocalizations.of(context)!.translate("log_out"),
-              imagePath: ImageRes.bottom_sheet_setting, onTap: (){}),
+          CommonListTileWidget(
+              titleText: AppLocalizations.of(context)!.translate("log_out"),
+              imagePath: ImageRes.bottom_sheet_setting,
+              onTap: () {}),
         ],
       ),
     );

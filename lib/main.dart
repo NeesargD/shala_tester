@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:shala_yoga/base/utils/localization/app_language.dart';
+import 'package:shala_yoga/ui/in_app_purchase_manager.dart';
 import 'base/dependencyinjection/locator.dart';
 import 'base/utils/constants/color_constant.dart';
 import 'base/utils/localization/app_localizations.dart';

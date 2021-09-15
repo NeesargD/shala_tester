@@ -68,6 +68,7 @@ dependencies:
   firebase_analytics: ^8.3.2
   url_launcher: ^6.0.10
   device_info_plus: ^2.1.0
+  flutter_inapp_purchase: ^5.0.2
   #video-player
   chewie: ^1.2.2
   #localization en-ar
