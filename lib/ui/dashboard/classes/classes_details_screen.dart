@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shala_yoga/ui/auth/login_signup.dart';
 import '../../../base/utils/navigation/navigation_route_constants.dart';
 import '../../video_player/custom_video_player.dart';
 import '../../../base/utils/navigation/navigation_utils.dart';
@@ -63,7 +64,9 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                         textStyle: TextStyles.SB18FF),
                     SizedBox(height: 15),
                     CustomButton(
-                        onTap: () {},
+                        onTap: () {
+                           Navigator.push(context, MaterialPageRoute(builder: (context) => LoginSignupScreen(),));
+                        },
                         buttonText: 'WATCH LATER',
                         backgroundColor: ColorRes.greyText,
                         foregroundColor: ColorRes.whiteGradient,

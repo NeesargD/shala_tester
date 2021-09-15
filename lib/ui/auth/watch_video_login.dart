@@ -29,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Stack(
                       clipBehavior: Clip.none,
                       children: [
-                        Image.asset(ImageRes.yogaImg, fit: BoxFit.fill),
+                        Image.asset(ImageRes.shalaThumbnail, fit: BoxFit.fill),
                         Container(
                           child: Column(
                             children: [
@@ -88,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Padding(
                               padding: const EdgeInsetsDirectional.only(
                                   start: 34, end: 34, top: 24, bottom: 8),
-                              child: Text(stringRes.in_order_to_watch_sigin,
+                              child: Text('IN ORDER TO WATCH THIS VIDEO, PLEASE SIGN IN WITH YOUR ACCOUNT',
                                   style: TextStyles.SB18FF),
                             ),
                             // height: MediaQuery.of(context).size.height * 0.1,

@@ -29,7 +29,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: ColorRes.primaryColor),
                 ),
-                hintText: stringRes.hintTextField_name,
+                hintText: 'Name',
                 hintStyle: TextStyles.R1575),
           ),
           const SizedBox(height: 30),
@@ -38,7 +38,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: ColorRes.primaryColor),
                 ),
-                hintText: stringRes.hintTextField_email,
+                hintText: 'Email',
                 hintStyle: TextStyles.R1575),
           ),
           const SizedBox(height: 30),
@@ -47,7 +47,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: ColorRes.primaryColor),
                 ),
-                hintText: stringRes.hintTextField_phone,
+                hintText: 'Phone (Optional)',
                 hintStyle: TextStyles.R1575),
           ),
           const SizedBox(height: 30),
@@ -57,14 +57,14 @@ class _SignupScreenState extends State<SignupScreen> {
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: ColorRes.primaryColor),
                 ),
-                hintText: stringRes.hintTextField_password,
+                hintText: 'Password',
                 hintStyle: TextStyles.R1575),
           ),
           const SizedBox(height: 25),
           CustomButton(
               textStyle: TextStyles.SB18FF,
               borderColor: ColorRes.primaryColor,
-              buttonText: stringRes.button_create_account,
+              buttonText: 'CREATE ACCOUNT',
               foregroundColor: ColorRes.primaryColor,
               onTap: () {},
               backgroundColor: ColorRes.primaryColor),
@@ -73,23 +73,23 @@ class _SignupScreenState extends State<SignupScreen> {
               onPressed: () {
                 widget.onTap(true);
               },
-              child: Text(stringRes.already_have_account,
+              child: Text('I ALREADY HAVE AN ACCOUNT',
                   style: TextStyles.R1575)),
           const SizedBox(height: 30),
            Row(children: <Widget>[
             Expanded(
-              child: Divider(color: ColorRes.greytext),
+              child: Divider(color: ColorRes.greyText),
             ),
-            Text(stringRes.or, style: TextStyles.R1575),
+            Text('OR', style: TextStyles.R1575),
             Expanded(
-              child: Divider(color: ColorRes.greytext),
+              child: Divider(color: ColorRes.greyText),
             ),
           ]),
           const SizedBox(height: 30),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(stringRes.signup_using, style: TextStyles.R1575),
+              Text('SIGN UP USING', style: TextStyles.R1575),
               SizedBox(width: MediaQuery.of(context).size.width * 0.05),
               Container(
                   decoration: BoxDecoration(
@@ -99,19 +99,19 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                       child: Padding(
                         padding: EdgeInsetsDirectional.all(14),
-                        child: SvgPicture.asset(ImageRes.google),
+                        child: SvgPicture.asset(ImageRes.shalaThumbnail),
                       )),
               const SizedBox(width: 10),
               Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25),
                     color: ColorRes.white,
-                    border: Border.all(color: ColorRes.greytext),
+                    border: Border.all(color: ColorRes.greyText),
                   ),
                   child: Padding(
                     padding: EdgeInsetsDirectional.only(start: 12, end: 12,
                         top:10, bottom: 10),
-                    child: SvgPicture.asset(ImageRes.apple),
+                    child: SvgPicture.asset(ImageRes.shalaThumbnail),
                   )),
             ],
           ),

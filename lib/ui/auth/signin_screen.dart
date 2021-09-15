@@ -27,7 +27,7 @@ class _SignInScreenState extends State<SignInScreen>{
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
-                      border: Border.all(color: ColorRes.greytext,width: 1),
+                      border: Border.all(color: ColorRes.greyText,width: 1),
                     ),
                     child: Center(
                       child: Padding(
@@ -36,9 +36,9 @@ class _SignInScreenState extends State<SignInScreen>{
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            SvgPicture.asset(ImageRes.google),
+                            SvgPicture.asset(ImageRes.hourGlass),
                             const SizedBox(width: 20),
-                            Text(stringRes.google_login, style: TextStyles.R1575,)
+                            Text('Login with Google', style: TextStyles.R1575,)
                           ],
                         ),
                       ),
@@ -57,10 +57,10 @@ class _SignInScreenState extends State<SignInScreen>{
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            SvgPicture.asset(ImageRes.apple),
+                            SvgPicture.asset(ImageRes.hourGlass),
                             SizedBox(width: MediaQuery.of(context).size.width
                                 * 0.02),
-                            Text(stringRes.google_login, style: TextStyles.R1575,)
+                            Text('Login with Apple', style: TextStyles.R1575,)
                           ],
                         ),
                       ),
@@ -72,7 +72,7 @@ class _SignInScreenState extends State<SignInScreen>{
                       child: Divider(
                           thickness: 1, color: ColorRes.greyText.withOpacity(0.5)),
                     ),
-                    Text(stringRes.or, style: TextStyles.R1575),
+                    Text('OR', style: TextStyles.R1575),
                     Expanded(
                       child: Divider(
                           thickness: 1, color: ColorRes.greyText.withOpacity(0.5)),
@@ -85,7 +85,7 @@ class _SignInScreenState extends State<SignInScreen>{
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: ColorRes.primaryColor),
                         ),
-                        hintText: stringRes.hintTextField_login,
+                        hintText: 'Email or Phone number',
                         hintStyle: TextStyles.R1575),
                   ),
                   const SizedBox(height: 30),
@@ -95,7 +95,7 @@ class _SignInScreenState extends State<SignInScreen>{
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: ColorRes.primaryColor),
                         ),
-                        hintText: stringRes.hintTextField_password,
+                        hintText: 'Password',
                         hintStyle: TextStyles.R1575),
                   ),
                   const SizedBox(height: 30),
@@ -103,10 +103,10 @@ class _SignInScreenState extends State<SignInScreen>{
                     child: CustomButton(
                         textStyle: TextStyles.SB18FF,
                         borderColor: ColorRes.primaryColor,
-                        buttonText: stringRes.button_login,
+                        buttonText: 'Login',
                         foregroundColor: ColorRes.primaryColor,
                         onTap: () {
-                            showAlertDialog(context);
+
                         },
                         backgroundColor: ColorRes.primaryColor),
                   ),
@@ -115,14 +115,13 @@ class _SignInScreenState extends State<SignInScreen>{
                       onPressed: () {
                         widget.onTap(false);
                       },
-                      child: Text(stringRes.create_new, style: TextStyles.R1575)),
+                      child: Text('CREATE NEW NOW!', style: TextStyles.R1575)),
                   const SizedBox(height: 30),
                   TextButton(
                       onPressed: () {
-                        Navigator.push(context,MaterialPageRoute(builder:
-                            (context) => SettingScreen(),));
+
                       },
-                      child: Text(stringRes.forgot_password, style: TextStyles.R1575)),
+                      child: Text('Forgot Password?', style: TextStyles.R1575)),
                   const SizedBox(height: 30),
                 ],
               ),
