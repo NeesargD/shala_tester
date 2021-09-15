@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shala_yoga/blocs/classes/classes_details_bloc/classes_details_bloc.dart';
 import 'package:shala_yoga/blocs/faq/faq_bloc.dart';
+import 'package:shala_yoga/blocs/favourite_bloc/favourite_bloc.dart';
 import 'package:shala_yoga/blocs/filter/get_filter/get_filter_bloc.dart';
 import 'package:shala_yoga/blocs/home/home_bloc/home_bloc.dart';
 import 'package:shala_yoga/blocs/programs/program_detail_bloc/program_detail_bloc.dart';
@@ -70,8 +71,7 @@ class NavigationUtils {
                 ));
 
       case routeSubscription:
-        return MaterialPageRoute(
-            builder: (_) => SubscribeScreen());
+        return MaterialPageRoute(builder: (_) => SubscribeScreen());
       case routeInstructors:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
@@ -133,21 +133,35 @@ class NavigationUtils {
                 ));
       case routeClassDetailsScreen:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => ClassesDetailsBloc()
-              ..add(GetClassDetails(
-                id: args!['id'],
-              )),
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => ClassesDetailsBloc()
+                  ..add(GetClassDetails(
+                    id: args!['id'],
+                  )),
+              ),
+              BlocProvider(
+                create: (context) => FavouriteBloc(),
+              ),
+            ],
             child: ClassDetailsScreen(),
           ),
         );
       case routeProgramDetailsScreen:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => ProgramDetailBloc()
-              ..add(GetProgramDetail(
-                id: args!['id'],
-              )),
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => ProgramDetailBloc()
+                  ..add(GetProgramDetail(
+                    id: args!['id'],
+                  )),
+              ),
+              BlocProvider(
+                create: (context) => FavouriteBloc(),
+              ),
+            ],
             child: ProgramDetailScreen(),
           ),
         );

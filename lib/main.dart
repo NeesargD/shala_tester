@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
         builder: (context, model, child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'Base Project',
+            title: 'Shalaonline',
             // builder: (context, child) {
             //   return MediaQuery(
             //     child: child!,

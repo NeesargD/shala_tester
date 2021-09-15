@@ -15,11 +15,17 @@ class FavouriteLoading extends FavouriteState {
 }
 
 class FavouriteSuccess extends FavouriteState {
+  final String message;
+
+  FavouriteSuccess({required this.message});
   @override
   List<Object?> get props => [];
 }
 
 class FavouriteFailure extends FavouriteState {
+  final String message;
+
+  FavouriteFailure({required this.message});
   @override
   List<Object?> get props => [];
 }

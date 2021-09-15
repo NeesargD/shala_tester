@@ -1,5 +1,6 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
+import 'package:shala_yoga/base/utils/constants/color_constant.dart';
 
 class ToastUtils {
   static void showSuccess({required String message}) {
@@ -10,7 +11,7 @@ class ToastUtils {
           padding: const EdgeInsets.all(12),
           child: Card(
             elevation: 15,
-            color: Colors.green[300],
+            color: ColorRes.primaryColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),

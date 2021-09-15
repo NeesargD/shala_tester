@@ -83,21 +83,59 @@ class _FilterScreenState extends State<FilterScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 20),
-                    Text(AppLocalizations.of(context)!.translate('duration'), style: TextStyles.SB1575),
+                    const SizedBox(height: 20),
+                    Row(
+                      children: [
+                        Text(
+                          AppLocalizations.of(context)!.translate('duration'),
+                          style: TextStyles.SB1575,
+                        ),
+                        Spacer(),
+                        Text(
+                          '${value.start.round().toString()} - ${value.end.round().toString()} Min',
+                          style: TextStyles.SB1575.copyWith(color: ColorRes.primaryColor),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                      ],
+                    ),
                     RangeSlider(
                       min: 0,
                       max: 90,
                       values: value,
-                      inactiveColor: ColorRes.greyText,
+                      inactiveColor: ColorRes.greyText.withOpacity(0.5),
                       activeColor: ColorRes.primaryColor,
+                      labels: RangeLabels(
+                        value.start.round().toString(),
+                        value.end.round().toString(),
+                      ),
                       onChanged: (values) {
                         setState(() {
                           value = values;
                         });
                       },
                     ),
-                    SizedBox(height: 42),
+                    Row(
+                      children: [
+                        const SizedBox(width: 10),
+                        Text(
+                          '0 min',
+                          style: TextStyles.R1575.copyWith(
+                            color: ColorRes.greyText.withOpacity(0.5),
+                          ),
+                        ),
+                        Spacer(),
+                        Text(
+                          '90 min',
+                          style: TextStyles.R1575.copyWith(
+                            color: ColorRes.greyText.withOpacity(0.5),
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                      ],
+                    ),
+                    const SizedBox(height: 23),
                     Text(AppLocalizations.of(context)!.translate("language"), style: TextStyles.SB1575),
                     SizedBox(height: 7),
                     Wrap(
@@ -116,7 +154,7 @@ class _FilterScreenState extends State<FilterScreen> {
                           )
                           .toList(),
                     ),
-                    SizedBox(height: 35),
+                    const SizedBox(height: 35),
                     Text(AppLocalizations.of(context)!.translate('level'), style: TextStyles.SB1575),
                     SizedBox(height: 7),
                     Wrap(
@@ -208,68 +246,62 @@ class _FilterScreenState extends State<FilterScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Padding(
-                padding: EdgeInsetsDirectional.only(end: 5),
-                child: CustomButton(
-                    onTap: () {
-                      NavigationUtils.pop(context);
-                    },
-                    buttonText: AppLocalizations.of(context)!.translate("reset"),
-                    backgroundColor: ColorRes.white,
-                    foregroundColor: ColorRes.white,
-                    height: 52,
-                    widthPercent: 0.4,
-                    borderColor: ColorRes.primaryColor,
-                    textStyle: TextStyles.R1778),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.only(start: 5),
-                child: CustomButton(
-                    onTap: () {
-                      List<String> languageList = [];
-                      _getFilterModel.content.language.forEach((element) {
-                        if (element.isSelected) {
-                          languageList.add(element.language);
-                        }
-                      });
-                      List<String> levelList = [];
-                      _getFilterModel.content.level.forEach((element) {
-                        if (element.isSelected) {
-                          levelList.add(element.level);
-                        }
-                      });
-                      List<String> styleList = [];
-                      _getFilterModel.content.style.forEach((element) {
-                        if (element.isSelected) {
-                          styleList.add(element.styleTitle);
-                        }
-                      });
-                      List<String> focusList = [];
-                      _getFilterModel.content.focus.forEach((element) {
-                        if (element.isSelected) {
-                          focusList.add(element.focusTitle);
-                        }
-                      });
-                      List<String> instructorList = [];
-                      _getFilterModel.content.instructor.forEach((element) {
-                        if (element.isSelected) {
-                          instructorList.add(element.id.toString());
-                        }
-                      });
-                      print(">>Language>> $languageList");
-                      print(">>Level>> $levelList");
-                      print(">>Style>> $styleList");
-                      print(">>Focus>> $focusList");
-                      print(">>Instructor>> $instructorList");
-                    },
-                    buttonText: AppLocalizations.of(context)!.translate('done'),
-                    backgroundColor: ColorRes.primaryColor,
-                    foregroundColor: ColorRes.white,
-                    height: 52,
-                    widthPercent: 0.4,
-                    borderColor: ColorRes.primaryColor,
-                    textStyle: TextStyles.R17FF),
-              ),
+              CustomButton(
+                  onTap: () {
+                    NavigationUtils.pop(context);
+                  },
+                  buttonText: AppLocalizations.of(context)!.translate("reset"),
+                  backgroundColor: ColorRes.white,
+                  foregroundColor: ColorRes.white,
+                  height: 52,
+                  widthPercent: 0.4,
+                  borderColor: ColorRes.primaryColor,
+                  textStyle: TextStyles.R1778),
+              CustomButton(
+                  onTap: () {
+                    List<String> languageList = [];
+                    _getFilterModel.content.language.forEach((element) {
+                      if (element.isSelected) {
+                        languageList.add(element.language);
+                      }
+                    });
+                    List<String> levelList = [];
+                    _getFilterModel.content.level.forEach((element) {
+                      if (element.isSelected) {
+                        levelList.add(element.level);
+                      }
+                    });
+                    List<String> styleList = [];
+                    _getFilterModel.content.style.forEach((element) {
+                      if (element.isSelected) {
+                        styleList.add(element.styleTitle);
+                      }
+                    });
+                    List<String> focusList = [];
+                    _getFilterModel.content.focus.forEach((element) {
+                      if (element.isSelected) {
+                        focusList.add(element.focusTitle);
+                      }
+                    });
+                    List<String> instructorList = [];
+                    _getFilterModel.content.instructor.forEach((element) {
+                      if (element.isSelected) {
+                        instructorList.add(element.id.toString());
+                      }
+                    });
+                    print(">>Language>> $languageList");
+                    print(">>Level>> $levelList");
+                    print(">>Style>> $styleList");
+                    print(">>Focus>> $focusList");
+                    print(">>Instructor>> $instructorList");
+                  },
+                  buttonText: AppLocalizations.of(context)!.translate('done'),
+                  backgroundColor: ColorRes.primaryColor,
+                  foregroundColor: ColorRes.white,
+                  height: 52,
+                  widthPercent: 0.4,
+                  borderColor: ColorRes.primaryColor,
+                  textStyle: TextStyles.R17FF),
             ],
           ),
         ),

@@ -5,6 +5,7 @@ import 'package:shala_yoga/base/utils/config.dart';
 import 'package:shala_yoga/base/utils/constants/string_res.dart';
 import 'package:shala_yoga/models/classes/class_details_model.dart';
 import 'package:shala_yoga/models/classes/classes_model.dart';
+import 'package:shala_yoga/models/common_model.dart';
 import 'package:shala_yoga/models/error_response.dart';
 import 'package:shala_yoga/models/faq/faq_model.dart';
 import 'package:shala_yoga/models/filter/get_filter.dart';
@@ -250,6 +251,16 @@ class ApiServices {
       Response response = await _dio.get(Config.getHome);
       print("------");
       return HomeModel.fromJson(response.data);
+    } on DioError catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  Future<CommonModel> addToFavourites({required Map<String, dynamic> param}) async {
+    try {
+      Response response = await _dio.post(Config.favourites, data: param);
+      print("------");
+      return CommonModel.fromJson(response.data);
     } on DioError catch (e) {
       throw _handleError(e);
     }

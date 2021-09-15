@@ -158,6 +158,7 @@ class Programs {
     required this.coverImage,
     required this.teaserVideoUrl,
     required this.weight,
+    this.isFavourite = false,
   });
 
   int id;
@@ -172,6 +173,7 @@ class Programs {
   String coverImage;
   String teaserVideoUrl;
   int weight;
+  bool isFavourite;
 
   factory Programs.fromJson(Map<String, dynamic> json) => Programs(
     id: json["id"],
