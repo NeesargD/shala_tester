@@ -44,7 +44,11 @@ class _SubscribeScreenState extends State<SubscribeScreen> {
 
   void initMethod() async {
     await InAppPurchaseManager().initSubscription();
-    subList = await InAppPurchaseManager().getSubscriptionProducts();
+    Future.delayed(Duration(seconds: 2), () async {
+      subList = await InAppPurchaseManager().getSubscriptionProducts();
+      print(">>>>>>>");
+      print(subList);
+    });
   }
 
   @override
@@ -147,21 +151,24 @@ class _SubscribeScreenState extends State<SubscribeScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             ListView.separated(
-              padding: EdgeInsets.zero,
-              shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            separatorBuilder: (c,i){
-              return SizedBox(height: 10,);
-            }, itemCount: 4,
-                itemBuilder: (c,i){
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Icon(Icons.circle, size: 8, color: ColorRes.primaryColor),
-                  SizedBox(width: 5),
-                  Text("Unlimited access to all our yoga and meditation")
-                ],
-              );
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                separatorBuilder: (c, i) {
+                  return SizedBox(
+                    height: 10,
+                  );
+                },
+                itemCount: 4,
+                itemBuilder: (c, i) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Icon(Icons.circle, size: 8, color: ColorRes.primaryColor),
+                      SizedBox(width: 5),
+                      Text("Unlimited access to all our yoga and meditation")
+                    ],
+                  );
                 }),
             SizedBox(height: 30),
             ListView.separated(
@@ -234,7 +241,7 @@ class _SubscribeScreenState extends State<SubscribeScreen> {
                 onTap: () {
                   InAppPurchaseManager().requestSubscription(
                       context: context,
-                      productKey: "",
+                      productKey: "com.app.shalaonline.test",
                       onPurchased: (purchasedItem) async {
                         print(purchasedItem);
 

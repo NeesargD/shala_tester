@@ -9,7 +9,7 @@ class InAppPurchaseManager {
   late StreamSubscription _purchaseUpdatedSubscription;
   late StreamSubscription _purchaseErrorSubscription;
   late StreamSubscription _connectionSubscription;
-  static List<String> _productLists = Platform.isAndroid?  ["Android"]:["ios"];
+  static List<String> _productLists = Platform.isAndroid ?  ["com.app.shalaonline.test"]:[""];
 
   List<IAPItem> _inAppPurchaseItems = [];
   late int getPurchaseSubscriptionId;
@@ -24,13 +24,14 @@ class InAppPurchaseManager {
   Future<List<IAPItem>> getSubscriptionProducts() async {
     try {
       var subscriptionItems =
-          await FlutterInappPurchase.instance.getProducts(_productLists);
+          await FlutterInappPurchase.instance.getSubscriptions(_productLists);
       List<IAPItem> list3 = [];
       subscriptionItems.forEach((e) {
         list3.add(e);
       });
       return _inAppPurchaseItems = list3;
     } catch (e) {
+      print(e);
       return [];
     }
   }
