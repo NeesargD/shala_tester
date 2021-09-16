@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:shala_yoga/base/utils/config.dart';
 import 'package:shala_yoga/base/utils/constants/string_res.dart';
+import 'package:shala_yoga/models/auth/res_login.dart';
+import 'package:shala_yoga/models/auth/res_register.dart';
 import 'package:shala_yoga/models/classes/class_details_model.dart';
 import 'package:shala_yoga/models/classes/classes_model.dart';
 import 'package:shala_yoga/models/common_model.dart';
@@ -173,6 +175,24 @@ class ApiServices {
     try {
       Response response = await _dio.post(Config.postQuestionAnswer, data: param);
       return response.data;
+    } on DioError catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  Future<ResRegistrationModel> postRegistrationDetail({required Map<String, dynamic> param}) async {
+    try {
+      Response response = await _dio.post(Config.postRegistrationDetail, data: param);
+      return ResRegistrationModel.fromJson(response.data);
+    } on DioError catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  Future<ResLoginModel> postLoginDetail({required Map<String, dynamic> param}) async {
+    try {
+      Response response = await _dio.post(Config.postLoginDetail, data: param);
+      return ResLoginModel.fromJson(response.data);
     } on DioError catch (e) {
       throw _handleError(e);
     }

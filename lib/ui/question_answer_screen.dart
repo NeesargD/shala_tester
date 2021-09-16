@@ -179,7 +179,7 @@ class _QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                   NavigationUtils.push(context, routeBreathLoader, arguments: {"questionAnswerList": submitAnswers});
                                 } else {
                                   if (selectedAnswers.isEmpty) {
-                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Please select option!!')));
+                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context)!.translate("please_select_option"))));
                                   } else {
                                     _pageController.nextPage(duration: Duration(milliseconds: 350), curve: Curves.easeIn);
                                   }

@@ -37,20 +37,15 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
             mainAxisSize: MainAxisSize.min,
             children: [
               CommonListTileWidget(
-                  titleText: AppLocalizations.of(context)!
-                      .translate("my_subscriptions"),
-                  imagePath: ImageRes.my_account_subscription,
-                  onTap: () {
-                    NavigationUtils.push(context, routeSubscription);
-                  },
+                  titleText: AppLocalizations.of(context)!.translate("my_subscriptions") ,
+                  imagePath:ImageRes.my_account_subscription,
+                  onTap: (){},
                   itemSpace: 9),
               CommonListTileWidget(
-                titleText:
-                    AppLocalizations.of(context)!.translate('reset_password'),
+                titleText:AppLocalizations.of(context)!.translate('reset_password') ,
                 imagePath: ImageRes.my_account_reset_password,
-                onTap: () {},
-                itemSpace: 9,
-              ),
+                onTap: (){},
+                itemSpace: 9,),
               SizedBox(height: 15),
             ],
           ),

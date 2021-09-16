@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
+import 'package:shala_yoga/blocs/auth_bloc/login_bloc/login_bloc.dart';
+import 'package:shala_yoga/blocs/auth_bloc/registration_bloc/registration_bloc.dart';
 import '../../base/utils/constants/textstyle_constants.dart';
 import '../../../base/utils/constants/color_constant.dart';
 import '../../../base/utils/constants/image_constant.dart';
@@ -88,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Padding(
                               padding: const EdgeInsetsDirectional.only(
                                   start: 34, end: 34, top: 24, bottom: 8),
-                              child: Text('IN ORDER TO WATCH THIS VIDEO, PLEASE SIGN IN WITH YOUR ACCOUNT',
+                              child: Text(AppLocalizations.of(context)!.translate("to_watch_video_sign_in"),
                                   style: TextStyles.SB18FF),
                             ),
                             // height: MediaQuery.of(context).size.height * 0.1,
@@ -106,8 +110,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ],
                     ),
-                    isSelected.value ? SignInScreen(onTap: onTap,) :
-                    SignupScreen(onTap: onTap,)
+                    isSelected.value ? BlocProvider(
+                      create: (context) => LoginBloc(),
+                      child: SignInScreen(
+                        onTap: onTap,
+                      ),
+                    )
+                        : BlocProvider(
+                      create: (context) => RegistrationBloc(),
+                      child: SignupScreen(
+                        onTap: onTap,
+                      ),
+                    )
                   ],
                 );
               }),

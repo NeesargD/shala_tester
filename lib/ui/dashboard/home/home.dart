@@ -180,22 +180,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Text(
-                                                    "YOU DON'T HAVE ANY RECOMMENDED CLASSES YET",
-                                                    style: TextStyles.SB1878,
+                                                    AppLocalizations.of(context)!.translate("you_dont_have_recommended_classes"),
+                                                style: TextStyles.SB1878,
                                                   ),
                                                   const SizedBox(
                                                     height: 5,
                                                   ),
-                                                  Text(
-                                                      "Help us to find the right practices just for you by "
-                                                      "answering some questions",
+                                                  Text(AppLocalizations.of(context)!.translate(
+                                                      "help_us_find_the_best_classes_you_need_to_answer_few_questions"),
                                                       style: TextStyles.R1575),
-                                                  const SizedBox(
+                                                    const SizedBox(
                                                     height: 10,
                                                   ),
                                                   CustomButton(
                                                       onTap: () {},
-                                                      buttonText: "GO TO QUESTIONS",
+                                                      buttonText: AppLocalizations.of(context)!.translate("go_to_questions"),
                                                       backgroundColor: ColorRes.primaryColor,
                                                       foregroundColor: ColorRes.primaryColor,
                                                       borderColor: ColorRes.primaryColor,
@@ -250,16 +249,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                "WHAT ARE YOU LOOKING FOR "
-                                                "TODAY?",
+                                                AppLocalizations.of(context)!.translate("what_are_you_looking_for_today"),
                                                 style: TextStyles.SB20FF,
                                               ),
                                               const SizedBox(
                                                 height: 10,
                                               ),
                                               Text(
-                                                  "Let us suggest some classes "
-                                                  "for you:",
+                                                  AppLocalizations.of(context)!.translate("let_us_suggest_some_classes_for_you"),
                                                   style: TextStyles.R15FF),
                                               const SizedBox(
                                                 height: 20,

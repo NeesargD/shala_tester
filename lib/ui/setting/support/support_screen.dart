@@ -64,8 +64,7 @@ class _SupportScreenState extends State<SupportScreen> {
                     Padding(
                       padding: const EdgeInsetsDirectional.only(start: 20,end: 20,top: 28,bottom: 34),
                       child: Text(
-                          AppLocalizations.of(context)!
-                              .translate('dear_yoga_creative_faq'),
+                          AppLocalizations.of(context)!.translate('dear_yoga_creative_faq'),
                           style: TextStyles.R1875),
                     ),
                     ListView.builder(
@@ -142,7 +141,9 @@ class _SupportScreenState extends State<SupportScreen> {
                           : ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                   content:
-                                      Text("Phone couldn't be launched")));
+                                      Text(AppLocalizations.of(context)!.translate("phone_couldnt_be_launch"))
+                              ),
+                      );
                     },
                     buttonText:
                         AppLocalizations.of(context)!.translate('contact_us'),
@@ -161,7 +162,7 @@ class _SupportScreenState extends State<SupportScreen> {
                           : ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                   content:
-                                      Text("Whatsapp couldn't be launched")));
+                                      Text(AppLocalizations.of(context)!.translate("whatsapp_couldnt_be_launch"))));
                     },
                     buttonText:
                         AppLocalizations.of(context)!.translate('whats_app'),

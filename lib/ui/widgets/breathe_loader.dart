@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 import 'package:shala_yoga/base/utils/preference_utils.dart';
 import '../../base/utils/constants/color_constant.dart';
 import '../../base/utils/constants/image_constant.dart';
@@ -52,8 +53,8 @@ class _BreatheLoaderState extends State<BreatheLoader> {
                   color: ColorRes.white,
                 ),
                 SizedBox(height: 30),
-                Text("Take a breath,", style: TextStyles.L25FF),
-                Text("We are tailoring your classes!", style: TextStyles.L15FF),
+                Text(AppLocalizations.of(context)!.translate("take_a_breath"), style: TextStyles.L25FF),
+                Text(AppLocalizations.of(context)!.translate("we_are_tailoring_your_classes"), style: TextStyles.L15FF),
               ],
             ),
           ),

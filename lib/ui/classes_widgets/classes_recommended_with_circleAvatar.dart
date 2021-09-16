@@ -154,7 +154,7 @@ class RecommendedClassList extends StatelessWidget {
                           width: 5,
                         ),
                         Text.rich(
-                          TextSpan(text: appState.parseDuration(duration).inMinutes.toString(), style: TextStyles.R1275, children: [TextSpan(text: " min")]),
+                          TextSpan(text: appState.parseDuration(duration).inMinutes.toString(), style: TextStyles.R1275, children: [TextSpan(text: AppLocalizations.of(context)!.translate("min"))]),
                         ),
                         const SizedBox(
                           width: 10,

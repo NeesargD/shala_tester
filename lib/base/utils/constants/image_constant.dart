@@ -47,4 +47,8 @@ class ImageRes {
   ///loader
   static const String take_a_breath = 'assets/take_a_breath.svg';
   static const String shalaThumbnail = 'assets/shala_tumbnail.jpg';
+
+  //login_sigup
+  static const String apple ='assets/apple.svg';
+  static const String google ='assets/google.svg';
 }

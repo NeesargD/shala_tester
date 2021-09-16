@@ -156,7 +156,7 @@ class ClassesRecommendedWidget extends StatelessWidget {
                           TextSpan(
                               text: appState.parseDuration(durations).inMinutes.toString(),
                               style: TextStyles.R1275,
-                              children: [TextSpan(text: "\nmin", style: TextStyles.R875)]),
+                              children: [TextSpan(text: "\n${AppLocalizations.of(context)!.translate("min")}", style: TextStyles.R875)]),
                           textAlign: TextAlign.center,
                         ),
                       )),

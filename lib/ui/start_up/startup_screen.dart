@@ -40,8 +40,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
                 Container(
                   margin: EdgeInsetsDirectional.only(start: 71,end: 89,top: 52,bottom: 11),
                   child: Text(
-                      AppLocalizations.of(context)!
-                          .translate("not_sure_which_program_is_right"),
+                      AppLocalizations.of(context)!.translate("not_sure_which_program_is_right"),
                       style: TextStyles.SB3075,
                       textAlign: TextAlign.left),
                 ),
@@ -72,8 +71,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
                     NavigationUtils.pushReplacement(context, routeDashboard,
                         arguments: {'index': 0});
                   },
-                  buttonText: AppLocalizations.of(context)!
-                      .translate('browse_all_classes'),
+                  buttonText: AppLocalizations.of(context)!.translate('browse_all_classes'),
                   backgroundColor: ColorRes.white,
                   foregroundColor: ColorRes.white,
                   borderColor: ColorRes.greyBorder,

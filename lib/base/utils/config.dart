@@ -22,6 +22,10 @@ class Config {
 
   static const String postQuestionAnswer = 'submit_quiz';
   static const String getFilter = 'filter';
+
   static const String favourites = 'favourites';
+
+  static const String postRegistrationDetail = 'registration';
+  static const String postLoginDetail = 'login';
 
 }

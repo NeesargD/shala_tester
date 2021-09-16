@@ -66,18 +66,21 @@ class Content {
 
 class Focus {
   Focus({
+    required this.id,
     required this.focusTitle,
     this.isSelected = false,
   });
-
+  int id;
   String focusTitle;
   bool isSelected;
 
   factory Focus.fromJson(Map<String, dynamic> json) => Focus(
+        id: json["id"],
         focusTitle: json["focus_title"] == null ? null : json["focus_title"],
       );
 
   Map<String, dynamic> toJson() => {
+        "id":id,
         "focus_title": focusTitle,
       };
 }
@@ -122,54 +125,63 @@ class Instructor {
 
 class Language {
   Language({
+    required this.id,
     required this.language,
     this.isSelected = false,
   });
-
+  int id;
   String language;
   bool isSelected;
 
   factory Language.fromJson(Map<String, dynamic> json) => Language(
-        language: json["language"] == null ? null : json["language"],
+    id: json["id"],
+    language: json["language"] == null ? null : json["language"],
       );
 
   Map<String, dynamic> toJson() => {
+        "id": id,
         "language": language,
       };
 }
 
 class Level {
   Level({
+    required this.id,
     required this.level,
     this.isSelected = false,
   });
-
+  int id;
   String level;
   bool isSelected;
 
   factory Level.fromJson(Map<String, dynamic> json) => Level(
-        level: json["level"] == null ? null : json["level"],
+    id: json["id"],
+    level: json["level"] == null ? null : json["level"],
       );
 
   Map<String, dynamic> toJson() => {
-        "level": level,
+    "id": id,
+    "level": level,
       };
 }
 
 class Style {
   Style({
+    required this.id,
     required this.styleTitle,
     this.isSelected = false,
   });
-
+  int id;
   String styleTitle;
   bool isSelected;
 
   factory Style.fromJson(Map<String, dynamic> json) => Style(
+        id: json["id"],
         styleTitle: json["style_title"] == null ? null : json["style_title"],
       );
 
   Map<String, dynamic> toJson() => {
-        "style_title": styleTitle,
+    "id": id,
+    "style_title": styleTitle,
       };
 }

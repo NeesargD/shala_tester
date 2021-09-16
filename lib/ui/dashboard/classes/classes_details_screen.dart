@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/svg.dart';
+
 import 'package:shala_yoga/base/utils/toast_utils.dart';
 import 'package:shala_yoga/blocs/favourite_bloc/favourite_bloc.dart';
+
+import '../../../base/utils/localization/app_localizations.dart';
+
 import '../../auth/login_signup.dart';
 import '../../../base/utils/navigation/navigation_route_constants.dart';
 import '../../video_player/custom_video_player.dart';
@@ -56,47 +60,44 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
             );
           }
 
-          if (state is ClassDetailsSuccess) {
-            return Scaffold(
-              backgroundColor: ColorRes.whiteGradient,
-              bottomNavigationBar: BottomAppBar(
-                child: Container(
-                  decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [ColorRes.white, ColorRes.whiteGradient])),
-                  height: 120,
-                  // height: MediaQuery.of(context).size.height * 0.18,
-                  margin: EdgeInsetsDirectional.only(start: 17, end: 17, top: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      CustomButton(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => ChewieDemo(),
-                            ));
-                          },
-                          buttonText: 'START WATCHING',
-                          backgroundColor: ColorRes.primaryColor,
-                          foregroundColor: ColorRes.whiteGradient,
-                          borderColor: ColorRes.primaryColor,
-                          textStyle: TextStyles.SB18FF),
-                      SizedBox(height: 15),
-                      CustomButton(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => LoginSignupScreen(),
-                                ));
-                          },
-                          buttonText: 'WATCH LATER',
-                          backgroundColor: ColorRes.greyText,
-                          foregroundColor: ColorRes.whiteGradient,
-                          borderColor: ColorRes.greyText,
-                          textStyle: TextStyles.SB18FF),
-                    ],
-                  ),
+        if (state is ClassDetailsSuccess) {
+          return Scaffold(
+            backgroundColor: ColorRes.whiteGradient,
+            bottomNavigationBar: BottomAppBar(
+              child: Container(
+                decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [ColorRes.white, ColorRes.whiteGradient])),
+                height: 120,
+                // height: MediaQuery.of(context).size.height * 0.18,
+                margin: EdgeInsetsDirectional.only(start: 17, end: 17, top: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    CustomButton(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => ChewieDemo(),
+                          ));
+                        },
+                        buttonText: AppLocalizations.of(context)!.translate("start_watching"),
+                        backgroundColor: ColorRes.primaryColor,
+                        foregroundColor: ColorRes.whiteGradient,
+                        borderColor: ColorRes.primaryColor,
+                        textStyle: TextStyles.SB18FF),
+                    SizedBox(height: 15),
+                    CustomButton(
+                        onTap: () {
+                           Navigator.push(context, MaterialPageRoute(builder: (context) => LoginSignupScreen(),));
+                        },
+                        buttonText: AppLocalizations.of(context)!.translate("watch_later"),
+                        backgroundColor: ColorRes.greyText,
+                        foregroundColor: ColorRes.whiteGradient,
+                        borderColor: ColorRes.greyText,
+                        textStyle: TextStyles.SB18FF),
+                  ],
+
                 ),
               ),
+            ),
               body: SafeArea(
                 child: SingleChildScrollView(
                   child: Stack(children: [
@@ -179,34 +180,59 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                           ),
                         ],
                       ),
+                  ),
+                  Container(
+                    margin: EdgeInsetsDirectional.only(start: 7, end: 7, top: 240),
+                    width: MediaQuery.of(context).size.width * 0.96,
+                    decoration: BoxDecoration(
+                      color: ColorRes.white,
+                      borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16)),
                     ),
-                    Container(
-                      margin: EdgeInsetsDirectional.only(start: 7, end: 7, top: 240),
-                      width: MediaQuery.of(context).size.width * 0.96,
-                      decoration: BoxDecoration(
-                        color: ColorRes.white,
-                        borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16)),
-                      ),
-                      child: Stack(
-                        clipBehavior: Clip.none,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.only(start: 17, end: 17),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      width: screenWidth(context: context, percent: 0.60),
-                                      padding: EdgeInsetsDirectional.only(top: 15),
-                                      child: Text(
-                                        state.classDetailsModel.content!.classes.title,
-                                        style: TextStyles.SB2575,
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 2,
+                    child: Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.only(start: 17, end: 17),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: screenWidth(context: context, percent: 0.60),
+                                    padding: EdgeInsetsDirectional.only(top: 15),
+                                    child: Text(
+                                      state.classDetailsModel.content!.classes.title,
+                                      style: TextStyles.SB2575,
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 2,
+                                    ),
+                                  ),
+                                  SizedBox(height: 3),
+                                  RichText(
+                                    text: TextSpan(text: AppLocalizations.of(context)!.translate("part_of"), style: TextStyles.R1275, children: [TextSpan(text: state.classDetailsModel.content!.classes.partOf, style: TextStyles.SB1278)]),
+                                  ),
+                                  SizedBox(height: 30),
+                                  Row(
+                                    children: [
+                                      SvgPicture.asset(ImageRes.yogaStyle),
+                                      const SizedBox(
+                                        width: 5,
                                       ),
+                                      Text(state.classDetailsModel.content!.classes.style.join(','), style: TextStyles.R1575),
+                                      Spacer(),
+                                      SvgPicture.asset(ImageRes.levels),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(state.classDetailsModel.content!.classes.level, style: TextStyles.R1575),
+                                      Spacer(),
+                                      SvgPicture.asset(ImageRes.hourGlass),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                ],
                                     ),
                                     SizedBox(height: 3),
                                     RichText(
@@ -255,46 +281,74 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                       ),
                                     ),
                                   ),*/
-                                    SizedBox(height: 25),
-                                    Text("Class focus", style: TextStyles.R1575.copyWith(color: ColorRes.primaryColor)),
-                                  ],
+                                  SizedBox(height: 25),
+                                  Text(AppLocalizations.of(context)!.translate("class_focus"), style: TextStyles.R1575.copyWith(color: ColorRes.primaryColor)),
+                                ],
+                              ),
+                            ),
+                            Stack(
+                              children: [
+                                Divider(
+                                  color: ColorRes.greyIndicator,
+                                  thickness: 2,
                                 ),
-                              ),
-                              Stack(
-                                children: [
-                                  Divider(
-                                    color: ColorRes.greyIndicator,
-                                    thickness: 2,
-                                  ),
-                                  Divider(
-                                    color: ColorRes.primaryColor,
-                                    thickness: 2,
-                                    endIndent: screenWidth(context: context, percent: 0.60),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 10),
-                              Padding(
-                                padding: EdgeInsetsDirectional.only(start: 17),
-                                child: Text(state.classDetailsModel.content!.classes.focus.join(','), style: TextStyles.R1375),
-                              ),
-                              SizedBox(height: 23),
-                              Padding(
-                                padding: EdgeInsetsDirectional.only(start: 17),
-                                child: Text("Similar Classes", style: TextStyles.R1575.copyWith(color: ColorRes.primaryColor)),
-                              ),
-                              Stack(
-                                children: [
-                                  Divider(
-                                    color: ColorRes.greyIndicator,
-                                    thickness: 2,
-                                  ),
-                                  Divider(
-                                    color: ColorRes.primaryColor,
-                                    thickness: 2,
-                                    endIndent: screenWidth(context: context, percent: 0.60),
-                                  ),
-                                ],
+                                Divider(
+                                  color: ColorRes.primaryColor,
+                                  thickness: 2,
+                                  endIndent: screenWidth(context: context, percent: 0.60),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            Padding(
+                              padding: EdgeInsetsDirectional.only(start: 17),
+                              child: Text(state.classDetailsModel.content!.classes.focus.join(','), style: TextStyles.R1375),
+                            ),
+                            SizedBox(height: 23),
+                            Padding(
+                              padding: EdgeInsetsDirectional.only(start: 17),
+                              child: Text(AppLocalizations.of(context)!.translate("class_focus"), style: TextStyles.R1575.copyWith(color: ColorRes.primaryColor)),
+                            ),
+                            Stack(
+                              children: [
+                                Divider(
+                                  color: ColorRes.greyIndicator,
+                                  thickness: 2,
+                                ),
+                                Divider(
+                                  color: ColorRes.primaryColor,
+                                  thickness: 2,
+                                  endIndent: screenWidth(context: context, percent: 0.60),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            GridView.builder(
+                              padding: EdgeInsets.zero,
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(childAspectRatio: 0.74, mainAxisSpacing: 25, crossAxisSpacing: 25, crossAxisCount: 2),
+                              itemCount: state.classDetailsModel.content!.similarClasses.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return InkWell(
+                                    onTap: () {
+                                      NavigationUtils.pushReplacement(context, routeClassDetailsScreen, arguments: {"id": state.classDetailsModel.content!.similarClasses[index].id});
+                                    },
+                                    child: ClassesGridWidget(classesDetail: state.classDetailsModel.content!.similarClasses[index]));
+                              },
+                            ),
+                            const SizedBox(height: 30),
+                          ],
+                        ),
+                        PositionedDirectional(
+                          top: -30,
+                          child: Row(
+                            children: [
+                              Icon(Icons.mic, color: ColorRes.white),
+                              CircleAvatar(
+                                backgroundColor: ColorRes.white,
+                                radius: 10,
+                                child: Text(state.classDetailsModel.content!.classes.language.substring(0, 2), style: TextStyles.R1075),
                               ),
                               const SizedBox(height: 10),
                               GridView.builder(
@@ -314,6 +368,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                               const SizedBox(height: 30),
                             ],
                           ),
+                        ),
                           PositionedDirectional(
                             top: -30,
                             child: Row(

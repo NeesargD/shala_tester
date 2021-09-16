@@ -170,7 +170,7 @@ class ClassesCardWidget extends StatelessWidget {
                             width: 3,
                           ),
                           Text(
-                            duration + "min",
+                            duration + AppLocalizations.of(context)!.translate("min"),
                             style: TextStyles.R1275,
                           ),
                         ],

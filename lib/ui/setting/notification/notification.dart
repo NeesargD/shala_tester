@@ -25,7 +25,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
         backgroundColor: ColorRes.appBarColor,
       ),
       body: Padding(
-        padding: EdgeInsetsDirectional.only(start: 27, end: 27, top: 41),
+        padding: EdgeInsetsDirectional.only(start: 20, end: 20, top: 41),
         child: Column(
           children: [
             Row(

@@ -172,7 +172,7 @@ class ClassesGridWidget extends StatelessWidget {
                                 style: TextStyles.R1275,
                                 children: [
                                   TextSpan(
-                                      text: "\nmin", style: TextStyles.R875)
+                                      text: "\n${AppLocalizations.of(context)!.translate("min")}", style: TextStyles.R875)
                                 ]),
                             textAlign: TextAlign.center,
                           ),
