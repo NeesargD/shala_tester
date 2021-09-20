@@ -11,6 +11,7 @@ import 'package:shala_yoga/models/common_model.dart';
 import 'package:shala_yoga/models/error_response.dart';
 import 'package:shala_yoga/models/faq/faq_model.dart';
 import 'package:shala_yoga/models/filter/get_filter.dart';
+import 'package:shala_yoga/models/filter/post_filter.dart';
 import 'package:shala_yoga/models/home/res_home_model.dart';
 import 'package:shala_yoga/models/instructor_details_model.dart';
 import 'package:shala_yoga/models/instructor_models.dart';
@@ -221,6 +222,16 @@ class ApiServices {
       throw _handleError(e);
     }
   }
+
+  Future<PostFilterModel> postFilter({required Map<String, dynamic> param}) async {
+    try {
+      Response response = await _dio.get(Config.postFilter);
+      return PostFilterModel.fromJson(response.data);
+    } on DioError catch (e) {
+      throw _handleError(e);
+    }
+  }
+
 
   Future<ClassesModel> getAllClasses(/*{required Map<String, dynamic> param}*/) async {
     try {

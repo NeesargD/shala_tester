@@ -17,9 +17,9 @@ class RegistrationLoading extends RegistrationState{
 }
 
 class RegistrationSuccess extends RegistrationState{
-  final String? message;
+  final String message;
 
-  RegistrationSuccess({this.message});
+  RegistrationSuccess({required this.message});
 
   @override
   List<Object?> get props => [];

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:shala_yoga/base/utils/constants/string_res.dart';
-import 'package:shala_yoga/models/auth/res_login.dart';
 import 'package:shala_yoga/models/error_response.dart';
 import 'package:shala_yoga/services/api_services.dart';
 
@@ -35,7 +34,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           else {
             yield LoginFailure(message: response.message);
           }
-
       }
       catch (e){
         print(e.toString());

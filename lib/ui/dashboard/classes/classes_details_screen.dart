@@ -181,62 +181,37 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                         ],
                       ),
                   ),
-                  Container(
-                    margin: EdgeInsetsDirectional.only(start: 7, end: 7, top: 240),
-                    width: MediaQuery.of(context).size.width * 0.96,
-                    decoration: BoxDecoration(
-                      color: ColorRes.white,
-                      borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16)),
-                    ),
-                    child: Stack(
-                      clipBehavior: Clip.none,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.only(start: 17, end: 17),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    width: screenWidth(context: context, percent: 0.60),
-                                    padding: EdgeInsetsDirectional.only(top: 15),
-                                    child: Text(
-                                      state.classDetailsModel.content!.classes.title,
-                                      style: TextStyles.SB2575,
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 2,
-                                    ),
-                                  ),
-                                  SizedBox(height: 3),
-                                  RichText(
-                                    text: TextSpan(text: AppLocalizations.of(context)!.translate("part_of"), style: TextStyles.R1275, children: [TextSpan(text: state.classDetailsModel.content!.classes.partOf, style: TextStyles.SB1278)]),
-                                  ),
-                                  SizedBox(height: 30),
-                                  Row(
-                                    children: [
-                                      SvgPicture.asset(ImageRes.yogaStyle),
-                                      const SizedBox(
-                                        width: 5,
+                    Container(
+                      margin: EdgeInsetsDirectional.only(start: 7, end: 7, top: 240),
+                      width: MediaQuery.of(context).size.width * 0.96,
+                      decoration: BoxDecoration(
+                        color: ColorRes.white,
+                        borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16)),
+                      ),
+                      child: Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.only(start: 17, end: 17),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: screenWidth(context: context, percent: 0.60),
+                                      padding: EdgeInsetsDirectional.only(top: 15),
+                                      child: Text(
+                                        state.classDetailsModel.content!.classes.title,
+                                        style: TextStyles.SB2575,
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 2,
                                       ),
-                                      Text(state.classDetailsModel.content!.classes.style.join(','), style: TextStyles.R1575),
-                                      Spacer(),
-                                      SvgPicture.asset(ImageRes.levels),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(state.classDetailsModel.content!.classes.level, style: TextStyles.R1575),
-                                      Spacer(),
-                                      SvgPicture.asset(ImageRes.hourGlass),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                ],
                                     ),
                                     SizedBox(height: 3),
                                     RichText(
-                                      text: TextSpan(text: "Part of ", style: TextStyles.R1275, children: [TextSpan(text: state.classDetailsModel.content!.classes.partOf, style: TextStyles.SB1278)]),
+                                      text: TextSpan(text: AppLocalizations.of(context)!.translate("part_of"), style: TextStyles.R1275, children: [TextSpan(text: state.classDetailsModel.content!.classes.partOf, style: TextStyles.SB1278)]),
                                     ),
                                     SizedBox(height: 30),
                                     Row(
@@ -281,74 +256,46 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                       ),
                                     ),
                                   ),*/
-                                  SizedBox(height: 25),
-                                  Text(AppLocalizations.of(context)!.translate("class_focus"), style: TextStyles.R1575.copyWith(color: ColorRes.primaryColor)),
+                                    SizedBox(height: 25),
+                                    Text(AppLocalizations.of(context)!.translate("class_focus"), style: TextStyles.R1575.copyWith(color: ColorRes.primaryColor)),
+                                  ],
+                                ),
+                              ),
+                              Stack(
+                                children: [
+                                  Divider(
+                                    color: ColorRes.greyIndicator,
+                                    thickness: 2,
+                                  ),
+                                  Divider(
+                                    color: ColorRes.primaryColor,
+                                    thickness: 2,
+                                    endIndent: screenWidth(context: context, percent: 0.60),
+                                  ),
                                 ],
                               ),
-                            ),
-                            Stack(
-                              children: [
-                                Divider(
-                                  color: ColorRes.greyIndicator,
-                                  thickness: 2,
-                                ),
-                                Divider(
-                                  color: ColorRes.primaryColor,
-                                  thickness: 2,
-                                  endIndent: screenWidth(context: context, percent: 0.60),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 10),
-                            Padding(
-                              padding: EdgeInsetsDirectional.only(start: 17),
-                              child: Text(state.classDetailsModel.content!.classes.focus.join(','), style: TextStyles.R1375),
-                            ),
-                            SizedBox(height: 23),
-                            Padding(
-                              padding: EdgeInsetsDirectional.only(start: 17),
-                              child: Text(AppLocalizations.of(context)!.translate("class_focus"), style: TextStyles.R1575.copyWith(color: ColorRes.primaryColor)),
-                            ),
-                            Stack(
-                              children: [
-                                Divider(
-                                  color: ColorRes.greyIndicator,
-                                  thickness: 2,
-                                ),
-                                Divider(
-                                  color: ColorRes.primaryColor,
-                                  thickness: 2,
-                                  endIndent: screenWidth(context: context, percent: 0.60),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 10),
-                            GridView.builder(
-                              padding: EdgeInsets.zero,
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(childAspectRatio: 0.74, mainAxisSpacing: 25, crossAxisSpacing: 25, crossAxisCount: 2),
-                              itemCount: state.classDetailsModel.content!.similarClasses.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return InkWell(
-                                    onTap: () {
-                                      NavigationUtils.pushReplacement(context, routeClassDetailsScreen, arguments: {"id": state.classDetailsModel.content!.similarClasses[index].id});
-                                    },
-                                    child: ClassesGridWidget(classesDetail: state.classDetailsModel.content!.similarClasses[index]));
-                              },
-                            ),
-                            const SizedBox(height: 30),
-                          ],
-                        ),
-                        PositionedDirectional(
-                          top: -30,
-                          child: Row(
-                            children: [
-                              Icon(Icons.mic, color: ColorRes.white),
-                              CircleAvatar(
-                                backgroundColor: ColorRes.white,
-                                radius: 10,
-                                child: Text(state.classDetailsModel.content!.classes.language.substring(0, 2), style: TextStyles.R1075),
+                              SizedBox(height: 10),
+                              Padding(
+                                padding: EdgeInsetsDirectional.only(start: 17),
+                                child: Text(state.classDetailsModel.content!.classes.focus.join(','), style: TextStyles.R1375),
+                              ),
+                              SizedBox(height: 23),
+                              Padding(
+                                padding: EdgeInsetsDirectional.only(start: 17),
+                                child: Text(AppLocalizations.of(context)!.translate("similar_classes"), style: TextStyles.R1575.copyWith(color: ColorRes.primaryColor)),
+                              ),
+                              Stack(
+                                children: [
+                                  Divider(
+                                    color: ColorRes.greyIndicator,
+                                    thickness: 2,
+                                  ),
+                                  Divider(
+                                    color: ColorRes.primaryColor,
+                                    thickness: 2,
+                                    endIndent: screenWidth(context: context, percent: 0.60),
+                                  ),
+                                ],
                               ),
                               const SizedBox(height: 10),
                               GridView.builder(
@@ -368,7 +315,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                               const SizedBox(height: 30),
                             ],
                           ),
-                        ),
+
                           PositionedDirectional(
                             top: -30,
                             child: Row(

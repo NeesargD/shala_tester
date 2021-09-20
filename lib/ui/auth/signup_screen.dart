@@ -4,8 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shala_yoga/base/utils/common_methods.dart';
+import 'package:shala_yoga/base/utils/toast_utils.dart';
 import '../../base/utils/navigation/navigation_utils.dart';
 import '../../base/utils/localization/app_localizations.dart';
 import '../../blocs/auth_bloc/registration_bloc/registration_bloc.dart';
@@ -42,14 +44,17 @@ class _SignupScreenState extends State<SignupScreen> {
   Widget build(BuildContext context) {
     return BlocListener<RegistrationBloc, RegistrationState>(
       listener: (context, state) {
-        if (state is RegistrationSuccess) {
-          clearText();
+        if(state is RegistrationSuccess){
+          EasyLoading.dismiss();
+          ToastUtils.showSuccess(message: state.message);
           NavigationUtils.pop(context);
         }
-        if (state is RegistrationLoading) {}
-        if (state is RegistrationFailure) {
-          Scaffold.of(context).showSnackBar(new SnackBar(content: new Text("Registration Failed Please Check Your Credentials")));
-          print(state.message);
+        if(state is RegistrationLoading){
+          EasyLoading.show();
+        }
+        if(state is RegistrationFailure){
+          EasyLoading.dismiss();
+          ToastUtils.showFailed(message: state.message);
         }
       },
       child: Form(

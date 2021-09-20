@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shala_yoga/base/utils/constants/color_constant.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
 import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
+import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
 import 'package:shala_yoga/blocs/filter/get_filter/get_filter_bloc.dart';
 import 'package:shala_yoga/models/filter/get_filter.dart';
@@ -294,6 +295,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     print(">>Style>> $styleList");
                     print(">>Focus>> $focusList");
                     print(">>Instructor>> $instructorList");
+                    NavigationUtils.push(context, routeSearchResult);
                   },
                   buttonText: AppLocalizations.of(context)!.translate('done'),
                   backgroundColor: ColorRes.primaryColor,

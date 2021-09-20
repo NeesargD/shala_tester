@@ -2,8 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shala_yoga/base/utils/common_methods.dart';
+import 'package:shala_yoga/base/utils/toast_utils.dart';
 import '../../base/utils/constants/textstyle_constants.dart';
 import '../../base/utils/localization/app_localizations.dart';
 import '../../base/utils/navigation/navigation_utils.dart';
@@ -38,13 +40,16 @@ class _SignInScreenState extends State<SignInScreen> {
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
         if (state is LoginSuccess) {
-          clearText();
+          EasyLoading.dismiss();
+          ToastUtils.showSuccess(message: state.message);
           NavigationUtils.pop(context);
         }
-        if (state is LoginLoading) {}
+        if (state is LoginLoading) {
+          EasyLoading.show();
+        }
         if (state is LoginFailure) {
-          Scaffold.of(context).showSnackBar(new SnackBar(content: new Text("Login Failed Please Check Your Credentials")));
-          print(state.message);
+          EasyLoading.dismiss();
+          ToastUtils.showFailed(message: state.message);
         }
       },
       child: Form(

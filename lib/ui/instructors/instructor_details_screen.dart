@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
+import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
+import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
 import 'package:shala_yoga/ui/classes_widgets/classes_grid_widget.dart';
 import 'package:shala_yoga/ui/program_widgets/program_grid_widget.dart';
 import 'package:shala_yoga/ui/widgets/circular_image.dart';
@@ -193,9 +195,14 @@ class _InstructorProfileScreenState extends State<InstructorProfileScreen>
                               itemCount: state.instructorDetailsModel.content!
                                   .instructorsClasses.length,
                               itemBuilder: (BuildContext context, int index) {
-                                return ClassesGridWidget(
-                                    classesDetail: state.instructorDetailsModel
-                                        .content!.instructorsClasses[index]);
+                                return GestureDetector(
+                                  onTap: (){
+                                    NavigationUtils.push(context, routeClassDetailsScreen, arguments: {'id': state.instructorDetailsModel.content!.instructorsClasses[index].id});
+                                  },
+                                  child: ClassesGridWidget(
+                                      classesDetail: state.instructorDetailsModel
+                                          .content!.instructorsClasses[index]),
+                                );
                               },
                             ),
                           ),
@@ -213,9 +220,14 @@ class _InstructorProfileScreenState extends State<InstructorProfileScreen>
                               itemCount: state.instructorDetailsModel.content!
                                   .instructorsPrograms.length,
                               itemBuilder: (BuildContext context, int index) {
-                                return ProgramGridWidget(
-                                    programDetails: state.instructorDetailsModel
-                                        .content!.instructorsPrograms[index]);
+                                return GestureDetector(
+                                  onTap: (){
+                                    NavigationUtils.push(context, routeProgramDetailsScreen, arguments: {"id" : state.instructorDetailsModel.content!.instructorsPrograms[index].id});
+                                  },
+                                  child: ProgramGridWidget(
+                                      programDetails: state.instructorDetailsModel
+                                          .content!.instructorsPrograms[index]),
+                                );
                               },
                             ),
                           ),
