@@ -60,44 +60,49 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
             );
           }
 
-        if (state is ClassDetailsSuccess) {
-          return Scaffold(
-            backgroundColor: ColorRes.whiteGradient,
-            bottomNavigationBar: BottomAppBar(
-              child: Container(
-                decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [ColorRes.white, ColorRes.whiteGradient])),
-                height: 120,
-                // height: MediaQuery.of(context).size.height * 0.18,
-                margin: EdgeInsetsDirectional.only(start: 17, end: 17, top: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    CustomButton(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => ChewieDemo(),
-                          ));
-                        },
-                        buttonText: AppLocalizations.of(context)!.translate("start_watching"),
-                        backgroundColor: ColorRes.primaryColor,
-                        foregroundColor: ColorRes.whiteGradient,
-                        borderColor: ColorRes.primaryColor,
-                        textStyle: TextStyles.SB18FF),
-                    SizedBox(height: 15),
-                    CustomButton(
-                        onTap: () {
-                           Navigator.push(context, MaterialPageRoute(builder: (context) => LoginSignupScreen(),));
-                        },
-                        buttonText: AppLocalizations.of(context)!.translate("watch_later"),
-                        backgroundColor: ColorRes.greyText,
-                        foregroundColor: ColorRes.whiteGradient,
-                        borderColor: ColorRes.greyText,
-                        textStyle: TextStyles.SB18FF),
-                  ],
-
+          if (state is ClassDetailsSuccess) {
+            return Scaffold(
+              backgroundColor: ColorRes.whiteGradient,
+              bottomNavigationBar: BottomAppBar(
+                child: Container(
+                  decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [ColorRes.white, ColorRes.whiteGradient])),
+                  height: 120,
+                  // height: MediaQuery.of(context).size.height * 0.18,
+                  margin: EdgeInsetsDirectional.only(start: 17, end: 17, top: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      CustomButton(
+                          onTap: () {
+                            if (appState.resLoginModel.id != null) {
+                              NavigationUtils.push(context, routeVideoPlayer, arguments: {"videoUrl": state.classDetailsModel.content!.classes.videoUrl});
+                            } else {
+                              NavigationUtils.push(context, routeLoginSignup);
+                            }
+                          },
+                          buttonText: AppLocalizations.of(context)!.translate("start_watching"),
+                          backgroundColor: ColorRes.primaryColor,
+                          foregroundColor: ColorRes.whiteGradient,
+                          borderColor: ColorRes.primaryColor,
+                          textStyle: TextStyles.SB18FF),
+                      SizedBox(height: 15),
+                      CustomButton(
+                          onTap: () {
+                            if (appState.resLoginModel.id != null) {
+                              /// TODO: ADD WATCH LATER API
+                            } else {
+                              NavigationUtils.push(context, routeLoginSignup);
+                            }
+                          },
+                          buttonText: AppLocalizations.of(context)!.translate("watch_later"),
+                          backgroundColor: ColorRes.greyText,
+                          foregroundColor: ColorRes.whiteGradient,
+                          borderColor: ColorRes.greyText,
+                          textStyle: TextStyles.SB18FF),
+                    ],
+                  ),
                 ),
               ),
-            ),
               body: SafeArea(
                 child: SingleChildScrollView(
                   child: Stack(children: [
@@ -146,11 +151,11 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                   children: [
                                     InkWell(
                                       onTap: () {
-                                        Navigator.of(context).push(MaterialPageRoute(
-                                          builder: (context) => ChewieDemo(
-                                            videoUrl: state.classDetailsModel.content!.classes.videoUrl,
-                                          ),
-                                        ));
+                                        if (appState.resLoginModel.id != null) {
+                                          NavigationUtils.push(context, routeVideoPlayer, arguments: {"videoUrl": state.classDetailsModel.content!.classes.videoUrl});
+                                        } else {
+                                          NavigationUtils.push(context, routeLoginSignup);
+                                        }
                                       },
                                       child: Center(
                                         child: Padding(
@@ -180,7 +185,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                           ),
                         ],
                       ),
-                  ),
+                    ),
                     Container(
                       margin: EdgeInsetsDirectional.only(start: 7, end: 7, top: 240),
                       width: MediaQuery.of(context).size.width * 0.96,
@@ -211,7 +216,10 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                     ),
                                     SizedBox(height: 3),
                                     RichText(
-                                      text: TextSpan(text: AppLocalizations.of(context)!.translate("part_of"), style: TextStyles.R1275, children: [TextSpan(text: state.classDetailsModel.content!.classes.partOf, style: TextStyles.SB1278)]),
+                                      text: TextSpan(
+                                          text: AppLocalizations.of(context)!.translate("part_of"),
+                                          style: TextStyles.R1275,
+                                          children: [TextSpan(text: state.classDetailsModel.content!.classes.partOf, style: TextStyles.SB1278)]),
                                     ),
                                     SizedBox(height: 30),
                                     Row(
@@ -315,7 +323,6 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                               const SizedBox(height: 30),
                             ],
                           ),
-
                           PositionedDirectional(
                             top: -30,
                             child: Row(

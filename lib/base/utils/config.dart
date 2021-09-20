@@ -28,5 +28,6 @@ class Config {
 
   static const String postRegistrationDetail = 'registration';
   static const String postLoginDetail = 'login';
+  static const String instructorFollow = 'instructorfollow';
 
 }

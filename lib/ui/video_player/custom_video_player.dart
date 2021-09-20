@@ -2,25 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shala_yoga/base/utils/common_methods.dart';
-
 import 'package:video_player/video_player.dart';
 
-class ChewieDemo extends StatefulWidget {
-  const ChewieDemo({
-    Key? key,
-    this.videoUrl = 'Chewie Demo',
-  }) : super(key: key);
-
+class VideoPlayerScreen extends StatefulWidget {
   final String videoUrl;
+
+  VideoPlayerScreen({
+    required this.videoUrl,
+  });
 
   @override
   State<StatefulWidget> createState() {
-    return _ChewieDemoState();
+    return _VideoPlayerScreenState();
   }
 }
 
-class _ChewieDemoState extends State<ChewieDemo> {
-  //TargetPlatform? _platform;
+class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   late VideoPlayerController _videoPlayerController1;
   late VideoPlayerController _videoPlayerController2;
   ChewieController? _chewieController;
@@ -28,7 +25,6 @@ class _ChewieDemoState extends State<ChewieDemo> {
   @override
   void initState() {
     super.initState();
-    // print(widget.title);
     initializePlayer();
   }
 

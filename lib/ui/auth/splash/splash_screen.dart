@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
@@ -6,6 +7,7 @@ import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shala_yoga/base/utils/preference_utils.dart';
+import 'package:shala_yoga/models/auth/res_login.dart';
 import '../../../base/utils/constants/image_constant.dart';
 import '../../../base/utils/constants/string_res.dart';
 import '../../../base/utils/navigation/navigation_route_constants.dart';
@@ -35,6 +37,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void getDeviceInfo() async {
     String id = "";
+    var loginResponse = getString("user");
+    appState.resLoginModel = User.fromJson(jsonDecode(loginResponse));
+    print("=============");
+    print(appState.resLoginModel);
     if (Platform.isAndroid) {
       final deviceAndroid = await deviceInfo.androidInfo;
       id = deviceAndroid.androidId!;
@@ -101,6 +107,8 @@ class _SplashScreenState extends State<SplashScreen> {
           } else if (timer.tick == 4) {
             if (getBool("intro")) {
               if (getBool("quizSubmitted")) {
+                NavigationUtils.pushAndRemoveUntil(context, routeDashboard, arguments: {"index": 0});
+              } else if (appState.resLoginModel.id != null) {
                 NavigationUtils.pushAndRemoveUntil(context, routeDashboard, arguments: {"index": 0});
               } else {
                 NavigationUtils.pushReplacement(context, routeStartUpScreen);

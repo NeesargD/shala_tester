@@ -22,40 +22,39 @@ class ResLoginModel {
   String token;
 
   factory ResLoginModel.fromJson(Map<String, dynamic> json) => ResLoginModel(
-    user: User.fromJson(json["user"]),
-    success: json["success"],
-    message: json["message"],
-    token: json["token"],
-  );
+        user: User.fromJson(json["user"]),
+        success: json["success"],
+        message: json["message"],
+        token: json["token"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "user": user.toJson(),
-    "success": success,
-    "message": message,
-    "token": token,
-  };
+        "user": user.toJson(),
+        "success": success,
+        "message": message,
+        "token": token,
+      };
 }
 
 class User {
-  User({
-    this.name,
-    this.email,
-    this.phone,
-  });
+  User({this.name, this.email, this.phone, this.id});
 
+  int? id;
   String? name;
   String? email;
   String? phone;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-    name: json["name"],
-    email: json["email"],
-    phone: json["phone"],
-  );
+        name: json["name"],
+        id: json["id"],
+        email: json["email"],
+        phone: json["phone"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "name": name,
-    "email": email,
-    "phone": phone,
-  };
+        "name": name,
+        "id": id,
+        "email": email,
+        "phone": phone,
+      };
 }

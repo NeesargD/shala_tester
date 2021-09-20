@@ -25,9 +25,8 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  final usernameController1 = TextEditingController();
-  final passwordController1 = TextEditingController();
-
+  final usernameController1 = TextEditingController(text: "jay@codetrade.io");
+  final passwordController1 = TextEditingController(text: "Jayshah@1234");
   final formKey = GlobalKey<FormState>();
 
   void clearText() {
@@ -87,7 +86,7 @@ class _SignInScreenState extends State<SignInScreen> {
               if (Platform.isIOS) const SizedBox(height: 28),
               if (Platform.isIOS)
                 InkWell(
-                  onTap: (){
+                  onTap: () {
                     signInWithApple();
                   },
                   child: Container(

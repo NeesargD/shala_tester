@@ -1,10 +1,8 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:shala_yoga/base/utils/config.dart';
 import 'package:shala_yoga/base/utils/constants/string_res.dart';
 import 'package:shala_yoga/models/auth/res_login.dart';
-import 'package:shala_yoga/models/auth/res_register.dart';
 import 'package:shala_yoga/models/classes/class_details_model.dart';
 import 'package:shala_yoga/models/classes/classes_model.dart';
 import 'package:shala_yoga/models/common_model.dart';
@@ -14,6 +12,7 @@ import 'package:shala_yoga/models/filter/get_filter.dart';
 import 'package:shala_yoga/models/filter/post_filter.dart';
 import 'package:shala_yoga/models/home/res_home_model.dart';
 import 'package:shala_yoga/models/instructor_details_model.dart';
+import 'package:shala_yoga/models/instructor_follow_model.dart';
 import 'package:shala_yoga/models/instructor_models.dart';
 import 'package:shala_yoga/models/onboarding_models.dart';
 import 'package:shala_yoga/models/programs/program_details_model.dart';
@@ -48,32 +47,6 @@ class ApiServices {
 
     _dio.interceptors.add(LogInterceptor(responseBody: true));
   }
-
-  // Future<Response> _post(String url, Map<String, dynamic> param) async {
-  //   Response response = await _dio.post(
-  //     url,
-  //     data: param,
-  //     // options: Options(headers: {'Cookie': appState.sessionId}),
-  //   );
-  //
-  //   /*var session =
-  //   response.headers['set-cookie']?.firstWhereOrNull((element) => (element as String).startsWith('session_id'));
-  //   if (session != null) {
-  //     SaveHeaderSession().saveHeaderSession(session.substring(0, 51));
-  //     appState.sessionId = session.substring(0, 51);
-  //   }*/
-  //
-  //   return response;
-  // }
-
-  // Future<Response> _get(String url, Map<String, dynamic> param) async {
-  //   Response response = await _dio.get(
-  //     url,
-  //     queryParameters: param,
-  //   );
-  //
-  //   return response;
-  // }
 
   ErrorResponse _handleError(DioError error) {
     if (error.type == DioErrorType.other && error.error != null && error.error is SocketException) {}
@@ -141,12 +114,11 @@ class ApiServices {
     }
   }
 
-  Future<InstructorModel> getAllInstructors(/*{required Map<String, dynamic> param}*/) async {
+  Future<InstructorModel> getAllInstructors() async {
     try {
       Response response = await _dio.get(
         Config.instructor,
       );
-      print("------");
       return InstructorModel.fromJson(response.data);
     } on DioError catch (e) {
       throw _handleError(e);
@@ -156,8 +128,16 @@ class ApiServices {
   Future<InstructorDetailsModel> instructorDetailsApi({required Map<String, dynamic> param}) async {
     try {
       Response response = await _dio.get(Config.instructorDetails, queryParameters: param);
-      print("------");
       return InstructorDetailsModel.fromJson(response.data);
+    } on DioError catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  Future<InstructorFollowModel> instructorFollowApi({required Map<String, dynamic> param}) async {
+    try {
+      Response response = await _dio.post(Config.instructorFollow, data: param);
+      return InstructorFollowModel.fromJson(response.data);
     } on DioError catch (e) {
       throw _handleError(e);
     }
@@ -181,10 +161,10 @@ class ApiServices {
     }
   }
 
-  Future<ResRegistrationModel> postRegistrationDetail({required Map<String, dynamic> param}) async {
+  Future<ResLoginModel> postRegistrationDetail({required Map<String, dynamic> param}) async {
     try {
       Response response = await _dio.post(Config.postRegistrationDetail, data: param);
-      return ResRegistrationModel.fromJson(response.data);
+      return ResLoginModel.fromJson(response.data);
     } on DioError catch (e) {
       throw _handleError(e);
     }
@@ -231,7 +211,6 @@ class ApiServices {
       throw _handleError(e);
     }
   }
-
 
   Future<ClassesModel> getAllClasses(/*{required Map<String, dynamic> param}*/) async {
     try {

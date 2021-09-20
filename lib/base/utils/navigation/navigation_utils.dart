@@ -6,6 +6,7 @@ import 'package:shala_yoga/blocs/favourite_bloc/favourite_bloc.dart';
 import 'package:shala_yoga/blocs/filter/get_filter/get_filter_bloc.dart';
 import 'package:shala_yoga/blocs/filter/post_filter/post_filter_bloc.dart';
 import 'package:shala_yoga/blocs/home/home_bloc/home_bloc.dart';
+import 'package:shala_yoga/blocs/instructor_follow_bloc/instructor_follow_bloc.dart';
 import 'package:shala_yoga/blocs/programs/program_detail_bloc/program_detail_bloc.dart';
 import 'package:shala_yoga/blocs/question_answer/question_answer_bloc.dart';
 import 'package:shala_yoga/ui/dashboard/classes/classes_details_screen.dart';
@@ -16,6 +17,7 @@ import 'package:shala_yoga/ui/setting/language/language.dart';
 import 'package:shala_yoga/ui/setting/notification/notification.dart';
 import 'package:shala_yoga/ui/setting/subscription/subscription_screen.dart';
 import 'package:shala_yoga/ui/setting/support/support_screen.dart';
+import 'package:shala_yoga/ui/video_player/custom_video_player.dart';
 import 'package:shala_yoga/ui/widgets/breathe_loader.dart';
 import '../../../blocs/instructor_details_bloc/instructor_details_bloc.dart';
 import '../../../blocs/recommended_bloc/recommendation_bloc.dart';
@@ -61,8 +63,7 @@ class NavigationUtils {
       case routeRecommendation:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) =>
-                RecommendationBloc()..add(GetRecommendationContent()),
+            create: (context) => RecommendationBloc()..add(GetRecommendationContent()),
             child: RecommendationScreen(),
           ),
         );
@@ -84,12 +85,19 @@ class NavigationUtils {
         );
       case routeInstructorDetails:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => InstructorDetailsBloc()
-              ..add(GetInstructorDetailsScreen(
-                id: args!['id'],
-              )),
-            child: InstructorProfileScreen(),
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider<InstructorDetailsBloc>(
+                create: (BuildContext context) => InstructorDetailsBloc()
+                  ..add(GetInstructorDetailsScreen(
+                    id: args!['id'],
+                  )),
+              ),
+              BlocProvider<InstructorFollowBloc>(
+                create: (BuildContext context) => InstructorFollowBloc(),
+              ),
+            ],
+            child: InstructorDetailProfileScreen(id: args!["id"],),
           ),
         );
       case routeSetting:
@@ -116,6 +124,12 @@ class NavigationUtils {
           builder: (_) => BlocProvider(
             create: (context) => PostFilterBloc(),
             child: SearchResult(),
+          ),
+        );
+      case routeVideoPlayer:
+        return MaterialPageRoute(
+          builder: (_) => VideoPlayerScreen(
+            videoUrl: args!["videoUrl"],
           ),
         );
       case routeLanguage:
@@ -182,19 +196,15 @@ class NavigationUtils {
 
   Route<dynamic> _errorRoute(String message) {
     return MaterialPageRoute(builder: (_) {
-      return Scaffold(
-          appBar: AppBar(title: Text('Error')),
-          body: Center(child: Text(message)));
+      return Scaffold(appBar: AppBar(title: Text('Error')), body: Center(child: Text(message)));
     });
   }
 
-  static void pushReplacement(BuildContext context, String routeName,
-      {Object? arguments}) {
+  static void pushReplacement(BuildContext context, String routeName, {Object? arguments}) {
     Navigator.of(context).pushReplacementNamed(routeName, arguments: arguments);
   }
 
-  static Future<dynamic> push(BuildContext context, String routeName,
-      {Object? arguments}) {
+  static Future<dynamic> push(BuildContext context, String routeName, {Object? arguments}) {
     return Navigator.of(context).pushNamed(routeName, arguments: arguments);
   }
 
@@ -202,11 +212,7 @@ class NavigationUtils {
     Navigator.of(context).pop(args);
   }
 
-  static Future<dynamic> pushAndRemoveUntil(
-      BuildContext context, String routeName,
-      {Object? arguments}) {
-    return Navigator.of(context).pushNamedAndRemoveUntil(
-        routeName, (route) => false,
-        arguments: arguments);
+  static Future<dynamic> pushAndRemoveUntil(BuildContext context, String routeName, {Object? arguments}) {
+    return Navigator.of(context).pushNamedAndRemoveUntil(routeName, (route) => false, arguments: arguments);
   }
 }

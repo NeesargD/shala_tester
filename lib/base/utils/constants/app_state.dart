@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:shala_yoga/models/auth/res_login.dart';
 
 class AppState {
   static final AppState _singleton = AppState._internal();
@@ -11,6 +12,8 @@ class AppState {
 
   AppState._internal();
 
+  late User resLoginModel;
+  static const  String loginResponse = "loginResponse";
   String deviceId = '';
   DateFormat format = DateFormat('yyyy-MM-dd');
   DateFormat formatDD = DateFormat('dd/MM/yyyy');
@@ -32,4 +35,7 @@ class AppState {
     micros = (double.parse(parts[parts.length - 1]) * 1000000).round();
     return Duration(hours: hours, minutes: minutes, microseconds: micros);
   }
+
 }
+
+

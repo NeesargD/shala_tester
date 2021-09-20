@@ -149,20 +149,20 @@ class ClassInstructor {
 }
 
 class InstructorDetails {
-  InstructorDetails({
-    required this.id,
-    required this.firstname,
-    required this.lastname,
-    required this.languages,
-    required this.style,
-    required this.country,
-    required this.state,
-    required this.description,
-    required this.profilePicture,
-    required this.follower,
-    required this.program,
-    required this.classes,
-  });
+  InstructorDetails(
+      {required this.id,
+      required this.firstname,
+      required this.lastname,
+      required this.languages,
+      required this.style,
+      required this.country,
+      required this.state,
+      required this.description,
+      required this.profilePicture,
+      required this.follower,
+      required this.program,
+      required this.classes,
+      required this.isFollow});
 
   int id;
   String firstname;
@@ -174,11 +174,13 @@ class InstructorDetails {
   String description;
   String profilePicture;
   int follower;
+  bool isFollow;
   int program;
   int classes;
 
   factory InstructorDetails.fromJson(Map<String, dynamic> json) => InstructorDetails(
         id: json["id"],
+        isFollow: json["is_follow"],
         firstname: json["firstname"],
         lastname: json["lastname"],
         languages: List<String>.from(json["languages"].map((x) => x)),
@@ -195,6 +197,7 @@ class InstructorDetails {
   Map<String, dynamic> toJson() => {
         "id": id,
         "firstname": firstname,
+        "is_follow": isFollow,
         "lastname": lastname,
         "languages": List<dynamic>.from(languages.map((x) => x)),
         "style": List<dynamic>.from(style.map((x) => x)),
