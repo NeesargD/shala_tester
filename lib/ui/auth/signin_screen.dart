@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shala_yoga/base/utils/common_methods.dart';
 import '../../base/utils/constants/textstyle_constants.dart';
 import '../../base/utils/localization/app_localizations.dart';
 import '../../base/utils/navigation/navigation_utils.dart';
@@ -38,12 +41,9 @@ class _SignInScreenState extends State<SignInScreen> {
           clearText();
           NavigationUtils.pop(context);
         }
-        if (state is LoginLoading) {
-
-        }
+        if (state is LoginLoading) {}
         if (state is LoginFailure) {
-          Scaffold.of(context).showSnackBar(new SnackBar(
-              content: new Text("Login Failed Please Check Your Credentials")));
+          Scaffold.of(context).showSnackBar(new SnackBar(content: new Text("Login Failed Please Check Your Credentials")));
           print(state.message);
         }
       },
@@ -54,92 +54,92 @@ class _SignInScreenState extends State<SignInScreen> {
           child: Column(
             children: [
               const SizedBox(height: 48),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  border: Border.all(color: ColorRes.greyText, width: 1),
-                ),
-                child: Center(
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.only(top: 14, bottom: 14),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(ImageRes.google),
-                        const SizedBox(width: 20),
-                        Text(
-                          AppLocalizations.of(context)!
-                              .translate("login_with_google"),
-                          style: TextStyles.R1575,
-                        )
-                      ],
+              InkWell(
+                onTap: handleGoogleSignIn,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    border: Border.all(color: ColorRes.greyText, width: 1),
+                  ),
+                  child: Center(
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.only(top: 14, bottom: 14),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(ImageRes.google),
+                          const SizedBox(width: 20),
+                          Text(
+                            AppLocalizations.of(context)!.translate("login_with_google"),
+                            style: TextStyles.R1575,
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 28),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  border: Border.all(color: ColorRes.greyText, width: 1),
-                ),
-                child: Center(
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.only(top: 10, bottom: 9),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(ImageRes.apple),
-                        SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.02),
-                        Text(
-                          AppLocalizations.of(context)!
-                              .translate("login_with_apple"),
-                          style: TextStyles.R1575,
-                        )
-                      ],
+              if (Platform.isIOS) const SizedBox(height: 28),
+              if (Platform.isIOS)
+                InkWell(
+                  onTap: (){
+                    signInWithApple();
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      border: Border.all(color: ColorRes.greyText, width: 1),
+                    ),
+                    child: Center(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.only(top: 10, bottom: 9),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(ImageRes.apple),
+                            SizedBox(width: MediaQuery.of(context).size.width * 0.02),
+                            Text(
+                              AppLocalizations.of(context)!.translate("login_with_apple"),
+                              style: TextStyles.R1575,
+                            )
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
               const SizedBox(height: 46),
               Row(children: <Widget>[
                 Expanded(
-                  child: Divider(
-                      thickness: 1, color: ColorRes.greyText.withOpacity(0.5)),
+                  child: Divider(thickness: 1, color: ColorRes.greyText.withOpacity(0.5)),
                 ),
-                Text(AppLocalizations.of(context)!.translate("or"),
-                    style: TextStyles.R1575),
+                Text(AppLocalizations.of(context)!.translate("or"), style: TextStyles.R1575),
                 Expanded(
-                  child: Divider(
-                      thickness: 1, color: ColorRes.greyText.withOpacity(0.5)),
+                  child: Divider(thickness: 1, color: ColorRes.greyText.withOpacity(0.5)),
                 ),
-              ]
-              ),
+              ]),
               const SizedBox(height: 30),
               TextFormField(
-                controller: usernameController1,
-                decoration: InputDecoration(
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: ColorRes.primaryColor),
-                    ),
-                    hintText: AppLocalizations.of(context)!
-                        .translate("email_phone_number"),
-                    hintStyle: TextStyles.R1575),
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) {
-                  Pattern pattern = r'^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})|([0-9]{10})+$';
-                  RegExp regex = new RegExp(pattern.toString());
-                  if (value!.isEmpty) {
-                    return "Please enter Email or phone number";
-                  } else {
-                    if (!regex.hasMatch(value))
-                      return 'Enter valid Email or phone number';
-                    else
-                      return null;
-                  }
-                }
-              ),
+                  controller: usernameController1,
+                  decoration: InputDecoration(
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: ColorRes.primaryColor),
+                      ),
+                      hintText: AppLocalizations.of(context)!.translate("email_phone_number"),
+                      hintStyle: TextStyles.R1575),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (value) {
+                    Pattern pattern = r'^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})|([0-9]{10})+$';
+                    RegExp regex = new RegExp(pattern.toString());
+                    if (value!.isEmpty) {
+                      return "Please enter Email or phone number";
+                    } else {
+                      if (!regex.hasMatch(value))
+                        return 'Enter valid Email or phone number';
+                      else
+                        return null;
+                    }
+                  }),
               const SizedBox(height: 30),
               TextFormField(
                 controller: passwordController1,
@@ -149,19 +149,14 @@ class _SignInScreenState extends State<SignInScreen> {
                     focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: ColorRes.primaryColor),
                     ),
-                    hintText:
-                        AppLocalizations.of(context)!.translate("password"),
+                    hintText: AppLocalizations.of(context)!.translate("password"),
                     hintStyle: TextStyles.R1575),
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return AppLocalizations.of(context)!
-                        .translate("enter_a_password");
+                    return AppLocalizations.of(context)!.translate("enter_a_password");
                   }
-                  if (value.length < 7 ||
-                      !RegExp(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$")
-                          .hasMatch(value)) {
-                    return AppLocalizations.of(context)!
-                        .translate("use_more_characters");
+                  if (value.length < 7 || !RegExp(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$").hasMatch(value)) {
+                    return AppLocalizations.of(context)!.translate("use_more_characters");
                   }
                   return null;
                 },
@@ -171,8 +166,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 child: CustomButton(
                     textStyle: TextStyles.SB18FF,
                     borderColor: ColorRes.primaryColor,
-                    buttonText:
-                        AppLocalizations.of(context)!.translate("log_in"),
+                    buttonText: AppLocalizations.of(context)!.translate("log_in"),
                     foregroundColor: ColorRes.primaryColor,
                     onTap: () {
                       if (formKey.currentState!.validate()) {
@@ -189,17 +183,9 @@ class _SignInScreenState extends State<SignInScreen> {
                   onPressed: () {
                     widget.onTap(false);
                   },
-                  child: Text(
-                      AppLocalizations.of(context)!
-                          .translate("create_an_new_account"),
-                      style: TextStyles.R1575)),
+                  child: Text(AppLocalizations.of(context)!.translate("create_an_new_account"), style: TextStyles.R1575)),
               const SizedBox(height: 30),
-              TextButton(
-                  onPressed: () {},
-                  child: Text(
-                      AppLocalizations.of(context)!
-                          .translate("forgot_password"),
-                      style: TextStyles.R1575)),
+              TextButton(onPressed: () {}, child: Text(AppLocalizations.of(context)!.translate("forgot_password"), style: TextStyles.R1575)),
               const SizedBox(height: 30),
             ],
           ),

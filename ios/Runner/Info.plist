@@ -50,5 +50,16 @@
     <array>
       <string>https://shalaonline.page.link</string>
     </array>
+    <key>CFBundleURLTypes</key>
+    <array>
+    	<dict>
+    		<key>CFBundleTypeRole</key>
+    		<string>Editor</string>
+    		<key>CFBundleURLSchemes</key>
+    		<array>
+    			<string>com.googleusercontent.apps.816615638730-opsihovh2j871t7364q5fggrbogsca8e</string>
+    		</array>
+    	</dict>
+    </array>
 </dict>
 </plist>

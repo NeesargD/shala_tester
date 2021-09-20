@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'constants/app_constant.dart';
@@ -156,3 +158,59 @@ Widget safeAreaWidget(BuildContext context) {
 }
 
 void launchURL(String url) async => await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
+
+GoogleSignIn googleSignIn = GoogleSignIn(
+  scopes: [
+    'email',
+    'https://www.googleapis.com/auth/contacts.readonly',
+  ],
+);
+
+Future<void> handleGoogleSignIn() async {
+  googleSignIn.signOut();
+  try {
+    await googleSignIn.signIn().then((value) {
+      print(value);
+      if (value != null) {
+        var param = {
+          "social_type": "1",
+          "social_id": value.id,
+          "name": value.displayName,
+          "user_type": 2,
+          "email": value.email
+        };
+      }
+    });
+  } catch (error) {
+    print(error);
+  }
+}
+
+Future<AuthorizationCredentialAppleID> signInWithApple() async {
+  final credential = await SignInWithApple.getAppleIDCredential(
+    scopes: [
+      AppleIDAuthorizationScopes.email,
+      AppleIDAuthorizationScopes.fullName,
+    ],
+  );
+  final _appleUser = AuthorizationCredentialAppleID(
+    authorizationCode: credential.authorizationCode,
+    email: credential.email,
+    familyName: credential.familyName,
+    givenName: credential.givenName,
+    identityToken: credential.identityToken,
+    state: credential.state,
+    userIdentifier: credential.userIdentifier,
+  );
+  var param = {
+    "social_type": "3",
+    "social_id": _appleUser.userIdentifier,
+    "name": "${_appleUser.givenName} ${_appleUser.familyName}",
+    "user_type": 2,
+    "email": _appleUser.email
+  };
+  return _appleUser;
+  //_callSocialLoginAPI(param);
+}
+
+
