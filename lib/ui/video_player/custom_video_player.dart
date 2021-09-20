@@ -42,7 +42,8 @@ class _ChewieDemoState extends State<ChewieDemo> {
 
   Future<void> initializePlayer() async {
     // _videoPlayerController1 = VideoPlayerController.network(widget.title);
-    _videoPlayerController1 = VideoPlayerController.network('https://assets.mixkit.co/videos/preview/mixkit-daytime-city-traffic-aerial-view-56-large.mp4');
+    // _videoPlayerController1 = VideoPlayerController.network('https://assets.mixkit.co/videos/preview/mixkit-daytime-city-traffic-aerial-view-56-large.mp4');
+    _videoPlayerController1 = VideoPlayerController.network('https://player.vimeo.com/external/424501136.hd.mp4?s=a03d96c77a4d1650af893809532a043d89c72b77&profile_id=174');
     _videoPlayerController2 = VideoPlayerController.network('https://assets.mixkit.co/videos/preview/mixkit-a-girl-blowing-a-bubble-gum-at-an-amusement-park-1226-large.mp4');
     await Future.wait([_videoPlayerController1.initialize(), _videoPlayerController2.initialize()]);
     _createChewieController();

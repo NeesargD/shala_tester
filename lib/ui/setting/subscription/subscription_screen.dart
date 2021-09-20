@@ -1,257 +1,257 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_inapp_purchase/flutter_inapp_purchase.dart';
-import 'package:shala_yoga/base/utils/constants/color_constant.dart';
-import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
-import 'package:shala_yoga/ui/widgets/custom_button.dart';
-
-import '../../in_app_purchase_manager.dart';
-
-class InApp {
-  String? title;
-  bool? selected;
-  bool? isOffer;
-
-  InApp({this.isOffer = false, this.selected = false, this.title});
-}
-
-class SubscribeScreen extends StatefulWidget {
-  const SubscribeScreen({Key? key}) : super(key: key);
-
-  @override
-  _SubscribeScreenState createState() => _SubscribeScreenState();
-}
-
-class _SubscribeScreenState extends State<SubscribeScreen> {
-  bool selected = false;
-  List<IAPItem>? subList;
-  List<InApp>? sList = [];
-
-  @override
-  void initState() {
-    super.initState();
-    dummyData();
-    Future.delayed(Duration.zero, () {
-      initMethod();
-    });
-  }
-
-  void dummyData() {
-    sList!.add(InApp(title: "16AED / MONTH", selected: true));
-    sList!.add(InApp(title: "18AED / MONTH", isOffer: true));
-    sList!.add(InApp(title: "20AED / MONTH"));
-  }
-
-  void initMethod() async {
-    await InAppPurchaseManager().initSubscription();
-    Future.delayed(Duration(seconds: 2), () async {
-      subList = await InAppPurchaseManager().getSubscriptionProducts();
-      print(">>>>>>>");
-      print(subList);
-    });
-  }
-
-  @override
-  void dispose() {
-    InAppPurchaseManager().endConnection();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-            body: SingleChildScrollView(
-                child: Container(
-                    child: Column(children: [
-      Stack(
-        clipBehavior: Clip.none,
-        children: [
-          Image.asset('assets/shala_tumbnail.jpg', fit: BoxFit.fill),
-          Container(
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.arrow_back,
-                          color: ColorRes.white,
-                        )),
-                    Spacer(),
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.access_time,
-                          color: ColorRes.white,
-                        )),
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.favorite_border,
-                          color: ColorRes.white,
-                        )),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Center(
-                      child: Container(
-                        margin: EdgeInsetsDirectional.only(top: 43),
-                        padding: EdgeInsetsDirectional.all(15),
-                        decoration: BoxDecoration(
-                          color: ColorRes.white.withOpacity(0.20),
-                          border: Border.all(color: ColorRes.white),
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                        child: Center(
-                          child: Icon(
-                            Icons.play_arrow_rounded,
-                            color: ColorRes.white,
-                            size: 20,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            height: MediaQuery.of(context).size.height * 0.3,
-            width: MediaQuery.of(context).size.width,
-          ),
-          PositionedDirectional(
-            bottom: -20,
-            child: Container(
-              padding: const EdgeInsetsDirectional.only(start: 34, end: 34, top: 24, bottom: 14),
-              child: Text("THIS IS A PREMIUM VIDEO PLEASE SUBSCRIBE TO WATCH", style: TextStyles.SB18FF),
-              // height: MediaQuery.of(context).size.height * 0.1,
-              width: MediaQuery.of(context).size.width,
-              decoration: ShapeDecoration(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10),
-                  ),
-                ),
-                color: ColorRes.primaryColor,
-              ),
-            ),
-          ),
-        ],
-      ),
-      SizedBox(height: 40),
-      Padding(
-        padding: const EdgeInsetsDirectional.only(start: 20, end: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            ListView.separated(
-                padding: EdgeInsets.zero,
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                separatorBuilder: (c, i) {
-                  return SizedBox(
-                    height: 10,
-                  );
-                },
-                itemCount: 4,
-                itemBuilder: (c, i) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [Icon(Icons.circle, size: 8, color: ColorRes.primaryColor), SizedBox(width: 5), Text("Unlimited access to all our yoga and meditation")],
-                  );
-                }),
-            SizedBox(height: 30),
-            ListView.separated(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                padding: EdgeInsets.zero,
-                itemBuilder: (c, i) {
-                  return GestureDetector(
-                    onTap: () {
-                      for (var j = 0; j < sList!.length; j++) {
-                        if (i != j) {
-                          sList![j].selected = false;
-                        } else {
-                          sList![i].selected = true;
-                        }
-                      }
-                      setState(() {});
-                    },
-                    child: Stack(
-                      children: [
-                        Container(
-                          padding: const EdgeInsetsDirectional.only(start: 120, end: 120, top: 20, bottom: 20),
-                          decoration: BoxDecoration(
-                            color: sList![i].selected! ? ColorRes.white : ColorRes.greyText.withOpacity(0.15),
-                            border: sList![i].selected! ? Border.all(color: ColorRes.primaryColor) : null,
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                          ),
-                          child: Text(sList![i].title!, style: selected ? TextStyles.R1578 : TextStyles.R1575),
-                        ),
-                        sList![i].isOffer!
-                            ? PositionedDirectional(
-                                end: 10,
-                                top: -5,
-                                child: Container(
-                                  padding: const EdgeInsetsDirectional.only(start: 19, end: 19, top: 3, bottom: 3),
-                                  decoration: BoxDecoration(
-                                    color: ColorRes.primaryColor,
-                                    borderRadius: BorderRadius.circular(11),
-                                  ),
-                                  child: Text(
-                                    "BEST VALUE",
-                                    style: TextStyles.SB10FF,
-                                  ),
-                                ))
-                            : Container(),
-                      ],
-                    ),
-                  );
-                },
-                separatorBuilder: (c, i) => SizedBox(
-                      height: 30,
-                    ),
-                itemCount: sList!.length),
-            SizedBox(height: 11),
-            Text(
-              "Cancel anytime",
-              style: TextStyles.L1275,
-            ),
-            SizedBox(height: 30),
-            CustomButton(
-                onTap: () {
-                  InAppPurchaseManager().requestSubscription(
-                      context: context,
-                      productKey: "com.app.shalaonline.test",
-                      onPurchased: (purchasedItem) async {
-                        print(purchasedItem);
-
-                        // Trans received of purchased product
-                      });
-                },
-                buttonText: "SUBSCRIBE",
-                backgroundColor: ColorRes.primaryColor,
-                foregroundColor: ColorRes.primaryColor,
-                borderColor: Colors.transparent,
-                textStyle: TextStyles.SB18FF),
-            CustomButton(
-                onTap: () {},
-                buttonText: "BROWSE OTHER CLASSES",
-                backgroundColor: Colors.transparent,
-                foregroundColor: Colors.transparent,
-                borderColor: Colors.transparent,
-                textStyle: TextStyles.R1575),
-            SizedBox(height: 34)
-          ],
-        ),
-      ),
-    ])))));
-  }
-}
+// import 'package:flutter/cupertino.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_inapp_purchase/flutter_inapp_purchase.dart';
+// import 'package:shala_yoga/base/utils/constants/color_constant.dart';
+// import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
+// import 'package:shala_yoga/ui/widgets/custom_button.dart';
+//
+// import '../../in_app_purchase_manager.dart';
+//
+// class InApp {
+//   String? title;
+//   bool? selected;
+//   bool? isOffer;
+//
+//   InApp({this.isOffer = false, this.selected = false, this.title});
+// }
+//
+// class SubscribeScreen extends StatefulWidget {
+//   const SubscribeScreen({Key? key}) : super(key: key);
+//
+//   @override
+//   _SubscribeScreenState createState() => _SubscribeScreenState();
+// }
+//
+// class _SubscribeScreenState extends State<SubscribeScreen> {
+//   bool selected = false;
+//   List<IAPItem>? subList;
+//   List<InApp>? sList = [];
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     dummyData();
+//     Future.delayed(Duration.zero, () {
+//       initMethod();
+//     });
+//   }
+//
+//   void dummyData() {
+//     sList!.add(InApp(title: "16AED / MONTH", selected: true));
+//     sList!.add(InApp(title: "18AED / MONTH", isOffer: true));
+//     sList!.add(InApp(title: "20AED / MONTH"));
+//   }
+//
+//   void initMethod() async {
+//     await InAppPurchaseManager().initSubscription();
+//     Future.delayed(Duration(seconds: 2), () async {
+//       subList = await InAppPurchaseManager().getSubscriptionProducts();
+//       print(">>>>>>>");
+//       print(subList);
+//     });
+//   }
+//
+//   @override
+//   void dispose() {
+//     InAppPurchaseManager().endConnection();
+//     super.dispose();
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return SafeArea(
+//         child: Scaffold(
+//             body: SingleChildScrollView(
+//                 child: Container(
+//                     child: Column(children: [
+//       Stack(
+//         clipBehavior: Clip.none,
+//         children: [
+//           Image.asset('assets/shala_tumbnail.jpg', fit: BoxFit.fill),
+//           Container(
+//             child: Column(
+//               children: [
+//                 Row(
+//                   children: [
+//                     IconButton(
+//                         onPressed: () {},
+//                         icon: Icon(
+//                           Icons.arrow_back,
+//                           color: ColorRes.white,
+//                         )),
+//                     Spacer(),
+//                     IconButton(
+//                         onPressed: () {},
+//                         icon: Icon(
+//                           Icons.access_time,
+//                           color: ColorRes.white,
+//                         )),
+//                     IconButton(
+//                         onPressed: () {},
+//                         icon: Icon(
+//                           Icons.favorite_border,
+//                           color: ColorRes.white,
+//                         )),
+//                   ],
+//                 ),
+//                 Row(
+//                   mainAxisAlignment: MainAxisAlignment.center,
+//                   children: [
+//                     Center(
+//                       child: Container(
+//                         margin: EdgeInsetsDirectional.only(top: 43),
+//                         padding: EdgeInsetsDirectional.all(15),
+//                         decoration: BoxDecoration(
+//                           color: ColorRes.white.withOpacity(0.20),
+//                           border: Border.all(color: ColorRes.white),
+//                           borderRadius: BorderRadius.circular(25),
+//                         ),
+//                         child: Center(
+//                           child: Icon(
+//                             Icons.play_arrow_rounded,
+//                             color: ColorRes.white,
+//                             size: 20,
+//                           ),
+//                         ),
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//               ],
+//             ),
+//             height: MediaQuery.of(context).size.height * 0.3,
+//             width: MediaQuery.of(context).size.width,
+//           ),
+//           PositionedDirectional(
+//             bottom: -20,
+//             child: Container(
+//               padding: const EdgeInsetsDirectional.only(start: 34, end: 34, top: 24, bottom: 14),
+//               child: Text("THIS IS A PREMIUM VIDEO PLEASE SUBSCRIBE TO WATCH", style: TextStyles.SB18FF),
+//               // height: MediaQuery.of(context).size.height * 0.1,
+//               width: MediaQuery.of(context).size.width,
+//               decoration: ShapeDecoration(
+//                 shape: RoundedRectangleBorder(
+//                   borderRadius: BorderRadius.only(
+//                     topLeft: Radius.circular(10),
+//                     topRight: Radius.circular(10),
+//                   ),
+//                 ),
+//                 color: ColorRes.primaryColor,
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//       SizedBox(height: 40),
+//       Padding(
+//         padding: const EdgeInsetsDirectional.only(start: 20, end: 20),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.center,
+//           children: [
+//             ListView.separated(
+//                 padding: EdgeInsets.zero,
+//                 shrinkWrap: true,
+//                 physics: NeverScrollableScrollPhysics(),
+//                 separatorBuilder: (c, i) {
+//                   return SizedBox(
+//                     height: 10,
+//                   );
+//                 },
+//                 itemCount: 4,
+//                 itemBuilder: (c, i) {
+//                   return Row(
+//                     mainAxisAlignment: MainAxisAlignment.start,
+//                     children: [Icon(Icons.circle, size: 8, color: ColorRes.primaryColor), SizedBox(width: 5), Text("Unlimited access to all our yoga and meditation")],
+//                   );
+//                 }),
+//             SizedBox(height: 30),
+//             ListView.separated(
+//                 shrinkWrap: true,
+//                 physics: NeverScrollableScrollPhysics(),
+//                 padding: EdgeInsets.zero,
+//                 itemBuilder: (c, i) {
+//                   return GestureDetector(
+//                     onTap: () {
+//                       for (var j = 0; j < sList!.length; j++) {
+//                         if (i != j) {
+//                           sList![j].selected = false;
+//                         } else {
+//                           sList![i].selected = true;
+//                         }
+//                       }
+//                       setState(() {});
+//                     },
+//                     child: Stack(
+//                       children: [
+//                         Container(
+//                           padding: const EdgeInsetsDirectional.only(start: 120, end: 120, top: 20, bottom: 20),
+//                           decoration: BoxDecoration(
+//                             color: sList![i].selected! ? ColorRes.white : ColorRes.greyText.withOpacity(0.15),
+//                             border: sList![i].selected! ? Border.all(color: ColorRes.primaryColor) : null,
+//                             borderRadius: BorderRadius.all(Radius.circular(10)),
+//                           ),
+//                           child: Text(sList![i].title!, style: selected ? TextStyles.R1578 : TextStyles.R1575),
+//                         ),
+//                         sList![i].isOffer!
+//                             ? PositionedDirectional(
+//                                 end: 10,
+//                                 top: -5,
+//                                 child: Container(
+//                                   padding: const EdgeInsetsDirectional.only(start: 19, end: 19, top: 3, bottom: 3),
+//                                   decoration: BoxDecoration(
+//                                     color: ColorRes.primaryColor,
+//                                     borderRadius: BorderRadius.circular(11),
+//                                   ),
+//                                   child: Text(
+//                                     "BEST VALUE",
+//                                     style: TextStyles.SB10FF,
+//                                   ),
+//                                 ))
+//                             : Container(),
+//                       ],
+//                     ),
+//                   );
+//                 },
+//                 separatorBuilder: (c, i) => SizedBox(
+//                       height: 30,
+//                     ),
+//                 itemCount: sList!.length),
+//             SizedBox(height: 11),
+//             Text(
+//               "Cancel anytime",
+//               style: TextStyles.L1275,
+//             ),
+//             SizedBox(height: 30),
+//             CustomButton(
+//                 onTap: () {
+//                   InAppPurchaseManager().requestSubscription(
+//                       context: context,
+//                       productKey: "com.app.shalaonline.test",
+//                       onPurchased: (purchasedItem) async {
+//                         print(purchasedItem);
+//
+//                         // Trans received of purchased product
+//                       });
+//                 },
+//                 buttonText: "SUBSCRIBE",
+//                 backgroundColor: ColorRes.primaryColor,
+//                 foregroundColor: ColorRes.primaryColor,
+//                 borderColor: Colors.transparent,
+//                 textStyle: TextStyles.SB18FF),
+//             CustomButton(
+//                 onTap: () {},
+//                 buttonText: "BROWSE OTHER CLASSES",
+//                 backgroundColor: Colors.transparent,
+//                 foregroundColor: Colors.transparent,
+//                 borderColor: Colors.transparent,
+//                 textStyle: TextStyles.R1575),
+//             SizedBox(height: 34)
+//           ],
+//         ),
+//       ),
+//     ])))));
+//   }
+// }
 
 // import 'dart:async';
 // import 'dart:io';
@@ -270,7 +270,7 @@ class _SubscribeScreenState extends State<SubscribeScreen> {
 // const String _kUpgradeId = 'com.app.shalaonline.test1';
 // const String _kSilverSubscriptionId = 'subscription_silver';
 // const String _kGoldSubscriptionId = 'subscription_gold';
-// const List<String> _kProductIdAndroid = <String>[_kConsumableId, "com.app.shalaonline.test", "com.app.shalaonline.test1"];
+// const List<String> _kProductIdAndroid = <String>["com.app.shalaonline.test", "com.app.shalaonline.test1"];
 // const List<String> _kProductIds = <String>[
 //   _kConsumableId,
 //   _kUpgradeId,
@@ -696,3 +696,199 @@ class _SubscribeScreenState extends State<SubscribeScreen> {
 //     return false;
 //   }
 // }
+
+import 'dart:async';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:in_app_purchase/in_app_purchase.dart';
+import 'package:intl/intl.dart';
+
+class SubscribeScreen extends StatefulWidget {
+  @override
+  _SubscribeScreenState createState() => _SubscribeScreenState();
+}
+
+class _SubscribeScreenState extends State<SubscribeScreen> {
+  final InAppPurchase _inAppPurchase = InAppPurchase.instance;
+  final String _productID = 'com.app.shalaonline.test';
+
+  bool _available = true;
+  List<ProductDetails> _products = [];
+  List<PurchaseDetails> _purchases = [];
+  StreamSubscription<List<PurchaseDetails>>? _subscription;
+
+  @override
+  void initState() {
+    final Stream<List<PurchaseDetails>> purchaseUpdated =
+        _inAppPurchase.purchaseStream;
+
+    _subscription = purchaseUpdated.listen((purchaseDetailsList) {
+      setState(() {
+        _purchases.addAll(purchaseDetailsList);
+        _listenToPurchaseUpdated(purchaseDetailsList);
+      });
+    }, onDone: () {
+      _subscription!.cancel();
+    }, onError: (error) {
+      _subscription!.cancel();
+    });
+
+    _initialize();
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _subscription!.cancel();
+    super.dispose();
+  }
+
+  void _initialize() async {
+    _available = await _inAppPurchase.isAvailable();
+
+    List<ProductDetails> products = await _getProducts(
+      productIds: Set<String>.from(
+        [_productID],
+      ),
+    );
+
+    setState(() {
+      _products = products;
+    });
+  }
+
+  void _listenToPurchaseUpdated(List<PurchaseDetails> purchaseDetailsList) {
+    purchaseDetailsList.forEach((PurchaseDetails purchaseDetails) async {
+      switch (purchaseDetails.status) {
+        case PurchaseStatus.pending:
+        //  _showPendingUI();
+          break;
+        case PurchaseStatus.purchased:
+        case PurchaseStatus.restored:
+        // bool valid = await _verifyPurchase(purchaseDetails);
+        // if (!valid) {
+        //   _handleInvalidPurchase(purchaseDetails);
+        // }
+          break;
+        case PurchaseStatus.error:
+          print(purchaseDetails.error!);
+          // _handleError(purchaseDetails.error!);
+          break;
+        default:
+          break;
+      }
+
+      if (purchaseDetails.pendingCompletePurchase) {
+        await _inAppPurchase.completePurchase(purchaseDetails);
+      }
+    });
+  }
+
+  Future<List<ProductDetails>> _getProducts(
+      {required Set<String> productIds}) async {
+    ProductDetailsResponse response =
+    await _inAppPurchase.queryProductDetails(productIds);
+
+    return response.productDetails;
+  }
+
+  ListTile _buildProduct({required ProductDetails product}) {
+    return ListTile(
+      leading: Icon(Icons.attach_money),
+      title: Text('${product.title} - ${product.price}'),
+      subtitle: Text(product.description),
+      trailing: ElevatedButton(
+        onPressed: () {
+          _subscribe(product: product);
+        },
+        child: Text(
+          'Subscribe',
+        ),
+      ),
+    );
+  }
+
+  ListTile _buildPurchase({required PurchaseDetails purchase}) {
+    if (purchase.error != null) {
+      return ListTile(
+        title: Text('${purchase.error}'),
+        subtitle: Text(purchase.status.toString()),
+      );
+    }
+
+    String? transactionDate;
+    if (purchase.status == PurchaseStatus.purchased) {
+      DateTime date = DateTime.fromMillisecondsSinceEpoch(
+        int.parse(purchase.transactionDate!),
+      );
+      transactionDate = ' @ ' + DateFormat('yyyy-MM-dd HH:mm:ss').format(date);
+    }
+
+    return ListTile(
+      title: Text('${purchase.productID} ${transactionDate ?? ''}'),
+      subtitle: Text(purchase.status.toString()),
+    );
+  }
+
+  void _subscribe({required ProductDetails product}) {
+    final PurchaseParam purchaseParam = PurchaseParam(productDetails: product);
+    _inAppPurchase.buyNonConsumable(
+      purchaseParam: purchaseParam,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('In App Purchase 1.0.8'),
+      ),
+      body: _available
+          ? Column(
+        children: [
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Current Products ${_products.length}'),
+                ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: _products.length,
+                  itemBuilder: (context, index) {
+                    return _buildProduct(
+                      product: _products[index],
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Column(
+              // mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Past Purchases: ${_purchases.length}'),
+                Expanded(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: _purchases.length,
+                    itemBuilder: (context, index) {
+                      return _buildPurchase(
+                        purchase: _purchases[index],
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      )
+          : Center(
+        child: Text('The Store Is Not Available'),
+      ),
+    );
+  }
+}
