@@ -12,7 +12,7 @@ class AppState {
 
   AppState._internal();
 
-  late User resLoginModel;
+  User? resLoginModel;
   static const  String loginResponse = "loginResponse";
   String deviceId = '';
   DateFormat format = DateFormat('yyyy-MM-dd');

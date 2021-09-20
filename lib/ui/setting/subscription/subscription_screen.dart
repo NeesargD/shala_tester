@@ -711,7 +711,7 @@ class SubscribeScreen extends StatefulWidget {
 
 class _SubscribeScreenState extends State<SubscribeScreen> {
   final InAppPurchase _inAppPurchase = InAppPurchase.instance;
-  final String _productID = 'com.app.shalaonline.test';
+  final String _productID = 'com.app.shalaonline.test2';
 
   bool _available = true;
   List<ProductDetails> _products = [];

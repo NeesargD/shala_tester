@@ -22,7 +22,7 @@ class InstructorFollowBloc extends Bloc<InstructorFollowEvent, InstructorFollowS
   ) async* {
     if (event is GetInstructorFollowScreen) {
       try {
-        Map<String, dynamic> param = {"user": appState.resLoginModel.id, "instructor": event.instructorID};
+        Map<String, dynamic> param = {"user": appState.resLoginModel!.id, "instructor": event.instructorID};
         _instructorFollowModel = await ApiServices().instructorFollowApi(param: param);
         if (_instructorFollowModel.success!) {
           yield InstructorFollowSuccess(instructorFollowModel: _instructorFollowModel);

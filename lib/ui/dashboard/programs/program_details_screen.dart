@@ -6,7 +6,6 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shala_yoga/base/utils/toast_utils.dart';
 import 'package:shala_yoga/blocs/favourite_bloc/favourite_bloc.dart';
-import '../../video_player/custom_video_player.dart';
 import '../../widgets/expand_shrink_text.dart';
 import '../../../base/utils/common_methods.dart';
 import '../../../base/utils/constants/color_constant.dart';
@@ -74,7 +73,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                       children: [
                         CustomButton(
                             onTap: () {
-                              if (appState.resLoginModel.id != null) {
+                              if (appState.resLoginModel!.id != null) {
                                 NavigationUtils.push(context, routeVideoPlayer, arguments: {"videoUrl": state.programDetailModel.content!.classes[0].videoUrl});
                               } else {
                                 NavigationUtils.push(context, routeLoginSignup);

@@ -108,7 +108,7 @@ class _SplashScreenState extends State<SplashScreen> {
             if (getBool("intro")) {
               if (getBool("quizSubmitted")) {
                 NavigationUtils.pushAndRemoveUntil(context, routeDashboard, arguments: {"index": 0});
-              } else if (appState.resLoginModel.id != null) {
+              } else if (appState.resLoginModel != null) {
                 NavigationUtils.pushAndRemoveUntil(context, routeDashboard, arguments: {"index": 0});
               } else {
                 NavigationUtils.pushReplacement(context, routeStartUpScreen);

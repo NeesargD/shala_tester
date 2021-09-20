@@ -74,7 +74,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                     children: [
                       CustomButton(
                           onTap: () {
-                            if (appState.resLoginModel.id != null) {
+                            if (appState.resLoginModel != null) {
                               NavigationUtils.push(context, routeVideoPlayer, arguments: {"videoUrl": state.classDetailsModel.content!.classes.videoUrl});
                             } else {
                               NavigationUtils.push(context, routeLoginSignup);
@@ -88,7 +88,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                       SizedBox(height: 15),
                       CustomButton(
                           onTap: () {
-                            if (appState.resLoginModel.id != null) {
+                            if (appState.resLoginModel!.id != null) {
                               /// TODO: ADD WATCH LATER API
                             } else {
                               NavigationUtils.push(context, routeLoginSignup);
@@ -151,7 +151,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                   children: [
                                     InkWell(
                                       onTap: () {
-                                        if (appState.resLoginModel.id != null) {
+                                        if (appState.resLoginModel!.id != null) {
                                           NavigationUtils.push(context, routeVideoPlayer, arguments: {"videoUrl": state.classDetailsModel.content!.classes.videoUrl});
                                         } else {
                                           NavigationUtils.push(context, routeLoginSignup);
