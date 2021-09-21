@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shala_yoga/base/utils/common_methods.dart';
 import 'package:shala_yoga/base/utils/constants/color_constant.dart';
-import 'package:shala_yoga/base/utils/constants/string_res.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
 import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
@@ -25,9 +24,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _currentIndexSlider = 0;
+  int currentIndexSlider = 0;
   final CarouselController _controller = CarouselController();
-  int isRecomeded = 1;
+  final int isRecomeded = 1;
 
   @override
   void initState() {
@@ -136,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 viewportFraction: 1,
                                                 onPageChanged: (index, reason) {
                                                   setState(() {
-                                                    _currentIndexSlider = index;
+                                                    currentIndexSlider = index;
                                                   });
                                                 }),
                                           ),
@@ -153,7 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   width: 10.0,
                                                   height: 10.0,
                                                   margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-                                                  decoration: BoxDecoration(shape: BoxShape.circle, color: _currentIndexSlider == entry.key ? ColorRes.primaryColor : ColorRes.white),
+                                                  decoration: BoxDecoration(shape: BoxShape.circle, color: currentIndexSlider == entry.key ? ColorRes.primaryColor : ColorRes.white),
                                                 ),
                                               );
                                             }).toList(),

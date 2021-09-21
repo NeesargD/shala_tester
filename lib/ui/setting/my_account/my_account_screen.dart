@@ -4,8 +4,6 @@ import 'package:shala_yoga/base/utils/constants/color_constant.dart';
 import 'package:shala_yoga/base/utils/constants/image_constant.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
 import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
-import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
-import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
 import 'package:shala_yoga/ui/widgets/common_list_tile_widget.dart';
 import 'package:shala_yoga/ui/widgets/custom_button.dart';
 

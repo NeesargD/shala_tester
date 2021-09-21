@@ -73,7 +73,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                       children: [
                         CustomButton(
                             onTap: () {
-                              if (appState.resLoginModel!.id != null) {
+                              if (appState.userId != null) {
                                 NavigationUtils.push(context, routeVideoPlayer, arguments: {"videoUrl": state.programDetailModel.content!.classes[0].videoUrl});
                               } else {
                                 NavigationUtils.push(context, routeLoginSignup);

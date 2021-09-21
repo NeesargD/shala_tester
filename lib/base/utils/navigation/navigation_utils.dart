@@ -9,6 +9,7 @@ import 'package:shala_yoga/blocs/home/home_bloc/home_bloc.dart';
 import 'package:shala_yoga/blocs/instructor_follow_bloc/instructor_follow_bloc.dart';
 import 'package:shala_yoga/blocs/programs/program_detail_bloc/program_detail_bloc.dart';
 import 'package:shala_yoga/blocs/question_answer/question_answer_bloc.dart';
+import 'package:shala_yoga/ui/auth/login_signup.dart';
 import 'package:shala_yoga/ui/dashboard/classes/classes_details_screen.dart';
 import 'package:shala_yoga/ui/dashboard/programs/program_details_screen.dart';
 import 'package:shala_yoga/ui/filter/filter_screen.dart';
@@ -17,7 +18,7 @@ import 'package:shala_yoga/ui/setting/language/language.dart';
 import 'package:shala_yoga/ui/setting/notification/notification.dart';
 import 'package:shala_yoga/ui/setting/subscription/subscription_screen.dart';
 import 'package:shala_yoga/ui/setting/support/support_screen.dart';
-import 'package:shala_yoga/ui/video_player/custom_video_player.dart';
+import 'package:shala_yoga/ui/video_player/video_player.dart';
 import 'package:shala_yoga/ui/widgets/breathe_loader.dart';
 import '../../../blocs/instructor_details_bloc/instructor_details_bloc.dart';
 import '../../../blocs/recommended_bloc/recommendation_bloc.dart';
@@ -97,7 +98,9 @@ class NavigationUtils {
                 create: (BuildContext context) => InstructorFollowBloc(),
               ),
             ],
-            child: InstructorDetailProfileScreen(id: args!["id"],),
+            child: InstructorDetailProfileScreen(
+              id: args!["id"],
+            ),
           ),
         );
       case routeSetting:
@@ -135,6 +138,10 @@ class NavigationUtils {
       case routeLanguage:
         return MaterialPageRoute(
           builder: (_) => LanguageScreen(),
+        );
+      case routeLoginSignup:
+        return MaterialPageRoute(
+          builder: (_) => LoginSignupScreen(),
         );
       case routeDashboard:
         return MaterialPageRoute(

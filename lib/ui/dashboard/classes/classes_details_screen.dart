@@ -6,15 +6,10 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:shala_yoga/base/utils/toast_utils.dart';
 import 'package:shala_yoga/blocs/favourite_bloc/favourite_bloc.dart';
-
 import '../../../base/utils/localization/app_localizations.dart';
-
-import '../../auth/login_signup.dart';
 import '../../../base/utils/navigation/navigation_route_constants.dart';
-import '../../video_player/custom_video_player.dart';
 import '../../../base/utils/navigation/navigation_utils.dart';
 import '../../widgets/expand_shrink_text.dart';
-
 import '../../../base/utils/common_methods.dart';
 import '../../../base/utils/constants/color_constant.dart';
 import '../../../base/utils/constants/image_constant.dart';
@@ -74,7 +69,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                     children: [
                       CustomButton(
                           onTap: () {
-                            if (appState.resLoginModel != null) {
+                            if (appState.userId != null) {
                               NavigationUtils.push(context, routeVideoPlayer, arguments: {"videoUrl": state.classDetailsModel.content!.classes.videoUrl});
                             } else {
                               NavigationUtils.push(context, routeLoginSignup);
@@ -88,7 +83,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                       SizedBox(height: 15),
                       CustomButton(
                           onTap: () {
-                            if (appState.resLoginModel!.id != null) {
+                            if (appState.userId != null) {
                               /// TODO: ADD WATCH LATER API
                             } else {
                               NavigationUtils.push(context, routeLoginSignup);
@@ -151,7 +146,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                   children: [
                                     InkWell(
                                       onTap: () {
-                                        if (appState.resLoginModel!.id != null) {
+                                        if (appState.userId != null) {
                                           NavigationUtils.push(context, routeVideoPlayer, arguments: {"videoUrl": state.classDetailsModel.content!.classes.videoUrl});
                                         } else {
                                           NavigationUtils.push(context, routeLoginSignup);

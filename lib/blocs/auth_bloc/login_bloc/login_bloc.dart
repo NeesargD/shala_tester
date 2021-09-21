@@ -1,10 +1,9 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:shala_yoga/base/utils/constants/app_state.dart';
 import 'package:shala_yoga/base/utils/constants/string_res.dart';
-import 'package:shala_yoga/base/utils/preference_utils.dart';
-import 'package:shala_yoga/models/auth/res_login.dart';
+import 'package:shala_yoga/base/utils/preference.dart';
 import 'package:shala_yoga/models/error_response.dart';
 import 'package:shala_yoga/services/api_services.dart';
 
@@ -27,11 +26,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         print(param);
         var response = await ApiServices().postLoginDetail(param: param);
         if (response.success) {
-          await setString("user", jsonEncode(response.user));
-          var loginResponse = getString("user");
-          appState.resLoginModel = User.fromJson(jsonDecode(loginResponse));
-          print("=============");
-          print(appState.resLoginModel);
+          appState.userId = response.user.id;
+          await Preferences.saveIntData(AppState.loginUser, appState.userId!);
           yield LoginSuccess(message: response.message);
         } else {
           yield LoginFailure(message: response.message);

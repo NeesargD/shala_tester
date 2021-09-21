@@ -21,4 +21,3 @@ const String routeSubscription = "routeSubscription";
 const String routeLoginSignup = "routeLoginSignup";
 const String routeSearchResult = "routeSearchResult";
 const String routeVideoPlayer = "routeVideoPlayer";
-

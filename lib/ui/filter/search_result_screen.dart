@@ -5,8 +5,6 @@ import 'package:shala_yoga/base/utils/toast_utils.dart';
 import 'package:shala_yoga/blocs/filter/post_filter/post_filter_bloc.dart';
 import '../../base/utils/constants/color_constant.dart';
 import '../../base/utils/constants/textstyle_constants.dart';
-import '../../base/utils/localization/app_localizations.dart';
-import '../classes_widgets/classes_recommendation_widgets.dart';
 
 
 class SearchResult extends StatefulWidget {
@@ -19,12 +17,12 @@ class SearchResult extends StatefulWidget {
 class _SearchResultState extends State<SearchResult>
     with SingleTickerProviderStateMixin {
 
-  TabController? _tabController;
+  TabController? tabController;
   int? counter;
 
   @override
   void initState() {
-    _tabController = new TabController(length: 2, vsync: this);
+    tabController = new TabController(length: 2, vsync: this);
     super.initState();
   }
 

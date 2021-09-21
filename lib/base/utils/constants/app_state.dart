@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:shala_yoga/models/auth/res_login.dart';
 
 class AppState {
   static final AppState _singleton = AppState._internal();
@@ -11,9 +10,8 @@ class AppState {
   }
 
   AppState._internal();
-
-  User? resLoginModel;
-  static const  String loginResponse = "loginResponse";
+  int? userId ;
+  static const String loginUser = "loginUser";
   String deviceId = '';
   DateFormat format = DateFormat('yyyy-MM-dd');
   DateFormat formatDD = DateFormat('dd/MM/yyyy');
