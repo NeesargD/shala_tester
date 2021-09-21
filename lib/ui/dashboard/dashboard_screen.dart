@@ -45,201 +45,76 @@ class _DashboardScreenState extends State<DashboardScreen> {
         builder: (context, value, child) {
           return Scaffold(
             resizeToAvoidBottomInset: false,
-            body: Stack(
+            body: IndexedStack(
+              index: value,
               children: [
-                IndexedStack(
-                  index: value,
-                  children: [
-                    BlocProvider(
-                      create: (context) => HomeBloc(),
-                      child: HomeScreen(),
-                    ),
-                    BlocProvider(
-                      create: (context) => ClassesBloc(),
-                      child: ClassesScreen(),
-                    ),
-                    BlocProvider(
-                      create: (context) => ProgramsBloc(),
-                      child: ProgramsScreen(),
-                    ),
-
-                    BlocProvider(
-                      create: (context) => InstructorBloc(),
-                      child: InstructorScreen(),
-                    ),
-                    Center(
-                      child: Text('Under Development'),
-                    ),
-                    BlocProvider(
-                      create: (context) => RecommendationBloc(),
-                      child: RecommendationScreen(),
-                    ),
-                  ],
+                BlocProvider(
+                  create: (context) => HomeBloc(),
+                  child: HomeScreen(),
+                ),
+                BlocProvider(
+                  create: (context) => ClassesBloc(),
+                  child: ClassesScreen(),
+                ),
+                BlocProvider(
+                  create: (context) => ProgramsBloc(),
+                  child: ProgramsScreen(),
+                ),
+                BlocProvider(
+                  create: (context) => InstructorBloc(),
+                  child: InstructorScreen(),
+                ),
+                Center(
+                  child: Text('Under Development'),
+                ),
+                BlocProvider(
+                  create: (context) => RecommendationBloc(),
+                  child: RecommendationScreen(),
                 ),
               ],
             ),
             bottomNavigationBar: BottomAppBar(
               child: Container(
-                margin: EdgeInsetsDirectional.only(top: 18),
-                height: kToolbarHeight,
+                padding: EdgeInsetsDirectional.only(top: 10, bottom: 10),
+                height: kToolbarHeight + 5,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Expanded(
-                      flex: 1,
-                      child: InkWell(
+                    bottomAppBarView(
                         onTap: () {
                           _onTap(0);
                         },
-                        child: Column(
-                          children: [
-                            SvgPicture.asset(
-                              ImageRes.home,
-                              color: _currentIndex.value == 0
-                                  ? ColorRes.primaryColor
-                                  : ColorRes.greyIcon,
-                              height: 20,
-                              width: 20,
-                              fit: BoxFit.contain,
-                            ),
-                            SizedBox(height: 6),
-                            Text(
-                              AppLocalizations.of(context)!.translate("home"),
-                              style: TextStyle(
-                                  fontSize: 10,
-                                  color: _currentIndex.value == 0
-                                      ? ColorRes.primaryColor
-                                      : ColorRes.greyText),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: InkWell(
+                        bottomName: AppLocalizations.of(context)!.translate("home"),
+                        imageName: ImageRes.home,
+                        index: 0),
+                    bottomAppBarView(
                         onTap: () {
                           _onTap(1);
                         },
-                        child: Column(
-                          children: [
-                            SvgPicture.asset(
-                              ImageRes.play,
-                              color: _currentIndex.value == 1
-                                  ? ColorRes.primaryColor
-                                  : ColorRes.greyIcon,
-                              height: 20,
-                              width: 20,
-                              fit: BoxFit.contain,
-                            ),
-                            SizedBox(height: 6),
-                            Text(
-
-                              AppLocalizations.of(context)!.translate
-                                ("classes"),
-                              style: TextStyle(
-                                  fontSize: 10,
-                                  color: _currentIndex.value == 1
-                                      ? ColorRes.primaryColor
-                                      : ColorRes.greyText),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: InkWell(
+                        bottomName: AppLocalizations.of(context)!.translate("classes"),
+                        imageName: ImageRes.play,
+                        index: 1),
+                    bottomAppBarView(
                         onTap: () {
                           _onTap(2);
                         },
-                        child: Column(
-                          children: [
-                            SvgPicture.asset(
-                              ImageRes.programs,
-                              color: _currentIndex.value == 2
-                                  ? ColorRes.primaryColor
-                                  : ColorRes.greyIcon,
-                              height: 20,
-                              width: 20,
-                              fit: BoxFit.contain,
-                            ),
-                            SizedBox(height: 6),
-                            Text(
-                              AppLocalizations.of(context)!.translate(
-                                  "programs"),
-                              style: TextStyle(
-                                  fontSize: 10,
-                                  color: _currentIndex.value == 2
-                                      ? ColorRes.primaryColor
-                                      : ColorRes.greyText),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: InkWell(
+                        bottomName: AppLocalizations.of(context)!.translate("programs"),
+                        imageName: ImageRes.programs,
+                        index: 2),
+                    bottomAppBarView(
                         onTap: () {
                           _onTap(3);
                         },
-                        child: Column(
-                          children: [
-                            SvgPicture.asset(
-                              ImageRes.yogaPosture,
-                              color: _currentIndex.value == 3
-                                  ? ColorRes.primaryColor
-                                  : ColorRes.greyIcon,
-                              height: 20,
-                              width: 20,
-                              fit: BoxFit.contain,
-                            ),
-                            SizedBox(height: 6),
-                            Text(
-                              AppLocalizations.of(context)!.translate(
-                                  "instructors"),
-                              style: TextStyle(
-                                  fontSize: 10,
-                                  color: _currentIndex.value == 3
-                                      ? ColorRes.primaryColor
-                                      : ColorRes.greyText),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: InkWell(
+                        bottomName: AppLocalizations.of(context)!.translate("instructors"),
+                        imageName: ImageRes.yogaPosture,
+                        index: 3),
+                    bottomAppBarView(
                         onTap: () {
                           _onTap(4);
                         },
-                        child: Column(
-                          children: [
-                            SvgPicture.asset(
-                              ImageRes.myPractice,
-                              color: _currentIndex.value == 4
-                                  ? ColorRes.primaryColor
-                                  : ColorRes.greyIcon,
-                              height: 20,
-                              width: 20,
-                              fit: BoxFit.contain,
-                            ),
-                            SizedBox(height: 6),
-                            Text(
-                              AppLocalizations.of(context)!.translate(
-                                  "my_practice"),
-                              style: TextStyle(
-                                  fontSize: 10,
-                                  color: _currentIndex.value == 4
-                                      ? ColorRes.primaryColor
-                                      : ColorRes.greyText),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                        bottomName: AppLocalizations.of(context)!.translate("my_practice"),
+                        imageName: ImageRes.myPractice,
+                        index: 4),
                   ],
                 ),
               ),
@@ -247,6 +122,34 @@ class _DashboardScreenState extends State<DashboardScreen> {
           );
         },
         valueListenable: _currentIndex,
+      ),
+    );
+  }
+
+  Widget bottomAppBarView(
+      {VoidCallback? onTap, int index = 0, String? imageName, String? bottomName}) {
+    return Expanded(
+      flex: 1,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Column(
+          children: [
+            SvgPicture.asset(
+              imageName!,
+              color: _currentIndex.value == index ? ColorRes.primaryColor : ColorRes.greyIcon,
+              height: 20,
+              width: 20,
+              fit: BoxFit.contain,
+            ),
+            SizedBox(height: 6),
+            Text(
+              bottomName!,
+              style: TextStyle(
+                  fontSize: 10,
+                  color: _currentIndex.value == index ? ColorRes.primaryColor : ColorRes.greyText),
+            ),
+          ],
+        ),
       ),
     );
   }

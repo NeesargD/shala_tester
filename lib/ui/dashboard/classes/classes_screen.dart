@@ -34,7 +34,6 @@ class _ClassesScreenState extends State<ClassesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // toolbarHeight: 80,
         centerTitle: true,
         elevation: 0,
         backgroundColor: ColorRes.appBarColor,
@@ -53,7 +52,8 @@ class _ClassesScreenState extends State<ClassesScreen> {
             onTap: () {
               showModalBottomSheet(
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(10), topLeft: Radius.circular(10)),
                 ),
                 context: context,
                 builder: (context) => BottomSheetWidget(),
@@ -77,7 +77,8 @@ class _ClassesScreenState extends State<ClassesScreen> {
                   margin: EdgeInsetsDirectional.only(start: 20, end: 20),
                   child: InkWell(
                     onTap: () {
-                      NavigationUtils.push(context, routeClassDetailsScreen, arguments: {'id': state.classesModel.content!.classes[index].id});
+                      NavigationUtils.push(context, routeClassDetailsScreen,
+                          arguments: {'id': state.classesModel.content!.classes[index].id});
                     },
                     child: ClassesCardWidget(
                         image: state.classesModel.content!.classes[index].coverImage,
@@ -86,7 +87,10 @@ class _ClassesScreenState extends State<ClassesScreen> {
                         style: state.classesModel.content!.classes[index].style[0],
                         isLock: state.classesModel.content!.classes[index].isLock,
                         level: state.classesModel.content!.classes[index].level,
-                        duration: appState.parseDuration(state.classesModel.content!.classes[index].durations).inMinutes.toString(),
+                        duration: appState
+                            .parseDuration(state.classesModel.content!.classes[index].durations)
+                            .inMinutes
+                            .toString(),
                         language: state.classesModel.content!.classes[index].language),
                   ),
                 );
