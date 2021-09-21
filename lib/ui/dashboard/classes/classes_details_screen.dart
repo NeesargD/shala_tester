@@ -60,7 +60,11 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
               backgroundColor: ColorRes.whiteGradient,
               bottomNavigationBar: BottomAppBar(
                 child: Container(
-                  decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [ColorRes.white, ColorRes.whiteGradient])),
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [ColorRes.white, ColorRes.whiteGradient])),
                   height: 120,
                   // height: MediaQuery.of(context).size.height * 0.18,
                   margin: EdgeInsetsDirectional.only(start: 17, end: 17, top: 10),
@@ -70,7 +74,9 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                       CustomButton(
                           onTap: () {
                             if (appState.userId != null) {
-                              NavigationUtils.push(context, routeVideoPlayer, arguments: {"videoUrl": state.classDetailsModel.content!.classes.videoUrl});
+                              NavigationUtils.push(context, routeVideoPlayer, arguments: {
+                                "videoUrl": state.classDetailsModel.content!.classes.videoUrl
+                              });
                             } else {
                               NavigationUtils.push(context, routeLoginSignup);
                             }
@@ -116,7 +122,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.only(start: 17, end: 17, bottom: 32),
+                            padding: EdgeInsetsDirectional.only(start: 23, end: 23, top: 20),
                             child: Column(
                               children: [
                                 Row(
@@ -130,15 +136,30 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                           color: ColorRes.white,
                                         )),
                                     Spacer(),
-                                    IconButton(onPressed: () {}, icon: Icon(Icons.access_time, color: ColorRes.white)),
                                     IconButton(
                                         onPressed: () {
-                                          context.read<FavouriteBloc>().add(AddToFavourite(
-                                                contentType: 'Classes',
-                                                classId: state.classDetailsModel.content!.classes.id,
-                                              ));
+                                          if (appState.userId != null) {
+                                            /// TODO: ADD WATCH LATER LOGIC
+                                          } else {
+                                            NavigationUtils.push(context, routeLoginSignup);
+                                          }
                                         },
-                                        icon: Icon(Icons.favorite_border, color: ColorRes.white)),
+                                        icon: Icon(Icons.access_time, color: ColorRes.white)),
+                                    IconButton(
+                                        onPressed: () {
+                                          if (appState.userId != null) {
+                                            context.read<FavouriteBloc>().add(AddToFavourite(
+                                                  contentType: 'Classes',
+                                                  classId:
+                                                      state.classDetailsModel.content!.classes.id,
+                                                ));
+                                          } else {
+                                            NavigationUtils.push(context, routeLoginSignup);
+                                          }
+                                        },
+                                        icon: state.classDetailsModel.content!.classes.isFav
+                                            ? Icon(Icons.favorite, color: ColorRes.red)
+                                            : Icon(Icons.favorite_border, color: ColorRes.white)),
                                   ],
                                 ),
                                 Row(
@@ -147,7 +168,11 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                     InkWell(
                                       onTap: () {
                                         if (appState.userId != null) {
-                                          NavigationUtils.push(context, routeVideoPlayer, arguments: {"videoUrl": state.classDetailsModel.content!.classes.videoUrl});
+                                          NavigationUtils.push(
+                                              context, routeVideoPlayer, arguments: {
+                                            "videoUrl":
+                                                state.classDetailsModel.content!.classes.videoUrl
+                                          });
                                         } else {
                                           NavigationUtils.push(context, routeLoginSignup);
                                         }
@@ -186,7 +211,8 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                       width: MediaQuery.of(context).size.width * 0.96,
                       decoration: BoxDecoration(
                         color: ColorRes.white,
-                        borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16)),
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(16), topRight: Radius.circular(16)),
                       ),
                       child: Stack(
                         clipBehavior: Clip.none,
@@ -214,7 +240,12 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                       text: TextSpan(
                                           text: AppLocalizations.of(context)!.translate("part_of"),
                                           style: TextStyles.R1275,
-                                          children: [TextSpan(text: state.classDetailsModel.content!.classes.partOf, style: TextStyles.SB1278)]),
+                                          children: [
+                                            TextSpan(
+                                                text:
+                                                    state.classDetailsModel.content!.classes.partOf,
+                                                style: TextStyles.SB1278)
+                                          ]),
                                     ),
                                     SizedBox(height: 30),
                                     Row(
@@ -223,19 +254,30 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                         const SizedBox(
                                           width: 5,
                                         ),
-                                        Text(state.classDetailsModel.content!.classes.style.join(','), style: TextStyles.R1575),
+                                        Text(
+                                            state.classDetailsModel.content!.classes.style
+                                                .join(','),
+                                            style: TextStyles.R1575),
                                         Spacer(),
                                         SvgPicture.asset(ImageRes.levels),
                                         const SizedBox(
                                           width: 5,
                                         ),
-                                        Text(state.classDetailsModel.content!.classes.level, style: TextStyles.R1575),
+                                        Text(state.classDetailsModel.content!.classes.level,
+                                            style: TextStyles.R1575),
                                         Spacer(),
                                         SvgPicture.asset(ImageRes.hourGlass),
                                         const SizedBox(
                                           width: 5,
                                         ),
-                                        Text(appState.parseDuration(state.classDetailsModel.content!.classes.durations).inMinutes.toString() + ' min', style: TextStyles.R1575),
+                                        Text(
+                                            appState
+                                                    .parseDuration(state.classDetailsModel.content!
+                                                        .classes.durations)
+                                                    .inMinutes
+                                                    .toString() +
+                                                ' min',
+                                            style: TextStyles.R1575),
                                       ],
                                     ),
                                     SizedBox(height: 30),
@@ -260,7 +302,9 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                     ),
                                   ),*/
                                     SizedBox(height: 25),
-                                    Text(AppLocalizations.of(context)!.translate("class_focus"), style: TextStyles.R1575.copyWith(color: ColorRes.primaryColor)),
+                                    Text(AppLocalizations.of(context)!.translate("class_focus"),
+                                        style: TextStyles.R1575
+                                            .copyWith(color: ColorRes.primaryColor)),
                                   ],
                                 ),
                               ),
@@ -280,12 +324,16 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                               SizedBox(height: 10),
                               Padding(
                                 padding: EdgeInsetsDirectional.only(start: 17),
-                                child: Text(state.classDetailsModel.content!.classes.focus.join(','), style: TextStyles.R1375),
+                                child: Text(
+                                    state.classDetailsModel.content!.classes.focus.join(','),
+                                    style: TextStyles.R1375),
                               ),
                               SizedBox(height: 23),
                               Padding(
                                 padding: EdgeInsetsDirectional.only(start: 17),
-                                child: Text(AppLocalizations.of(context)!.translate("similar_classes"), style: TextStyles.R1575.copyWith(color: ColorRes.primaryColor)),
+                                child: Text(
+                                    AppLocalizations.of(context)!.translate("similar_classes"),
+                                    style: TextStyles.R1575.copyWith(color: ColorRes.primaryColor)),
                               ),
                               Stack(
                                 children: [
@@ -305,14 +353,24 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                 padding: EdgeInsets.zero,
                                 shrinkWrap: true,
                                 physics: NeverScrollableScrollPhysics(),
-                                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(childAspectRatio: 0.74, mainAxisSpacing: 25, crossAxisSpacing: 25, crossAxisCount: 2),
+                                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                    childAspectRatio: 0.74,
+                                    mainAxisSpacing: 25,
+                                    crossAxisSpacing: 25,
+                                    crossAxisCount: 2),
                                 itemCount: state.classDetailsModel.content!.similarClasses.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return InkWell(
                                       onTap: () {
-                                        NavigationUtils.pushReplacement(context, routeClassDetailsScreen, arguments: {"id": state.classDetailsModel.content!.similarClasses[index].id});
+                                        NavigationUtils.pushReplacement(
+                                            context, routeClassDetailsScreen, arguments: {
+                                          "id": state
+                                              .classDetailsModel.content!.similarClasses[index].id
+                                        });
                                       },
-                                      child: ClassesGridWidget(classesDetail: state.classDetailsModel.content!.similarClasses[index]));
+                                      child: ClassesGridWidget(
+                                          classesDetail: state
+                                              .classDetailsModel.content!.similarClasses[index]));
                                 },
                               ),
                               const SizedBox(height: 30),
@@ -326,7 +384,10 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                 CircleAvatar(
                                   backgroundColor: ColorRes.white,
                                   radius: 10,
-                                  child: Text(state.classDetailsModel.content!.classes.language.substring(0, 2), style: TextStyles.R1075),
+                                  child: Text(
+                                      state.classDetailsModel.content!.classes.language
+                                          .substring(0, 2),
+                                      style: TextStyles.R1075),
                                 ),
                               ],
                             ),
@@ -340,16 +401,19 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                     children: [
                                       InkWell(
                                         onTap: () {
-                                          NavigationUtils.push(context, routeInstructorDetails, arguments: {
-                                            'id': state.classDetailsModel.content!.classes.instructor.id,
-                                          });
+                                          NavigationUtils.push(context, routeInstructorDetails,
+                                              arguments: {
+                                                'id': state.classDetailsModel.content!.classes
+                                                    .instructor.id,
+                                              });
                                         },
                                         child: CircleAvatar(
                                           radius: 35,
                                           child: ClipRRect(
                                             borderRadius: BorderRadius.circular(35),
                                             child: CircularImage(
-                                              imageUrl: state.classDetailsModel.content!.classes.instructor.profilePicture,
+                                              imageUrl: state.classDetailsModel.content!.classes
+                                                  .instructor.profilePicture,
                                               imageRadius: 35,
                                             ),
                                           ),
@@ -357,7 +421,11 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                       ),
                                       SizedBox(height: 3),
                                       Text(
-                                        state.classDetailsModel.content!.classes.instructor.firstname + '\n' + state.classDetailsModel.content!.classes.instructor.lastname,
+                                        state.classDetailsModel.content!.classes.instructor
+                                                .firstname +
+                                            '\n' +
+                                            state.classDetailsModel.content!.classes.instructor
+                                                .lastname,
                                         textAlign: TextAlign.center,
                                       ),
                                     ],

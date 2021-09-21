@@ -12,7 +12,7 @@ class AppState {
   AppState._internal();
   int? userId ;
   static const String loginUser = "loginUser";
-  String deviceId = '';
+  String? deviceId;
   DateFormat format = DateFormat('yyyy-MM-dd');
   DateFormat formatDD = DateFormat('dd/MM/yyyy');
   DateFormat formatDT = DateFormat('dd-MM-yyyy HH:mm');

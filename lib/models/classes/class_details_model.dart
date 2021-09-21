@@ -10,8 +10,7 @@ import '../instructor_details_model.dart' as InstructorDetails;
 ClassDetailsModel classDetailsModelFromJson(String str) =>
     ClassDetailsModel.fromJson(json.decode(str));
 
-String classDetailsModelToJson(ClassDetailsModel data) =>
-    json.encode(data.toJson());
+String classDetailsModelToJson(ClassDetailsModel data) => json.encode(data.toJson());
 
 class ClassDetailsModel {
   ClassDetailsModel({
@@ -24,8 +23,7 @@ class ClassDetailsModel {
   bool success;
   String message;
 
-  factory ClassDetailsModel.fromJson(Map<String, dynamic> json) =>
-      ClassDetailsModel(
+  factory ClassDetailsModel.fromJson(Map<String, dynamic> json) => ClassDetailsModel(
         content: Content.fromJson(json["content"]),
         success: json["success"],
         message: json["message"],
@@ -55,27 +53,26 @@ class Content {
 
   Map<String, dynamic> toJson() => {
         "classes": classes.toJson(),
-        "similarclasses":
-            List<dynamic>.from(similarClasses.map((x) => x.toJson())),
+        "similarclasses": List<dynamic>.from(similarClasses.map((x) => x.toJson())),
       };
 }
 
 class Classes {
-  Classes({
-    required this.id,
-    required this.instructor,
-    required this.title,
-    required this.partOf,
-    required this.description,
-    required this.focus,
-    required this.style,
-    required this.level,
-    required this.language,
-    required this.durations,
-    required this.videoUrl,
-    required this.coverImage,
-    required this.isLock,
-  });
+  Classes(
+      {required this.id,
+      required this.instructor,
+      required this.title,
+      required this.partOf,
+      required this.description,
+      required this.focus,
+      required this.style,
+      required this.level,
+      required this.language,
+      required this.durations,
+      required this.videoUrl,
+      required this.coverImage,
+      required this.isLock,
+      required this.isFav});
 
   int id;
   Instructor instructor;
@@ -90,6 +87,7 @@ class Classes {
   String videoUrl;
   String coverImage;
   bool isLock;
+  bool isFav;
 
   factory Classes.fromJson(Map<String, dynamic> json) => Classes(
         id: json["id"],
@@ -105,12 +103,14 @@ class Classes {
         videoUrl: json["video_url"],
         coverImage: json["cover_image"],
         isLock: json["is_lock"] == null ? true : json["is_lock"],
+        isFav: json["is_fav"] == null ? false : json["is_fav"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "instructor": instructor.toJson(),
         "title": title,
+        "is_fav": isFav,
         "partof": partOf,
         "description": description,
         "focus": List<dynamic>.from(focus.map((x) => x)),

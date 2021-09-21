@@ -8,6 +8,7 @@ import '../../../models/filter/post_filter.dart';
 import '../../../services/api_services.dart';
 
 part 'post_filter_event.dart';
+
 part 'post_filter_state.dart';
 
 class PostFilterBloc extends Bloc<PostFilterEvent, PostFilterState> {
@@ -16,7 +17,9 @@ class PostFilterBloc extends Bloc<PostFilterEvent, PostFilterState> {
   late PostFilterModel postFilterModel;
 
   @override
-  Stream<PostFilterState> mapEventToState(PostFilterEvent event,) async* {
+  Stream<PostFilterState> mapEventToState(
+    PostFilterEvent event,
+  ) async* {
     if (event is PostAllFilter) {
       yield PostFilterLoading();
       try {
@@ -33,12 +36,10 @@ class PostFilterBloc extends Bloc<PostFilterEvent, PostFilterState> {
         var response = await ApiServices().postFilter(param: param);
         if (response.success) {
           yield PostFilterSuccess(message: response.message);
-        }
-        else {
+        } else {
           yield PostFilterFailure(message: response.message);
         }
-      }
-      catch (e) {
+      } catch (e) {
         print(e.toString());
         try {
           ErrorResponse? errorResponse = e as ErrorResponse?;
