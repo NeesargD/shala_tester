@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:bot_toast/bot_toast.dart';
+import 'package:devicelocale/devicelocale.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,6 +16,7 @@ import 'base/utils/navigation/navigation_route_constants.dart';
 import 'base/utils/navigation/navigation_utils.dart';
 import 'base/utils/preference_utils.dart';
 import 'package:in_app_purchase_android/in_app_purchase_android.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await init();
@@ -78,7 +80,7 @@ class MyApp extends StatelessWidget {
               child = botToastBuilder(context, FlutterEasyLoading(child: child));
               return child;
             },
-            supportedLocales:  [
+            supportedLocales: [
               Locale('en', ''), // English, no country code
               Locale('ar', ''), // Arabic, no country code
             ],
@@ -105,8 +107,3 @@ void configLoading() {
     ..maskColor = Colors.black.withOpacity(0.5)
     ..userInteractions = false;
 }
-
-
-
-
-

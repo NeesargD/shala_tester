@@ -12,6 +12,7 @@ import '../../../base/utils/constants/string_res.dart';
 import '../../../base/utils/navigation/navigation_route_constants.dart';
 import '../../../base/utils/navigation/navigation_utils.dart';
 import '../../../base/extensions/scaffold_extension.dart';
+import 'package:devicelocale/devicelocale.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -102,7 +103,7 @@ class _SplashScreenState extends State<SplashScreen> {
             setState(() {
               performLogoTransition = !performLogoTransition;
             });
-          } else if (timer.tick == 4) {
+          } else if (timer.tick == 5) {
             if (getBool("intro")) {
               NavigationUtils.pushReplacement(context, routeStartUpScreen);
             } else if (getBool("quizSubmitted")) {

@@ -75,6 +75,7 @@ dependencies:
   in_app_purchase: ^1.0.8
   google_sign_in: ^5.1.0
   sign_in_with_apple: ^3.0.0
+  devicelocale: ^0.4.3
 
   #video-player
   chewie: ^1.2.2
