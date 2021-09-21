@@ -258,9 +258,8 @@ class _QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
           context: context,
           initialDate: DateTime.now(),
           firstDate: DateTime(DateTime.now().year - 100),
-          lastDate: DateTime(DateTime.now().year + 100),
+          lastDate: DateTime.now(),
         );
-
         content.answers![answerIndex].answerValue = appState.formatDD.format(birthDate!);
         setState(() {});
       },
