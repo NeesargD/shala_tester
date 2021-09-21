@@ -12,7 +12,6 @@ import '../../../base/utils/constants/string_res.dart';
 import '../../../base/utils/navigation/navigation_route_constants.dart';
 import '../../../base/utils/navigation/navigation_utils.dart';
 import '../../../base/extensions/scaffold_extension.dart';
-import 'package:devicelocale/devicelocale.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -105,9 +104,12 @@ class _SplashScreenState extends State<SplashScreen> {
             });
           } else if (timer.tick == 5) {
             if (getBool("intro")) {
-              NavigationUtils.pushReplacement(context, routeStartUpScreen);
-            } else if (getBool("quizSubmitted")) {
-              NavigationUtils.pushAndRemoveUntil(context, routeDashboard, arguments: {"index": 0});
+              if (getBool("quizSubmitted")) {
+                NavigationUtils.pushAndRemoveUntil(context, routeDashboard,
+                    arguments: {"index": 0});
+              } else {
+                NavigationUtils.pushReplacement(context, routeStartUpScreen);
+              }
             } else if (appState.userId != null) {
               NavigationUtils.pushAndRemoveUntil(context, routeDashboard, arguments: {"index": 0});
             } else {

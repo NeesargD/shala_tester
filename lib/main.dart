@@ -1,7 +1,5 @@
 import 'dart:io';
-
 import 'package:bot_toast/bot_toast.dart';
-import 'package:devicelocale/devicelocale.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -27,7 +25,6 @@ Future<void> main() async {
   }
 
   await Firebase.initializeApp();
-  // await initializeDateFormatting();
   setupLocator();
   runApp(MyApp());
 }
@@ -53,13 +50,7 @@ class MyApp extends StatelessWidget {
         builder: (context, model, child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'Shalaonline',
-            // builder: (context, child) {
-            //   return MediaQuery(
-            //     child: child!,
-            //     data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-            //   );
-            // },
+            title: 'Shala Online',
             theme: ThemeData(
               primaryColor: ColorRes.primaryColor,
               primaryColorDark: ColorRes.primaryColor,

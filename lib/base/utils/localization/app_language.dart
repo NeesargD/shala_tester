@@ -25,7 +25,7 @@ class AppLanguage extends ChangeNotifier {
         notifyListeners();
       }
     } else {
-      _appLocale = Locale(prefs.getString('language_code') ?? 'en');
+      _appLocale = Locale(prefs.getString('language_code') ?? 'ar');
       notifyListeners();
     }
   }
