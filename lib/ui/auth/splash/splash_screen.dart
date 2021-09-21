@@ -1,9 +1,9 @@
 import 'dart:async';
-import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shala_yoga/base/utils/common_methods.dart';
 import 'package:shala_yoga/base/utils/constants/app_state.dart';
 import 'package:shala_yoga/base/utils/preference.dart';
 import 'package:shala_yoga/base/utils/preference_utils.dart';
@@ -29,33 +29,21 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(Duration.zero, () {
-      initDynamicLinks();
-      getDeviceInfo();
-      startTime();
+      initMethod();
     });
   }
 
-  void getDeviceInfo() async {
-    String id = "";
+  void initMethod() async {
+    appState.deviceId = await getDeviceId();
     userId = await Preferences.getIntData(AppState.loginUser);
-    if (Platform.isAndroid) {
-      final deviceAndroid = await deviceInfo.androidInfo;
-      id = deviceAndroid.androidId!;
-      print('Running on $id');
-    } else {
-      final deviceIos = await deviceInfo.iosInfo;
-      id = deviceIos.identifierForVendor!;
-      print('Running on $id');
-    }
-    appState.deviceId = id;
     appState.userId = userId;
+    initDynamicLinks();
+    startTime();
   }
 
-  // link open and user refer code get
   void initDynamicLinks() async {
     FirebaseDynamicLinks.instance.onLink(onSuccess: (PendingDynamicLinkData? dynamicLink) async {
       final Uri? deepLink = dynamicLink?.link;
-      print("....>>>>>>>......$deepLink");
       if (deepLink != null) {
         print("............$deepLink");
         // Navigator.pushNamed(context, deepLink.path);
@@ -95,28 +83,29 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   //Methods
-  Timer startTime() => Timer.periodic(
-        Duration(seconds: 1),
-        (timer) {
-          if (timer.tick == 1) {
-            setState(() {
-              performLogoTransition = !performLogoTransition;
-            });
-          } else if (timer.tick == 5) {
-            if (getBool("intro")) {
-              if (getBool("quizSubmitted")) {
-                NavigationUtils.pushAndRemoveUntil(context, routeDashboard,
-                    arguments: {"index": 0});
-              } else {
-                NavigationUtils.pushReplacement(context, routeStartUpScreen);
-              }
-            } else if (appState.userId != null) {
+  Timer startTime() {
+    return Timer.periodic(
+      Duration(seconds: 1),
+      (timer) {
+        if (timer.tick == 1) {
+          setState(() {
+            performLogoTransition = !performLogoTransition;
+          });
+        } else if (timer.tick == 5) {
+          if (getBool("intro")) {
+            if (getBool("quizSubmitted")) {
               NavigationUtils.pushAndRemoveUntil(context, routeDashboard, arguments: {"index": 0});
             } else {
-              NavigationUtils.pushReplacement(context, routeIntro);
+              NavigationUtils.pushReplacement(context, routeStartUpScreen);
             }
-            this.dispose();
+          } else if (appState.userId != null) {
+            NavigationUtils.pushAndRemoveUntil(context, routeDashboard, arguments: {"index": 0});
+          } else {
+            NavigationUtils.pushReplacement(context, routeIntro);
           }
-        },
-      );
+          this.dispose();
+        }
+      },
+    );
+  }
 }

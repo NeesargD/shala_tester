@@ -49,7 +49,9 @@ class ApiServices {
   }
 
   ErrorResponse _handleError(DioError error) {
-    if (error.type == DioErrorType.other && error.error != null && error.error is SocketException) {}
+    if (error.type == DioErrorType.other &&
+        error.error != null &&
+        error.error is SocketException) {}
 
     ErrorResponse errorResponse = ErrorResponse();
 
@@ -90,24 +92,22 @@ class ApiServices {
     return errorResponse;
   }
 
-  Future<OnboardingModel> onBoardAPI(/*{required Map<String, dynamic> param}*/) async {
+  Future<OnboardingModel> onBoardAPI() async {
     try {
       Response response = await _dio.get(
         Config.splash,
       );
-      print("------");
       return OnboardingModel.fromJson(response.data);
     } on DioError catch (e) {
       throw _handleError(e);
     }
   }
 
-  Future<QuizModel> quizDetailsApi(/*{required Map<String, dynamic> param}*/) async {
+  Future<QuizModel> quizDetailsApi() async {
     try {
       Response response = await _dio.get(
         Config.quizDetails,
       );
-      print("------");
       return QuizModel.fromJson(response.data);
     } on DioError catch (e) {
       throw _handleError(e);
@@ -184,7 +184,6 @@ class ApiServices {
       Response response = await _dio.get(
         Config.recommendation,
       );
-      print("------");
       return RecommendationModel.fromJson(response.data);
     } on DioError catch (e) {
       throw _handleError(e);
@@ -196,7 +195,6 @@ class ApiServices {
       Response response = await _dio.get(
         Config.getFilter,
       );
-      print("------");
       return GetFilterModel.fromJson(response.data);
     } on DioError catch (e) {
       throw _handleError(e);
@@ -212,12 +210,11 @@ class ApiServices {
     }
   }
 
-  Future<ClassesModel> getAllClasses(/*{required Map<String, dynamic> param}*/) async {
+  Future<ClassesModel> getAllClasses() async {
     try {
       Response response = await _dio.get(
         Config.getAllClasses,
       );
-      print("------");
       return ClassesModel.fromJson(response.data);
     } on DioError catch (e) {
       throw _handleError(e);
@@ -227,19 +224,17 @@ class ApiServices {
   Future<ClassDetailsModel> getClassDetails({required Map<String, dynamic> param}) async {
     try {
       Response response = await _dio.get(Config.getClassDetails, queryParameters: param);
-      print("------");
       return ClassDetailsModel.fromJson(response.data);
     } on DioError catch (e) {
       throw _handleError(e);
     }
   }
 
-  Future<ProgramsModel> getAllPrograms(/*{required Map<String, dynamic> param}*/) async {
+  Future<ProgramsModel> getAllPrograms() async {
     try {
       Response response = await _dio.get(
         Config.getAllPrograms,
       );
-      print("------");
       return ProgramsModel.fromJson(response.data);
     } on DioError catch (e) {
       throw _handleError(e);
@@ -249,7 +244,6 @@ class ApiServices {
   Future<ProgramDetailModel> getProgramDetail({required Map<String, dynamic> param}) async {
     try {
       Response response = await _dio.get(Config.getProgramDetail, queryParameters: param);
-      print("------");
       return ProgramDetailModel.fromJson(response.data);
     } on DioError catch (e) {
       throw _handleError(e);
@@ -259,7 +253,6 @@ class ApiServices {
   Future<HomeModel> getHome() async {
     try {
       Response response = await _dio.get(Config.getHome);
-      print("------");
       return HomeModel.fromJson(response.data);
     } on DioError catch (e) {
       throw _handleError(e);
@@ -269,7 +262,6 @@ class ApiServices {
   Future<CommonModel> addToFavourites({required Map<String, dynamic> param}) async {
     try {
       Response response = await _dio.post(Config.favourites, data: param);
-      print("------");
       return CommonModel.fromJson(response.data);
     } on DioError catch (e) {
       throw _handleError(e);
