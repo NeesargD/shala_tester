@@ -66,27 +66,34 @@ class ApiServices {
             if (error.response!.data.length > 1) {
               errorResponse = ErrorResponse.fromJson(error.response!.data);
             } else {
-              errorResponse = ErrorResponse(errors: [Error(detail: error.response!.data["error"])]);
+              errorResponse = ErrorResponse(
+                  errors: [Error(detail: error.response!.data["error"])]);
             }
           } catch (e) {
-            errorResponse = ErrorResponse(errors: [Error(detail: StringRes.errorGeneral)]);
+            errorResponse =
+                ErrorResponse(errors: [Error(detail: StringRes.errorGeneral)]);
           }
         } else {
-          errorResponse = ErrorResponse(errors: [Error(detail: StringRes.errorGeneral)]);
+          errorResponse =
+              ErrorResponse(errors: [Error(detail: StringRes.errorGeneral)]);
         }
 
         break;
       case DioErrorType.connectTimeout:
-        errorResponse = ErrorResponse(errors: [Error(detail: StringRes.serverTimeout)]);
+        errorResponse =
+            ErrorResponse(errors: [Error(detail: StringRes.serverTimeout)]);
         break;
       case DioErrorType.receiveTimeout:
-        errorResponse = ErrorResponse(errors: [Error(detail: StringRes.serverTimeout)]);
+        errorResponse =
+            ErrorResponse(errors: [Error(detail: StringRes.serverTimeout)]);
         break;
       case DioErrorType.sendTimeout:
-        errorResponse = ErrorResponse(errors: [Error(detail: StringRes.serverTimeout)]);
+        errorResponse =
+            ErrorResponse(errors: [Error(detail: StringRes.serverTimeout)]);
         break;
       case DioErrorType.other:
-        errorResponse = ErrorResponse(errors: [Error(detail: StringRes.somethingWentWrong)]);
+        errorResponse = ErrorResponse(
+            errors: [Error(detail: StringRes.somethingWentWrong)]);
         break;
     }
     return errorResponse;
@@ -125,16 +132,19 @@ class ApiServices {
     }
   }
 
-  Future<InstructorDetailsModel> instructorDetailsApi({required Map<String, dynamic> param}) async {
+  Future<InstructorDetailsModel> instructorDetailsApi(
+      {required Map<String, dynamic> param}) async {
     try {
-      Response response = await _dio.get(Config.instructorDetails, queryParameters: param);
+      Response response =
+          await _dio.get(Config.instructorDetails, queryParameters: param);
       return InstructorDetailsModel.fromJson(response.data);
     } on DioError catch (e) {
       throw _handleError(e);
     }
   }
 
-  Future<InstructorFollowModel> instructorFollowApi({required Map<String, dynamic> param}) async {
+  Future<InstructorFollowModel> instructorFollowApi(
+      {required Map<String, dynamic> param}) async {
     try {
       Response response = await _dio.post(Config.instructorFollow, data: param);
       return InstructorFollowModel.fromJson(response.data);
@@ -154,23 +164,27 @@ class ApiServices {
 
   Future<Map> postQuestionAnswer({required Map<String, dynamic> param}) async {
     try {
-      Response response = await _dio.post(Config.postQuestionAnswer, data: param);
+      Response response =
+          await _dio.post(Config.postQuestionAnswer, data: param);
       return response.data;
     } on DioError catch (e) {
       throw _handleError(e);
     }
   }
 
-  Future<ResLoginModel> postRegistrationDetail({required Map<String, dynamic> param}) async {
+  Future<ResLoginModel> postRegistrationDetail(
+      {required Map<String, dynamic> param}) async {
     try {
-      Response response = await _dio.post(Config.postRegistrationDetail, data: param);
+      Response response =
+          await _dio.post(Config.postRegistrationDetail, data: param);
       return ResLoginModel.fromJson(response.data);
     } on DioError catch (e) {
       throw _handleError(e);
     }
   }
 
-  Future<ResLoginModel> postLoginDetail({required Map<String, dynamic> param}) async {
+  Future<ResLoginModel> postLoginDetail(
+      {required Map<String, dynamic> param}) async {
     try {
       Response response = await _dio.post(Config.postLoginDetail, data: param);
       return ResLoginModel.fromJson(response.data);
@@ -201,9 +215,10 @@ class ApiServices {
     }
   }
 
-  Future<PostFilterModel> postFilter({required Map<String, dynamic> param}) async {
+  Future<PostFilterModel> postFilter(
+      {required Map<String, dynamic> param}) async {
     try {
-      Response response = await _dio.get(Config.postFilter);
+      Response response = await _dio.post(Config.postFilter, data: param);
       return PostFilterModel.fromJson(response.data);
     } on DioError catch (e) {
       throw _handleError(e);
@@ -221,9 +236,11 @@ class ApiServices {
     }
   }
 
-  Future<ClassDetailsModel> getClassDetails({required Map<String, dynamic> param}) async {
+  Future<ClassDetailsModel> getClassDetails(
+      {required Map<String, dynamic> param}) async {
     try {
-      Response response = await _dio.get(Config.getClassDetails, queryParameters: param);
+      Response response =
+          await _dio.get(Config.getClassDetails, queryParameters: param);
       return ClassDetailsModel.fromJson(response.data);
     } on DioError catch (e) {
       throw _handleError(e);
@@ -241,9 +258,11 @@ class ApiServices {
     }
   }
 
-  Future<ProgramDetailModel> getProgramDetail({required Map<String, dynamic> param}) async {
+  Future<ProgramDetailModel> getProgramDetail(
+      {required Map<String, dynamic> param}) async {
     try {
-      Response response = await _dio.get(Config.getProgramDetail, queryParameters: param);
+      Response response =
+          await _dio.get(Config.getProgramDetail, queryParameters: param);
       return ProgramDetailModel.fromJson(response.data);
     } on DioError catch (e) {
       throw _handleError(e);
@@ -259,7 +278,8 @@ class ApiServices {
     }
   }
 
-  Future<CommonModel> addToFavourites({required Map<String, dynamic> param}) async {
+  Future<CommonModel> addToFavourites(
+      {required Map<String, dynamic> param}) async {
     try {
       Response response = await _dio.post(Config.favourites, data: param);
       return CommonModel.fromJson(response.data);

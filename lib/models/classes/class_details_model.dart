@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
+
 import '../instructor_models.dart';
 import '../instructor_details_model.dart' as InstructorDetails;
 
@@ -87,7 +89,7 @@ class Classes {
   String videoUrl;
   String coverImage;
   bool isLock;
-  bool isFav;
+  ValueNotifier<bool> isFav = ValueNotifier<bool>(false);
 
   factory Classes.fromJson(Map<String, dynamic> json) => Classes(
         id: json["id"],
@@ -103,7 +105,7 @@ class Classes {
         videoUrl: json["video_url"],
         coverImage: json["cover_image"],
         isLock: json["is_lock"] == null ? true : json["is_lock"],
-        isFav: json["is_fav"] == null ? false : json["is_fav"],
+        isFav: json["is_fav"] == null ? ValueNotifier<bool>(false) : ValueNotifier<bool>(json["is_fav"]),
       );
 
   Map<String, dynamic> toJson() => {

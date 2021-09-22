@@ -122,13 +122,6 @@ class NavigationUtils {
         return MaterialPageRoute(
           builder: (_) => NotificationScreen(),
         );
-      case routeSearchResult:
-        return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => PostFilterBloc(),
-            child: SearchResult(),
-          ),
-        );
       case routeVideoPlayer:
         return MaterialPageRoute(
           builder: (_) => VideoPlayerScreen(
@@ -162,6 +155,13 @@ class NavigationUtils {
                   create: (context) => GetFilterBloc(),
                   child: FilterScreen(),
                 ));
+      case routeSearchResult:
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+              create: (context) => PostFilterBloc(),
+              child: SearchResult(startDuration: args!['startDuration'], focus: args['focus'], style: args['style'],
+                instructor: args['instructor'], language: args['language'], level: args['level'], endDuration: args['endDuration'],),
+            ));
       case routeClassDetailsScreen:
         return MaterialPageRoute(
           builder: (_) => MultiBlocProvider(

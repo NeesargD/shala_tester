@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
+
 ProgramDetailModel programDetailModelFromJson(String str) => ProgramDetailModel.fromJson(json.decode(str));
 
 String programDetailModelToJson(ProgramDetailModel data) => json.encode(data.toJson());
@@ -158,7 +160,7 @@ class Programs {
     required this.coverImage,
     required this.teaserVideoUrl,
     required this.weight,
-    this.isFavourite = false,
+    required this.isFav
   });
 
   int id;
@@ -173,7 +175,7 @@ class Programs {
   String coverImage;
   String teaserVideoUrl;
   int weight;
-  bool isFavourite;
+  ValueNotifier<bool> isFav = ValueNotifier<bool>(false);
 
   factory Programs.fromJson(Map<String, dynamic> json) => Programs(
     id: json["id"],
@@ -188,6 +190,7 @@ class Programs {
     coverImage: json["cover_Image"],
     teaserVideoUrl:  json["teaser_Video_Url"],
     weight: json["weight"],
+    isFav: json["is_fav"] == null ? ValueNotifier<bool>(false) : ValueNotifier<bool>(json["is_fav"]),
   );
 
   Map<String, dynamic> toJson() => {

@@ -21,11 +21,10 @@ class PostFilterBloc extends Bloc<PostFilterEvent, PostFilterState> {
     PostFilterEvent event,
   ) async* {
     if (event is PostAllFilter) {
-      yield PostFilterLoading();
       try {
         Map<String, dynamic> param = {
-          "startDuration": event.startDuration,
-          "endDuration": event.endDuration,
+          "start_duration": event.startDuration,
+          "end_duration": event.endDuration,
           "style": event.style,
           "language": event.language,
           "level": event.level,
@@ -33,11 +32,12 @@ class PostFilterBloc extends Bloc<PostFilterEvent, PostFilterState> {
           "instructor": event.instructor
         };
         print(param);
-        var response = await ApiServices().postFilter(param: param);
-        if (response.success) {
-          yield PostFilterSuccess(message: response.message);
-        } else {
-          yield PostFilterFailure(message: response.message);
+        postFilterModel = await ApiServices().postFilter(param: param);
+        if (postFilterModel.success) {
+          yield PostFilterSuccess(postFilterModel: postFilterModel);
+        }
+        else {
+          yield PostFilterFailure(message: postFilterModel.message);
         }
       } catch (e) {
         print(e.toString());

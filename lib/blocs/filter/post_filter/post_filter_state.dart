@@ -9,20 +9,19 @@ class PostFilterInitial extends PostFilterState {
   List<Object> get props => [];
 }
 
-class PostFilterLoading extends PostFilterState{
-  @override
-  List<Object?> get props =>[];
-
-
-}
+// class PostFilterLoading extends PostFilterState{
+//   @override
+//   List<Object?> get props =>[];
+//
+// }
 
 class PostFilterSuccess extends PostFilterState{
-  final String message;
+  final PostFilterModel postFilterModel;
 
-  PostFilterSuccess({required this.message});
+  PostFilterSuccess({required this.postFilterModel});
 
   @override
-  List<Object?> get props => [message];
+  List<Object?> get props => [postFilterModel];
 }
 
 class PostFilterFailure extends PostFilterState{

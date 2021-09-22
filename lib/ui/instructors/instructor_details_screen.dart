@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:shala_yoga/base/utils/constants/string_res.dart';
 import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
 import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
@@ -27,10 +28,12 @@ class InstructorDetailProfileScreen extends StatefulWidget {
   InstructorDetailProfileScreen({required this.id});
 
   @override
-  _InstructorDetailProfileScreenState createState() => _InstructorDetailProfileScreenState();
+  _InstructorDetailProfileScreenState createState() =>
+      _InstructorDetailProfileScreenState();
 }
 
-class _InstructorDetailProfileScreenState extends State<InstructorDetailProfileScreen>
+class _InstructorDetailProfileScreenState
+    extends State<InstructorDetailProfileScreen>
     with SingleTickerProviderStateMixin {
   TabController? _tabController;
   bool textDescription = false;
@@ -57,14 +60,17 @@ class _InstructorDetailProfileScreenState extends State<InstructorDetailProfileS
             if (stateFollow is InstructorFollowSuccess) {
               EasyLoading.dismiss();
               _instructorFollowModel = stateFollow.instructorFollowModel;
-              context.read<InstructorDetailsBloc>().add(GetInstructorDetailsScreen(id: widget.id));
+              context
+                  .read<InstructorDetailsBloc>()
+                  .add(GetInstructorDetailsScreen(id: widget.id));
             }
             if (stateFollow is InstructorFollowFailure) {
               EasyLoading.dismiss();
               ToastUtils.showFailed(message: stateFollow.message);
             }
           },
-          child: BlocBuilder<InstructorDetailsBloc, InstructorDetailsState>(builder: (context, state) {
+          child: BlocBuilder<InstructorDetailsBloc, InstructorDetailsState>(
+              builder: (context, state) {
             if (state is InstructorDetailsFailure) {
               return FailureWidget(message: state.message);
             }
@@ -89,7 +95,8 @@ class _InstructorDetailProfileScreenState extends State<InstructorDetailProfileS
                           Container(
                             margin: EdgeInsetsDirectional.only(start: 20),
                             child: CircularImage(
-                              imageUrl: state.instructorDetailsModel.content!.instructorDetails.profilePicture,
+                              imageUrl: state.instructorDetailsModel.content!
+                                  .instructorDetails.profilePicture,
                               imageRadius: 65,
                             ),
                           ),
@@ -99,47 +106,63 @@ class _InstructorDetailProfileScreenState extends State<InstructorDetailProfileS
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                    state.instructorDetailsModel.content!.instructorDetails.firstname +
+                                    state.instructorDetailsModel.content!
+                                            .instructorDetails.firstname +
                                         ' ' +
-                                        state.instructorDetailsModel.content!.instructorDetails.lastname,
+                                        state.instructorDetailsModel.content!
+                                            .instructorDetails.lastname,
                                     style: TextStyles.SB1878),
                                 Text(
-                                    state.instructorDetailsModel.content!.instructorDetails.state +
+                                    state.instructorDetailsModel.content!
+                                            .instructorDetails.state +
                                         ',' +
-                                        state.instructorDetailsModel.content!.instructorDetails.country,
+                                        state.instructorDetailsModel.content!
+                                            .instructorDetails.country,
                                     style: TextStyles.R1375),
                                 SizedBox(height: 11),
                                 Row(
                                   children: [
                                     Expanded(
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
-                                          Text('${state.instructorDetailsModel.content!.instructorDetails.follower}',
+                                          Text(
+                                              '${state.instructorDetailsModel.content!.instructorDetails.follower}',
                                               style: TextStyles.R1875),
-                                          Text(AppLocalizations.of(context)!.translate("followers"),
+                                          Text(
+                                              AppLocalizations.of(context)!
+                                                  .translate("followers"),
                                               style: TextStyles.R1275),
                                         ],
                                       ),
                                     ),
                                     Expanded(
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
-                                          Text('${state.instructorDetailsModel.content!.instructorDetails.classes}',
+                                          Text(
+                                              '${state.instructorDetailsModel.content!.instructorDetails.classes}',
                                               style: TextStyles.R1875),
-                                          Text(AppLocalizations.of(context)!.translate("classes"),
+                                          Text(
+                                              AppLocalizations.of(context)!
+                                                  .translate("classes"),
                                               style: TextStyles.R1275),
                                         ],
                                       ),
                                     ),
                                     Expanded(
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
-                                          Text('${state.instructorDetailsModel.content!.instructorDetails.program}',
+                                          Text(
+                                              '${state.instructorDetailsModel.content!.instructorDetails.program}',
                                               style: TextStyles.R1875),
-                                          Text(AppLocalizations.of(context)!.translate("programs"),
+                                          Text(
+                                              AppLocalizations.of(context)!
+                                                  .translate("programs"),
                                               style: TextStyles.R1275),
                                         ],
                                       ),
@@ -153,15 +176,18 @@ class _InstructorDetailProfileScreenState extends State<InstructorDetailProfileS
                       ),
                       SizedBox(height: 21),
                       Container(
-                        margin: EdgeInsetsDirectional.only(start: 25, end: 25, bottom: 0),
+                        margin: EdgeInsetsDirectional.only(
+                            start: 25, end: 25, bottom: 0),
                         child: ExpandShrinkText(
-                          state.instructorDetailsModel.content!.instructorDetails.description,
+                          state.instructorDetailsModel.content!
+                              .instructorDetails.description,
                           trimLines: 3,
                         ),
                       ),
                       SizedBox(height: 20),
                       Padding(
-                        padding: EdgeInsetsDirectional.only(start: 7.7, end: 7.7),
+                        padding:
+                            EdgeInsetsDirectional.only(start: 7.7, end: 7.7),
                         child: DecoratedBox(
                           decoration: BoxDecoration(
                             border: Border(
@@ -180,8 +206,12 @@ class _InstructorDetailProfileScreenState extends State<InstructorDetailProfileS
                               unselectedLabelStyle: TextStyles.SB15AF,
                               unselectedLabelColor: ColorRes.unselectedTextGrey,
                               tabs: [
-                                Tab(text: AppLocalizations.of(context)!.translate('classes')),
-                                Tab(text: AppLocalizations.of(context)!.translate("programs")),
+                                Tab(
+                                    text: AppLocalizations.of(context)!
+                                        .translate('classes')),
+                                Tab(
+                                    text: AppLocalizations.of(context)!
+                                        .translate("programs")),
                               ]),
                         ),
                       ),
@@ -189,48 +219,71 @@ class _InstructorDetailProfileScreenState extends State<InstructorDetailProfileS
                         child: TabBarView(
                           children: [
                             Container(
-                              margin: EdgeInsetsDirectional.only(start: 20, end: 20, top: 10),
+                              margin: EdgeInsetsDirectional.only(
+                                  start: 20, end: 20, top: 10),
                               child: GridView.builder(
                                 padding: EdgeInsets.zero,
-                                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                    childAspectRatio: 0.74,
-                                    mainAxisSpacing: 15,
-                                    crossAxisSpacing: 15,
-                                    crossAxisCount: 2),
-                                itemCount: state.instructorDetailsModel.content!.instructorsClasses.length,
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                        childAspectRatio: 0.74,
+                                        mainAxisSpacing: 15,
+                                        crossAxisSpacing: 15,
+                                        crossAxisCount: 2),
+                                itemCount: state.instructorDetailsModel.content!
+                                    .instructorsClasses.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return GestureDetector(
                                     onTap: () {
-                                      NavigationUtils.push(context, routeClassDetailsScreen, arguments: {
-                                        'id': state.instructorDetailsModel.content!.instructorsClasses[index].id
-                                      });
+                                      NavigationUtils.push(
+                                          context, routeClassDetailsScreen,
+                                          arguments: {
+                                            'id': state
+                                                .instructorDetailsModel
+                                                .content!
+                                                .instructorsClasses[index]
+                                                .id
+                                          });
                                     },
                                     child: ClassesGridWidget(
-                                        classesDetail: state.instructorDetailsModel.content!.instructorsClasses[index]),
+                                        classesDetail: state
+                                            .instructorDetailsModel
+                                            .content!
+                                            .instructorsClasses[index]),
                                   );
                                 },
                               ),
                             ),
                             Container(
-                              margin: EdgeInsetsDirectional.only(start: 20, end: 20, top: 10),
+                              margin: EdgeInsetsDirectional.only(
+                                  start: 20, end: 20, top: 10),
                               child: GridView.builder(
                                 padding: EdgeInsets.zero,
-                                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                    childAspectRatio: 3 / 4,
-                                    mainAxisSpacing: 15,
-                                    crossAxisSpacing: 15,
-                                    crossAxisCount: 2),
-                                itemCount: state.instructorDetailsModel.content!.instructorsPrograms.length,
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                        childAspectRatio: 3 / 4,
+                                        mainAxisSpacing: 15,
+                                        crossAxisSpacing: 15,
+                                        crossAxisCount: 2),
+                                itemCount: state.instructorDetailsModel.content!
+                                    .instructorsPrograms.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return GestureDetector(
                                     onTap: () {
-                                      NavigationUtils.push(context, routeProgramDetailsScreen, arguments: {
-                                        "id": state.instructorDetailsModel.content!.instructorsPrograms[index].id
-                                      });
+                                      NavigationUtils.push(
+                                          context, routeProgramDetailsScreen,
+                                          arguments: {
+                                            "id": state
+                                                .instructorDetailsModel
+                                                .content!
+                                                .instructorsPrograms[index]
+                                                .id
+                                          });
                                     },
                                     child: ProgramGridWidget(
-                                        programDetails:
-                                            state.instructorDetailsModel.content!.instructorsPrograms[index]),
+                                        programDetails: state
+                                            .instructorDetailsModel
+                                            .content!
+                                            .instructorsPrograms[index]),
                                   );
                                 },
                               ),
@@ -240,23 +293,34 @@ class _InstructorDetailProfileScreenState extends State<InstructorDetailProfileS
                         ),
                       ),
                       Container(
-                        margin: EdgeInsetsDirectional.only(start: 35, end: 35, bottom: 10, top: 5),
+                        margin: EdgeInsetsDirectional.only(
+                            start: 35, end: 35, bottom: 10, top: 5),
                         child: CustomButton(
                             onTap: () {
-                              context
-                                  .read<InstructorFollowBloc>()
-                                  .add(GetInstructorFollowScreen(instructorID: widget.id));
+                              if (appState.userId != null) {
+                                context.read<InstructorFollowBloc>().add(
+                                    GetInstructorFollowScreen(
+                                        instructorID: widget.id));
+                              } else {
+                                NavigationUtils.push(context, routeLoginSignup);
+                              }
                             },
-                            buttonText: _instructorDetailsModel.content!.instructorDetails.isFollow
-                                ? AppLocalizations.of(context)!.translate("following")
-                                : AppLocalizations.of(context)!.translate("follow"),
-                            backgroundColor: _instructorDetailsModel.content!.instructorDetails.isFollow
+                            buttonText: _instructorDetailsModel
+                                    .content!.instructorDetails.isFollow
+                                ? AppLocalizations.of(context)!
+                                    .translate("following")
+                                : AppLocalizations.of(context)!
+                                    .translate("follow"),
+                            backgroundColor: _instructorDetailsModel
+                                    .content!.instructorDetails.isFollow
                                 ? ColorRes.primaryColor
                                 : ColorRes.white,
                             foregroundColor: ColorRes.white,
                             borderColor: ColorRes.primaryColor,
-                            textStyle: _instructorDetailsModel.content!.instructorDetails.isFollow
-                                ? TextStyles.SB1878.copyWith(color: ColorRes.white)
+                            textStyle: _instructorDetailsModel
+                                    .content!.instructorDetails.isFollow
+                                ? TextStyles.SB1878
+                                    .copyWith(color: ColorRes.white)
                                 : TextStyles.SB1878),
                       )
                     ],

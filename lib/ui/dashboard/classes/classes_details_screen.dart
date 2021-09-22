@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:shala_yoga/base/utils/toast_utils.dart';
 import 'package:shala_yoga/blocs/favourite_bloc/favourite_bloc.dart';
+import 'package:shala_yoga/models/classes/class_details_model.dart';
 import '../../../base/utils/localization/app_localizations.dart';
 import '../../../base/utils/navigation/navigation_route_constants.dart';
 import '../../../base/utils/navigation/navigation_utils.dart';
@@ -31,6 +32,8 @@ class ClassDetailsScreen extends StatefulWidget {
 }
 
 class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
+  late ClassDetailsModel? classDetailsModel;
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<FavouriteBloc, FavouriteState>(
@@ -41,6 +44,8 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
         if (state is FavouriteSuccess) {
           EasyLoading.dismiss();
           ToastUtils.showSuccess(message: state.message);
+          classDetailsModel!.content!.classes.isFav.value =
+              !classDetailsModel!.content!.classes.isFav.value;
         }
         if (state is FavouriteFailure) {
           EasyLoading.dismiss();
@@ -54,8 +59,8 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
               message: state.message,
             );
           }
-
           if (state is ClassDetailsSuccess) {
+            classDetailsModel = state.classDetailsModel;
             return Scaffold(
               backgroundColor: ColorRes.whiteGradient,
               bottomNavigationBar: BottomAppBar(
@@ -66,22 +71,25 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                           end: Alignment.bottomCenter,
                           colors: [ColorRes.white, ColorRes.whiteGradient])),
                   height: 120,
-                  // height: MediaQuery.of(context).size.height * 0.18,
-                  margin: EdgeInsetsDirectional.only(start: 17, end: 17, top: 10),
+                  margin:
+                      EdgeInsetsDirectional.only(start: 17, end: 17, top: 10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       CustomButton(
                           onTap: () {
                             if (appState.userId != null) {
-                              NavigationUtils.push(context, routeVideoPlayer, arguments: {
-                                "videoUrl": state.classDetailsModel.content!.classes.videoUrl
+                              NavigationUtils.push(
+                                  context, routeVideoPlayer, arguments: {
+                                "videoUrl":
+                                    classDetailsModel!.content!.classes.videoUrl
                               });
                             } else {
                               NavigationUtils.push(context, routeLoginSignup);
                             }
                           },
-                          buttonText: AppLocalizations.of(context)!.translate("start_watching"),
+                          buttonText: AppLocalizations.of(context)!
+                              .translate("start_watching"),
                           backgroundColor: ColorRes.primaryColor,
                           foregroundColor: ColorRes.whiteGradient,
                           borderColor: ColorRes.primaryColor,
@@ -95,7 +103,8 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                               NavigationUtils.push(context, routeLoginSignup);
                             }
                           },
-                          buttonText: AppLocalizations.of(context)!.translate("watch_later"),
+                          buttonText: AppLocalizations.of(context)!
+                              .translate("watch_later"),
                           backgroundColor: ColorRes.greyText,
                           foregroundColor: ColorRes.whiteGradient,
                           borderColor: ColorRes.greyText,
@@ -115,14 +124,17 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                         children: [
                           SizedBox(
                             width: screenWidth(context: context),
-                            height: screenHeight(context: context, percent: 0.38),
+                            height:
+                                screenHeight(context: context, percent: 0.38),
                             child: CustomNetworkImage(
-                              imageUrl: state.classDetailsModel.content!.classes.coverImage,
+                              imageUrl: classDetailsModel!
+                                  .content!.classes.coverImage,
                               boxFit: BoxFit.cover,
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.only(start: 23, end: 23, top: 20),
+                            padding: EdgeInsetsDirectional.only(
+                                start: 23, end: 23, top: 20),
                             child: Column(
                               children: [
                                 Row(
@@ -141,25 +153,46 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                           if (appState.userId != null) {
                                             /// TODO: ADD WATCH LATER LOGIC
                                           } else {
-                                            NavigationUtils.push(context, routeLoginSignup);
+                                            NavigationUtils.push(
+                                                context, routeLoginSignup);
                                           }
                                         },
-                                        icon: Icon(Icons.access_time, color: ColorRes.white)),
-                                    IconButton(
-                                        onPressed: () {
-                                          if (appState.userId != null) {
-                                            context.read<FavouriteBloc>().add(AddToFavourite(
-                                                  contentType: 'Classes',
-                                                  classId:
-                                                      state.classDetailsModel.content!.classes.id,
-                                                ));
-                                          } else {
-                                            NavigationUtils.push(context, routeLoginSignup);
-                                          }
-                                        },
-                                        icon: state.classDetailsModel.content!.classes.isFav
-                                            ? Icon(Icons.favorite, color: ColorRes.red)
-                                            : Icon(Icons.favorite_border, color: ColorRes.white)),
+                                        icon: Icon(Icons.access_time,
+                                            color: ColorRes.white)),
+                                    ValueListenableBuilder(
+                                      valueListenable: classDetailsModel!
+                                          .content!.classes.isFav,
+                                      builder: (context, value, child) {
+                                        return IconButton(
+                                            onPressed: () {
+                                              if (appState.userId != null) {
+                                                context
+                                                    .read<FavouriteBloc>()
+                                                    .add(AddToFavourite(
+                                                      contentType: 'Classes',
+                                                      classId: state
+                                                          .classDetailsModel
+                                                          .content!
+                                                          .classes
+                                                          .id,
+                                                    ));
+                                              } else {
+                                                NavigationUtils.push(
+                                                    context, routeLoginSignup);
+                                              }
+                                            },
+                                            icon: state
+                                                    .classDetailsModel
+                                                    .content!
+                                                    .classes
+                                                    .isFav
+                                                    .value
+                                                ? Icon(Icons.favorite,
+                                                    color: ColorRes.red)
+                                                : Icon(Icons.favorite_border,
+                                                    color: ColorRes.white));
+                                      },
+                                    ),
                                   ],
                                 ),
                                 Row(
@@ -169,23 +202,33 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                       onTap: () {
                                         if (appState.userId != null) {
                                           NavigationUtils.push(
-                                              context, routeVideoPlayer, arguments: {
-                                            "videoUrl":
-                                                state.classDetailsModel.content!.classes.videoUrl
-                                          });
+                                              context, routeVideoPlayer,
+                                              arguments: {
+                                                "videoUrl": state
+                                                    .classDetailsModel
+                                                    .content!
+                                                    .classes
+                                                    .videoUrl
+                                              });
                                         } else {
-                                          NavigationUtils.push(context, routeLoginSignup);
+                                          NavigationUtils.push(
+                                              context, routeLoginSignup);
                                         }
                                       },
                                       child: Center(
                                         child: Padding(
-                                          padding: EdgeInsetsDirectional.only(top: 43),
+                                          padding: EdgeInsetsDirectional.only(
+                                              top: 43),
                                           child: Container(
-                                            padding: EdgeInsetsDirectional.all(15),
+                                            padding:
+                                                EdgeInsetsDirectional.all(15),
                                             decoration: BoxDecoration(
-                                              color: ColorRes.white.withOpacity(0.20),
-                                              border: Border.all(color: ColorRes.white),
-                                              borderRadius: BorderRadius.circular(25),
+                                              color: ColorRes.white
+                                                  .withOpacity(0.20),
+                                              border: Border.all(
+                                                  color: ColorRes.white),
+                                              borderRadius:
+                                                  BorderRadius.circular(25),
                                             ),
                                             child: Center(
                                               child: Icon(
@@ -207,12 +250,14 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsetsDirectional.only(start: 7, end: 7, top: 240),
+                      margin: EdgeInsetsDirectional.only(
+                          start: 7, end: 7, top: 240),
                       width: MediaQuery.of(context).size.width * 0.96,
                       decoration: BoxDecoration(
                         color: ColorRes.white,
                         borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(16), topRight: Radius.circular(16)),
+                            topLeft: Radius.circular(16),
+                            topRight: Radius.circular(16)),
                       ),
                       child: Stack(
                         clipBehavior: Clip.none,
@@ -221,15 +266,19 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.only(start: 17, end: 17),
+                                padding: EdgeInsetsDirectional.only(
+                                    start: 17, end: 17),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      width: screenWidth(context: context, percent: 0.60),
-                                      padding: EdgeInsetsDirectional.only(top: 15),
+                                      width: screenWidth(
+                                          context: context, percent: 0.60),
+                                      padding:
+                                          EdgeInsetsDirectional.only(top: 15),
                                       child: Text(
-                                        state.classDetailsModel.content!.classes.title,
+                                        classDetailsModel!
+                                            .content!.classes.title,
                                         style: TextStyles.SB2575,
                                         overflow: TextOverflow.ellipsis,
                                         maxLines: 2,
@@ -238,12 +287,13 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                     SizedBox(height: 3),
                                     RichText(
                                       text: TextSpan(
-                                          text: AppLocalizations.of(context)!.translate("part_of"),
+                                          text: AppLocalizations.of(context)!
+                                              .translate("part_of"),
                                           style: TextStyles.R1275,
                                           children: [
                                             TextSpan(
-                                                text:
-                                                    state.classDetailsModel.content!.classes.partOf,
+                                                text: classDetailsModel!
+                                                    .content!.classes.partOf,
                                                 style: TextStyles.SB1278)
                                           ]),
                                     ),
@@ -255,7 +305,8 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                           width: 5,
                                         ),
                                         Text(
-                                            state.classDetailsModel.content!.classes.style
+                                            classDetailsModel!
+                                                .content!.classes.style
                                                 .join(','),
                                             style: TextStyles.R1575),
                                         Spacer(),
@@ -263,7 +314,9 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                         const SizedBox(
                                           width: 5,
                                         ),
-                                        Text(state.classDetailsModel.content!.classes.level,
+                                        Text(
+                                            classDetailsModel!
+                                                .content!.classes.level,
                                             style: TextStyles.R1575),
                                         Spacer(),
                                         SvgPicture.asset(ImageRes.hourGlass),
@@ -272,8 +325,11 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                         ),
                                         Text(
                                             appState
-                                                    .parseDuration(state.classDetailsModel.content!
-                                                        .classes.durations)
+                                                    .parseDuration(
+                                                        classDetailsModel!
+                                                            .content!
+                                                            .classes
+                                                            .durations)
                                                     .inMinutes
                                                     .toString() +
                                                 ' min',
@@ -282,29 +338,16 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                     ),
                                     SizedBox(height: 30),
                                     ExpandShrinkText(
-                                      state.classDetailsModel.content!.classes.description,
+                                      classDetailsModel!
+                                          .content!.classes.description,
                                       trimLines: 5,
                                     ),
-                                    /*Container(
-                                    height: 120,x
-                                    child: Scrollbar(
-                                      child: SingleChildScrollView(
-                                        child: Text(
-                                          state
-                                              .classDetailsModel
-                                              .content!
-                                              .classes
-                                              .description,
-                                          style: TextStyles.R1375,
-                                          textAlign: TextAlign.justify,
-                                        ),
-                                      ),
-                                    ),
-                                  ),*/
                                     SizedBox(height: 25),
-                                    Text(AppLocalizations.of(context)!.translate("class_focus"),
-                                        style: TextStyles.R1575
-                                            .copyWith(color: ColorRes.primaryColor)),
+                                    Text(
+                                        AppLocalizations.of(context)!
+                                            .translate("class_focus"),
+                                        style: TextStyles.R1575.copyWith(
+                                            color: ColorRes.primaryColor)),
                                   ],
                                 ),
                               ),
@@ -317,7 +360,8 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                   Divider(
                                     color: ColorRes.primaryColor,
                                     thickness: 2,
-                                    endIndent: screenWidth(context: context, percent: 0.60),
+                                    endIndent: screenWidth(
+                                        context: context, percent: 0.60),
                                   ),
                                 ],
                               ),
@@ -325,15 +369,18 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                               Padding(
                                 padding: EdgeInsetsDirectional.only(start: 17),
                                 child: Text(
-                                    state.classDetailsModel.content!.classes.focus.join(','),
+                                    classDetailsModel!.content!.classes.focus
+                                        .join(','),
                                     style: TextStyles.R1375),
                               ),
                               SizedBox(height: 23),
                               Padding(
                                 padding: EdgeInsetsDirectional.only(start: 17),
                                 child: Text(
-                                    AppLocalizations.of(context)!.translate("similar_classes"),
-                                    style: TextStyles.R1575.copyWith(color: ColorRes.primaryColor)),
+                                    AppLocalizations.of(context)!
+                                        .translate("similar_classes"),
+                                    style: TextStyles.R1575.copyWith(
+                                        color: ColorRes.primaryColor)),
                               ),
                               Stack(
                                 children: [
@@ -344,7 +391,8 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                   Divider(
                                     color: ColorRes.primaryColor,
                                     thickness: 2,
-                                    endIndent: screenWidth(context: context, percent: 0.60),
+                                    endIndent: screenWidth(
+                                        context: context, percent: 0.60),
                                   ),
                                 ],
                               ),
@@ -353,24 +401,30 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                 padding: EdgeInsets.zero,
                                 shrinkWrap: true,
                                 physics: NeverScrollableScrollPhysics(),
-                                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                    childAspectRatio: 0.74,
-                                    mainAxisSpacing: 25,
-                                    crossAxisSpacing: 25,
-                                    crossAxisCount: 2),
-                                itemCount: state.classDetailsModel.content!.similarClasses.length,
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                        childAspectRatio: 0.74,
+                                        mainAxisSpacing: 25,
+                                        crossAxisSpacing: 25,
+                                        crossAxisCount: 2),
+                                itemCount: classDetailsModel!
+                                    .content!.similarClasses.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return InkWell(
                                       onTap: () {
                                         NavigationUtils.pushReplacement(
-                                            context, routeClassDetailsScreen, arguments: {
-                                          "id": state
-                                              .classDetailsModel.content!.similarClasses[index].id
-                                        });
+                                            context, routeClassDetailsScreen,
+                                            arguments: {
+                                              "id": state
+                                                  .classDetailsModel
+                                                  .content!
+                                                  .similarClasses[index]
+                                                  .id
+                                            });
                                       },
                                       child: ClassesGridWidget(
-                                          classesDetail: state
-                                              .classDetailsModel.content!.similarClasses[index]));
+                                          classesDetail: classDetailsModel!
+                                              .content!.similarClasses[index]));
                                 },
                               ),
                               const SizedBox(height: 30),
@@ -385,7 +439,8 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                   backgroundColor: ColorRes.white,
                                   radius: 10,
                                   child: Text(
-                                      state.classDetailsModel.content!.classes.language
+                                      classDetailsModel!
+                                          .content!.classes.language
                                           .substring(0, 2),
                                       style: TextStyles.R1075),
                                 ),
@@ -401,19 +456,29 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                     children: [
                                       InkWell(
                                         onTap: () {
-                                          NavigationUtils.push(context, routeInstructorDetails,
+                                          NavigationUtils.push(
+                                              context, routeInstructorDetails,
                                               arguments: {
-                                                'id': state.classDetailsModel.content!.classes
-                                                    .instructor.id,
+                                                'id': state
+                                                    .classDetailsModel
+                                                    .content!
+                                                    .classes
+                                                    .instructor
+                                                    .id,
                                               });
                                         },
                                         child: CircleAvatar(
                                           radius: 35,
                                           child: ClipRRect(
-                                            borderRadius: BorderRadius.circular(35),
+                                            borderRadius:
+                                                BorderRadius.circular(35),
                                             child: CircularImage(
-                                              imageUrl: state.classDetailsModel.content!.classes
-                                                  .instructor.profilePicture,
+                                              imageUrl: state
+                                                  .classDetailsModel
+                                                  .content!
+                                                  .classes
+                                                  .instructor
+                                                  .profilePicture,
                                               imageRadius: 35,
                                             ),
                                           ),
@@ -421,11 +486,11 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                       ),
                                       SizedBox(height: 3),
                                       Text(
-                                        state.classDetailsModel.content!.classes.instructor
-                                                .firstname +
+                                        classDetailsModel!.content!.classes
+                                                .instructor.firstname +
                                             '\n' +
-                                            state.classDetailsModel.content!.classes.instructor
-                                                .lastname,
+                                            classDetailsModel!.content!.classes
+                                                .instructor.lastname,
                                         textAlign: TextAlign.center,
                                       ),
                                     ],
@@ -440,7 +505,6 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
               ),
             );
           }
-
           return Scaffold(
             body: LoadingWidget(),
           );

@@ -15,5 +15,6 @@ class PostAllFilter extends PostFilterEvent{
   final List<String> instructor;
 
   PostAllFilter({required this.startDuration, required this.endDuration, required this.language, required this.level, required this.style, required this.focus, required this.instructor});
+
   List<Object?> get props => [];
 }

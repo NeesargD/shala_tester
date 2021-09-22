@@ -1,17 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shala_yoga/base/utils/constants/color_constant.dart';
-import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
-import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
-import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
-import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
-import 'package:shala_yoga/blocs/filter/get_filter/get_filter_bloc.dart';
-import 'package:shala_yoga/models/filter/get_filter.dart';
-import 'package:shala_yoga/ui/widgets/custom_button.dart';
-import 'package:shala_yoga/ui/widgets/failure_widget.dart';
-import 'package:shala_yoga/ui/widgets/filter_selecter.dart';
-import 'package:shala_yoga/ui/widgets/loading_widget.dart';
+import 'package:shala_yoga/base/utils/toast_utils.dart';
+import '../../base/utils/constants/color_constant.dart';
+import '../../base/utils/constants/textstyle_constants.dart';
+import '../../base/utils/localization/app_localizations.dart';
+import '../../base/utils/navigation/navigation_route_constants.dart';
+import '../../base/utils/navigation/navigation_utils.dart';
+import '../../blocs/filter/get_filter/get_filter_bloc.dart';
+import '../../models/filter/get_filter.dart';
+import '../widgets/custom_button.dart';
+import '../widgets/failure_widget.dart';
+import '../widgets/filter_selecter.dart';
+import '../widgets/loading_widget.dart';
 
 class FilterScreen extends StatefulWidget {
   @override
@@ -78,7 +79,8 @@ class _FilterScreenState extends State<FilterScreen> {
                         child: TextFormField(
                           decoration: InputDecoration(
                             border: InputBorder.none,
-                            hintText: AppLocalizations.of(context)!.translate('start_typing'),
+                            hintText: AppLocalizations.of(context)!
+                                .translate('start_typing'),
                             hintStyle: TextStyles.R1575,
                           ),
                         ),
@@ -94,7 +96,8 @@ class _FilterScreenState extends State<FilterScreen> {
                         Spacer(),
                         Text(
                           '${value.start.round().toString()} - ${value.end.round().toString()} Min',
-                          style: TextStyles.SB1575.copyWith(color: ColorRes.primaryColor),
+                          style: TextStyles.SB1575
+                              .copyWith(color: ColorRes.primaryColor),
                         ),
                         const SizedBox(
                           width: 10,
@@ -137,7 +140,8 @@ class _FilterScreenState extends State<FilterScreen> {
                       ],
                     ),
                     const SizedBox(height: 23),
-                    Text(AppLocalizations.of(context)!.translate("language"), style: TextStyles.SB1575),
+                    Text(AppLocalizations.of(context)!.translate("language"),
+                        style: TextStyles.SB1575),
                     SizedBox(height: 7),
                     Wrap(
                       runSpacing: 10,
@@ -156,7 +160,8 @@ class _FilterScreenState extends State<FilterScreen> {
                           .toList(),
                     ),
                     const SizedBox(height: 35),
-                    Text(AppLocalizations.of(context)!.translate('level'), style: TextStyles.SB1575),
+                    Text(AppLocalizations.of(context)!.translate('level'),
+                        style: TextStyles.SB1575),
                     SizedBox(height: 7),
                     Wrap(
                       runSpacing: 10,
@@ -175,7 +180,8 @@ class _FilterScreenState extends State<FilterScreen> {
                           .toList(),
                     ),
                     SizedBox(height: 35),
-                    Text(AppLocalizations.of(context)!.translate('style'), style: TextStyles.SB1575),
+                    Text(AppLocalizations.of(context)!.translate('style'),
+                        style: TextStyles.SB1575),
                     SizedBox(height: 7),
                     Wrap(
                       runSpacing: 10,
@@ -194,7 +200,8 @@ class _FilterScreenState extends State<FilterScreen> {
                           .toList(),
                     ),
                     SizedBox(height: 35),
-                    Text(AppLocalizations.of(context)!.translate("focus"), style: TextStyles.SB1575),
+                    Text(AppLocalizations.of(context)!.translate("focus"),
+                        style: TextStyles.SB1575),
                     SizedBox(height: 7),
                     Wrap(
                       runSpacing: 10,
@@ -213,7 +220,8 @@ class _FilterScreenState extends State<FilterScreen> {
                           .toList(),
                     ),
                     SizedBox(height: 35),
-                    Text(AppLocalizations.of(context)!.translate('instructor'), style: TextStyles.SB1575),
+                    Text(AppLocalizations.of(context)!.translate('instructor'),
+                        style: TextStyles.SB1575),
                     SizedBox(height: 7),
                     Wrap(
                       runSpacing: 10,
@@ -243,13 +251,29 @@ class _FilterScreenState extends State<FilterScreen> {
       bottomNavigationBar: BottomAppBar(
         elevation: 0,
         child: Padding(
-          padding: EdgeInsetsDirectional.only(top: 30, bottom: 30, start: 25, end: 25),
+          padding: EdgeInsetsDirectional.only(
+              top: 30, bottom: 30, start: 25, end: 25),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomButton(
                   onTap: () {
-                    NavigationUtils.pop(context);
+                    _getFilterModel.content.language.forEach((element) {
+                      element.isSelected = false;
+                    });
+                    _getFilterModel.content.level.forEach((element) {
+                      element.isSelected = false;
+                    });
+                    _getFilterModel.content.style.forEach((element) {
+                      element.isSelected = false;
+                    });
+                    _getFilterModel.content.focus.forEach((element) {
+                      element.isSelected = false;
+                    });
+                    _getFilterModel.content.instructor.forEach((element) {
+                      element.isSelected = false;
+                    });
+                    setState(() {});
                   },
                   buttonText: AppLocalizations.of(context)!.translate("reset"),
                   backgroundColor: ColorRes.white,
@@ -263,25 +287,25 @@ class _FilterScreenState extends State<FilterScreen> {
                     List<String> languageList = [];
                     _getFilterModel.content.language.forEach((element) {
                       if (element.isSelected) {
-                        languageList.add(element.language);
+                        languageList.add(element.id.toString());
                       }
                     });
                     List<String> levelList = [];
                     _getFilterModel.content.level.forEach((element) {
                       if (element.isSelected) {
-                        levelList.add(element.level);
+                        levelList.add(element.id.toString());
                       }
                     });
                     List<String> styleList = [];
                     _getFilterModel.content.style.forEach((element) {
                       if (element.isSelected) {
-                        styleList.add(element.styleTitle);
+                        styleList.add(element.id.toString());
                       }
                     });
                     List<String> focusList = [];
                     _getFilterModel.content.focus.forEach((element) {
                       if (element.isSelected) {
-                        focusList.add(element.focusTitle);
+                        focusList.add(element.id.toString());
                       }
                     });
                     List<String> instructorList = [];
@@ -290,12 +314,26 @@ class _FilterScreenState extends State<FilterScreen> {
                         instructorList.add(element.id.toString());
                       }
                     });
-                    print(">>Language>> $languageList");
-                    print(">>Level>> $levelList");
-                    print(">>Style>> $styleList");
-                    print(">>Focus>> $focusList");
-                    print(">>Instructor>> $instructorList");
-                    NavigationUtils.push(context, routeSearchResult);
+                    if (levelList.isEmpty &&
+                        languageList.isEmpty &&
+                        focusList.isEmpty &&
+                        styleList.isEmpty &&
+                        instructorList.isEmpty) {
+                      ToastUtils.showFailed(
+                          message: AppLocalizations.of(context)!
+                              .translate("applyFilter"));
+                    } else {
+                      NavigationUtils.push(context, routeSearchResult,
+                          arguments: {
+                            "language": languageList,
+                            "style": styleList,
+                            "focus": focusList,
+                            "instructor": instructorList,
+                            "level": levelList,
+                            'startDuration': value.start.round().toInt(),
+                            'endDuration': value.end.round().toInt()
+                          });
+                    }
                   },
                   buttonText: AppLocalizations.of(context)!.translate('done'),
                   backgroundColor: ColorRes.primaryColor,

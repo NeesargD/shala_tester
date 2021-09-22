@@ -23,11 +23,12 @@ class FavouriteBloc extends Bloc<FavouriteEvent, FavouriteState> {
     if (event is AddToFavourite) {
       try {
         yield FavouriteLoading();
-        //TODO: Make user id dynamic
-        Map<String, dynamic> param = {"user_id": 1, "program_id": event.programId, "class_id": event.classId, "content_type": event.contentType};
-
-        print(param);
-
+        Map<String, dynamic> param = {
+          "user_id": appState.userId,
+          "program_id": event.programId,
+          "class_id": event.classId,
+          "content_type": event.contentType
+        };
         _commonModel = await ApiServices().addToFavourites(param: param);
         if (_commonModel.success) {
           yield FavouriteSuccess(message: _commonModel.message);

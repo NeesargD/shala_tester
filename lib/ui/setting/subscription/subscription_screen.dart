@@ -472,11 +472,17 @@ class _SubscribeScreenState extends State<SubscribeScreen> {
   List<InApp>? subscriptionList = [];
   bool selected = false;
   int? selectedIndex;
-  List<String> showText = ['Unlimited access to all our yoga and meditation', 'Original Arabic & English classes', 'High quality video and audio content', 'Weekly new releases'];
+  List<String> showText = [
+    'Unlimited access to all our yoga and meditation',
+    'Original Arabic & English classes',
+    'High quality video and audio content',
+    'Weekly new releases'
+  ];
 
   @override
   void initState() {
-    final Stream<List<PurchaseDetails>> purchaseUpdated = _inAppPurchase.purchaseStream;
+    final Stream<List<PurchaseDetails>> purchaseUpdated =
+        _inAppPurchase.purchaseStream;
 
     _subscription = purchaseUpdated.listen((purchaseDetailsList) {
       setState(() {
@@ -488,9 +494,7 @@ class _SubscribeScreenState extends State<SubscribeScreen> {
     }, onError: (error) {
       _subscription!.cancel();
     });
-
     _initialize();
-
     super.initState();
   }
 
@@ -545,8 +549,10 @@ class _SubscribeScreenState extends State<SubscribeScreen> {
     });
   }
 
-  Future<List<ProductDetails>> _getProducts({required Set<String> productIds}) async {
-    ProductDetailsResponse response = await _inAppPurchase.queryProductDetails(productIds);
+  Future<List<ProductDetails>> _getProducts(
+      {required Set<String> productIds}) async {
+    ProductDetailsResponse response =
+        await _inAppPurchase.queryProductDetails(productIds);
 
     return response.productDetails;
   }
@@ -665,8 +671,11 @@ class _SubscribeScreenState extends State<SubscribeScreen> {
                   PositionedDirectional(
                     bottom: -20,
                     child: Container(
-                      padding: const EdgeInsetsDirectional.only(start: 34, end: 34, top: 24, bottom: 14),
-                      child: Text("THIS IS A PREMIUM VIDEO PLEASE SUBSCRIBE TO WATCH", style: TextStyles.SB18FF),
+                      padding: const EdgeInsetsDirectional.only(
+                          start: 34, end: 34, top: 24, bottom: 14),
+                      child: Text(
+                          "THIS IS A PREMIUM VIDEO PLEASE SUBSCRIBE TO WATCH",
+                          style: TextStyles.SB18FF),
                       // height: MediaQuery.of(context).size.height * 0.1,
                       width: MediaQuery.of(context).size.width,
                       decoration: ShapeDecoration(
@@ -701,88 +710,133 @@ class _SubscribeScreenState extends State<SubscribeScreen> {
                         itemBuilder: (c, i) {
                           return Row(
                             mainAxisAlignment: MainAxisAlignment.start,
-                            children: [Icon(Icons.circle, size: 8, color: ColorRes.primaryColor), SizedBox(width: 5), Flexible(child: Text(showText[i]))],
+                            children: [
+                              Icon(Icons.circle,
+                                  size: 8, color: ColorRes.primaryColor),
+                              SizedBox(width: 5),
+                              Flexible(child: Text(showText[i]))
+                            ],
                           );
                         }),
                     SizedBox(height: 30),
-                    ListView.separated(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        padding: EdgeInsets.zero,
-                        itemBuilder: (c, i) {
-                          return GestureDetector(
-                            onTap: () {
-                              for (var j = 0; j < subscriptionList!.length; j++) {
-                                if (i != j) {
-                                  subscriptionList![j].selected = false;
-                                } else {
-                                  selectedIndex = i;
-                                  subscriptionList![i].selected = true;
-                                }
-                              }
-                              setState(() {});
-                            },
-                            child: Stack(
-                              children: [
-                                Container(
-                                  width: screenWidth(context: context),
-                                  height: 60,
-                                  alignment: AlignmentDirectional.center,
-                                  decoration: BoxDecoration(
-                                    color: subscriptionList![i].selected! ? ColorRes.white : ColorRes.greyText.withOpacity(0.15),
-                                    border: subscriptionList![i].selected! ? Border.all(color: ColorRes.primaryColor) : null,
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                  ),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text(
-                                        subscriptionList![i].productDetails!.rawPrice.toStringAsFixed(2) + ' ' + subscriptionList![i].productDetails!.currencyCode,
-                                        style: selected ? TextStyles.R1578 : TextStyles.R1575,
-                                      ),
-                                      Text(
-                                        subscriptionList![i].productDetails!.description,
-                                        style: selected ? TextStyles.R1578 : TextStyles.R1575,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                subscriptionList![i].isOffer!
-                                    ? PositionedDirectional(
-                                        end: 10,
-                                        top: -5,
-                                        child: Container(
-                                          padding: const EdgeInsetsDirectional.only(start: 19, end: 19, top: 3, bottom: 3),
-                                          decoration: BoxDecoration(
-                                            color: ColorRes.primaryColor,
-                                            borderRadius: BorderRadius.circular(11),
-                                          ),
-                                          child: Text(
-                                            "BEST VALUE",
-                                            style: TextStyles.SB10FF,
-                                          ),
-                                        ))
-                                    : Container(),
-                              ],
-                            ),
-                          );
-                        },
-                        separatorBuilder: (c, i) => SizedBox(
+                    subscriptionList!.length != 0
+                        ? ListView.separated(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            padding: EdgeInsets.zero,
+                            separatorBuilder: (c, i) => SizedBox(
                               height: 30,
                             ),
-                        itemCount: subscriptionList!.length),
+                            itemCount: subscriptionList!.length,
+                            itemBuilder: (c, i) {
+                              return GestureDetector(
+                                onTap: () {
+                                  for (var j = 0;
+                                      j < subscriptionList!.length;
+                                      j++) {
+                                    if (i != j) {
+                                      subscriptionList![j].selected = false;
+                                    } else {
+                                      selectedIndex = i;
+                                      subscriptionList![i].selected = true;
+                                    }
+                                  }
+                                  setState(() {});
+                                },
+                                child: Stack(
+                                  children: [
+                                    Container(
+                                      width: screenWidth(context: context),
+                                      height: 60,
+                                      alignment: AlignmentDirectional.center,
+                                      decoration: BoxDecoration(
+                                        color: subscriptionList![i].selected!
+                                            ? ColorRes.white
+                                            : ColorRes.greyText
+                                                .withOpacity(0.15),
+                                        border: subscriptionList![i].selected!
+                                            ? Border.all(
+                                                color: ColorRes.primaryColor)
+                                            : null,
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10)),
+                                      ),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(
+                                            subscriptionList![i]
+                                                    .productDetails!
+                                                    .rawPrice
+                                                    .toStringAsFixed(2) +
+                                                ' ' +
+                                                subscriptionList![i]
+                                                    .productDetails!
+                                                    .currencyCode,
+                                            style: selected
+                                                ? TextStyles.R1578
+                                                : TextStyles.R1575,
+                                          ),
+                                          Text(
+                                            subscriptionList![i]
+                                                .productDetails!
+                                                .description,
+                                            style: selected
+                                                ? TextStyles.R1578
+                                                : TextStyles.R1575,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    subscriptionList![i].isOffer!
+                                        ? PositionedDirectional(
+                                            end: 10,
+                                            top: -5,
+                                            child: Container(
+                                              padding:
+                                                  const EdgeInsetsDirectional
+                                                          .only(
+                                                      start: 19,
+                                                      end: 19,
+                                                      top: 3,
+                                                      bottom: 3),
+                                              decoration: BoxDecoration(
+                                                color: ColorRes.primaryColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(11),
+                                              ),
+                                              child: Text(
+                                                "BEST VALUE",
+                                                style: TextStyles.SB10FF,
+                                              ),
+                                            ))
+                                        : Container(),
+                                  ],
+                                ),
+                              );
+                            },
+                          )
+                        : SizedBox.shrink(),
                     SizedBox(height: 11),
-                    Text(
-                      "Cancel anytime",
-                      style: TextStyles.L1275,
+                    InkWell(
+                      onTap: (){
+
+                      },
+                      child: Text(
+                        "Cancel anytime",
+                        style: TextStyles.L1275,
+                      ),
                     ),
                     SizedBox(height: 30),
                     CustomButton(
                         onTap: () {
                           if (selectedIndex == null) {
-                            ToastUtils.showFailed(message: 'Please select a subscription');
+                            ToastUtils.showFailed(
+                                message: 'Please select a subscription');
                           } else {
-                            _subscribe(product: subscriptionList![selectedIndex!].productDetails!);
+                            _subscribe(
+                                product: subscriptionList![selectedIndex!]
+                                    .productDetails!);
                           }
                         },
                         buttonText: "SUBSCRIBE",
@@ -806,58 +860,58 @@ class _SubscribeScreenState extends State<SubscribeScreen> {
               child: Text('The Store Is Not Available'),
             ),
     ));
-    @override
-    Widget build(BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text('In App Purchase 1.0.8'),
-        ),
-        body: _available
-            ? Column(
-                children: [
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Current Products ${_products.length}'),
-                        ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: _products.length,
-                          itemBuilder: (context, index) {
-                            return _buildProduct(
-                              product: _products[index],
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: Column(
-                      // mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Past Purchases: ${_purchases.length}'),
-                        Expanded(
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: _purchases.length,
-                            itemBuilder: (context, index) {
-                              return _buildPurchase(
-                                purchase: _purchases[index],
-                              );
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              )
-            : Center(
-                child: Text('The Store Is Not Available'),
-              ),
-      );
-    }
+    // @override
+    // Widget build(BuildContext context) {
+    //   return Scaffold(
+    //     appBar: AppBar(
+    //       title: Text('In App Purchase 1.0.8'),
+    //     ),
+    //     body: _available
+    //         ? Column(
+    //             children: [
+    //               Expanded(
+    //                 child: Column(
+    //                   mainAxisAlignment: MainAxisAlignment.center,
+    //                   children: [
+    //                     Text('Current Products ${_products.length}'),
+    //                     ListView.builder(
+    //                       shrinkWrap: true,
+    //                       itemCount: _products.length,
+    //                       itemBuilder: (context, index) {
+    //                         return _buildProduct(
+    //                           product: _products[index],
+    //                         );
+    //                       },
+    //                     ),
+    //                   ],
+    //                 ),
+    //               ),
+    //               Expanded(
+    //                 child: Column(
+    //                   // mainAxisAlignment: MainAxisAlignment.center,
+    //                   children: [
+    //                     Text('Past Purchases: ${_purchases.length}'),
+    //                     Expanded(
+    //                       child: ListView.builder(
+    //                         shrinkWrap: true,
+    //                         itemCount: _purchases.length,
+    //                         itemBuilder: (context, index) {
+    //                           return _buildPurchase(
+    //                             purchase: _purchases[index],
+    //                           );
+    //                         },
+    //                       ),
+    //                     ),
+    //                   ],
+    //                 ),
+    //               ),
+    //             ],
+    //           )
+    //         : Center(
+    //             child: Text('The Store Is Not Available'),
+    //           ),
+    //   );
+    // }
   }
 }
 
