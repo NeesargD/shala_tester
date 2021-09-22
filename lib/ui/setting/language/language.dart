@@ -40,6 +40,9 @@ class _LanguageScreenState extends State<LanguageScreen> {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(
+            color: ColorRes.greyText
+        ),
         centerTitle: true,
         elevation: 0,
         title: Text(AppLocalizations.of(context)!.translate("language"), style: TextStyles.L2075),

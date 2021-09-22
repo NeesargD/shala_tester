@@ -21,6 +21,9 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
+          iconTheme: IconThemeData(
+              color: ColorRes.greyText
+          ),
           elevation: 0,
           centerTitle: true,
           title: Text(AppLocalizations.of(context)!.translate('my_account'),

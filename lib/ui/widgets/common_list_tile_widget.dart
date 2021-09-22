@@ -9,9 +9,15 @@ class CommonListTileWidget extends StatelessWidget {
   final String imagePath;
   final double itemSpace;
   final VoidCallback onTap;
+  final String? timeLanZone;
 
   const CommonListTileWidget(
-      {Key? key, required this.titleText, required this.imagePath, required this.onTap, this.itemSpace = 15})
+      {Key? key,
+      required this.titleText,
+      this.timeLanZone = '',
+      required this.imagePath,
+      required this.onTap,
+      this.itemSpace = 15})
       : super(key: key);
 
   @override
@@ -28,16 +34,28 @@ class CommonListTileWidget extends StatelessWidget {
         alignment: Alignment.center,
         child: SvgPicture.asset(imagePath),
       ),
-      title: Text(
-        titleText,
-        style: TextStyles.R1875,
+      title: Row(
+        children: [
+          Text(
+            titleText,
+            style: TextStyles.R1875,
+          ),
+          Spacer(),
+          Text(
+           timeLanZone.toString(),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyles.R1578,
+          ),
+        ],
       ),
       trailing: Icon(
         Icons.arrow_forward_ios,
         color: ColorRes.greyText,
       ),
       dense: true,
-      contentPadding: EdgeInsetsDirectional.only(start: 0, end: 0, bottom: itemSpace, top: itemSpace),
+      contentPadding: EdgeInsetsDirectional.only(
+          start: 0, end: 0, bottom: itemSpace, top: itemSpace),
     );
   }
 }

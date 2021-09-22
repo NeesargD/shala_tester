@@ -451,6 +451,7 @@ import 'package:intl/intl.dart';
 import 'package:shala_yoga/base/utils/common_methods.dart';
 import 'package:shala_yoga/base/utils/constants/color_constant.dart';
 import 'package:shala_yoga/base/utils/constants/textstyle_constants.dart';
+import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
 import 'package:shala_yoga/base/utils/toast_utils.dart';
 import 'package:shala_yoga/ui/widgets/custom_button.dart';
 
@@ -620,7 +621,9 @@ class _SubscribeScreenState extends State<SubscribeScreen> {
                         Row(
                           children: [
                             IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  NavigationUtils.pop(context);
+                                },
                                 icon: Icon(
                                   Icons.arrow_back,
                                   color: ColorRes.white,
@@ -819,9 +822,7 @@ class _SubscribeScreenState extends State<SubscribeScreen> {
                         : SizedBox.shrink(),
                     SizedBox(height: 11),
                     InkWell(
-                      onTap: (){
-
-                      },
+                      onTap: () {},
                       child: Text(
                         "Cancel anytime",
                         style: TextStyles.L1275,

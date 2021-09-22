@@ -19,6 +19,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(
+            color: ColorRes.greyText
+        ),
         centerTitle: true,
         elevation: 0,
         title: Text(AppLocalizations.of(context)!.translate("notification"), style: TextStyles.L2075),

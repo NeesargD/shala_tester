@@ -33,7 +33,7 @@ class ProgramDetailScreen extends StatefulWidget {
 
 class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
   bool textDescription = false;
-  late ProgramDetailModel programDetailModel;
+  late ProgramDetailModel? programDetailModel;
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +46,8 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
           if (state is FavouriteSuccess) {
             EasyLoading.dismiss();
             ToastUtils.showSuccess(message: state.message);
+            programDetailModel!.content!.programs.isFav.value =
+                !programDetailModel!.content!.programs.isFav.value;
           }
           if (state is FavouriteFailure) {
             EasyLoading.dismiss();
@@ -69,13 +71,21 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                   elevation: 0,
                   child: Container(
                     decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [ColorRes.white, ColorRes.whiteGradient])),
+                        // gradient: LinearGradient(
+                        //     begin: Alignment.topCenter,
+                        //     end: Alignment.bottomCenter,
+                        //     colors: [ColorRes.white, ColorRes.whiteGradient])
+                      boxShadow: [
+                        BoxShadow(
+                            color: ColorRes.white,
+                            blurRadius: 20,
+                            spreadRadius: 20
+                        )
+                      ],
+                    ),
                     height: MediaQuery.of(context).size.height * 0.18,
-                    margin:
-                        EdgeInsetsDirectional.only(start: 17, end: 17, top: 15),
+                    padding:
+                    EdgeInsetsDirectional.only(start: 17, end: 17),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -172,7 +182,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                           icon: Icon(Icons.access_time,
                                               color: ColorRes.white, size: 26)),
                                       ValueListenableBuilder(
-                                        valueListenable: programDetailModel
+                                        valueListenable: programDetailModel!
                                             .content!.programs.isFav,
                                         builder: (context, value, child) {
                                           return IconButton(
@@ -194,7 +204,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                                       routeLoginSignup);
                                                 }
                                               },
-                                              icon: programDetailModel.content!
+                                              icon: programDetailModel!.content!
                                                       .programs.isFav.value
                                                   ? Icon(Icons.favorite,
                                                       color: ColorRes.red)

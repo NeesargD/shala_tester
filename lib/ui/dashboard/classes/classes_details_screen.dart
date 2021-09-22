@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/svg.dart';
-
 import 'package:shala_yoga/base/utils/toast_utils.dart';
 import 'package:shala_yoga/blocs/favourite_bloc/favourite_bloc.dart';
 import 'package:shala_yoga/models/classes/class_details_model.dart';
@@ -33,6 +32,8 @@ class ClassDetailsScreen extends StatefulWidget {
 
 class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
   late ClassDetailsModel? classDetailsModel;
+  DateTime? selectedDate;
+
 
   @override
   Widget build(BuildContext context) {
@@ -62,17 +63,24 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
           if (state is ClassDetailsSuccess) {
             classDetailsModel = state.classDetailsModel;
             return Scaffold(
-              backgroundColor: ColorRes.whiteGradient,
               bottomNavigationBar: BottomAppBar(
                 child: Container(
                   decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [ColorRes.white, ColorRes.whiteGradient])),
+                      // gradient: LinearGradient(
+                      //     begin: Alignment.topCenter,
+                      //     end: Alignment.bottomCenter,
+                      //     colors: [Colors.white,  Colors.white]),
+                    boxShadow: [
+                      BoxShadow(
+                          color: ColorRes.white,
+                          blurRadius: 20,
+                        spreadRadius: 20
+                      )
+                    ],
+                  ),
                   height: 120,
-                  margin:
-                      EdgeInsetsDirectional.only(start: 17, end: 17, top: 10),
+                  padding:
+                      EdgeInsetsDirectional.only(start: 17, end: 17),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -98,7 +106,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                       CustomButton(
                           onTap: () {
                             if (appState.userId != null) {
-                              /// TODO: ADD WATCH LATER API
+                              _handleClickMe(context);
                             } else {
                               NavigationUtils.push(context, routeLoginSignup);
                             }
@@ -112,6 +120,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                     ],
                   ),
                 ),
+                  elevation: 0,
               ),
               body: SafeArea(
                 child: SingleChildScrollView(
@@ -249,256 +258,260 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                         ],
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsetsDirectional.only(
-                          start: 7, end: 7, top: 240),
-                      width: MediaQuery.of(context).size.width * 0.96,
-                      decoration: BoxDecoration(
-                        color: ColorRes.white,
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(16),
-                            topRight: Radius.circular(16)),
-                      ),
-                      child: Stack(
-                        clipBehavior: Clip.none,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                    Column(
+                      children: [
+                        Container(
+                          margin: EdgeInsetsDirectional.only(
+                              start: 7, end: 7, top: 240),
+                          width: MediaQuery.of(context).size.width * 0.96,
+                          decoration: BoxDecoration(
+                            color: ColorRes.white,
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(16),
+                                topRight: Radius.circular(16)),
+                          ),
+                          child: Stack(
+                            clipBehavior: Clip.none,
                             children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.only(
-                                    start: 17, end: 17),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      width: screenWidth(
-                                          context: context, percent: 0.60),
-                                      padding:
-                                          EdgeInsetsDirectional.only(top: 15),
-                                      child: Text(
-                                        classDetailsModel!
-                                            .content!.classes.title,
-                                        style: TextStyles.SB2575,
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 2,
-                                      ),
-                                    ),
-                                    SizedBox(height: 3),
-                                    RichText(
-                                      text: TextSpan(
-                                          text: AppLocalizations.of(context)!
-                                              .translate("part_of"),
-                                          style: TextStyles.R1275,
-                                          children: [
-                                            TextSpan(
-                                                text: classDetailsModel!
-                                                    .content!.classes.partOf,
-                                                style: TextStyles.SB1278)
-                                          ]),
-                                    ),
-                                    SizedBox(height: 30),
-                                    Row(
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.only(
+                                        start: 17, end: 17),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        SvgPicture.asset(ImageRes.yogaStyle),
-                                        const SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text(
+                                        Container(
+                                          width: screenWidth(
+                                              context: context, percent: 0.60),
+                                          padding:
+                                              EdgeInsetsDirectional.only(top: 15),
+                                          child: Text(
                                             classDetailsModel!
-                                                .content!.classes.style
-                                                .join(','),
-                                            style: TextStyles.R1575),
-                                        Spacer(),
-                                        SvgPicture.asset(ImageRes.levels),
-                                        const SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text(
-                                            classDetailsModel!
-                                                .content!.classes.level,
-                                            style: TextStyles.R1575),
-                                        Spacer(),
-                                        SvgPicture.asset(ImageRes.hourGlass),
-                                        const SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text(
-                                            appState
-                                                    .parseDuration(
-                                                        classDetailsModel!
-                                                            .content!
-                                                            .classes
-                                                            .durations)
-                                                    .inMinutes
-                                                    .toString() +
-                                                ' min',
-                                            style: TextStyles.R1575),
-                                      ],
-                                    ),
-                                    SizedBox(height: 30),
-                                    ExpandShrinkText(
-                                      classDetailsModel!
-                                          .content!.classes.description,
-                                      trimLines: 5,
-                                    ),
-                                    SizedBox(height: 25),
-                                    Text(
-                                        AppLocalizations.of(context)!
-                                            .translate("class_focus"),
-                                        style: TextStyles.R1575.copyWith(
-                                            color: ColorRes.primaryColor)),
-                                  ],
-                                ),
-                              ),
-                              Stack(
-                                children: [
-                                  Divider(
-                                    color: ColorRes.greyIndicator,
-                                    thickness: 2,
-                                  ),
-                                  Divider(
-                                    color: ColorRes.primaryColor,
-                                    thickness: 2,
-                                    endIndent: screenWidth(
-                                        context: context, percent: 0.60),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 10),
-                              Padding(
-                                padding: EdgeInsetsDirectional.only(start: 17),
-                                child: Text(
-                                    classDetailsModel!.content!.classes.focus
-                                        .join(','),
-                                    style: TextStyles.R1375),
-                              ),
-                              SizedBox(height: 23),
-                              Padding(
-                                padding: EdgeInsetsDirectional.only(start: 17),
-                                child: Text(
-                                    AppLocalizations.of(context)!
-                                        .translate("similar_classes"),
-                                    style: TextStyles.R1575.copyWith(
-                                        color: ColorRes.primaryColor)),
-                              ),
-                              Stack(
-                                children: [
-                                  Divider(
-                                    color: ColorRes.greyIndicator,
-                                    thickness: 2,
-                                  ),
-                                  Divider(
-                                    color: ColorRes.primaryColor,
-                                    thickness: 2,
-                                    endIndent: screenWidth(
-                                        context: context, percent: 0.60),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 10),
-                              GridView.builder(
-                                padding: EdgeInsets.zero,
-                                shrinkWrap: true,
-                                physics: NeverScrollableScrollPhysics(),
-                                gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                        childAspectRatio: 0.74,
-                                        mainAxisSpacing: 25,
-                                        crossAxisSpacing: 25,
-                                        crossAxisCount: 2),
-                                itemCount: classDetailsModel!
-                                    .content!.similarClasses.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return InkWell(
-                                      onTap: () {
-                                        NavigationUtils.pushReplacement(
-                                            context, routeClassDetailsScreen,
-                                            arguments: {
-                                              "id": state
-                                                  .classDetailsModel
-                                                  .content!
-                                                  .similarClasses[index]
-                                                  .id
-                                            });
-                                      },
-                                      child: ClassesGridWidget(
-                                          classesDetail: classDetailsModel!
-                                              .content!.similarClasses[index]));
-                                },
-                              ),
-                              const SizedBox(height: 30),
-                            ],
-                          ),
-                          PositionedDirectional(
-                            top: -30,
-                            child: Row(
-                              children: [
-                                Icon(Icons.mic, color: ColorRes.white),
-                                CircleAvatar(
-                                  backgroundColor: ColorRes.white,
-                                  radius: 10,
-                                  child: Text(
-                                      classDetailsModel!
-                                          .content!.classes.language
-                                          .substring(0, 2),
-                                      style: TextStyles.R1075),
-                                ),
-                              ],
-                            ),
-                          ),
-                          PositionedDirectional(
-                              end: 20,
-                              top: -35,
-                              child: Row(
-                                children: [
-                                  Column(
-                                    children: [
-                                      InkWell(
-                                        onTap: () {
-                                          NavigationUtils.push(
-                                              context, routeInstructorDetails,
-                                              arguments: {
-                                                'id': state
-                                                    .classDetailsModel
-                                                    .content!
-                                                    .classes
-                                                    .instructor
-                                                    .id,
-                                              });
-                                        },
-                                        child: CircleAvatar(
-                                          radius: 35,
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(35),
-                                            child: CircularImage(
-                                              imageUrl: state
-                                                  .classDetailsModel
-                                                  .content!
-                                                  .classes
-                                                  .instructor
-                                                  .profilePicture,
-                                              imageRadius: 35,
-                                            ),
+                                                .content!.classes.title,
+                                            style: TextStyles.SB2575,
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 2,
                                           ),
                                         ),
+                                        SizedBox(height: 3),
+                                        RichText(
+                                          text: TextSpan(
+                                              text: AppLocalizations.of(context)!
+                                                  .translate("part_of"),
+                                              style: TextStyles.R1275,
+                                              children: [
+                                                TextSpan(
+                                                    text: classDetailsModel!
+                                                        .content!.classes.partOf,
+                                                    style: TextStyles.SB1278)
+                                              ]),
+                                        ),
+                                        SizedBox(height: 30),
+                                        Row(
+                                          children: [
+                                            SvgPicture.asset(ImageRes.yogaStyle),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                                classDetailsModel!
+                                                    .content!.classes.style
+                                                    .join(','),
+                                                style: TextStyles.R1575),
+                                            Spacer(),
+                                            SvgPicture.asset(ImageRes.levels),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                                classDetailsModel!
+                                                    .content!.classes.level,
+                                                style: TextStyles.R1575),
+                                            Spacer(),
+                                            SvgPicture.asset(ImageRes.hourGlass),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                                appState
+                                                        .parseDuration(
+                                                            classDetailsModel!
+                                                                .content!
+                                                                .classes
+                                                                .durations)
+                                                        .inMinutes
+                                                        .toString() +
+                                                    ' min',
+                                                style: TextStyles.R1575),
+                                          ],
+                                        ),
+                                        SizedBox(height: 30),
+                                        ExpandShrinkText(
+                                          classDetailsModel!
+                                              .content!.classes.description,
+                                          trimLines: 5,
+                                        ),
+                                        SizedBox(height: 25),
+                                        Text(
+                                            AppLocalizations.of(context)!
+                                                .translate("class_focus"),
+                                            style: TextStyles.R1575.copyWith(
+                                                color: ColorRes.primaryColor)),
+                                      ],
+                                    ),
+                                  ),
+                                  Stack(
+                                    children: [
+                                      Divider(
+                                        color: ColorRes.greyIndicator,
+                                        thickness: 2,
                                       ),
-                                      SizedBox(height: 3),
-                                      Text(
-                                        classDetailsModel!.content!.classes
-                                                .instructor.firstname +
-                                            '\n' +
-                                            classDetailsModel!.content!.classes
-                                                .instructor.lastname,
-                                        textAlign: TextAlign.center,
+                                      Divider(
+                                        color: ColorRes.primaryColor,
+                                        thickness: 2,
+                                        endIndent: screenWidth(
+                                            context: context, percent: 0.60),
                                       ),
                                     ],
                                   ),
+                                  SizedBox(height: 10),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.only(start: 17),
+                                    child: Text(
+                                        classDetailsModel!.content!.classes.focus
+                                            .join(','),
+                                        style: TextStyles.R1375),
+                                  ),
+                                  SizedBox(height: 23),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.only(start: 17),
+                                    child: Text(
+                                        AppLocalizations.of(context)!
+                                            .translate("similar_classes"),
+                                        style: TextStyles.R1575.copyWith(
+                                            color: ColorRes.primaryColor)),
+                                  ),
+                                  Stack(
+                                    children: [
+                                      Divider(
+                                        color: ColorRes.greyIndicator,
+                                        thickness: 2,
+                                      ),
+                                      Divider(
+                                        color: ColorRes.primaryColor,
+                                        thickness: 2,
+                                        endIndent: screenWidth(
+                                            context: context, percent: 0.60),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 10),
+                                  GridView.builder(
+                                    padding: EdgeInsets.zero,
+                                    shrinkWrap: true,
+                                    physics: NeverScrollableScrollPhysics(),
+                                    gridDelegate:
+                                        const SliverGridDelegateWithFixedCrossAxisCount(
+                                            childAspectRatio: 0.74,
+                                            mainAxisSpacing: 25,
+                                            crossAxisSpacing: 25,
+                                            crossAxisCount: 2),
+                                    itemCount: classDetailsModel!
+                                        .content!.similarClasses.length,
+                                    itemBuilder: (BuildContext context, int index) {
+                                      return InkWell(
+                                          onTap: () {
+                                            NavigationUtils.pushReplacement(
+                                                context, routeClassDetailsScreen,
+                                                arguments: {
+                                                  "id": state
+                                                      .classDetailsModel
+                                                      .content!
+                                                      .similarClasses[index]
+                                                      .id
+                                                });
+                                          },
+                                          child: ClassesGridWidget(
+                                              classesDetail: classDetailsModel!
+                                                  .content!.similarClasses[index]));
+                                    },
+                                  ),
+                                  const SizedBox(height: 30),
                                 ],
-                              )),
-                        ],
-                      ),
+                              ),
+                              PositionedDirectional(
+                                top: -30,
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.mic, color: ColorRes.white),
+                                    CircleAvatar(
+                                      backgroundColor: ColorRes.white,
+                                      radius: 10,
+                                      child: Text(
+                                          classDetailsModel!
+                                              .content!.classes.language
+                                              .substring(0, 2),
+                                          style: TextStyles.R1075),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              PositionedDirectional(
+                                  end: 20,
+                                  top: -35,
+                                  child: Row(
+                                    children: [
+                                      Column(
+                                        children: [
+                                          InkWell(
+                                            onTap: () {
+                                              NavigationUtils.push(
+                                                  context, routeInstructorDetails,
+                                                  arguments: {
+                                                    'id': state
+                                                        .classDetailsModel
+                                                        .content!
+                                                        .classes
+                                                        .instructor
+                                                        .id,
+                                                  });
+                                            },
+                                            child: CircleAvatar(
+                                              radius: 35,
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(35),
+                                                child: CircularImage(
+                                                  imageUrl: state
+                                                      .classDetailsModel
+                                                      .content!
+                                                      .classes
+                                                      .instructor
+                                                      .profilePicture,
+                                                  imageRadius: 35,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(height: 3),
+                                          Text(
+                                            classDetailsModel!.content!.classes
+                                                    .instructor.firstname +
+                                                '\n' +
+                                                classDetailsModel!.content!.classes
+                                                    .instructor.lastname,
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  )),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ]),
                 ),
@@ -510,6 +523,68 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
           );
         },
       ),
+    );
+  }
+
+  void _dateRangePicker(BuildContext context) {
+    showCupertinoDialog(
+        context: context,
+        builder: (_) =>
+            Center(
+              child: Container(
+                margin: EdgeInsetsDirectional.only(start:20, end: 20),
+                child: CupertinoActionSheet(
+                  title:Text("Pick a date", style: TextStyle(color: Colors.black),),
+                  actions: [
+                    Container(
+                      height: 170,
+                      child: CupertinoDatePicker(
+                          minimumDate: DateTime.now(),
+                          initialDateTime: DateTime.now(),
+                          onDateTimeChanged: (val) {
+                            setState(() {
+                              selectedDate = val;
+                            });
+                          }),
+                    ),
+                    CupertinoDialogAction(
+                      child: Text('Confirm'),
+                      onPressed: () {
+                        print(selectedDate);
+                        Navigator.pop(context);
+                        /// TODO: ADD WATCH LATER API
+                      setState(() {});
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            )
+    );
+  }
+
+  Future<void> _handleClickMe(BuildContext context) async {
+    return showCupertinoDialog(
+        context: context,
+        builder: (_) => CupertinoAlertDialog(
+          title: new Text("Time to Watch"),
+          content: new Text("Do you need to set a time to watch?"),
+          actions: <Widget>[
+            CupertinoDialogAction(
+              onPressed: (){
+                Navigator.pop(context);
+                _dateRangePicker(context);
+              },
+              child: Text("Yes"),
+            ),
+            CupertinoDialogAction(onPressed: (){
+              Navigator.pop(context);
+            },
+              child: Text("Not now"),
+            )
+          ],
+
+        )
     );
   }
 }

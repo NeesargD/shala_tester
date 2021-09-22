@@ -19,6 +19,9 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
+
+  var duration = DateTime.now().timeZoneOffset;
+
 @override
   void initState() {
     // TODO: implement initState
@@ -31,6 +34,9 @@ class _SettingScreenState extends State<SettingScreen> {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(
+            color: ColorRes.greyText
+        ),
         elevation: 0,
         centerTitle: true,
         title: Text(AppLocalizations.of(context)!.translate("settings"), style: TextStyles.L2075),
@@ -48,12 +54,14 @@ class _SettingScreenState extends State<SettingScreen> {
                     NavigationUtils.push(context, routeMyAccount);
                   }),
               CommonListTileWidget(
-                  titleText: AppLocalizations.of(context)!.translate
-                    ("time_zone"), imagePath: ImageRes.setting_timezone,
-                  onTap: () {}),
+                titleText: "TIME ZONE", imagePath:ImageRes.setting_timezone,
+                onTap: () {},  timeLanZone: duration.isNegative ? '-${duration.toString().split(":")[0]}:${duration.toString().split(":")[1]}'
+                  : '+${duration.toString().split(":")[0]}:${duration.toString().split(":")[1]}' +' ${DateTime.now()
+                  .timeZoneName}'),
               CommonListTileWidget(
                   titleText: AppLocalizations.of(context)!.translate
                     ("language"), imagePath: ImageRes.setting_language,
+                  timeLanZone: "EN",
                   onTap: ()
               {
                 NavigationUtils.push(context, routeLanguage);

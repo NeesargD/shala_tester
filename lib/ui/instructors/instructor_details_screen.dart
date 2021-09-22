@@ -2,19 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:shala_yoga/base/utils/constants/string_res.dart';
-import 'package:shala_yoga/base/utils/localization/app_localizations.dart';
-import 'package:shala_yoga/base/utils/navigation/navigation_route_constants.dart';
-import 'package:shala_yoga/base/utils/navigation/navigation_utils.dart';
-import 'package:shala_yoga/base/utils/toast_utils.dart';
-import 'package:shala_yoga/blocs/instructor_follow_bloc/instructor_follow_bloc.dart';
-import 'package:shala_yoga/models/instructor_details_model.dart';
-import 'package:shala_yoga/models/instructor_follow_model.dart';
-import 'package:shala_yoga/ui/classes_widgets/classes_grid_widget.dart';
-import 'package:shala_yoga/ui/program_widgets/program_grid_widget.dart';
-import 'package:shala_yoga/ui/widgets/circular_image.dart';
-import 'package:shala_yoga/ui/widgets/expand_shrink_text.dart';
-
+import '../../base/utils/constants/string_res.dart';
+import '../../base/utils/localization/app_localizations.dart';
+import '../../base/utils/navigation/navigation_route_constants.dart';
+import '../../base/utils/navigation/navigation_utils.dart';
+import '../../base/utils/toast_utils.dart';
+import '../../blocs/instructor_follow_bloc/instructor_follow_bloc.dart';
+import '../../models/instructor_details_model.dart';
+import '../../models/instructor_follow_model.dart';
+import '../classes_widgets/classes_grid_widget.dart';
+import '../program_widgets/program_grid_widget.dart';
+import '../widgets/circular_image.dart';
+import '../widgets/expand_shrink_text.dart';
 import '../../base/utils/constants/color_constant.dart';
 import '../../base/utils/constants/textstyle_constants.dart';
 import '../../blocs/instructor_details_bloc/instructor_details_bloc.dart';
@@ -54,6 +53,9 @@ class _InstructorDetailProfileScreenState
         appBar: AppBar(
           backgroundColor: ColorRes.appBarColor,
           elevation: 0,
+          iconTheme: IconThemeData(
+            color: ColorRes.greyText
+          ),
         ),
         body: BlocListener<InstructorFollowBloc, InstructorFollowState>(
           listener: (context, stateFollow) {
@@ -292,39 +294,57 @@ class _InstructorDetailProfileScreenState
                           controller: _tabController,
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsetsDirectional.only(
-                            start: 35, end: 35, bottom: 10, top: 5),
-                        child: CustomButton(
-                            onTap: () {
-                              if (appState.userId != null) {
-                                context.read<InstructorFollowBloc>().add(
-                                    GetInstructorFollowScreen(
-                                        instructorID: widget.id));
-                              } else {
-                                NavigationUtils.push(context, routeLoginSignup);
-                              }
-                            },
-                            buttonText: _instructorDetailsModel
-                                    .content!.instructorDetails.isFollow
-                                ? AppLocalizations.of(context)!
-                                    .translate("following")
-                                : AppLocalizations.of(context)!
-                                    .translate("follow"),
-                            backgroundColor: _instructorDetailsModel
-                                    .content!.instructorDetails.isFollow
-                                ? ColorRes.primaryColor
-                                : ColorRes.white,
-                            foregroundColor: ColorRes.white,
-                            borderColor: ColorRes.primaryColor,
-                            textStyle: _instructorDetailsModel
-                                    .content!.instructorDetails.isFollow
-                                ? TextStyles.SB1878
-                                    .copyWith(color: ColorRes.white)
-                                : TextStyles.SB1878),
-                      )
+                      SizedBox(height: 40)
                     ],
                   ),
+                  PositionedDirectional(
+                    bottom: 0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: ColorRes.white,
+                            blurRadius: 20,
+                            spreadRadius: 20
+                          )
+                        ],
+                      // gradient: LinearGradient(
+                      //   begin: Alignment.bottomCenter,
+                      //   end: Alignment.topCenter,
+                      //   colors: [ColorRes.white.withOpacity(0.8), ColorRes.white.withOpacity(0.5)]
+                      // )
+                      ),
+                      padding: EdgeInsetsDirectional.only(
+                          start: 35, end: 35, top: 10),
+                      child: CustomButton(
+                          onTap: () {
+                            if (appState.userId != null) {
+                              context.read<InstructorFollowBloc>().add(
+                                  GetInstructorFollowScreen(
+                                      instructorID: widget.id));
+                            } else {
+                              NavigationUtils.push(context, routeLoginSignup);
+                            }
+                          },
+                          buttonText: _instructorDetailsModel
+                              .content!.instructorDetails.isFollow
+                              ? AppLocalizations.of(context)!
+                              .translate("following")
+                              : AppLocalizations.of(context)!
+                              .translate("follow"),
+                          backgroundColor: _instructorDetailsModel
+                              .content!.instructorDetails.isFollow
+                              ? ColorRes.primaryColor
+                              : ColorRes.white,
+                          foregroundColor: ColorRes.white,
+                          borderColor: ColorRes.primaryColor,
+                          textStyle: _instructorDetailsModel
+                              .content!.instructorDetails.isFollow
+                              ? TextStyles.SB1878
+                              .copyWith(color: ColorRes.white)
+                              : TextStyles.SB1878),
+                    ),
+                  )
                 ],
               );
             }

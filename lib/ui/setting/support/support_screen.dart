@@ -62,20 +62,22 @@ class _SupportScreenState extends State<SupportScreen> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsetsDirectional.only(start: 20,end: 20,top: 28,bottom: 34),
+                      padding: const EdgeInsetsDirectional.only(
+                          start: 20, end: 20, top: 28, bottom: 34),
                       child: Text(
-                          AppLocalizations.of(context)!.translate('dear_yoga_creative_faq'),
+                          AppLocalizations.of(context)!
+                              .translate('dear_yoga_creative_faq'),
                           style: TextStyles.R1875),
                     ),
                     ListView.builder(
-                      padding: EdgeInsets.zero,
+                        padding: EdgeInsets.zero,
                         physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: state.faqModel.content!.length,
                         itemBuilder: (c, index) {
                           return Padding(
-                            padding: EdgeInsetsDirectional.only(
-                                start: 20, end: 20),
+                            padding:
+                                EdgeInsetsDirectional.only(start: 20, end: 20),
                             child: Column(
                               children: [
                                 SizedBox(height: 30),
@@ -136,14 +138,27 @@ class _SupportScreenState extends State<SupportScreen> {
                 CustomButton(
                     onTap: () async {
                       var phoneUrl = 'tel:$contactUs';
-                      await canLaunch(phoneUrl)
-                          ? launch(phoneUrl)
-                          : ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                  content:
-                                      Text(AppLocalizations.of(context)!.translate("phone_couldnt_be_launch"))
-                              ),
-                      );
+                      print(await canLaunch(phoneUrl));
+                      if(await canLaunch(phoneUrl)){
+                        await launch(phoneUrl);
+                      }else{
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                              content:
+                              Text(AppLocalizations.of(context)!.translate(
+                                  "phone_couldnt_be_launch"))
+                          ),
+                        );
+                      }
+                      /*await canLaunch(phoneUrl)
+                          ? await launch(phoneUrl):
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                            content:
+                            Text(AppLocalizations.of(context)!.translate(
+                                "phone_couldnt_be_launch"))
+                        ),
+                      );*/
                     },
                     buttonText:
                         AppLocalizations.of(context)!.translate('contact_us'),
@@ -158,11 +173,10 @@ class _SupportScreenState extends State<SupportScreen> {
                     onTap: () async {
                       var whatsappUrl = "whatsapp://send?phone=$whatsApp";
                       await canLaunch(whatsappUrl)
-                          ? launch(whatsappUrl)
-                          : ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                  content:
-                                      Text(AppLocalizations.of(context)!.translate("whatsapp_couldnt_be_launch"))));
+                          ? await launch(whatsappUrl)
+                          : ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text(AppLocalizations.of(context)!
+                                  .translate("whatsapp_couldnt_be_launch"))));
                     },
                     buttonText:
                         AppLocalizations.of(context)!.translate('whats_app'),
