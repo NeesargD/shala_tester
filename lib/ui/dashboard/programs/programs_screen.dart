@@ -86,7 +86,7 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
                         style: state.programsModel.content!.programs[index].style,
                         level: state.programsModel.content!.programs[index].level,
                         width: 0.9,
-                        countClass: 5),
+                        countClass: state.programsModel.content!.programs[index].count),
                   ),
                 );
               },

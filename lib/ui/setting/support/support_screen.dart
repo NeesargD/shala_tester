@@ -172,12 +172,15 @@ class _SupportScreenState extends State<SupportScreen> {
                 CustomButton(
                     onTap: () async {
                       var whatsappUrl = "whatsapp://send?phone=$whatsApp";
-                      await canLaunch(whatsappUrl)
-                          ? await launch(whatsappUrl)
-                          : ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(AppLocalizations.of(context)!
-                                  .translate("whatsapp_couldnt_be_launch"))));
-                    },
+                      if(await canLaunch(whatsappUrl)) {
+                        launch(whatsappUrl);
+                      }
+                      else {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(AppLocalizations.of(context)!
+                                .translate("whatsapp_couldnt_be_launch"))));
+                      }
+                      },
                     buttonText:
                         AppLocalizations.of(context)!.translate('whats_app'),
                     backgroundColor: ColorRes.primaryColor,

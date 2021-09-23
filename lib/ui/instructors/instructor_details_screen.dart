@@ -294,7 +294,7 @@ class _InstructorDetailProfileScreenState
                           controller: _tabController,
                         ),
                       ),
-                      SizedBox(height: 40)
+                      SizedBox(height: 55)
                     ],
                   ),
                   PositionedDirectional(
@@ -309,9 +309,9 @@ class _InstructorDetailProfileScreenState
                           )
                         ],
                       // gradient: LinearGradient(
-                      //   begin: Alignment.bottomCenter,
-                      //   end: Alignment.topCenter,
-                      //   colors: [ColorRes.white.withOpacity(0.8), ColorRes.white.withOpacity(0.5)]
+                      //   begin: Alignment.center,
+                      //   end: Alignment.center,
+                      //   colors: [ColorRes.white.withOpacity(0.7), ColorRes.white.withOpacity(0.8)]
                       // )
                       ),
                       padding: EdgeInsetsDirectional.only(

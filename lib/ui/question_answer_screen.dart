@@ -118,7 +118,7 @@ class _QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                                 decoration: BoxDecoration(
                                                     border: Border.all(color: ColorRes.lightGrey, width: 1),
                                                     borderRadius: BorderRadius.circular(10),
-                                                    color: state.quizModel.content[index].answers![i].isSelected ? ColorRes.primaryColor : ColorRes.white),
+                                                    color: state.quizModel.content[index].answers![i].isSelected ? ColorRes.green : ColorRes.white),
                                                 // padding: EdgeInsetsDirectional.fromSTEB(17, 28, 17, 28),
                                                 // margin: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 10),
                                                 alignment: Alignment.center,
@@ -218,7 +218,7 @@ class _QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
         setState(() {});
       },
       child: Container(
-        decoration: BoxDecoration(border: Border.all(color: ColorRes.lightGrey, width: 1), borderRadius: BorderRadius.circular(10), color: answer.isSelected ? ColorRes.primaryColor : ColorRes.white),
+        decoration: BoxDecoration(border: Border.all(color: ColorRes.lightGrey, width: 1), borderRadius: BorderRadius.circular(10), color: answer.isSelected ? ColorRes.green : ColorRes.white),
         padding: EdgeInsetsDirectional.fromSTEB(20, 28, 0, 29),
         margin: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 10),
         child: Text(
@@ -239,7 +239,7 @@ class _QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
         decoration: BoxDecoration(
           border: Border.all(color: ColorRes.lightGrey, width: 1),
           borderRadius: BorderRadius.circular(10),
-          color: content.questionId!.selectedIndex == answerIndex ? ColorRes.primaryColor : ColorRes.white,
+          color: content.questionId!.selectedIndex == answerIndex ? ColorRes.green : ColorRes.white,
         ),
         padding: EdgeInsetsDirectional.fromSTEB(20, 28, 0, 29),
         margin: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 10),

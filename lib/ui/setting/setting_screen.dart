@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shala_yoga/base/utils/constants/string_res.dart';
+import 'package:shala_yoga/base/utils/localization/app_language.dart';
+import 'package:shala_yoga/base/utils/preference.dart';
+import 'package:shala_yoga/ui/setting/language/language.dart';
 import '../../base/utils/constants/color_constant.dart';
 import '../../base/utils/constants/image_constant.dart';
 import '../../base/utils/constants/textstyle_constants.dart';
@@ -19,27 +24,40 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
-
   var duration = DateTime.now().timeZoneOffset;
 
-@override
+  bool isSelected = false;
+  String? code;
+
+  Future<void> checkLanguageMode() async {
+    code = await Preferences.getData('language_code');
+    if (code == 'en' || code == null) {
+      isSelected = false;
+    } else {
+      isSelected = true;
+    }
+    setState(() {});
+  }
+
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
     var abc = getBundleId();
+    checkLanguageMode();
     print(abc);
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(
-            color: ColorRes.greyText
-        ),
+        iconTheme: IconThemeData(color: ColorRes.greyText),
         elevation: 0,
         centerTitle: true,
-        title: Text(AppLocalizations.of(context)!.translate("settings"), style: TextStyles.L2075),
+        title: Text(AppLocalizations.of(context)!.translate("settings"),
+            style: TextStyles.L2075),
         backgroundColor: ColorRes.appBarColor,
       ),
       body: SingleChildScrollView(
@@ -48,27 +66,32 @@ class _SettingScreenState extends State<SettingScreen> {
           child: Column(
             children: [
               CommonListTileWidget(
-                  titleText: AppLocalizations.of(context)!.translate("my_account"),
+                  titleText:
+                      AppLocalizations.of(context)!.translate("my_account"),
                   imagePath: ImageRes.setting_my_account,
                   onTap: () {
                     NavigationUtils.push(context, routeMyAccount);
                   }),
               CommonListTileWidget(
-                titleText: "TIME ZONE", imagePath:ImageRes.setting_timezone,
-                onTap: () {},  timeLanZone: duration.isNegative ? '-${duration.toString().split(":")[0]}:${duration.toString().split(":")[1]}'
-                  : '+${duration.toString().split(":")[0]}:${duration.toString().split(":")[1]}' +' ${DateTime.now()
-                  .timeZoneName}'),
+                  titleText:
+                      AppLocalizations.of(context)!.translate("time_zone"),
+                  imagePath: ImageRes.setting_timezone,
+                  onTap: () {},
+                  timeLanZone: duration.isNegative
+                      ? '-${duration.toString().split(":")[0]}:${duration.toString().split(":")[1]}'
+                      : '+${duration.toString().split(":")[0]}:${duration.toString().split(":")[1]}' +
+                          ' ${DateTime.now().timeZoneName}'),
               CommonListTileWidget(
-                  titleText: AppLocalizations.of(context)!.translate
-                    ("language"), imagePath: ImageRes.setting_language,
-                  timeLanZone: "EN",
-                  onTap: ()
-              {
-                NavigationUtils.push(context, routeLanguage);
-              }),
+                  titleText:
+                      AppLocalizations.of(context)!.translate("language"),
+                  imagePath: ImageRes.setting_language,
+                  timeLanZone: isSelected ? 'AR' : "EN",
+                  onTap: () {
+                    NavigationUtils.push(context, routeLanguage);
+                  }),
               CommonListTileWidget(
-                  titleText: AppLocalizations.of(context)!.translate
-                    ("notification"),
+                  titleText:
+                      AppLocalizations.of(context)!.translate("notification"),
                   imagePath: ImageRes.setting_notifications,
                   onTap: () {
                     NavigationUtils.push(context, routeNotification);
@@ -81,27 +104,31 @@ class _SettingScreenState extends State<SettingScreen> {
                     NavigationUtils.push(context, routeSupportScreen);
                   }),
               CommonListTileWidget(
-                  titleText: AppLocalizations.of(context)!.translate("terms&condition"),
+                  titleText: AppLocalizations.of(context)!
+                      .translate("terms&condition"),
                   imagePath: ImageRes.setting_terms_condition,
                   onTap: () {
-                    launchURL('https://www.shalaonline.com/app/en/terms-of-use');
+                    launchURL(
+                        'https://www.shalaonline.com/app/en/terms-of-use');
                   }),
               CommonListTileWidget(
-                  titleText: AppLocalizations.of(context)!.translate("privacy_policy"), imagePath: ImageRes
-                  .setting_privacy_policy,
+                  titleText:
+                      AppLocalizations.of(context)!.translate("privacy_policy"),
+                  imagePath: ImageRes.setting_privacy_policy,
                   onTap: () {
-                    launchURL('https://www.shalaonline.com/app/en/privacy-policy');
+                    launchURL(
+                        'https://www.shalaonline.com/app/en/privacy-policy');
                   }),
               CommonListTileWidget(
-                  titleText: AppLocalizations.of(context)!.translate('about'), imagePath: ImageRes
-                  .setting_about,
+                  titleText: AppLocalizations.of(context)!.translate('about'),
+                  imagePath: ImageRes.setting_about,
                   onTap: () {
-                launchURL('https://www.shalaonline.com/app/en/about-us');
-              }),
+                    launchURL('https://www.shalaonline.com/app/en/about-us');
+                  }),
               CommonListTileWidget(
-                  titleText: AppLocalizations.of(context)!.translate
-                    ('invite_friends'), imagePath: ImageRes
-                  .setting_invite_friends,
+                  titleText:
+                      AppLocalizations.of(context)!.translate('invite_friends'),
+                  imagePath: ImageRes.setting_invite_friends,
                   onTap: () {
                     generateDynamicLink();
                   }),
@@ -138,11 +165,10 @@ class _SettingScreenState extends State<SettingScreen> {
         minimumVersion: '1.0.1',
         appStoreId: '123456789',
       ),
-
     );
     final Uri dynamicUrl = await parameters.buildUrl();
     final ShortDynamicLink shortenedLink =
-    await DynamicLinkParameters.shortenUrl(
+        await DynamicLinkParameters.shortenUrl(
       dynamicUrl,
       DynamicLinkParametersOptions(
           shortDynamicLinkPathLength: ShortDynamicLinkPathLength.unguessable),
