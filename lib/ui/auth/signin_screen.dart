@@ -25,8 +25,8 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  final usernameController1 = TextEditingController(text: "jay@codetrade.io");
-  final passwordController1 = TextEditingController(text: "Jayshah@1234");
+  final usernameController1 = TextEditingController();
+  final passwordController1 = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
   void clearText() {

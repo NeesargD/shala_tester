@@ -46,7 +46,14 @@ class _QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
             icon: Icon(Icons.arrow_back),
             color: ColorRes.greyText,
             onPressed: () {
-              Navigator.pop(context);
+              if(initialPage == 0){
+                NavigationUtils.pop(context);
+              }
+              else {
+                _pageController.previousPage(
+                    duration: Duration(milliseconds: 350),
+                    curve: Curves.easeInOut);
+              }
             },
           ),
           elevation: 0,

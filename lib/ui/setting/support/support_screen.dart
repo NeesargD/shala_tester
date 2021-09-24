@@ -173,7 +173,7 @@ class _SupportScreenState extends State<SupportScreen> {
                     onTap: () async {
                       var whatsappUrl = "whatsapp://send?phone=$whatsApp";
                       if(await canLaunch(whatsappUrl)) {
-                        launch(whatsappUrl);
+                        await launch(whatsappUrl);
                       }
                       else {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
