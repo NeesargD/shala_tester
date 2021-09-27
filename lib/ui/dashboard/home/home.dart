@@ -293,7 +293,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   state.homeModel.content!.recommendedContent!.isEmpty
                                       ? Container()
                                       : Container(
-                                          height: 189,
+                                          height: 228,
                                           child: ListView.separated(
                                             padding: EdgeInsets.zero,
                                             shrinkWrap: true,
@@ -312,7 +312,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                           style: state.homeModel.content!.recommendedContent![i].classes!.style![0],
                                                           image: state.homeModel.content!.recommendedContent![i].classes!.instructor!.profilePicture!,
                                                           level: state.homeModel.content!.recommendedContent![i].classes!.level!,
-                                                          width: 0.75,
+
                                                           duration: state.homeModel.content!.recommendedContent![i].classes!.durations!,),
                                                     )
                                                   : InkWell(
@@ -411,7 +411,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 itemBuilder: (context, i) {
                                                   return InkWell(
                                                     onTap: () {
-                                                      NavigationUtils.push(context, routeClassDetailsScreen, arguments: {'id': state.homeModel.content!.dynamicContent![index].classesContent![1].id});
+                                                      NavigationUtils.push(context, routeClassDetailsScreen, arguments: {'id': state.homeModel.content!.dynamicContent![index].classesContent![i].id});
                                                     },
                                                     child: Container(
                                                       width: screenWidth(context: context, percent: 0.40),
@@ -438,7 +438,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             Text(state.homeModel.content!.dynamicContent![index].title!, style: TextStyles.SB1875),
                                             const SizedBox(height: 22),
                                             Container(
-                                              height: 189,
+                                              height: 228,
                                               child: ListView.separated(
                                                 padding: EdgeInsets.zero,
                                                 shrinkWrap: true,
@@ -447,9 +447,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 itemBuilder: (c, i) {
                                                   return InkWell(
                                                     onTap: () {
-                                                      NavigationUtils.push(context, routeClassDetailsScreen, arguments: {'id': state.homeModel.content!.dynamicContent![index].classesContent![1].id});
+                                                      NavigationUtils.push(context, routeClassDetailsScreen, arguments: {'id': state.homeModel.content!.dynamicContent![index].classesContent![i].id});
                                                     },
                                                     child: RecommendedClassList(
+                                                      height: 0.6,
                                                         coverImage: state.homeModel.content!.dynamicContent![index].classesContent![i].coverImage!,
                                                         title: state.homeModel.content!.dynamicContent![index].classesContent![i].title!,
                                                         languages: state.homeModel.content!.dynamicContent![index].classesContent![i].language!,

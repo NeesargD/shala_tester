@@ -36,7 +36,7 @@ class RecommendedClassList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: screenHeight(context: context, percent: height),
+      height: 228,
       width: screenWidth(context: context, percent: width),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4),
@@ -44,12 +44,12 @@ class RecommendedClassList extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            height: 110,
+            height: 155,
             width: screenWidth(context: context, percent: width),
             child: Stack(
               children: [
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.2,
+                  height: 155,
                   width: MediaQuery.of(context).size.width * 0.7,
                   child: ClipRRect(
                     borderRadius: BorderRadius.only(
@@ -109,7 +109,7 @@ class RecommendedClassList extends StatelessWidget {
             clipBehavior: Clip.none,
             children: [
               Container(
-                height: 79,
+                height: 73,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                     color: Colors.white,
