@@ -134,7 +134,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       hintStyle: TextStyles.R1575),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: (value) {
-                    Pattern pattern = r'^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})||([0-9]{10})+$';
+                    Pattern pattern = r'^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})|([0-9]{10})+$';
                     RegExp regex = new RegExp(pattern.toString());
                     if (value!.isEmpty) {
                       return "Please enter Email or phone number";
