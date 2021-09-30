@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import '../../base/utils/common_methods.dart';
 import '../../base/utils/toast_utils.dart';
 import '../../base/utils/navigation/navigation_utils.dart';
@@ -32,6 +33,9 @@ class _SignupScreenState extends State<SignupScreen> {
   final passwordController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
+
+  String? initialCountry;
+  PhoneNumber number = PhoneNumber(isoCode: 'AE');
 
   void clearText() {
     emailController.clear();
@@ -98,16 +102,36 @@ class _SignupScreenState extends State<SignupScreen> {
                 },
               ),
               const SizedBox(height: 30),
-              TextFormField(
-                controller: phoneNumberController,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
+              // TextFormField(
+              //   controller: phoneNumberController,
+              //   autovalidateMode: AutovalidateMode.onUserInteraction,
+              //   keyboardType: TextInputType.phone,
+              //   decoration: InputDecoration(
+              //       focusedBorder: UnderlineInputBorder(
+              //         borderSide: BorderSide(color: ColorRes.primaryColor),
+              //       ),
+              //       hintText: "${AppLocalizations.of(context)!.translate("phone")} (${AppLocalizations.of(context)!.translate("optional")})",
+              //       hintStyle: TextStyles.R1575),
+              // ),
+              InternationalPhoneNumberInput(
+                textFieldController: phoneNumberController,
+                initialValue: number,
+                onInputChanged: (PhoneNumber number) {
+                  print(number.phoneNumber);
+                },searchBoxDecoration: InputDecoration(
+                  enabled: false
+              ),
+                selectorConfig: SelectorConfig(
+                  trailingSpace: false,
+                  setSelectorButtonAsPrefixIcon: true,
+                ),
+                inputDecoration: InputDecoration(
+                  enabled: false,
+                ),
+                countrySelectorScrollControlled: false,
+                formatInput: true,
                 keyboardType: TextInputType.phone,
-                decoration: InputDecoration(
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: ColorRes.primaryColor),
-                    ),
-                    hintText: "${AppLocalizations.of(context)!.translate("phone")} (${AppLocalizations.of(context)!.translate("optional")})",
-                    hintStyle: TextStyles.R1575),
+                autoValidateMode: AutovalidateMode.onUserInteraction,
               ),
               const SizedBox(height: 30),
               TextFormField(
