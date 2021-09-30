@@ -73,7 +73,7 @@ class ClassesCardWidget extends StatelessWidget {
                     ),
                     child: Text(isLock == true ? AppLocalizations.of(context)
                     !.translate("premium") : AppLocalizations.of(context)!.translate('free'),
-                        style: TextStyles.R12FF),
+                        style: TextStyles.SB10FF),
                   ),
                 ),
                 Center(
@@ -139,41 +139,41 @@ class ClassesCardWidget extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        children: [
-                          SvgPicture.asset(ImageRes.yogaStyle),
-                          const SizedBox(
-                            width: 3,
-                          ),
-                          Text(
-                            style,
-                            style: TextStyles.R1275,
-                          ),
-                        ],
+                      SvgPicture.asset(ImageRes.yogaStyle),
+                      const SizedBox(width: 3),
+                      Flexible(
+                        child: Text(
+                         style, overflow: TextOverflow.ellipsis,
+                         style: TextStyles.R1275,maxLines: 1,
+                        ),
                       ),
-                      Row(
-                        children: [
-                          SvgPicture.asset(ImageRes.levels),
-                          const SizedBox(
-                            width: 3,
-                          ),
-                          Text(
-                            level,
-                            style: TextStyles.R1275,
-                          ),
-                        ],
+                      const SizedBox(
+                        width: 3,
                       ),
-                      Row(
-                        children: [
-                          SvgPicture.asset(ImageRes.hourGlass),
-                          const SizedBox(
-                            width: 3,
-                          ),
-                          Text(
+                      SvgPicture.asset(ImageRes.levels),
+                      const SizedBox(
+                        width: 3,
+                      ),
+                      Flexible(
+                        child: Text(
+                           level,overflow: TextOverflow.ellipsis,
+                           style: TextStyles.R1275,maxLines: 1,
+                         ),
+                      ),
+                      const SizedBox(
+                        width: 3,
+                      ),
+                      SvgPicture.asset(ImageRes.hourGlass),
+                      const SizedBox(
+                        width: 3,
+                      ),
+                      Flexible(
+                        child: Text(
                             duration + AppLocalizations.of(context)!.translate("min"),
+                            overflow: TextOverflow.ellipsis,
                             style: TextStyles.R1275,
+                            maxLines: 1,
                           ),
-                        ],
                       ),
                     ],
                   )

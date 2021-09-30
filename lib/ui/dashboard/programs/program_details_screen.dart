@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:shala_yoga/ui/auth/login_signup.dart';
+import 'package:shala_yoga/ui/auth/watch_video_login.dart';
 import '../../../base/utils/common_methods.dart';
 import '../../../base/utils/constants/color_constant.dart';
 import '../../../base/utils/constants/image_constant.dart';
@@ -35,6 +36,7 @@ class ProgramDetailScreen extends StatefulWidget {
 class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
   bool textDescription = false;
   late ProgramDetailModel? programDetailModel;
+  DateTime? selectedDate;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
           }
           if (state is FavouriteSuccess) {
             EasyLoading.dismiss();
-            ToastUtils.showSuccess(message: state.message);
+            // ToastUtils.showSuccess(message: state.message);
             programDetailModel!.content!.programs.isFav.value =
                 !programDetailModel!.content!.programs.isFav.value;
           }
@@ -164,24 +166,45 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                                 Navigator.pop(context);
                                               },
                                               child: Icon(Icons.arrow_back,
-                                                  color: ColorRes.white,
-                                                  size: 26),
+                                                  color: ColorRes.white),
                                             ),
                                             Spacer(),
                                             IconButton(
                                                 padding: EdgeInsets.zero,
                                                 onPressed: () {
                                                   if (appState.userId != null) {
-                                                    /// TODO: ADD TO MY WISHLIST LOGIC
+                                                    _handleClickMe(context);
                                                   } else {
-                                                    NavigationUtils.push(
-                                                        context,
-                                                        routeLoginSignup);
+                                                    showModalBottomSheet(
+                                                        isScrollControlled:
+                                                            true,
+                                                        enableDrag: true,
+                                                        clipBehavior: Clip.none,
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.only(
+                                                                  topRight: Radius
+                                                                      .circular(
+                                                                          10),
+                                                                  topLeft: Radius
+                                                                      .circular(
+                                                                          10)),
+                                                        ),
+                                                        context: context,
+                                                        builder: (context) => SizedBox(
+                                                            height:
+                                                                screenHeight(
+                                                                    context:
+                                                                        context,
+                                                                    percent:
+                                                                        0.75),
+                                                            child:
+                                                                LoginSignupScreen()));
                                                   }
                                                 },
                                                 icon: Icon(Icons.access_time,
-                                                    color: ColorRes.white,
-                                                    size: 26)),
+                                                    color: ColorRes.white)),
                                             ValueListenableBuilder(
                                               valueListenable:
                                                   programDetailModel!
@@ -205,9 +228,31 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                                                   .id,
                                                             ));
                                                       } else {
-                                                        NavigationUtils.push(
-                                                            context,
-                                                            routeLoginSignup);
+                                                        showModalBottomSheet(
+                                                            isScrollControlled:
+                                                                true,
+                                                            enableDrag: true,
+                                                            clipBehavior:
+                                                                Clip.none,
+                                                            shape:
+                                                                RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius.only(
+                                                                  topRight: Radius
+                                                                      .circular(
+                                                                          10),
+                                                                  topLeft: Radius
+                                                                      .circular(
+                                                                          10)),
+                                                            ),
+                                                            context: context,
+                                                            builder: (context) => SizedBox(
+                                                                height: screenHeight(
+                                                                    context:
+                                                                        context,
+                                                                    percent:
+                                                                        0.75),
+                                                                child:
+                                                                    LoginSignupScreen()));
                                                       }
                                                     },
                                                     icon: programDetailModel!
@@ -363,11 +408,11 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                 ),
                                 const SizedBox(height: 22),
                                 ExpandShrinkText(
-                                  state.programDetailModel.content!.programs
-                                      .description,
-                                  trimLines: 5,
-                                ),
-                              ],
+                                    state.programDetailModel.content!.programs
+                                        .description,
+                                    trimLines: 5,
+                                  ),
+                            ],
                             ),
                           ),
                           const SizedBox(height: 30),
@@ -429,39 +474,43 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                                     EdgeInsetsDirectional.only(
                                                         end: 1),
                                                 child: Stack(
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .only(start: 10),
-                                                      child: CircleAvatar(
-                                                        radius: 21,
-                                                        backgroundColor: Color(
-                                                                0xff9A9A9A)
-                                                            .withOpacity(0.5),
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                        .only(
+                                                                    start: 10),
+                                                            child: CircleAvatar(
+                                                              radius: 21,
+                                                              backgroundColor:
+                                                                  Color(0xff9A9A9A)
+                                                                      .withOpacity(
+                                                                          0.5),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                        .only(
+                                                                    start: 5),
+                                                            child: CircleAvatar(
+                                                              radius: 21,
+                                                              backgroundColor:
+                                                                  Color(
+                                                                      0xff9A9A9A),
+                                                            ),
+                                                          ),
+                                                          CircularImage(
+                                                            imageUrl: state
+                                                                .programDetailModel
+                                                                .content!
+                                                                .programs
+                                                                .instructor
+                                                                .profilePicture,
+                                                            imageRadius: 21,
+                                                          ),
+                                                        ],
                                                       ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .only(start: 5),
-                                                      child: CircleAvatar(
-                                                        radius: 21,
-                                                        backgroundColor:
-                                                            Color(0xff9A9A9A),
-                                                      ),
-                                                    ),
-                                                    CircularImage(
-                                                      imageUrl: state
-                                                          .programDetailModel
-                                                          .content!
-                                                          .programs
-                                                          .instructor
-                                                          .profilePicture,
-                                                      imageRadius: 21,
-                                                    ),
-                                                  ],
-                                                ),
                                               ),
                                             ),
                                             SizedBox(width: 15),
@@ -577,8 +626,21 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                           .content!.classes[0].videoUrl
                                     });
                                   } else {
-                                    NavigationUtils.push(
-                                        context, routeLoginSignup);
+                                    showModalBottomSheet(
+                                        isScrollControlled: true,
+                                        enableDrag: true,
+                                        clipBehavior: Clip.none,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(10),
+                                              topLeft: Radius.circular(10)),
+                                        ),
+                                        context: context,
+                                        builder: (context) => SizedBox(
+                                            height: screenHeight(
+                                                context: context,
+                                                percent: 0.75),
+                                            child: LoginScreen()));
                                   }
                                 },
                                 buttonText: AppLocalizations.of(context)!
@@ -591,10 +653,23 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                             CustomButton(
                                 onTap: () {
                                   if (appState.userId != null) {
-                                    /// TODO: ADD TO MY WISHLIST LOGIC
+                                    _handleClickMe(context);
                                   } else {
-                                    NavigationUtils.push(
-                                        context, routeLoginSignup);
+                                    showModalBottomSheet(
+                                        isScrollControlled: true,
+                                        enableDrag: true,
+                                        clipBehavior: Clip.none,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(10),
+                                              topLeft: Radius.circular(10)),
+                                        ),
+                                        context: context,
+                                        builder: (context) => SizedBox(
+                                            height: screenHeight(
+                                                context: context,
+                                                percent: 0.75),
+                                            child: LoginSignupScreen()));
                                   }
                                 },
                                 buttonText: AppLocalizations.of(context)!
@@ -618,5 +693,77 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
         ),
       ),
     );
+  }
+
+  void _dateRangePicker(BuildContext context) {
+    showCupertinoDialog(
+        context: context,
+        builder: (_) => Center(
+              child: Container(
+                margin: EdgeInsetsDirectional.only(start: 20, end: 20),
+                child: CupertinoActionSheet(
+                  title: Text(
+                    "Pick a date",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  actions: [
+                    Container(
+                      height: 170,
+                      child: CupertinoDatePicker(
+                          minimumDate: DateTime.now(),
+                          initialDateTime: selectedDate != null
+                              ? selectedDate
+                              : DateTime.now(),
+                          onDateTimeChanged: (val) {
+                            setState(() {
+                              selectedDate = val;
+                            });
+                          }),
+                    ),
+                    CupertinoDialogAction(
+                      child: Text('Confirm'),
+                      onPressed: () {
+                        if (selectedDate != null) {
+                          // Timestamp mytimeStamp = Timestamp.fromDate(selectedDate);
+                          // DateTime myDateTime = mytimeStamp.toDate();
+                          print(
+                              selectedDate!.millisecondsSinceEpoch.toString());
+                          Navigator.pop(context);
+
+                          /// TODO: ADD WATCH LATER API
+                          setState(() {});
+                        } else {
+                          ToastUtils.showFailed(message: "Date not selected");
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ));
+  }
+
+  Future<void> _handleClickMe(BuildContext context) async {
+    return showCupertinoDialog(
+        context: context,
+        builder: (_) => CupertinoAlertDialog(
+              title: new Text("Time to Watch"),
+              content: new Text("Do you need to set a time to watch?"),
+              actions: <Widget>[
+                CupertinoDialogAction(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    _dateRangePicker(context);
+                  },
+                  child: Text("Yes"),
+                ),
+                CupertinoDialogAction(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text("Not now"),
+                )
+              ],
+            ));
   }
 }

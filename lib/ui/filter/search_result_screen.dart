@@ -195,9 +195,17 @@ class _SearchResultState extends State<SearchResult>
                                       .postFilterModel.content!.programs.length,
                                   itemBuilder:
                                       (BuildContext context, int index) {
-                                    return ProgramGridWidget(
-                                      programDetails: state.postFilterModel
-                                          .content!.programs[index],
+                                    return GestureDetector(onTap :() {
+                                      NavigationUtils.push(
+                                          context, routeProgramDetailsScreen,
+                                          arguments: {
+                                            'id': state.postFilterModel
+                                                .content!.programs[index].id
+                                          });
+                                    },child: ProgramGridWidget(
+                                        programDetails: state.postFilterModel
+                                            .content!.programs[index],
+                                      ),
                                     );
                                   },
                                 )),

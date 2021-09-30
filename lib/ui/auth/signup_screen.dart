@@ -57,7 +57,7 @@ class _SignupScreenState extends State<SignupScreen> {
           ToastUtils.showFailed(message: state.message);
         }
       },
-      child: Form(
+        child: Form(
         key: formKey,
         child: Container(
           margin: EdgeInsetsDirectional.only(start: 20, end: 20),
@@ -157,7 +157,10 @@ class _SignupScreenState extends State<SignupScreen> {
                 Expanded(
                   child: Divider(color: ColorRes.greyText),
                 ),
-                Text(AppLocalizations.of(context)!.translate("or"), style: TextStyles.R1575),
+                Padding(
+                  padding: const EdgeInsetsDirectional.only(start: 2, end: 2),
+                  child: Text(AppLocalizations.of(context)!.translate("or"), style: TextStyles.R1575),
+                ),
                 Expanded(
                   child: Divider(color: ColorRes.greyText),
                 ),

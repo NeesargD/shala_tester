@@ -14,6 +14,8 @@ import 'package:shala_yoga/models/home/res_home_model.dart';
 import 'package:shala_yoga/models/instructor_details_model.dart';
 import 'package:shala_yoga/models/instructor_follow_model.dart';
 import 'package:shala_yoga/models/instructor_models.dart';
+import 'package:shala_yoga/models/objective/req_objective.dart';
+import 'package:shala_yoga/models/objective/res_objective.dart';
 import 'package:shala_yoga/models/onboarding_models.dart';
 import 'package:shala_yoga/models/programs/program_details_model.dart';
 import 'package:shala_yoga/models/programs/programs_model.dart';
@@ -168,6 +170,23 @@ class ApiServices {
           await _dio.post(Config.postQuestionAnswer, data: param);
       return response.data;
     } on DioError catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  Future<ResObjectiveModel> resObjective({required Map<String, dynamic> param}) async{
+    try{
+      Response response  = await _dio.post(Config.resObjective, data: param);
+      return ResObjectiveModel.fromJson(response.data);
+    } on DioError catch(e){
+      throw _handleError(e);
+    }
+}
+  Future<ReqObjectiveModel> reqObjective() async{
+    try{
+      Response response  = await _dio.get(Config.reqObjective);
+      return ReqObjectiveModel.fromJson(response.data);
+    }on DioError catch(e){
       throw _handleError(e);
     }
   }

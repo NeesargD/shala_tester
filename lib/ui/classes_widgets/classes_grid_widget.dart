@@ -45,7 +45,7 @@ class ClassesGridWidget extends StatelessWidget {
                     topLeft: Radius.circular(4)
                   ),
                     child:
-                        CustomNetworkImage(imageUrl: classesDetail.coverImage)),
+                        CustomNetworkImage(imageUrl: classesDetail.coverImage ,boxFit: BoxFit.cover,)),
                 // Image.network(
                 //   '${classesDetail.coverImage}',
                 //   alignment: AlignmentDirectional.topCenter,
@@ -132,13 +132,20 @@ class ClassesGridWidget extends StatelessWidget {
                         const SizedBox(
                           width: 3,
                         ),
-                        Text("Fitness", style: TextStyles.R1275),
+                        Flexible(child: Text(classesDetail.style[0], style: TextStyles.R1275,
+                        overflow: TextOverflow.ellipsis,
+                           maxLines: 1,
+                        )),
                         SizedBox(width: 10),
                         SvgPicture.asset(ImageRes.levels),
                         const SizedBox(
                           width: 3,
                         ),
-                        Text(classesDetail.level, style: TextStyles.R1275),
+                        Flexible(
+                          child: Text(classesDetail.level, style: TextStyles.R1275, overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          ),
+                        ),
                       ],
                     ),
                   ],

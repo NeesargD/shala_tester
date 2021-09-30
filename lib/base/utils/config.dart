@@ -30,4 +30,6 @@ class Config {
   static const String postLoginDetail = 'login';
   static const String instructorFollow = 'instructorfollow';
 
+  static const String resObjective = 'objective';
+  static const String reqObjective = 'objective';
 }

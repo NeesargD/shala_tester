@@ -6,6 +6,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:shala_yoga/base/utils/toast_utils.dart';
 import 'package:shala_yoga/blocs/favourite_bloc/favourite_bloc.dart';
 import 'package:shala_yoga/models/classes/class_details_model.dart';
+import 'package:shala_yoga/ui/auth/login_signup.dart';
+import 'package:shala_yoga/ui/auth/watch_video_login.dart';
 import '../../../base/utils/localization/app_localizations.dart';
 import '../../../base/utils/navigation/navigation_route_constants.dart';
 import '../../../base/utils/navigation/navigation_utils.dart';
@@ -43,7 +45,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
         }
         if (state is FavouriteSuccess) {
           EasyLoading.dismiss();
-          ToastUtils.showSuccess(message: state.message);
+          // ToastUtils.showSuccess(message: state.message);
           classDetailsModel!.content!.classes.isFav.value =
               !classDetailsModel!.content!.classes.isFav.value;
         }
@@ -146,7 +148,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.only(
-                                        start: 23, end: 15, top: 20),
+                                        start: 23, end: 23, top: 20),
                                     child: Column(
                                       children: [
                                         Row(
@@ -165,8 +167,16 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                                   if (appState.userId != null) {
                                                     _handleClickMe(context);
                                                   } else {
-                                                    NavigationUtils.push(
-                                                        context, routeLoginSignup);
+                                                    showModalBottomSheet(
+                                                      isScrollControlled: true,
+                                                      enableDrag: true,
+                                                      clipBehavior: Clip.none,
+                                                        shape: RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
+                                                        ),context: context,
+                                                        builder: (context) => SizedBox(
+                                                            height: screenHeight(context: context, percent: 0.75),
+                                                            child: LoginSignupScreen()));
                                                   }
                                                 },
                                                 icon: Icon(Icons.access_time,
@@ -190,8 +200,16 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                                                   .id,
                                                             ));
                                                       } else {
-                                                        NavigationUtils.push(
-                                                            context, routeLoginSignup);
+                                                        showModalBottomSheet(
+                                                            isScrollControlled: true,
+                                                            enableDrag: true,
+                                                            clipBehavior: Clip.none,
+                                                            shape: RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
+                                                            ),context: context,
+                                                            builder: (context) => SizedBox(
+                                                                height: screenHeight(context: context, percent: 0.75),
+                                                                child: LoginSignupScreen()));
                                                       }
                                                     },
                                                     icon: state
@@ -224,8 +242,16 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                                             .videoUrl
                                                       });
                                                 } else {
-                                                  NavigationUtils.push(
-                                                      context, routeLoginSignup);
+                                                  showModalBottomSheet(
+                                                      isScrollControlled: true,
+                                                      enableDrag: true,
+                                                      clipBehavior: Clip.none,
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
+                                                      ),context: context,
+                                                      builder: (context) => SizedBox(
+                                                          height: screenHeight(context: context, percent: 0.75),
+                                                          child: LoginScreen()));
                                                 }
                                               },
                                               child: Center(
@@ -278,12 +304,14 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                     children: [
                                       Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.min,
                                         children: [
                                           Padding(
                                             padding: EdgeInsetsDirectional.only(
                                                 start: 17, end: 17),
                                             child: Column(
                                               crossAxisAlignment: CrossAxisAlignment.start,
+
                                               children: [
                                                 Container(
                                                   width: screenWidth(
@@ -441,7 +469,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                                           .content!.similarClasses[index]));
                                             },
                                           ),
-                                          Container(height: MediaQuery.of(context).size.height * 0.17,
+                                          Container(height: MediaQuery.of(context).size.height * 0.18,
                                          color: ColorRes.appBackground,
                                           )
                                         ],
@@ -466,52 +494,48 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                       PositionedDirectional(
                                           end: 20,
                                           top: -35,
-                                          child: Row(
-                                            children: [
-                                              Column(
-                                                children: [
-                                                  InkWell(
-                                                    onTap: () {
-                                                      NavigationUtils.push(
-                                                          context, routeInstructorDetails,
-                                                          arguments: {
-                                                            'id': state
-                                                                .classDetailsModel
-                                                                .content!
-                                                                .classes
-                                                                .instructor
-                                                                .id,
-                                                          });
-                                                    },
-                                                    child: CircleAvatar(
-                                                      radius: 35,
-                                                      child: ClipRRect(
-                                                        borderRadius:
-                                                        BorderRadius.circular(35),
-                                                        child: CircularImage(
-                                                          imageUrl: state
-                                                              .classDetailsModel
-                                                              .content!
-                                                              .classes
-                                                              .instructor
-                                                              .profilePicture,
-                                                          imageRadius: 35,
-                                                        ),
-                                                      ),
+                                          child: InkWell(
+                                            onTap: () {
+                                              NavigationUtils.push(
+                                                  context, routeInstructorDetails,
+                                                  arguments: {
+                                                    'id': state
+                                                        .classDetailsModel
+                                                        .content!
+                                                        .classes
+                                                        .instructor
+                                                        .id,
+                                                  });
+                                            },
+                                            child: Column(
+                                              children: [
+                                                CircleAvatar(
+                                                  radius: 35,
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                    BorderRadius.circular(35),
+                                                    child: CircularImage(
+                                                      imageUrl: state
+                                                          .classDetailsModel
+                                                          .content!
+                                                          .classes
+                                                          .instructor
+                                                          .profilePicture,
+                                                      imageRadius: 35,
                                                     ),
                                                   ),
-                                                  SizedBox(height: 3),
-                                                  Text(
-                                                    classDetailsModel!.content!.classes
-                                                        .instructor.firstname +
-                                                        '\n' +
-                                                        classDetailsModel!.content!.classes
-                                                            .instructor.lastname,
-                                                    textAlign: TextAlign.center,
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
+                                                ),
+                                                SizedBox(height: 3),
+                                                Text(
+                                                  classDetailsModel!.content!.classes
+                                                      .instructor.firstname +
+                                                      '\n' +
+                                                      classDetailsModel!.content!.classes
+                                                          .instructor.lastname,
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              ],
+                                            ),
                                           )),
                                     ],
                                   ),
@@ -555,8 +579,16 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                           .content!.classes.videoUrl
                                     });
                                   } else {
-                                    NavigationUtils.push(
-                                        context, routeLoginSignup);
+                                    showModalBottomSheet(
+                                        isScrollControlled: true,
+                                        enableDrag: true,
+                                        clipBehavior: Clip.none,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
+                                        ),context: context,
+                                        builder: (context) => SizedBox(
+                                            height: screenHeight(context: context, percent: 0.75),
+                                            child: LoginScreen()));
                                   }
                                 },
                                 buttonText: AppLocalizations.of(context)!
@@ -569,10 +601,18 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                             CustomButton(
                                 onTap: () {
                                   if (appState.userId != null) {
-                                    /// TODO: ADD TO MY WISHLIST LOGIC
+                                    _handleClickMe(context);
                                   } else {
-                                    NavigationUtils.push(
-                                        context, routeLoginSignup);
+                                    showModalBottomSheet(
+                                        isScrollControlled: true,
+                                        enableDrag: true,
+                                        clipBehavior: Clip.none,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
+                                        ),context: context,
+                                        builder: (context) => SizedBox(
+                                            height: screenHeight(context: context, percent: 0.75),
+                                            child: LoginSignupScreen()));
                                   }
                                 },
                                 buttonText: AppLocalizations.of(context)!

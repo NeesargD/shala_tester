@@ -72,7 +72,7 @@ class RecommendedClassList extends StatelessWidget {
                         width: 10,
                       ),
                       Container(
-                        padding: EdgeInsetsDirectional.fromSTEB(15, 5, 15, 5),
+                        padding: EdgeInsetsDirectional.fromSTEB(15, 2, 15, 3),
                         decoration: BoxDecoration(
                           color: isLock == true ? ColorRes.premiumBackground : ColorRes.primaryColor,
                           borderRadius: BorderRadius.circular(10),

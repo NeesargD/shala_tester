@@ -58,67 +58,150 @@ class _SupportScreenState extends State<SupportScreen> {
             if (state is FaqSuccess) {
               contactUs = state.faqModel.contact!.supportcontact!;
               whatsApp = state.faqModel.contact!.whatsappcontact!;
-              return SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsetsDirectional.only(
-                          start: 20, end: 20, top: 28, bottom: 34),
-                      child: Text(
-                          AppLocalizations.of(context)!
-                              .translate('dear_yoga_creative_faq'),
-                          style: TextStyles.R1875),
-                    ),
-                    ListView.builder(
-                        padding: EdgeInsets.zero,
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: state.faqModel.content!.length,
-                        itemBuilder: (c, index) {
-                          return Padding(
-                            padding:
-                                EdgeInsetsDirectional.only(start: 20, end: 20),
-                            child: Column(
-                              children: [
-                                SizedBox(height: 30),
-                                Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  decoration: BoxDecoration(
-                                    color: ColorRes.appBarColor,
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.only(
-                                        start: 25, top: 12, bottom: 14),
-                                    child: Text(
-                                        state.faqModel.content![index].title!,
-                                        style: TextStyles.SB1578),
-                                  ),
+              return Stack(
+                children: [
+                  SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsetsDirectional.only(
+                              start: 20, end: 20, top: 28, bottom: 34),
+                          child: Text(
+                              AppLocalizations.of(context)!
+                                  .translate('dear_yoga_creative_faq'),
+                              style: TextStyles.R1875),
+                        ),
+                        ListView.builder(
+                            padding: EdgeInsets.zero,
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: state.faqModel.content!.length,
+                            itemBuilder: (c, index) {
+                              return Padding(
+                                padding:
+                                    EdgeInsetsDirectional.only(start: 20, end: 20),
+                                child: Column(
+                                  children: [
+                                    SizedBox(height: 30),
+                                    Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      decoration: BoxDecoration(
+                                        color: ColorRes.appBarColor,
+                                        borderRadius: BorderRadius.circular(50),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.only(
+                                            start: 25, top: 12, bottom: 14),
+                                        child: Text(
+                                            state.faqModel.content![index].title!,
+                                            style: TextStyles.SB1578),
+                                      ),
+                                    ),
+                                    SizedBox(height: 30),
+                                    ListView.builder(
+                                        physics: NeverScrollableScrollPhysics(),
+                                        padding: EdgeInsets.zero,
+                                        shrinkWrap: true,
+                                        itemCount: state.faqModel.content![index]
+                                            .questionAnswer!.length,
+                                        itemBuilder: (c, i) {
+                                          return SupportModel(
+                                            question: state.faqModel.content![index]
+                                                .questionAnswer![i].question!,
+                                            answer: state.faqModel.content![index]
+                                                .questionAnswer![i].answer!,
+                                          );
+                                        }),
+                                  ],
                                 ),
-                                SizedBox(height: 30),
-                                ListView.builder(
-                                    physics: NeverScrollableScrollPhysics(),
-                                    padding: EdgeInsets.zero,
-                                    shrinkWrap: true,
-                                    itemCount: state.faqModel.content![index]
-                                        .questionAnswer!.length,
-                                    itemBuilder: (c, i) {
-                                      return SupportModel(
-                                        question: state.faqModel.content![index]
-                                            .questionAnswer![i].question!,
-                                        answer: state.faqModel.content![index]
-                                            .questionAnswer![i].answer!,
-                                      );
-                                    }),
+                              );
+                            }),
+                        SizedBox(height: MediaQuery.of(context).size.height * 0.16,)
+                      ],
+                    ),
+                  ),
+                  PositionedDirectional(
+                    bottom: 0,
+                    start: 0,
+                    end: 0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                              begin: Alignment.bottomCenter,
+                              end: Alignment.topCenter,
+                              colors: [
+                                ColorRes.white.withOpacity(0.5),
+                                ColorRes.whiteGradient.withOpacity(0.1),
                               ],
-                            ),
-                          );
-                        }),
-                    const SizedBox(
-                      height: 30,
-                    )
-                  ],
-                ),
+                              stops: [
+                                0.3,
+                                1
+                              ])
+                        // boxShadow: [BoxShadow(color: ColorRes.white, blurRadius: 20, spreadRadius: 20)],
+                      ),
+                      height: MediaQuery.of(context).size.height * 0.16,
+                      padding: EdgeInsetsDirectional.only(start: 20, end: 20 ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        CustomButton(
+                            onTap: () async {
+                              var phoneUrl = 'tel:$contactUs';
+                              print(await canLaunch(phoneUrl));
+                              if(await canLaunch(phoneUrl)){
+                                await launch(phoneUrl);
+                              }else{
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content:
+                                      Text(AppLocalizations.of(context)!.translate(
+                                          "phone_couldnt_be_launch"))
+                                  ),
+                                );
+                              }
+                              /*await canLaunch(phoneUrl)
+                        ? await launch(phoneUrl):
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                          content:
+                          Text(AppLocalizations.of(context)!.translate(
+                              "phone_couldnt_be_launch"))
+                      ),
+                    );*/
+                            },
+                            buttonText:
+                            AppLocalizations.of(context)!.translate('contact_us'),
+                            backgroundColor: ColorRes.white,
+                            foregroundColor: ColorRes.white,
+                            height: 52,
+                            widthPercent: 0.40,
+                            borderColor: ColorRes.primaryColor,
+                            textStyle: TextStyles.R1778),
+                        SizedBox(width: 10),
+                        CustomButton(
+                            onTap: () async {
+                              var whatsappUrl = "whatsapp://send?phone=$whatsApp";
+                              if(await canLaunch(whatsappUrl)) {
+                                await launch(whatsappUrl);
+                              }
+                              else {
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                    content: Text(AppLocalizations.of(context)!
+                                        .translate("whatsapp_couldnt_be_launch"))));
+                              }
+                            },
+                            buttonText:
+                            AppLocalizations.of(context)!.translate('whats_app'),
+                            backgroundColor: ColorRes.primaryColor,
+                            foregroundColor: ColorRes.white,
+                            height: 52,
+                            widthPercent: 0.40,
+                            borderColor: ColorRes.primaryColor,
+                            textStyle: TextStyles.R17FF),
+                      ],
+                    ),
+                  ),)
+                ],
               );
             }
             if (state is FaqFailure) {
@@ -127,72 +210,7 @@ class _SupportScreenState extends State<SupportScreen> {
             return LoadingWidget();
           },
         ),
-        bottomNavigationBar: BottomAppBar(
-          elevation: 0,
-          child: Padding(
-            padding: EdgeInsetsDirectional.only(
-                top: 30, bottom: 30, start: 27, end: 27),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CustomButton(
-                    onTap: () async {
-                      var phoneUrl = 'tel:$contactUs';
-                      print(await canLaunch(phoneUrl));
-                      if(await canLaunch(phoneUrl)){
-                        await launch(phoneUrl);
-                      }else{
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                              content:
-                              Text(AppLocalizations.of(context)!.translate(
-                                  "phone_couldnt_be_launch"))
-                          ),
-                        );
-                      }
-                      /*await canLaunch(phoneUrl)
-                          ? await launch(phoneUrl):
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                            content:
-                            Text(AppLocalizations.of(context)!.translate(
-                                "phone_couldnt_be_launch"))
-                        ),
-                      );*/
-                    },
-                    buttonText:
-                        AppLocalizations.of(context)!.translate('contact_us'),
-                    backgroundColor: ColorRes.white,
-                    foregroundColor: ColorRes.white,
-                    height: 52,
-                    widthPercent: 0.40,
-                    borderColor: ColorRes.primaryColor,
-                    textStyle: TextStyles.R1778),
-                SizedBox(width: 10),
-                CustomButton(
-                    onTap: () async {
-                      var whatsappUrl = "whatsapp://send?phone=$whatsApp";
-                      if(await canLaunch(whatsappUrl)) {
-                        await launch(whatsappUrl);
-                      }
-                      else {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text(AppLocalizations.of(context)!
-                                .translate("whatsapp_couldnt_be_launch"))));
-                      }
-                      },
-                    buttonText:
-                        AppLocalizations.of(context)!.translate('whats_app'),
-                    backgroundColor: ColorRes.primaryColor,
-                    foregroundColor: ColorRes.white,
-                    height: 52,
-                    widthPercent: 0.40,
-                    borderColor: ColorRes.primaryColor,
-                    textStyle: TextStyles.R17FF),
-              ],
-            ),
-          ),
-        ),
+
       ),
     );
   }

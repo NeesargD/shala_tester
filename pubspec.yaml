@@ -75,6 +75,8 @@ dependencies:
   google_sign_in: ^5.1.0
   sign_in_with_apple: ^3.0.0
   devicelocale: ^0.4.3
+  country_picker: ^2.0.8
+  intl_phone_number_input: ^0.7.0+2
 
   #video-player
   chewie: ^1.2.2

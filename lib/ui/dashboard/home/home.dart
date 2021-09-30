@@ -203,7 +203,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             ),
                                           ))
                                       : Container(
-                                          height: 189,
+                                          height: 233,
                                           child: ListView.separated(
                                             padding: EdgeInsets.zero,
                                             shrinkWrap: true,
@@ -221,6 +221,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     style: state.homeModel.content!.continueWatching!.programId[i].style!,
                                                     level: state.homeModel.content!.continueWatching!.programId[i].level!,
                                                     width: 0.75,
+                                                    height: 0.5,
                                                     countClass: state.homeModel.content!.continueWatching!.programId[i].count!),
                                               );
                                             },
@@ -326,6 +327,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                           style: state.homeModel.content!.recommendedContent![i].programs!.style!,
                                                           level: state.homeModel.content!.recommendedContent![i].programs!.level!,
                                                           width: 0.75,
+                                                          height: 0.5,
                                                           countClass: state.homeModel.content!.recommendedContent![i].programs!.count!),
                                                     );
                                             },
@@ -477,7 +479,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             Text(state.homeModel.content!.dynamicContent![index].title!, style: TextStyles.SB1875),
                                             const SizedBox(height: 22),
                                             Container(
-                                              height: 189,
+                                              height: 233,
                                               child: ListView.separated(
                                                 padding: EdgeInsets.zero,
                                                 shrinkWrap: true,
@@ -496,6 +498,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                         style: state.homeModel.content!.dynamicContent![index].programsContent![i].style!,
                                                         level: state.homeModel.content!.dynamicContent![index].programsContent![i].level!,
                                                         width: 0.75,
+                                                        height: 0.5,
                                                         countClass: state.homeModel.content!.dynamicContent![index].programsContent![i].count!),
                                                   );
                                                 },

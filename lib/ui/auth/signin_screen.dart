@@ -57,7 +57,7 @@ class _SignInScreenState extends State<SignInScreen> {
           margin: EdgeInsetsDirectional.only(start: 20, end: 20),
           child: Column(
             children: [
-              const SizedBox(height: 48),
+              const SizedBox(height: 26),
               InkWell(
                 onTap: handleGoogleSignIn,
                 child: Container(
@@ -65,20 +65,18 @@ class _SignInScreenState extends State<SignInScreen> {
                     borderRadius: BorderRadius.circular(50),
                     border: Border.all(color: ColorRes.greyText, width: 1),
                   ),
-                  child: Center(
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.only(top: 14, bottom: 14),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(ImageRes.google),
-                          const SizedBox(width: 20),
-                          Text(
-                            AppLocalizations.of(context)!.translate("login_with_google"),
-                            style: TextStyles.R1575,
-                          )
-                        ],
-                      ),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.only(top: 14, bottom: 14),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(ImageRes.google),
+                        const SizedBox(width: 20),
+                        Text(
+                          AppLocalizations.of(context)!.translate("login_with_google"),
+                          style: TextStyles.R1575,
+                        )
+                      ],
                     ),
                   ),
                 ),
@@ -117,7 +115,10 @@ class _SignInScreenState extends State<SignInScreen> {
                 Expanded(
                   child: Divider(thickness: 1, color: ColorRes.greyText.withOpacity(0.5)),
                 ),
-                Text(AppLocalizations.of(context)!.translate("or"), style: TextStyles.R1575),
+                Padding(
+                  padding: const EdgeInsetsDirectional.only(start: 2, end: 2 ),
+                  child: Text(AppLocalizations.of(context)!.translate("or"), style: TextStyles.R1575),
+                ),
                 Expanded(
                   child: Divider(thickness: 1, color: ColorRes.greyText.withOpacity(0.5)),
                 ),
@@ -170,7 +171,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 child: CustomButton(
                     textStyle: TextStyles.SB18FF,
                     borderColor: ColorRes.primaryColor,
-                    buttonText: AppLocalizations.of(context)!.translate("log_in"),
+                    buttonText: AppLocalizations.of(context)!.translate("log_in").toUpperCase(),
                     foregroundColor: ColorRes.primaryColor,
                     onTap: () {
                       if (formKey.currentState!.validate()) {
